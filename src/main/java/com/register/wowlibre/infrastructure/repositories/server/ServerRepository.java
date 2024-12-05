@@ -16,4 +16,6 @@ public interface ServerRepository extends CrudRepository<ServerEntity, Long> {
 
     Optional<ServerEntity> findByApiKey(String apiKey);
 
+    List<ServerEntity> findByUserId(Long userId);
+
 }

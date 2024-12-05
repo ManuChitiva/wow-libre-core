@@ -37,6 +37,10 @@ public class ServerService implements ServerPort {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @Override
+    public List<ServerDto> findByUserId(Long userId, String transactionId) {
+        return obtainServerPort.findByUser(userId, transactionId).stream().map(this::mapToModel).toList();
+    }
 
     @Override
     //@Cacheable(value = "server-apikey", key = "#apiKey")
@@ -104,22 +108,23 @@ public class ServerService implements ServerPort {
 
 
     @Override
-    public List<ServersDto> findByStatusIsTrue(String transactionId) {
+    public List<ServerDto> findByStatusIsTrue(String transactionId) {
         return findByStatusIsTrueServers(transactionId).stream().map(this::mapToModel).toList();
     }
 
-    private ServersDto mapToModel(ServerEntity server) {
-        ServersDto serversDto = new ServersDto();
-        serversDto.setId(server.getId());
-        serversDto.setName(server.getName());
-        serversDto.setStatus(server.isStatus());
-        serversDto.setEmulator(server.getEmulator());
-        serversDto.setExpansion(server.getExpansion());
-        serversDto.setCreationDate(server.getCreationDate());
-        serversDto.setWebSite(server.getWebSite());
-        serversDto.setAvatar(server.getAvatar());
-        serversDto.setExpName(Expansion.getById(Integer.parseInt(serversDto.expansion)).getDisplayName());
-        return serversDto;
+    private ServerDto mapToModel(ServerEntity server) {
+        ServerDto serverDto = new ServerDto();
+        serverDto.setId(server.getId());
+        serverDto.setName(server.getName());
+        serverDto.setStatus(server.isStatus());
+        serverDto.setEmulator(server.getEmulator());
+        serverDto.setExpansion(server.getExpansion());
+        serverDto.setCreationDate(server.getCreationDate());
+        serverDto.setWebSite(server.getWebSite());
+        serverDto.setAvatar(server.getAvatar());
+        serverDto.setApiKey(server.getApiKey());
+        serverDto.setExpName(Expansion.getById(Integer.parseInt(serverDto.getExpansion())).getDisplayName());
+        return serverDto;
     }
 
     @Override

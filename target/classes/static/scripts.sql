@@ -177,3 +177,8 @@ CREATE TABLE accounts.user_server_coins
     last_win  DATETIME,
     UNIQUE (user_id, server_id)
 );
+
+
+ALTER TABLE accounts.server
+    ADD COLUMN user_id bigint;
+

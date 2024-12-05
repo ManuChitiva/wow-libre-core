@@ -40,4 +40,5 @@ public class ServerEntity implements Serializable {
     @Column(name = "external_password")
     private String externalPassword;
     private byte[] salt;
+    private Long userId;
 }

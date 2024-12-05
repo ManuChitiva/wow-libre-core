@@ -5,6 +5,8 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.util.*;
 
 public interface ObtainServerPort {
+    List<ServerEntity> findByUser(Long userId, String transactionId);
+
     List<ServerEntity> findByStatusIsTrue(String transactionId);
 
     Optional<ServerEntity> findByNameAndExpansionAndStatusIsTrue(String name, String expansion, String transactionId);

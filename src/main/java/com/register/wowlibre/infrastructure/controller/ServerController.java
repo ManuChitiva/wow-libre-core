@@ -32,6 +32,22 @@ public class ServerController {
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());
     }
 
+    @GetMapping("/user")
+    public ResponseEntity<GenericResponse<AssociatedServers>> serverUser(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_USER_ID) final Long userId) {
+
+        List<ServerDto> servers = serverPort.findByUserId(userId, transactionId);
+
+        if (servers == null) {
+            return ResponseEntity.status(HttpStatus.NO_CONTENT)
+                    .body(new GenericResponseBuilder<AssociatedServers>(transactionId).notContent().build());
+        }
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(new AssociatedServers(servers, servers.size()), transactionId).ok().build());
+    }
+
     @GetMapping("/key")
     public ResponseEntity<GenericResponse<ServerModel>> apiKey(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
@@ -50,15 +66,14 @@ public class ServerController {
 
 
     @GetMapping
-    public ResponseEntity<GenericResponse<List<ServersDto>>> servers(
+    public ResponseEntity<GenericResponse<List<ServerDto>>> servers(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
 
-        final List<ServersDto> serverList = serverPort.findByStatusIsTrue(transactionId);
+        final List<ServerDto> serverList = serverPort.findByStatusIsTrue(transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(serverList, transactionId).ok().build());
     }
-
 
 
 }

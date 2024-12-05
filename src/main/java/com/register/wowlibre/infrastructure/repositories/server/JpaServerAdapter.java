@@ -15,6 +15,11 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     }
 
     @Override
+    public List<ServerEntity> findByUser(Long userId, String transactionId) {
+        return serverRepository.findByUserId(userId);
+    }
+
+    @Override
     public List<ServerEntity> findByStatusIsTrue(String transactionId) {
         return serverRepository.findByStatusIsTrue();
     }
