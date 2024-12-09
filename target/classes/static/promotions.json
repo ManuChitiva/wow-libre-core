@@ -1,24 +1,10 @@
 {
   "es": [
     {
-      "id": 7,
-      "img": "https://static.wixstatic.com/media/5dd8a0_67020ed5ab7c46e4be8085fb20563eb7~mv2.webp",
-      "name": "Promoción Level 80",
-      "description": "¡Salta directamente al nivel 80 y prepárate para la acción! Olvídate de las misiones repetitivas y entra al contenido épico ahora mismo..",
-      "btn_txt": "¡Salta Ahora!",
-      "send_item": false,
-      "items": [],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 10,
-      "type": "LEVEL",
-      "amount": 0
-    },
-    {
-      "id": 8,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKlw1918kd4HhWR7PtOA5ffUPeFNB8kVVLw&s",
-      "name": "Beneficio de levelear - Arcos/Ballestas/Arma arrojadiza/Astas",
-      "description": "¡Por levelear y disfrutar el contenido y estas en el rango  level 70 y 79 puedes reclamar este beneficio",
+      "id": 1000,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/80903-rifle-de-larga-distancia-de-matalobos.jpg",
+      "name": "Armas Coléricas - A Distancia",
+      "description": "Descubre todas las armas coléricas de combate a distancia disponibles.",
       "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
@@ -27,15 +13,15 @@
           "quantity": 1
         },
         {
-          "code": "51395",
+          "code": "51450",
           "quantity": 1
         },
         {
-          "code": "51535",
+          "code": "51451",
           "quantity": 1
         },
         {
-          "code": "51411",
+          "code": "51449",
           "quantity": 1
         },
         {
@@ -43,25 +29,41 @@
           "quantity": 1
         },
         {
-          "code": "51481",
+          "code": "51411",
           "quantity": 1
         },
         {
-          "code": "51480",
+          "code": "51394",
+          "quantity": 1
+        },
+        {
+          "code": "51532",
+          "quantity": 1
+        },
+        {
+          "code": "51410",
+          "quantity": 1
+        },
+        {
+          "code": "51531",
+          "quantity": 1
+        },
+        {
+          "code": "51535",
           "quantity": 1
         }
       ],
       "server_id": 1,
-      "min_lvl": 60,
-      "max_lvl": 79,
+      "min_lvl": 1,
+      "max_lvl": 80,
       "type": "ITEM",
       "amount": 0
     },
     {
-      "id": 9,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGlJVf0YynsG8lBX2sTbNYXhhkLtJq57iVdjUDuERv0XJu0UhP11JLHGUXpaDS_jYet4&usqp=CAU",
-      "name": "Beneficio de levelear - Bastones/Arma de fuego",
-      "description": "¡Por levelear y disfrutar el contenido y estas en el rango  level 70 y 79 puedes reclamar este beneficio",
+      "id": 1001,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiNwrvRxuEHHIDd8AS_zvxF7vmPH51po3cVw&s",
+      "name": "Armas Coléricas - Dos manos",
+      "description": "Descubre todas las armas coléricas de combate a dos manos disponibles.",
       "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
@@ -70,86 +72,7 @@
           "quantity": 1
         },
         {
-          "code": "51404",
-          "quantity": 1
-        },
-        {
-          "code": "51402",
-          "quantity": 1
-        },
-        {
-          "code": "51431",
-          "quantity": 1
-        },
-        {
-          "code": "51456",
-          "quantity": 1
-        },
-        {
-          "code": "51400",
-          "quantity": 1
-        },
-        {
-          "code": "51401",
-          "quantity": 1
-        },
-        {
-          "code": "51405",
-          "quantity": 1
-        },
-        {
-          "code": "51403",
-          "quantity": 1
-        },
-        {
-          "code": "51457",
-          "quantity": 1
-        },
-        {
-          "code": "51450",
-          "quantity": 1
-        },
-        {
-          "code": "51449",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 10,
-      "img": "https://es.gizmodo.com/app/uploads/2019/05/kgc6dnrc1tuz5xdlxjaq.jpg",
-      "name": "Beneficio de levelear - Hachas/Espada Dos manos",
-      "description": "¡Por levelear y disfrutar el contenido y estas en el rango  level 70 y 79 puedes reclamar este beneficio",
-      "btn_txt": "¡Obtener Beneficio!",
-      "send_item": true,
-      "items": [
-        {
           "code": "51389",
-          "quantity": 1
-        },
-        {
-          "code": "51388",
-          "quantity": 1
-        },
-        {
-          "code": "51439",
-          "quantity": 1
-        },
-        {
-          "code": "51526",
-          "quantity": 1
-        },
-        {
-          "code": "51440",
-          "quantity": 1
-        },
-        {
-          "code": "51515",
           "quantity": 1
         },
         {
@@ -161,38 +84,93 @@
           "quantity": 1
         },
         {
-          "code": "51516",
+          "code": "51480",
           "quantity": 1
         },
         {
-          "code": "51448",
+          "code": "51401",
           "quantity": 1
         },
         {
-          "code": "51522",
+          "code": "51404",
+          "quantity": 1
+        },
+        {
+          "code": "51402",
+          "quantity": 1
+        },
+        {
+          "code": "51481",
+          "quantity": 1
+        },
+        {
+          "code": "51391",
+          "quantity": 1
+        },
+        {
+          "code": "51431",
+          "quantity": 1
+        },
+        {
+          "code": "51388",
           "quantity": 1
         }
       ],
       "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
+      "min_lvl": 1,
+      "max_lvl": 80,
       "type": "ITEM",
       "amount": 0
     },
     {
-      "id": 11,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy5rp2ozxs5YbQmibKBN4YiVpZLzi_fRKOgZWyTXKApwUwHpojioaX7w8gWSW_S8MKnik&usqp=CAU",
-      "name": "Beneficio de levelear - Dagas - Maza",
-      "description": "¡Por levelear y disfrutar el contenido y estas en el rango  level 70 y 79 puedes reclamar este beneficio",
+      "id": 1002,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSiNwrvRxuEHHIDd8AS_zvxF7vmPH51po3cVw&s",
+      "name": "Armas Coléricas - Dos manos - Restantes",
+      "description": "Descubre todas las armas coléricas de combate a dos manos disponibles.",
       "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
         {
-          "code": "51518",
+          "code": "51390",
           "quantity": 1
         },
         {
-          "code": "51528",
+          "code": "51405",
+          "quantity": 1
+        },
+        {
+          "code": "51456",
+          "quantity": 1
+        },
+        {
+          "code": "51457",
+          "quantity": 1
+        },
+        {
+          "code": "51403",
+          "quantity": 1
+        },
+        {
+          "code": "51400",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1003,
+      "img": "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/DP0K89L9ELOJ1690595304401.png",
+      "name": "Armas Coléricas - Mano derecha",
+      "description": "Descubre todas las armas coléricas de combate a Mano derecha disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51399",
           "quantity": 1
         },
         {
@@ -200,15 +178,15 @@
           "quantity": 1
         },
         {
-          "code": "51442",
+          "code": "51406",
           "quantity": 1
         },
         {
-          "code": "51399",
+          "code": "51397",
           "quantity": 1
         },
         {
-          "code": "51529",
+          "code": "51454",
           "quantity": 1
         },
         {
@@ -216,15 +194,101 @@
           "quantity": 1
         },
         {
+          "code": "51523",
+          "quantity": 1
+        },
+        {
+          "code": "51453",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1004,
+      "img": "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/HJUW9AY5J12Y1690595304489.png",
+      "name": "Armas Coléricas - Mano Izquierda",
+      "description": "Descubre todas las armas coléricas de combate a mano izquierda disponible.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51528",
+          "quantity": 1
+        },
+        {
+          "code": "51439",
+          "quantity": 1
+        },
+        {
+          "code": "51529",
+          "quantity": 1
+        },
+        {
+          "code": "51526",
+          "quantity": 1
+        },
+        {
           "code": "51444",
           "quantity": 1
         },
         {
-          "code": "51390",
+          "code": "51525",
           "quantity": 1
         },
         {
-          "code": "51520",
+          "code": "51530",
+          "quantity": 1
+        },
+        {
+          "code": "51441",
+          "quantity": 1
+        },
+        {
+          "code": "51445",
+          "quantity": 1
+        },
+        {
+          "code": "51442",
+          "quantity": 1
+        },
+        {
+          "code": "51443",
+          "quantity": 1
+        },
+        {
+          "code": "51447",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1005,
+      "img": "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/HJUW9AY5J12Y1690595304489.png",
+      "name": "Armas Coléricas - Mano Izquierda",
+      "description": "Descubre todas las armas coléricas de combate a mano izquierda disponible.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51447",
+          "quantity": 1
+        },
+        {
+          "code": "51448",
+          "quantity": 1
+        },
+        {
+          "code": "51440",
           "quantity": 1
         },
         {
@@ -232,81 +296,54 @@
           "quantity": 1
         },
         {
-          "code": "51454",
+          "code": "51527",
           "quantity": 1
         }
       ],
       "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
+      "min_lvl": 1,
+      "max_lvl": 80,
       "type": "ITEM",
       "amount": 0
     },
     {
-      "id": 12,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyUYhMzg5L5b-YvW47jWahUTyGHRGqhUbXt_Qo6LwpeAqr2UcS_tgx4iPUqRHDS9gob9Y&usqp=CAU",
-      "name": "Beneficio de levelear - Varitas",
-      "description": "¡Por levelear y disfrutar el contenido y estas en el rango  level 70 y 79 puedes reclamar este beneficio",
+      "id": 1006,
+      "img": "https://bnetcmsus-a.akamaihd.net/cms/content_entry_media/8KB29UB91UE31690595306222.png",
+      "name": "Armas Coléricas - Una Mano",
+      "description": "Descubre todas las armas coléricas de combate a una mano disponibles.",
       "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
         {
-          "code": "51454",
+          "code": "51516",
           "quantity": 1
         },
         {
-          "code": "51451",
+          "code": "51521",
           "quantity": 1
         },
         {
-          "code": "51531",
+          "code": "51522",
           "quantity": 1
         },
         {
-          "code": "51410",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 1,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbw94DnB4ZP0L2Q-Is5D0zhT-iMikJ1y5V-g&s",
-      "name": "Promoción de Leveo - Armas",
-      "description": "¡Haz tu progreso más fácil con esta increíble promoción! Consigue armas reliquia y lleva tu nivel al siguiente nivel de forma más sencilla.",
-      "btn_txt": "Obtener",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42944",
+          "code": "51515",
           "quantity": 1
         },
         {
-          "code": "42946",
+          "code": "51520",
           "quantity": 1
         },
         {
-          "code": "42948",
+          "code": "51518",
           "quantity": 1
         },
         {
-          "code": "42943",
+          "code": "51519",
           "quantity": 1
         },
         {
-          "code": "42945",
-          "quantity": 1
-        },
-        {
-          "code": "48716",
-          "quantity": 1
-        },
-        {
-          "code": "48718",
+          "code": "51517",
           "quantity": 1
         }
       ],
@@ -317,20 +354,1031 @@
       "amount": 0
     },
     {
-      "id": 2,
-      "img": "https://chaosboost.com/wp-content/uploads/2024/05/wowclassic-power-leveling.jpg",
-      "name": "¡Reclama 800 Emblemas de Escarcha Ahora!",
-      "description": "¡No dejes pasar esta oferta única! Consigue 800 emblemas de escarcha para potenciar tu set PvE. Promoción exclusiva para una cuenta, ¡aprovecha antes de que se acabe!",
-      "btn_txt": "Obtener",
+      "id": 1007,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSxefWLsSnazI_AY7XRFUODirex8i6yYJfcmw&s",
+      "name": "Armas Coléricas - Escudos",
+      "description": "Descubre todos los escudos coléricas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51533",
+          "quantity": 1
+        },
+        {
+          "code": "51452",
+          "quantity": 1
+        },
+        {
+          "code": "51455",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1008,
+      "img": "https://i.imgur.com/9qBrL3X.png",
+      "name": "Anillos Elites",
+      "description": "Descubre todos los anillos elites de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54585",
+          "quantity": 1
+        },
+        {
+          "code": "54576",
+          "quantity": 1
+        },
+        {
+          "code": "50664",
+          "quantity": 1
+        },
+        {
+          "code": "50402",
+          "quantity": 1
+        },
+        {
+          "code": "52572",
+          "quantity": 1
+        },
+        {
+          "code": "50618",
+          "quantity": 1
+        },
+        {
+          "code": "50398",
+          "quantity": 1
+        },
+        {
+          "code": "50614",
+          "quantity": 1
+        },
+        {
+          "code": "50400",
+          "quantity": 1
+        },
+        {
+          "code": "50404",
+          "quantity": 1
+        },
+        {
+          "code": "50714",
+          "quantity": 1
+        },
+        {
+          "code": "50622",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1009,
+      "img": "https://i.imgur.com/9qBrL3X.png",
+      "name": "Anillos Elites",
+      "description": "Descubre todos los anillos elites de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50604",
+          "quantity": 1
+        },
+        {
+          "code": "50610",
+          "quantity": 1
+        },
+        {
+          "code": "50657",
+          "quantity": 1
+        },
+        {
+          "code": "50644",
+          "quantity": 1
+        },
+        {
+          "code": "50693",
+          "quantity": 1
+        },
+        {
+          "code": "50636",
+          "quantity": 1
+        },
+        {
+          "code": "50642",
+          "quantity": 1
+        },
+        {
+          "code": "50720",
+          "quantity": 1
+        },
+        {
+          "code": "50678",
+          "quantity": 1
+        },
+        {
+          "code": "54567",
+          "quantity": 1
+        },
+        {
+          "code": "54563",
+          "quantity": 1
+        },
+        {
+          "code": "51843",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1010,
+      "img": "https://i.imgur.com/9qBrL3X.png",
+      "name": "Anillos Elites",
+      "description": "Descubre todos los anillos elites de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51900",
+          "quantity": 1
+        },
+        {
+          "code": "51855",
+          "quantity": 1
+        },
+        {
+          "code": "51849",
+          "quantity": 1
+        },
+        {
+          "code": "51878",
+          "quantity": 1
+        },
+        {
+          "code": "51884",
+          "quantity": 1
+        },
+        {
+          "code": "50174",
+          "quantity": 1
+        },
+        {
+          "code": "53133",
+          "quantity": 1
+        },
+        {
+          "code": "53490",
+          "quantity": 1
+        },
+        {
+          "code": "52571",
+          "quantity": 1
+        },
+        {
+          "code": "50403",
+          "quantity": 1
+        },
+        {
+          "code": "50414",
+          "quantity": 1
+        },
+        {
+          "code": "50447",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1011,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvAP1WYOgUj_vGgVq5MHoKHaKmI39nIMZi7Q&s",
+      "name": "Abalorios Elites",
+      "description": "Descubre todos los Abalorios  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50362",
+          "quantity": 1
+        },
+        {
+          "code": "50363",
+          "quantity": 1
+        },
+        {
+          "code": "54590",
+          "quantity": 1
+        },
+        {
+          "code": "54588",
+          "quantity": 1
+        },
+        {
+          "code": "50348",
+          "quantity": 1
+        },
+        {
+          "code": "50343",
+          "quantity": 1
+        },
+        {
+          "code": "50366",
+          "quantity": 1
+        },
+        {
+          "code": "50351",
+          "quantity": 1
+        },
+        {
+          "code": "50365",
+          "quantity": 1
+        },
+        {
+          "code": "54569",
+          "quantity": 1
+        },
+        {
+          "code": "54572",
+          "quantity": 1
+        },
+        {
+          "code": "50355",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1012,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQvAP1WYOgUj_vGgVq5MHoKHaKmI39nIMZi7Q&s",
+      "name": "Abalorios Elites",
+      "description": "Descubre todos los Abalorios  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50353",
+          "quantity": 1
+        },
+        {
+          "code": "54573",
+          "quantity": 1
+        },
+        {
+          "code": "54589",
+          "quantity": 1
+        },
+        {
+          "code": "50360",
+          "quantity": 1
+        },
+        {
+          "code": "50706",
+          "quantity": 1
+        },
+        {
+          "code": "50349",
+          "quantity": 1
+        },
+        {
+          "code": "50344",
+          "quantity": 1
+        },
+        {
+          "code": "50364",
+          "quantity": 1
+        },
+        {
+          "code": "50726",
+          "quantity": 1
+        },
+        {
+          "code": "50345",
+          "quantity": 1
+        },
+        {
+          "code": "54591",
+          "quantity": 1
+        },
+        {
+          "code": "50346",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1013,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/610845-capa-envolvente.jpg",
+      "name": "Capas Elites",
+      "description": "Descubre todos las capas  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54556",
+          "quantity": 1
+        },
+        {
+          "code": "53489",
+          "quantity": 1
+        },
+        {
+          "code": "47552",
+          "quantity": 1
+        },
+        {
+          "code": "47554",
+          "quantity": 1
+        },
+        {
+          "code": "50628",
+          "quantity": 1
+        },
+        {
+          "code": "47553",
+          "quantity": 1
+        },
+        {
+          "code": "50668",
+          "quantity": 1
+        },
+        {
+          "code": "51826",
+          "quantity": 1
+        },
+        {
+          "code": "51933",
+          "quantity": 1
+        },
+        {
+          "code": "47549",
+          "quantity": 1
+        },
+        {
+          "code": "47550",
+          "quantity": 1
+        },
+        {
+          "code": "51888",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1014,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/610845-capa-envolvente.jpg",
+      "name": "Capas Elites",
+      "description": "Descubre todos las capas  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "47546",
+          "quantity": 1
+        },
+        {
+          "code": "54583",
+          "quantity": 1
+        },
+        {
+          "code": "47545",
+          "quantity": 1
+        },
+        {
+          "code": "50653",
+          "quantity": 1
+        },
+        {
+          "code": "47548",
+          "quantity": 1
+        },
+        {
+          "code": "50467",
+          "quantity": 1
+        },
+        {
+          "code": "50470",
+          "quantity": 1
+        },
+        {
+          "code": "47551",
+          "quantity": 1
+        },
+        {
+          "code": "47547",
+          "quantity": 1
+        },
+        {
+          "code": "50466",
+          "quantity": 1
+        },
+        {
+          "code": "50718",
+          "quantity": 1
+        },
+        {
+          "code": "50677",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1015,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/610845-capa-envolvente.jpg",
+      "name": "Capas Elites",
+      "description": "Descubre todos las capas  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "51848",
+          "quantity": 1
+        },
+        {
+          "code": "51912",
+          "quantity": 1
+        },
+        {
+          "code": "50468",
+          "quantity": 1
+        },
+        {
+          "code": "51346",
+          "quantity": 1
+        },
+        {
+          "code": "50074",
+          "quantity": 1
+        },
+        {
+          "code": "51330",
+          "quantity": 1
+        },
+        {
+          "code": "51348",
+          "quantity": 1
+        },
+        {
+          "code": "51334",
+          "quantity": 1
+        },
+        {
+          "code": "49998",
+          "quantity": 1
+        },
+        {
+          "code": "51332",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1016,
+      "img": "https://wow.zamimg.com/modelviewer/wrath/webthumbs/item/144/63888.png",
+      "name": "Botas Elites - Placas",
+      "description": "Descubre todos las capas  de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54578",
+          "quantity": 1
+        },
+        {
+          "code": "54586",
+          "quantity": 1
+        },
+        {
+          "code": "54579",
+          "quantity": 1
+        },
+        {
+          "code": "50639",
+          "quantity": 1
+        },
+        {
+          "code": "50625",
+          "quantity": 1
+        },
+        {
+          "code": "53125",
+          "quantity": 1
+        },
+        {
+          "code": "54564",
+          "quantity": 1
+        },
+        {
+          "code": "51915",
+          "quantity": 1
+        },
+        {
+          "code": "51816",
+          "quantity": 1
+        },
+        {
+          "code": "51931",
+          "quantity": 1
+        },
+        {
+          "code": "53125",
+          "quantity": 1
+        },
+        {
+          "code": "53129",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1017,
+      "img": "https://wow.zamimg.com/modelviewer/wrath/webthumbs/item/144/63888.png",
+      "name": "Botas Elites - Malla",
+      "description": "Descubre todos las Botas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54577",
+          "quantity": 1
+        },
+        {
+          "code": "50711",
+          "quantity": 1
+        },
+        {
+          "code": "50652",
+          "quantity": 1
+        },
+        {
+          "code": "54558",
+          "quantity": 1
+        },
+        {
+          "code": "53127",
+          "quantity": 1
+        },
+        {
+          "code": "49896",
+          "quantity": 1
+        },
+        {
+          "code": "49897",
+          "quantity": 1
+        },
+        {
+          "code": "50071",
+          "quantity": 1
+        },
+        {
+          "code": "51873",
+          "quantity": 1
+        },
+        {
+          "code": "51818",
+          "quantity": 1
+        },
+        {
+          "code": "51891",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1018,
+      "img": "https://wow.zamimg.com/modelviewer/wrath/webthumbs/item/144/63888.png",
+      "name": "Botas Elites - Cuero ",
+      "description": "Descubre todos las Botas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50607",
+          "quantity": 1
+        },
+        {
+          "code": "50665",
+          "quantity": 1
+        },
+        {
+          "code": "49895",
+          "quantity": 1
+        },
+        {
+          "code": "49894",
+          "quantity": 1
+        },
+        {
+          "code": "49950",
+          "quantity": 1
+        },
+        {
+          "code": "51920",
+          "quantity": 1
+        },
+        {
+          "code": "51856",
+          "quantity": 1
+        },
+        {
+          "code": "47445",
+          "quantity": 1
+        },
+        {
+          "code": "47077",
+          "quantity": 1
+        },
+        {
+          "code": "46989",
+          "quantity": 1
+        },
+        {
+          "code": "47423",
+          "quantity": 1
+        },
+        {
+          "code": "51023",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1019,
+      "img": "https://wow.zamimg.com/modelviewer/wrath/webthumbs/item/144/63888.png",
+      "name": "Botas Elites - Tela ",
+      "description": "Descubre todos las Botas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50699",
+          "quantity": 1
+        },
+        {
+          "code": "49890",
+          "quantity": 1
+        },
+        {
+          "code": "49893",
+          "quantity": 1
+        },
+        {
+          "code": "50062",
+          "quantity": 1
+        },
+        {
+          "code": "51328",
+          "quantity": 1
+        },
+        {
+          "code": "51899",
+          "quantity": 1
+        },
+        {
+          "code": "51366",
+          "quantity": 1
+        },
+        {
+          "code": "51338",
+          "quantity": 1
+        },
+        {
+          "code": "51850",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1020,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/122614-faja-de-aparecido.jpg",
+      "name": "Cintura Elites - Tela ",
+      "description": "Descubre todos las Cinturas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50613",
+          "quantity": 1
+        },
+        {
+          "code": "50702",
+          "quantity": 1
+        },
+        {
+          "code": "54562",
+          "quantity": 1
+        },
+        {
+          "code": "50997",
+          "quantity": 1
+        },
+        {
+          "code": "51327",
+          "quantity": 1
+        },
+        {
+          "code": "50063",
+          "quantity": 1
+        },
+        {
+          "code": "49978",
+          "quantity": 1
+        },
+        {
+          "code": "50996",
+          "quantity": 1
+        },
+        {
+          "code": "51337",
+          "quantity": 1
+        },
+        {
+          "code": "51365",
+          "quantity": 1
+        },
+        {
+          "code": "51862",
+          "quantity": 1
+        },
+        {
+          "code": "51930",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1021,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/122614-faja-de-aparecido.jpg",
+      "name": "Cintura Elites - Cuero ",
+      "description": "Descubre todos las Cinturas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50707",
+          "quantity": 1
+        },
+        {
+          "code": "51368",
+          "quantity": 1
+        },
+        {
+          "code": "50067",
+          "quantity": 1
+        },
+        {
+          "code": "50994",
+          "quantity": 1
+        },
+        {
+          "code": "51908",
+          "quantity": 1
+        },
+        {
+          "code": "50069",
+          "quantity": 1
+        },
+        {
+          "code": "50995",
+          "quantity": 1
+        },
+        {
+          "code": "50705",
+          "quantity": 1
+        },
+        {
+          "code": "51925",
+          "quantity": 1
+        },
+        {
+          "code": "51340",
+          "quantity": 1
+        },
+        {
+          "code": "51343",
+          "quantity": 1
+        },
+        {
+          "code": "51343",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1022,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/122614-faja-de-aparecido.jpg",
+      "name": "Cintura Elites - Malla ",
+      "description": "Descubre todos las Cinturas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54587",
+          "quantity": 1
+        },
+        {
+          "code": "50688",
+          "quantity": 1
+        },
+        {
+          "code": "50671",
+          "quantity": 1
+        },
+        {
+          "code": "53488",
+          "quantity": 1
+        },
+        {
+          "code": "50413",
+          "quantity": 1
+        },
+        {
+          "code": "50015",
+          "quantity": 1
+        },
+        {
+          "code": "50992",
+          "quantity": 1
+        },
+        {
+          "code": "51935",
+          "quantity": 1
+        },
+        {
+          "code": "51371",
+          "quantity": 1
+        },
+        {
+          "code": "51919",
+          "quantity": 1
+        },
+        {
+          "code": "51374",
+          "quantity": 1
+        },
+        {
+          "code": "51853",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1023,
+      "img": "https://wow.zamimg.com/uploads/screenshots/normal/122614-faja-de-aparecido.jpg",
+      "name": "Cintura Elites - Placas ",
+      "description": "Descubre todos las Cinturas de combate disponibles.",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50620",
+          "quantity": 1
+        },
+        {
+          "code": "50691",
+          "quantity": 1
+        },
+        {
+          "code": "50667",
+          "quantity": 1
+        },
+        {
+          "code": "54565",
+          "quantity": 1
+        },
+        {
+          "code": "50991",
+          "quantity": 1
+        },
+        {
+          "code": "50187",
+          "quantity": 1
+        },
+        {
+          "code": "50987",
+          "quantity": 1
+        },
+        {
+          "code": "50036",
+          "quantity": 1
+        },
+        {
+          "code": "51879",
+          "quantity": 1
+        },
+        {
+          "code": "51359",
+          "quantity": 1
+        },
+        {
+          "code": "51821",
+          "quantity": 1
+        },
+        {
+          "code": "51831",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1024,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTf0r67QEORW0jvix5DfRdFXiKMrXGcU2Ih7A&s",
+      "name": "Emblemas para SET PVE",
+      "description": "Emblemas",
+      "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
         {
           "code": "49426",
-          "quantity": 800
+          "quantity": 1200
         },
         {
           "code": "47241",
-          "quantity": 300
+          "quantity": 1200
         }
       ],
       "server_id": 1,
@@ -340,137 +1388,381 @@
       "amount": 0
     },
     {
-      "id": 3,
-      "img": "https://wow.zamimg.com/uploads/screenshots/normal/102318-gran-oso-de-blizzard.jpg",
-      "name": "¡Montura Exclusiva por Cuenta!",
-      "description": "¡No dejes pasar esta oportunidad! Obtén una montura gratis como parte de esta promoción especial.",
-      "btn_txt": "Obtener",
+      "id": 1025,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "Bolsas",
+      "description": "Bolsas",
+      "btn_txt": "¡Obtener Beneficio!",
       "send_item": true,
       "items": [
         {
-          "code": "43599",
-          "quantity": 1
-        },
-        {
-          "code": "44168",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 4,
-      "img": "https://www.wowchakra.com/wp-content/uploads/2020/04/WowChakraNovelaIlustrada.jpg",
-      "name": "Promoción de Leveo - Equipo",
-      "description": "¡Descubre la experiencia Leveo! Nuestra promoción está diseñada para brindarte el equipo ideal y ayudarte a alcanzar tus metas de manera eficiente y profesional.",
-      "btn_txt": "Obtener",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42949",
-          "quantity": 1
-        },
-        {
-          "code": "42951",
-          "quantity": 1
-        },
-        {
-          "code": "42952",
-          "quantity": 1
-        },
-        {
-          "code": "42984",
-          "quantity": 1
-        },
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "48677",
-          "quantity": 1
-        },
-        {
-          "code": "48683",
-          "quantity": 1
-        },
-        {
-          "code": "48685",
-          "quantity": 1
-        },
-        {
-          "code": "48687",
-          "quantity": 1
-        },
-        {
-          "code": "48689",
-          "quantity": 1
-        },
-        {
-          "code": "48691",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 5,
-      "img": "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt44b9b4635a152dfc/63c71f0ca1a308140627270d/world-of-warcraft-service-character-transfer-section1-feature3.jpg?imwidth=1920&imdensity=2.625",
-      "name": "Promoción de Leveo - Abalorios y Otros",
-      "description": "¡Explora nuestra oferta especial! Encuentra los mejores abalorios y accesorios para potenciar tu experiencia y marcar la diferencia en cada detalle.",
-      "btn_txt": "Obtener",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        },
-        {
-          "code": "42991",
-          "quantity": 1
-        },
-        {
-          "code": "42992",
-          "quantity": 1
-        },
-        {
-          "code": "42947",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 6,
-      "img": "https://cdn.altertime.es/e4f080d2-94e8-4fd0-aa16-a489d183d4bf.png",
-      "name": "Promoción Especial de Bolsas",
-      "description": "¡No pierdas la oportunidad de obtener estas bolsas exclusivas y mejora tu inventario!",
-      "btn_txt": "Conseguir ahora",
-      "send_item": true,
-      "items": [
-        {
-          "code": "41600",
+          "code": "51809",
           "quantity": 4
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1027,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "Colgantes",
+      "description": "Colgantes Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54581",
+          "quantity": 1
+        },
+        {
+          "code": "50724",
+          "quantity": 1
+        },
+        {
+          "code": "50647",
+          "quantity": 1
+        },
+        {
+          "code": "50658",
+          "quantity": 1
+        },
+        {
+          "code": "50633",
+          "quantity": 1
+        },
+        {
+          "code": "50728",
+          "quantity": 1
+        },
+        {
+          "code": "50682",
+          "quantity": 1
+        },
+        {
+          "code": "50609",
+          "quantity": 1
+        },
+        {
+          "code": "50627",
+          "quantity": 1
+        },
+        {
+          "code": "50700",
+          "quantity": 1
+        },
+        {
+          "code": "53132",
+          "quantity": 1
+        },
+        {
+          "code": "54557",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1028,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "Colgantes",
+      "description": "Colgantes Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50182",
+          "quantity": 1
+        },
+        {
+          "code": "50452",
+          "quantity": 1
+        },
+        {
+          "code": "51355",
+          "quantity": 1
+        },
+        {
+          "code": "51867",
+          "quantity": 1
+        },
+        {
+          "code": "51842",
+          "quantity": 1
+        },
+        {
+          "code": "50023",
+          "quantity": 1
+        },
+        {
+          "code": "51333",
+          "quantity": 1
+        },
+        {
+          "code": "51335",
+          "quantity": 1
+        },
+        {
+          "code": "50421",
+          "quantity": 1
+        },
+        {
+          "code": "49975",
+          "quantity": 1
+        },
+        {
+          "code": "50180",
+          "quantity": 1
+        },
+        {
+          "code": "50195",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1029,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "Colgantes",
+      "description": "Colgantes Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54581",
+          "quantity": 1
+        },
+        {
+          "code": "50061",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1030,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "muñecas - Tela",
+      "description": "muñecas Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54582",
+          "quantity": 1
+        },
+        {
+          "code": "50651",
+          "quantity": 1
+        },
+        {
+          "code": "50686",
+          "quantity": 1
+        },
+        {
+          "code": "53486",
+          "quantity": 1
+        },
+        {
+          "code": "49994",
+          "quantity": 1
+        },
+        {
+          "code": "51339",
+          "quantity": 1
+        },
+        {
+          "code": "50032",
+          "quantity": 1
+        },
+        {
+          "code": "51872",
+          "quantity": 1
+        },
+        {
+          "code": "51918",
+          "quantity": 1
+        },
+        {
+          "code": "47208",
+          "quantity": 1
+        },
+        {
+          "code": "47467",
+          "quantity": 1
+        },
+        {
+          "code": "47485",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1031,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "muñecas - Cuero",
+      "description": "muñecas Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "54580",
+          "quantity": 1
+        },
+        {
+          "code": "54584",
+          "quantity": 1
+        },
+        {
+          "code": "50785",
+          "quantity": 1
+        },
+        {
+          "code": "50670",
+          "quantity": 1
+        },
+        {
+          "code": "50333",
+          "quantity": 1
+        },
+        {
+          "code": "50417",
+          "quantity": 1
+        },
+        {
+          "code": "53126",
+          "quantity": 1
+        },
+        {
+          "code": "51370",
+          "quantity": 1
+        },
+        {
+          "code": "51820",
+          "quantity": 1
+        },
+        {
+          "code": "50630",
+          "quantity": 1
+        },
+        {
+          "code": "53134",
+          "quantity": 1
+        },
+        {
+          "code": "51885",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1032,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "muñecas - malla",
+      "description": "muñecas Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50655",
+          "quantity": 1
+        },
+        {
+          "code": "51914",
+          "quantity": 1
+        },
+        {
+          "code": "50687",
+          "quantity": 1
+        },
+        {
+          "code": "51929",
+          "quantity": 1
+        },
+        {
+          "code": "50030",
+          "quantity": 1
+        }
+      ],
+      "server_id": 1,
+      "min_lvl": 1,
+      "max_lvl": 80,
+      "type": "ITEM",
+      "amount": 0
+    },
+    {
+      "id": 1033,
+      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTb-Y9EBLF2uBD5gUMx0eMyQq_sQUviNJN4Bg&s",
+      "name": "muñecas - Placa",
+      "description": "muñecas Full ",
+      "btn_txt": "¡Obtener Beneficio!",
+      "send_item": true,
+      "items": [
+        {
+          "code": "50659",
+          "quantity": 1
+        },
+        {
+          "code": "50611",
+          "quantity": 1
+        },
+        {
+          "code": "50721",
+          "quantity": 1
+        },
+        {
+          "code": "54559",
+          "quantity": 1
+        },
+        {
+          "code": "50175",
+          "quantity": 1
+        },
+        {
+          "code": "51901",
+          "quantity": 1
+        },
+        {
+          "code": "49960",
+          "quantity": 1
+        },
+        {
+          "code": "50002",
+          "quantity": 1
+        },
+        {
+          "code": "51832",
+          "quantity": 1
+        },
+        {
+          "code": "51907",
+          "quantity": 1
         }
       ],
       "server_id": 1,
@@ -481,965 +1773,7 @@
     }
   ],
   "en": [
-    {
-      "id": 7,
-      "img": "https://static.wixstatic.com/media/5dd8a0_67020ed5ab7c46e4be8085fb20563eb7~mv2.webp",
-      "name": "Level 80 Boost",
-      "description": "Jump straight to level 80 and dive into the action! Skip the grind and get ready for epic content now.",
-      "btn_txt": "Boost Now!",
-      "send_item": false,
-      "items": [],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 10,
-      "type": "LEVEL",
-      "amount": 0
-    },
-    {
-      "id": 8,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKlw1918kd4HhWR7PtOA5ffUPeFNB8kVVLw&s",
-      "name": "Leveling Reward - Bows/Crossbows/Thrown Weapons/Polearms",
-      "description": "By leveling up and enjoying the content, if you're in the level range 70 to 79, you can claim this reward.",
-      "btn_txt": "Claim Reward!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51395",
-          "quantity": 1
-        },
-        {
-          "code": "51395",
-          "quantity": 1
-        },
-        {
-          "code": "51535",
-          "quantity": 1
-        },
-        {
-          "code": "51411",
-          "quantity": 1
-        },
-        {
-          "code": "51412",
-          "quantity": 1
-        },
-        {
-          "code": "51481",
-          "quantity": 1
-        },
-        {
-          "code": "51480",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 9,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGlJVf0YynsG8lBX2sTbNYXhhkLtJq57iVdjUDuERv0XJu0UhP11JLHGUXpaDS_jYet4&usqp=CAU",
-      "name": "Leveling Reward - Staves/Guns",
-      "description": "By leveling up and enjoying the content, if you're in the level range 70 to 79, you can claim this reward.",
-      "btn_txt": "Claim Reward!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51432",
-          "quantity": 1
-        },
-        {
-          "code": "51404",
-          "quantity": 1
-        },
-        {
-          "code": "51402",
-          "quantity": 1
-        },
-        {
-          "code": "51431",
-          "quantity": 1
-        },
-        {
-          "code": "51456",
-          "quantity": 1
-        },
-        {
-          "code": "51400",
-          "quantity": 1
-        },
-        {
-          "code": "51401",
-          "quantity": 1
-        },
-        {
-          "code": "51405",
-          "quantity": 1
-        },
-        {
-          "code": "51403",
-          "quantity": 1
-        },
-        {
-          "code": "51457",
-          "quantity": 1
-        },
-        {
-          "code": "51450",
-          "quantity": 1
-        },
-        {
-          "code": "51449",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 10,
-      "img": "https://es.gizmodo.com/app/uploads/2019/05/kgc6dnrc1tuz5xdlxjaq.jpg",
-      "name": "Leveling Reward - Axes/Two-Handed Swords",
-      "description": "By leveling up and enjoying the content, if you're in the level range 70 to 79, you can claim this reward.",
-      "btn_txt": "Claim Reward!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51389",
-          "quantity": 1
-        },
-        {
-          "code": "51388",
-          "quantity": 1
-        },
-        {
-          "code": "51439",
-          "quantity": 1
-        },
-        {
-          "code": "51526",
-          "quantity": 1
-        },
-        {
-          "code": "51440",
-          "quantity": 1
-        },
-        {
-          "code": "51515",
-          "quantity": 1
-        },
-        {
-          "code": "51392",
-          "quantity": 1
-        },
-        {
-          "code": "51393",
-          "quantity": 1
-        },
-        {
-          "code": "51516",
-          "quantity": 1
-        },
-        {
-          "code": "51448",
-          "quantity": 1
-        },
-        {
-          "code": "51522",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 11,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy5rp2ozxs5YbQmibKBN4YiVpZLzi_fRKOgZWyTXKApwUwHpojioaX7w8gWSW_S8MKnik&usqp=CAU",
-      "name": "Leveling Reward - Daggers/Maces",
-      "description": "By leveling up and enjoying the content, if you're in the level range 70 to 79, you can claim this reward.",
-      "btn_txt": "Claim Reward!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51518",
-          "quantity": 1
-        },
-        {
-          "code": "51528",
-          "quantity": 1
-        },
-        {
-          "code": "51398",
-          "quantity": 1
-        },
-        {
-          "code": "51442",
-          "quantity": 1
-        },
-        {
-          "code": "51399",
-          "quantity": 1
-        },
-        {
-          "code": "51529",
-          "quantity": 1
-        },
-        {
-          "code": "51524",
-          "quantity": 1
-        },
-        {
-          "code": "51444",
-          "quantity": 1
-        },
-        {
-          "code": "51390",
-          "quantity": 1
-        },
-        {
-          "code": "51520",
-          "quantity": 1
-        },
-        {
-          "code": "51446",
-          "quantity": 1
-        },
-        {
-          "code": "51454",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 12,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyUYhMzg5L5b-YvW47jWahUTyGHRGqhUbXt_Qo6LwpeAqr2UcS_tgx4iPUqRHDS9gob9Y&usqp=CAU",
-      "name": "Leveling Reward - Wands",
-      "description": "By leveling up and enjoying the content, if you're in the level range 70 to 79, you can claim this reward.",
-      "btn_txt": "Claim Reward!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51454",
-          "quantity": 1
-        },
-        {
-          "code": "51451",
-          "quantity": 1
-        },
-        {
-          "code": "51531",
-          "quantity": 1
-        },
-        {
-          "code": "51410",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 1,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbw94DnB4ZP0L2Q-Is5D0zhT-iMikJ1y5V-g&s",
-      "name": "Leveling Promotion - Weapons",
-      "description": "Make your progress easier with this amazing promotion! Get relic weapons and level up more effortlessly.",
-      "btn_txt": "Get",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42944",
-          "quantity": 1
-        },
-        {
-          "code": "42946",
-          "quantity": 1
-        },
-        {
-          "code": "42948",
-          "quantity": 1
-        },
-        {
-          "code": "42943",
-          "quantity": 1
-        },
-        {
-          "code": "42945",
-          "quantity": 1
-        },
-        {
-          "code": "48716",
-          "quantity": 1
-        },
-        {
-          "code": "48718",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 2,
-      "img": "https://chaosboost.com/wp-content/uploads/2024/05/wowclassic-power-leveling.jpg",
-      "name": "Claim 800 Frost Emblems Now!",
-      "description": "Don’t miss out on this limited-time offer! Get 800 Frost Emblems to enhance your PvE set.",
-      "btn_txt": "Get",
-      "send_item": true,
-      "items": [
-        {
-          "code": "49426",
-          "quantity": 800
-        },
-        {
-          "code": "47241",
-          "quantity": 300
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 3,
-      "img": "https://wow.zamimg.com/uploads/screenshots/normal/102318-gran-oso-de-blizzard.jpg",
-      "name": "Exclusive Mount for Your Account!",
-      "description": "Don’t miss out on this chance! Claim a free mount as part of this special promotion. Limited to one account.",
-      "btn_txt": "Get",
-      "send_item": true,
-      "items": [
-        {
-          "code": "43599",
-          "quantity": 1
-        },
-        {
-          "code": "44168",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 4,
-      "img": "https://www.wowchakra.com/wp-content/uploads/2020/04/WowChakraNovelaIlustrada.jpg",
-      "name": "Leveling Promotion - Equipment",
-      "description": "Discover the Leveo experience! Our promotion is designed to provide you with the ideal gear and help you achieve your goals efficiently and professionally.",
-      "btn_txt": "Get",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42949",
-          "quantity": 1
-        },
-        {
-          "code": "42951",
-          "quantity": 1
-        },
-        {
-          "code": "42952",
-          "quantity": 1
-        },
-        {
-          "code": "42984",
-          "quantity": 1
-        },
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "48677",
-          "quantity": 1
-        },
-        {
-          "code": "48683",
-          "quantity": 1
-        },
-        {
-          "code": "48685",
-          "quantity": 1
-        },
-        {
-          "code": "48687",
-          "quantity": 1
-        },
-        {
-          "code": "48689",
-          "quantity": 1
-        },
-        {
-          "code": "48691",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 5,
-      "img": "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt44b9b4635a152dfc/63c71f0ca1a308140627270d/world-of-warcraft-service-character-transfer-section1-feature3.jpg?imwidth=1920&imdensity=2.625",
-      "name": "Leveling Promotion - Trinkets and More",
-      "description": "Explore our special offer! Find the best trinkets and accessories to enhance your experience and make a difference in every detail.\n",
-      "btn_txt": "Get",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        },
-        {
-          "code": "42991",
-          "quantity": 1
-        },
-        {
-          "code": "42992",
-          "quantity": 1
-        },
-        {
-          "code": "42947",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 6,
-      "img": "https://cdn.altertime.es/e4f080d2-94e8-4fd0-aa16-a489d183d4bf.png",
-      "name": "Exclusive Bag Promotion",
-      "description": "Don't miss the chance to grab these exclusive bags and upgrade your inventory!",
-      "btn_txt": "Get Now",
-      "send_item": true,
-      "items": [
-        {
-          "code": "41600",
-          "quantity": 4
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    }
   ],
   "pt": [
-    {
-      "id": 7,
-      "img": "https://static.wixstatic.com/media/5dd8a0_67020ed5ab7c46e4be8085fb20563eb7~mv2.webp",
-      "name": "Pulo para o Nível 80",
-      "description": "Vá direto para o nível 80 e entre na ação! Esqueça o grind e prepare-se para conteúdos épicos agora mesmo.",
-      "btn_txt": "Pular Agora!",
-      "send_item": false,
-      "items": [],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 10,
-      "type": "LEVEL",
-      "amount": 0
-    },
-    {
-      "id": 8,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSvKlw1918kd4HhWR7PtOA5ffUPeFNB8kVVLw&s",
-      "name": "Recompensa de Nivelamento - Arcos/Bestas/Armas Arremessáveis/Lanças",
-      "description": "Ao subir de nível e aproveitar o conteúdo, se você estiver no intervalo de níveis 70 a 79, poderá reivindicar esta recompensa.",
-      "btn_txt": "Reivindicar Recompensa!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51395",
-          "quantity": 1
-        },
-        {
-          "code": "51395",
-          "quantity": 1
-        },
-        {
-          "code": "51535",
-          "quantity": 1
-        },
-        {
-          "code": "51411",
-          "quantity": 1
-        },
-        {
-          "code": "51412",
-          "quantity": 1
-        },
-        {
-          "code": "51481",
-          "quantity": 1
-        },
-        {
-          "code": "51480",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 9,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQGlJVf0YynsG8lBX2sTbNYXhhkLtJq57iVdjUDuERv0XJu0UhP11JLHGUXpaDS_jYet4&usqp=CAU",
-      "name": "Recompensa de Nivelamento - Cajados/Armas de Fogo",
-      "description": "Ao subir de nível e aproveitar o conteúdo, se você estiver no intervalo de níveis 70 a 79, poderá reivindicar esta recompensa.",
-      "btn_txt": "Reivindicar Recompensa!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51432",
-          "quantity": 1
-        },
-        {
-          "code": "51404",
-          "quantity": 1
-        },
-        {
-          "code": "51402",
-          "quantity": 1
-        },
-        {
-          "code": "51431",
-          "quantity": 1
-        },
-        {
-          "code": "51456",
-          "quantity": 1
-        },
-        {
-          "code": "51400",
-          "quantity": 1
-        },
-        {
-          "code": "51401",
-          "quantity": 1
-        },
-        {
-          "code": "51405",
-          "quantity": 1
-        },
-        {
-          "code": "51403",
-          "quantity": 1
-        },
-        {
-          "code": "51457",
-          "quantity": 1
-        },
-        {
-          "code": "51450",
-          "quantity": 1
-        },
-        {
-          "code": "51449",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 10,
-      "img": "https://es.gizmodo.com/app/uploads/2019/05/kgc6dnrc1tuz5xdlxjaq.jpg",
-      "name": "Recompensa de Nivelamento - Machados/Espadas de Duas Mãos",
-      "description": "Ao subir de nível e aproveitar o conteúdo, se você estiver no intervalo de níveis 70 a 79, poderá reivindicar esta recompensa.",
-      "btn_txt": "Reivindicar Recompensa!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51389",
-          "quantity": 1
-        },
-        {
-          "code": "51388",
-          "quantity": 1
-        },
-        {
-          "code": "51439",
-          "quantity": 1
-        },
-        {
-          "code": "51526",
-          "quantity": 1
-        },
-        {
-          "code": "51440",
-          "quantity": 1
-        },
-        {
-          "code": "51515",
-          "quantity": 1
-        },
-        {
-          "code": "51392",
-          "quantity": 1
-        },
-        {
-          "code": "51393",
-          "quantity": 1
-        },
-        {
-          "code": "51516",
-          "quantity": 1
-        },
-        {
-          "code": "51448",
-          "quantity": 1
-        },
-        {
-          "code": "51522",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 11,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRy5rp2ozxs5YbQmibKBN4YiVpZLzi_fRKOgZWyTXKApwUwHpojioaX7w8gWSW_S8MKnik&usqp=CAU",
-      "name": "Recompensa de Nivelamento - Adagas/Maças",
-      "description": "Ao subir de nível e aproveitar o conteúdo, se você estiver no intervalo de níveis 70 a 79, poderá reivindicar esta recompensa.",
-      "btn_txt": "Reivindicar Recompensa!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51518",
-          "quantity": 1
-        },
-        {
-          "code": "51528",
-          "quantity": 1
-        },
-        {
-          "code": "51398",
-          "quantity": 1
-        },
-        {
-          "code": "51442",
-          "quantity": 1
-        },
-        {
-          "code": "51399",
-          "quantity": 1
-        },
-        {
-          "code": "51529",
-          "quantity": 1
-        },
-        {
-          "code": "51524",
-          "quantity": 1
-        },
-        {
-          "code": "51444",
-          "quantity": 1
-        },
-        {
-          "code": "51390",
-          "quantity": 1
-        },
-        {
-          "code": "51520",
-          "quantity": 1
-        },
-        {
-          "code": "51446",
-          "quantity": 1
-        },
-        {
-          "code": "51454",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 12,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSyUYhMzg5L5b-YvW47jWahUTyGHRGqhUbXt_Qo6LwpeAqr2UcS_tgx4iPUqRHDS9gob9Y&usqp=CAU",
-      "name": "Recompensa de Nivelamento - Varinhas",
-      "description": "Ao subir de nível e aproveitar o conteúdo, se você estiver no intervalo de níveis 70 a 79, poderá reivindicar esta recompensa.",
-      "btn_txt": "Reivindicar Recompensa!",
-      "send_item": true,
-      "items": [
-        {
-          "code": "51454",
-          "quantity": 1
-        },
-        {
-          "code": "51451",
-          "quantity": 1
-        },
-        {
-          "code": "51531",
-          "quantity": 1
-        },
-        {
-          "code": "51410",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 15,
-      "max_lvl": 79,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 1,
-      "img": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTbw94DnB4ZP0L2Q-Is5D0zhT-iMikJ1y5V-g&s",
-      "name": "Promoção de Nivelamento - Armas",
-      "description": "Facilite seu progresso com esta promoção incrível! Obtenha armas relíquia e suba de nível com mais facilidade.",
-      "btn_txt": "Obter",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42944",
-          "quantity": 1
-        },
-        {
-          "code": "42946",
-          "quantity": 1
-        },
-        {
-          "code": "42948",
-          "quantity": 1
-        },
-        {
-          "code": "42943",
-          "quantity": 1
-        },
-        {
-          "code": "42945",
-          "quantity": 1
-        },
-        {
-          "code": "48716",
-          "quantity": 1
-        },
-        {
-          "code": "48718",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 2,
-      "img": "https://chaosboost.com/wp-content/uploads/2024/05/wowclassic-power-leveling.jpg",
-      "name": "Resgate 800 Emblemas de Gelo Agora!",
-      "description": "Não perca esta oferta limitada! Obtenha 800 emblemas de gelo para fortalecer seu set PvE. Promoção exclusiva para uma conta—aproveite antes que termine!",
-      "btn_txt": "Obtener",
-      "send_item": true,
-      "items": [
-        {
-          "code": "49426",
-          "quantity": 800
-        },
-        {
-          "code": "47241",
-          "quantity": 300
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 3,
-      "img": "https://wow.zamimg.com/uploads/screenshots/normal/102318-gran-oso-de-blizzard.jpg",
-      "name": "Montaria Exclusiva por Conta!",
-      "description": "Não perca esta chance! Resgate uma montaria grátis como parte desta promoção especial.",
-      "btn_txt": "Obtener",
-      "send_item": true,
-      "items": [
-        {
-          "code": "43599",
-          "quantity": 1
-        },
-        {
-          "code": "44168",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 4,
-      "img": "https://www.wowchakra.com/wp-content/uploads/2020/04/WowChakraNovelaIlustrada.jpg",
-      "name": "Promoção de Leveling - Equipamentos",
-      "description": "Descubra a experiência Leveo! Nossa promoção foi projetada para fornecer o equipamento ideal e ajudá-lo a alcançar seus objetivos de forma eficiente e profissional.",
-      "btn_txt": "Obter",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42949",
-          "quantity": 1
-        },
-        {
-          "code": "42951",
-          "quantity": 1
-        },
-        {
-          "code": "42952",
-          "quantity": 1
-        },
-        {
-          "code": "42984",
-          "quantity": 1
-        },
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "48677",
-          "quantity": 1
-        },
-        {
-          "code": "48683",
-          "quantity": 1
-        },
-        {
-          "code": "48685",
-          "quantity": 1
-        },
-        {
-          "code": "48687",
-          "quantity": 1
-        },
-        {
-          "code": "48689",
-          "quantity": 1
-        },
-        {
-          "code": "48691",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 5,
-      "img": "https://blz-contentstack-images.akamaized.net/v3/assets/bltf408a0557f4e4998/blt44b9b4635a152dfc/63c71f0ca1a308140627270d/world-of-warcraft-service-character-transfer-section1-feature3.jpg?imwidth=1920&imdensity=2.625",
-      "name": "Promoção de Leveling - Acessórios e Mais",
-      "description": "Explore nossa oferta especial! Encontre os melhores acessórios e itens para aprimorar sua experiência e fazer a diferença em cada detalhe.",
-      "btn_txt": "Obter",
-      "send_item": true,
-      "items": [
-        {
-          "code": "42985",
-          "quantity": 1
-        },
-        {
-          "code": "50255",
-          "quantity": 1
-        },
-        {
-          "code": "42991",
-          "quantity": 1
-        },
-        {
-          "code": "42992",
-          "quantity": 1
-        },
-        {
-          "code": "42947",
-          "quantity": 1
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    },
-    {
-      "id": 6,
-      "img": "https://cdn.altertime.es/e4f080d2-94e8-4fd0-aa16-a489d183d4bf.png",
-      "name": "Promoção Exclusiva de Bolsas",
-      "description": "Não perca a chance de conseguir essas bolsas exclusivas e melhore seu inventário!",
-      "btn_txt": "Obter Agora",
-      "send_item": true,
-      "items": [
-        {
-          "code": "41600",
-          "quantity": 4
-        }
-      ],
-      "server_id": 1,
-      "min_lvl": 1,
-      "max_lvl": 80,
-      "type": "ITEM",
-      "amount": 0
-    }
   ]
 }
