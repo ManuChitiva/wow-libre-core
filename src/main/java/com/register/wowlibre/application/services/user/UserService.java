@@ -88,10 +88,6 @@ public class UserService implements UserPort {
         final String token = jwtPort.generateToken(customUserDetails);
         final Date expiration = jwtPort.extractExpiration(token);
         final String refreshToken = jwtPort.generateRefreshToken(customUserDetails);
-        final String code = accountValidationPort.generateCodeMail(email, transactionId);
-
-        mailPort.sendCodeMail(email, "Bienvenido, Su cuenta ha sido creada exitosamente, Por favor verifique su " +
-                "correo", code, locale, transactionId);
 
         return new JwtDto(token, refreshToken, expiration, PICTURE_DEFAULT_PROFILE_WEB,
                 customUserDetails.getLanguage(), true);
