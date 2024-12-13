@@ -55,7 +55,7 @@ public class ServerService implements ServerPort {
     }
 
     @Override
-    public void create(ServerCreateDto serverCreateDto, String transactionId) {
+    public void create(ServerCreateDto serverCreateDto, Long userId, String transactionId) {
 
         if (obtainServerPort.findByNameAndExpansion(serverCreateDto.getName(), serverCreateDto.getExpansion(),
                 transactionId).isPresent()) {
@@ -78,7 +78,7 @@ public class ServerService implements ServerPort {
                     .emulator(serverCreateDto.getEmulator())
                     .expansion(serverCreateDto.getExpansion())
                     .avatar(AVATAR_SERVER_DEFAULT)
-                    .ip(serverCreateDto.getIp())
+                    .ip(serverCreateDto.getHost())
                     .apiKey(apiKey)
                     .apiSecret(apiSecret)
                     .salt(salt)
@@ -88,6 +88,7 @@ public class ServerService implements ServerPort {
                     .realmlist(serverCreateDto.getRealmlist())
                     .webSite(serverCreateDto.getWebSite())
                     .externalPassword(encryptedMessage)
+                    .userId(userId)
                     .externalUsername(serverCreateDto.getExternalUsername())
                     .build();
 

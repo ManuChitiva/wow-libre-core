@@ -24,9 +24,10 @@ public class ServerController {
     @PostMapping(path = "/create")
     public ResponseEntity<GenericResponse<Void>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestBody @Valid ServerCreateDto serverCreateDto) {
 
-        serverPort.create(serverCreateDto, transactionId);
+        serverPort.create(serverCreateDto, userId, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());

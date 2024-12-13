@@ -26,4 +26,5 @@ public class ServerModel {
     public byte[] salt;
     public String externalPassword;
     public String externalUsername;
+    public Long userId;
 }

@@ -56,6 +56,7 @@ public class ServerMapper {
         serverEntity.setExternalPassword(server.externalPassword);
         serverEntity.setExternalUsername(server.externalUsername);
         serverEntity.setSalt(server.salt);
+        serverEntity.setUserId(server.userId);
         return serverEntity;
     }
 
