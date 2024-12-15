@@ -5,8 +5,8 @@
       "title": "Mas De 500 Miembros",
       "sub_title": "Logro de hermandad",
       "description": "Este logro se consigue si tu hermandad logra llegar a los 500 miembros.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dyz1qBj7TA9Xb3yFm7kTPUUFixpF0LMPcA&s",
-      "item_id": 52200,
+      "logo": "https://i.ytimg.com/vi/rF0znJAv9fs/maxresdefault.jpg",
+      "item_id": 49636,
       "quantity": 1,
       "status": true,
       "link": "https://www.wowhead.com/wotlk/es/item=52200/riendas-del-destrero-de-la-muerte-carmes%C3%AD"
@@ -37,71 +37,71 @@
   "en": [
     {
       "id": 10000000,
-      "title": "Mas De 500 Miembros",
-      "sub_title": "Logro de hermandad",
-      "description": "Este logro se consigue si tu hermandad logra llegar a los 500 miembros.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dyz1qBj7TA9Xb3yFm7kTPUUFixpF0LMPcA&s",
-      "item_id": 52200,
+      "title": "More Than 500 Members",
+      "sub_title": "Guild Achievement",
+      "description": "This achievement is earned when your guild reaches 500 members.",
+      "logo": "https://i.ytimg.com/vi/rF0znJAv9fs/maxresdefault.jpg",
+      "item_id": 49636,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=52200/riendas-del-destrero-de-la-muerte-carmes%C3%AD"
+      "link": "https://www.wowhead.com/wotlk/en/item=52200/reins-of-the-crimson-deathcharger"
     },
     {
       "id": 10000001,
-      "title": "Acumulador",
-      "sub_title": "Logro de hermandad",
-      "description": "Este logro se consigue si tu hermandad llega a acumular mas de 100k de oro",
+      "title": "Accumulator",
+      "sub_title": "Guild Achievement",
+      "description": "This achievement is earned when your guild accumulates more than 100k gold.",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMpVIWPl6WhRzS8rCVu-Pt8tPHsFHrA1cUXA&s",
       "item_id": 50250,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=50250/rompecorazones-x-45"
+      "link": "https://www.wowhead.com/wotlk/en/item=50250/heartbreaker-x-45"
     },
     {
       "id": 10000002,
-      "title": "Mas De 100 Miembros",
-      "sub_title": "Logro de hermandad",
-      "description": "Al unirte a esta hermandad podras reclamar el beneficio de los 500 miembros.",
+      "title": "More Than 100 Members",
+      "sub_title": "Guild Achievement",
+      "description": "By joining this guild, you can claim the benefit of the 500 members.",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dyz1qBj7TA9Xb3yFm7kTPUUFixpF0LMPcA&s",
       "item_id": 52200,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=52200/riendas-del-destrero-de-la-muerte-carmes%C3%AD"
+      "link": "https://www.wowhead.com/wotlk/en/item=52200/reins-of-the-crimson-deathcharger"
     }
   ],
   "pt": [
     {
       "id": 10000000,
-      "title": "Mas De 500 Miembros",
-      "sub_title": "Logro de hermandad",
-      "description": "Este logro se consigue si tu hermandad logra llegar a los 500 miembros.",
-      "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dyz1qBj7TA9Xb3yFm7kTPUUFixpF0LMPcA&s",
-      "item_id": 52200,
+      "title": "Mais de 500 Membros",
+      "sub_title": "Conquista da Guilda",
+      "description": "Essa conquista é obtida quando sua guilda alcança 500 membros.",
+      "logo": "https://i.ytimg.com/vi/rF0znJAv9fs/maxresdefault.jpg",
+      "item_id": 49636,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=52200/riendas-del-destrero-de-la-muerte-carmes%C3%AD"
+      "link": "https://www.wowhead.com/wotlk/pt/item=52200/reinas-do-cavalo-da-morte-carmesim"
     },
     {
       "id": 10000001,
       "title": "Acumulador",
-      "sub_title": "Logro de hermandad",
-      "description": "Este logro se consigue si tu hermandad llega a acumular mas de 100k de oro",
+      "sub_title": "Conquista da Guilda",
+      "description": "Essa conquista é obtida quando sua guilda acumula mais de 100k de ouro.",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMpVIWPl6WhRzS8rCVu-Pt8tPHsFHrA1cUXA&s",
       "item_id": 50250,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=50250/rompecorazones-x-45"
+      "link": "https://www.wowhead.com/wotlk/pt/item=50250/coracao-partido-x-45"
     },
     {
       "id": 10000002,
-      "title": "Mas De 100 Miembros",
-      "sub_title": "Logro de hermandad",
-      "description": "Al unirte a esta hermandad podras reclamar el beneficio de los 500 miembros.",
+      "title": "Mais de 100 Membros",
+      "sub_title": "Conquista da Guilda",
+      "description": "Ao se juntar a esta guilda, você pode reivindicar o benefício dos 500 membros.",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT7dyz1qBj7TA9Xb3yFm7kTPUUFixpF0LMPcA&s",
       "item_id": 52200,
       "quantity": 1,
       "status": true,
-      "link": "https://www.wowhead.com/wotlk/es/item=52200/riendas-del-destrero-de-la-muerte-carmes%C3%AD"
+      "link": "https://www.wowhead.com/wotlk/pt/item=52200/reinas-do-cavalo-da-morte-carmesim"
     }
   ]
 }
