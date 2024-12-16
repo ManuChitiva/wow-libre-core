@@ -167,7 +167,7 @@ public class UserService implements UserPort {
         }
 
         Locale locale = new Locale(account.get().getLanguage());
-        final String codeOtp = accountValidationPort.generateCodeMail(account.get().getEmail(),
+        final String codeOtp = accountValidationPort.generateCodeRecoverAccount(account.get().getEmail(),
                 transactionId);
         final String body = i18nService.tr("recovery-password-body", new Object[]{codeOtp.toUpperCase()}, locale);
         final String subject = i18nService.tr("recovery-password-subject", locale);
