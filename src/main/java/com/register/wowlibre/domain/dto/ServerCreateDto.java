@@ -13,7 +13,7 @@ public class ServerCreateDto {
     @Length(min = 5, max = 40)
     private String emulator;
     @NotNull
-    @Length(min = 5, max = 5)
+    @Length(min = 1, max = 5)
     private String expansion;
     @NotNull
     @Length(min = 5, max = 50)
@@ -33,5 +33,8 @@ public class ServerCreateDto {
     @NotNull
     @Length(min = 5, max = 30)
     private String externalPassword;
+    @NotNull
+    @Length(min = 5, max = 30)
+    private String type;
 
 }

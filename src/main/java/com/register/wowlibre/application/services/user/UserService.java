@@ -5,7 +5,7 @@ import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
-import com.register.wowlibre.domain.port.in.account_validation.*;
+import com.register.wowlibre.domain.port.in.security_validation.*;
 import com.register.wowlibre.domain.port.in.jwt.*;
 import com.register.wowlibre.domain.port.in.mail.*;
 import com.register.wowlibre.domain.port.in.rol.*;
@@ -26,18 +26,32 @@ import java.util.*;
 public class UserService implements UserPort {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://i.ibb.co/M8Kfq9X/icon-Default.png";
+
+    /**
+     * USERS PORT
+     **/
     private final ObtainUserPort obtainUserPort;
     private final SaveUserPort saveUserPort;
+    /**
+     * EXTERNAL
+     **/
     private final PasswordEncoder passwordEncoder;
-    private final JwtPort jwtPort;
-    private final RolPort rolPort;
-    private final MailPort mailPort;
-    private final AccountValidationPort accountValidationPort;
     private final I18nService i18nService;
     private final RandomString randomString;
+    /**
+     * JWT  SERVICE
+     **/
+    private final RolPort rolPort;
+    /**
+     * MAILS - SECURITY
+     **/
+    private final JwtPort jwtPort;
+    private final SecurityValidationPort securityValidationPort;
+    private final MailPort mailPort;
 
     public UserService(ObtainUserPort obtainUserPort, SaveUserPort saveUserPort, PasswordEncoder passwordEncoder,
-                       JwtPort jwtPort, RolPort rolPort, MailPort mailPort, AccountValidationPort accountValidationPort,
+                       JwtPort jwtPort, RolPort rolPort, MailPort mailPort,
+                       SecurityValidationPort securityValidationPort,
                        I18nService i18nService, @Qualifier("random-string") RandomString randomString) {
         this.obtainUserPort = obtainUserPort;
         this.saveUserPort = saveUserPort;
@@ -45,7 +59,7 @@ public class UserService implements UserPort {
         this.jwtPort = jwtPort;
         this.rolPort = rolPort;
         this.mailPort = mailPort;
-        this.accountValidationPort = accountValidationPort;
+        this.securityValidationPort = securityValidationPort;
         this.i18nService = i18nService;
         this.randomString = randomString;
     }
@@ -53,15 +67,14 @@ public class UserService implements UserPort {
 
     @Override
     public JwtDto create(UserDto userDto, Locale locale, String transactionId) {
+
         final String email = userDto.getEmail();
 
         if (findByEmail(userDto.getEmail(), transactionId) != null) {
             throw new FoundException("There is already a registered client with this data", transactionId);
         }
 
-        final String passwordEncode = passwordEncoder.encode(userDto.getPassword());
-
-        final RolModel rolModel = rolPort.findByName(Roles.CLIENT.getRoleName(), transactionId);
+        final RolModel rolModel = rolPort.findByName(Rol.CLIENT.name(), transactionId);
 
         if (rolModel == null) {
             LOGGER.error("An error occurred while assigning a role. email {} transactionId: {}", email,
@@ -69,7 +82,9 @@ public class UserService implements UserPort {
             throw new InternalException("An error occurred while assigning a role.", transactionId);
         }
 
+        final String passwordEncode = passwordEncoder.encode(userDto.getPassword());
         userDto.setPassword(passwordEncode);
+
         final UserEntity user = saveUserPort.save(mapToModel(userDto, rolModel), transactionId);
 
         CustomUserDetails customUserDetails = new CustomUserDetails(
@@ -89,10 +104,9 @@ public class UserService implements UserPort {
         final Date expiration = jwtPort.extractExpiration(token);
         final String refreshToken = jwtPort.generateRefreshToken(customUserDetails);
 
-        return new JwtDto(token, refreshToken, expiration, PICTURE_DEFAULT_PROFILE_WEB,
-                customUserDetails.getLanguage(), true);
+        return new JwtDto(token, refreshToken, expiration, PICTURE_DEFAULT_PROFILE_WEB, customUserDetails.getLanguage(),
+                true);
     }
-
 
     private UserEntity mapToModel(UserDto userDto, RolModel rolModel) {
         UserEntity user = new UserEntity();
@@ -133,7 +147,7 @@ public class UserService implements UserPort {
     }
 
     @Override
-    public void validationAccount(Long userId, String code, String transactionId) {
+    public void validateEmailCodeForAccount(Long userId, String code, String transactionId) {
 
         Optional<UserEntity> userFound = findByUserId(userId, transactionId);
 
@@ -141,25 +155,27 @@ public class UserService implements UserPort {
             throw new InternalException("It was not possible to validate your code, the account is disabled or " +
                     "does not exist.", transactionId);
         }
+
         if (userFound.get().getVerified()) {
             return;
         }
 
         UserEntity userModel = userFound.get();
 
-        String obtainedCode = accountValidationPort.retrieveEmailCode(userModel.getEmail(), transactionId);
+        final String obtainedCode = securityValidationPort.findByCodeEmailValidation(userModel.getEmail(),
+                transactionId);
 
         if (obtainedCode != null && obtainedCode.equals(code)) {
             userModel.setVerified(true);
             saveUserPort.save(userModel, transactionId);
-            accountValidationPort.clearEmailCode(userModel.getEmail(), transactionId);
         } else {
             throw new InternalException("The codes are invalid", transactionId);
         }
     }
 
     @Override
-    public void resetPassword(String email, String transactionId) {
+    public void generateRecoveryCode(String email, String transactionId) {
+
         Optional<UserEntity> account = findByEmailEntity(email, transactionId);
 
         if (account.isEmpty() || !account.get().getStatus()) {
@@ -167,8 +183,10 @@ public class UserService implements UserPort {
         }
 
         Locale locale = new Locale(account.get().getLanguage());
-        final String codeOtp = accountValidationPort.generateCodeRecoverAccount(account.get().getEmail(),
+
+        final String codeOtp = securityValidationPort.generateOtpRecoverAccount(account.get().getEmail(),
                 transactionId);
+
         final String body = i18nService.tr("recovery-password-body", new Object[]{codeOtp.toUpperCase()}, locale);
         final String subject = i18nService.tr("recovery-password-subject", locale);
 
@@ -176,9 +194,9 @@ public class UserService implements UserPort {
     }
 
     @Override
-    public void validateOtpRecoverPassword(String email, String code, String transactionId) {
+    public void resetPasswordWithRecoveryCode(String email, String code, Locale locale, String transactionId) {
 
-        final String codeObtain = accountValidationPort.getCodeEmailRecoverPassword(email, transactionId);
+        final String codeObtain = securityValidationPort.findByOtpRecoverPassword(email, transactionId);
 
         if (codeObtain == null) {
             throw new InternalException("Expired security code.", transactionId);
@@ -198,12 +216,12 @@ public class UserService implements UserPort {
         UserEntity user = account.get();
         String password = randomString.nextString();
 
-        Locale locale = new Locale(account.get().getLanguage());
         final String body = i18nService.tr("message-new-password-body", new Object[]{password}, locale);
         final String subject = i18nService.tr("message-new-password-subject", locale);
         mailPort.sendMail(account.get().getEmail(), subject, body, transactionId);
         user.setPassword(passwordEncoder.encode(password));
         saveUserPort.save(user, transactionId);
+        securityValidationPort.resetOtpValidation(email, transactionId);
     }
 
     @Override
@@ -220,12 +238,13 @@ public class UserService implements UserPort {
         if (user.getVerified()) {
             return;
         }
-        Locale locale = new Locale(account.get().getLanguage());
-        final String code = accountValidationPort.generateCodeMail(user.getEmail(), transactionId);
 
-        mailPort.sendCodeMail(user.getEmail(), "Bienvenido, Su cuenta ha sido creada exitosamente, Por favor " +
-                "verifique su " +
-                "correo", code, locale, transactionId);
+        Locale locale = new Locale(account.get().getLanguage());
+        final String code = securityValidationPort.generateCodeValidationMail(user.getEmail(), transactionId);
+
+        final String body = i18nService.tr("send-code-mail-validation-mail", new Object[]{code.toUpperCase()}, locale);
+
+        mailPort.sendCodeMail(user.getEmail(), body, code, locale, transactionId);
     }
 
     @Override
@@ -245,7 +264,28 @@ public class UserService implements UserPort {
 
         user.setPassword(passwordEncoder.encode(newPassword));
         saveUserPort.save(user, transactionId);
+    }
 
+    @Override
+    public void updateRol(Rol rol, Long userId, String transactionId) {
+
+        Optional<UserEntity> userFound = findByUserId(userId, transactionId);
+
+        if (userFound.isEmpty() || !userFound.get().getStatus()) {
+            throw new InternalException("It was not possible to validate your code, the account is disabled or " +
+                    "does not exist.", transactionId);
+        }
+
+        UserEntity user = userFound.get();
+
+        if (!user.getVerified()) {
+            throw new InternalException("You do not have a valid account, please validate your email", transactionId);
+        }
+
+        final RolModel rolModel = rolPort.findByName(rol.name(), transactionId);
+
+        user.setRolId(RolMapper.toEntity(rolModel));
+        saveUserPort.save(user, transactionId);
     }
 
 

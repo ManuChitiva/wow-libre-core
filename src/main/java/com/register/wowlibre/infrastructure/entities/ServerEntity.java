@@ -41,4 +41,5 @@ public class ServerEntity implements Serializable {
     private String externalPassword;
     private byte[] salt;
     private Long userId;
+    private String type;
 }

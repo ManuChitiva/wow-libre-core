@@ -3,15 +3,15 @@ package com.register.wowlibre.infrastructure.util;
 import lombok.*;
 
 @Getter
-public enum Roles {
+public enum Rol {
     ADMIN("ADMIN"),
     CLIENT("CLIENT"),
     SERVER("SERVER");
 
-    private final String roleName;
+    private final String name;
 
-    Roles(String roleName) {
-        this.roleName = roleName;
+    Rol(String name) {
+        this.name = name;
     }
 
 }

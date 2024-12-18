@@ -82,10 +82,12 @@ public class SecurityConfiguration {
 
                                         //INTERNAL API
                                         "/api/account/create",
-                                        "api/account/recovery-password",
+                                        "/api/account/password-recovery/request",
+                                        "/api/account/password-recovery/confirm",
                                         "/api/account/search",
                                         "/api/resources/banners-home",
-                                        "/api/resources/country", "/api/resources/widget-home",
+                                        "/api/resources/country",
+                                        "/api/resources/widget-home",
                                         "/api/resources/server-promos",
                                         "/api/resources/faqs",
                                         "/api/resources/bank/plans",
@@ -105,9 +107,9 @@ public class SecurityConfiguration {
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**")
                                 .permitAll()
-                                .requestMatchers("/api/server/create", "/api/server/key").hasAuthority(Roles.SERVER.getRoleName())
+                                .requestMatchers( "/api/server/key").hasAuthority(Rol.SERVER.getName())
                                 .requestMatchers("/api/transaction/purchase", "/api/transaction/subscription-benefits"
-                                ).hasAuthority(Roles.ADMIN.getRoleName())
+                                ).hasAuthority(Rol.ADMIN.getName())
                                 .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

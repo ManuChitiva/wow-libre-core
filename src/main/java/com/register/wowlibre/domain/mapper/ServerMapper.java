@@ -51,6 +51,7 @@ public class ServerMapper {
         serverEntity.setApiSecret(server.apiSecret);
         serverEntity.setRefreshToken(server.refreshToken);
         serverEntity.setJwt(server.jwt);
+        serverEntity.setType(server.type);
         serverEntity.setExpirationDate(server.expirationDate);
         serverEntity.setRealmlist(server.realmlist);
         serverEntity.setExternalPassword(server.externalPassword);

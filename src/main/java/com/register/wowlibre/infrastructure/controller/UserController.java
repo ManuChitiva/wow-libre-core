@@ -22,7 +22,7 @@ public class UserController {
     }
 
     @PostMapping(path = "/create")
-    public ResponseEntity<GenericResponse<JwtDto>> createUser(
+    public ResponseEntity<GenericResponse<JwtDto>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale,
             @RequestBody @Valid UserDto accountWeb) {
@@ -34,7 +34,7 @@ public class UserController {
     }
 
     @GetMapping(path = "/search")
-    public ResponseEntity<GenericResponse<UserSearchDto>> user(
+    public ResponseEntity<GenericResponse<UserSearchDto>> search(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam(name = "email", required = false) final String email,
             @RequestParam(name = "cell_phone", required = false) final String cellPhone) {
@@ -43,6 +43,7 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                     .body(new GenericResponseBuilder<UserSearchDto>(transactionId).build());
         }
+
         boolean exists;
 
         if (email != null) {
@@ -58,7 +59,7 @@ public class UserController {
 
 
     @GetMapping
-    public ResponseEntity<GenericResponse<UserDetailDto>> detailUser(
+    public ResponseEntity<GenericResponse<UserDetailDto>> detail(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId) {
 
@@ -78,36 +79,37 @@ public class UserController {
     }
 
 
-    @PutMapping("/confirm-email")
-    public ResponseEntity<GenericResponse<UserDetailDto>> confirmEmail(
+    @PutMapping("/email/confirmation")
+    public ResponseEntity<GenericResponse<UserDetailDto>> validateEmailCodeForAccount(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestParam final String code) {
 
-        userPort.validationAccount(userId, code, transactionId);
+        userPort.validateEmailCodeForAccount(userId, code, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
     }
 
-    @GetMapping("/recovery-password")
-    public ResponseEntity<GenericResponse<UserDetailDto>> recoveryPassword(
+    @GetMapping("/password-recovery/request")
+    public ResponseEntity<GenericResponse<UserDetailDto>> requestPasswordRecoveryCode(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam final String email) {
 
-        userPort.resetPassword(email, transactionId);
+        userPort.generateRecoveryCode(email, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
     }
 
-    @PutMapping("/recovery-password")
-    public ResponseEntity<GenericResponse<UserDetailDto>> validatePassword(
+    @PutMapping("/password-recovery/confirm")
+    public ResponseEntity<GenericResponse<UserDetailDto>> validateRecoveryCodeAndResetPassword(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam final String email,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale,
             @RequestParam final String code) {
 
-        userPort.validateOtpRecoverPassword(email, code, transactionId);
+        userPort.resetPasswordWithRecoveryCode(email, code, locale, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
@@ -124,7 +126,7 @@ public class UserController {
                 .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
     }
 
-    @PutMapping(path = "/new-password")
+    @PutMapping(path = "/user-password/change")
     public ResponseEntity<GenericResponse<Void>> newPassword(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,

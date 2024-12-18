@@ -6,6 +6,7 @@ import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.server.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
@@ -28,13 +29,16 @@ public class ServerService implements ServerPort {
     private final SaveServerPort saveServerPort;
     private final RandomString randomString;
     private final PasswordEncoder passwordEncoder;
+    private final UserPort userPort;
 
     public ServerService(ObtainServerPort obtainServerPort, SaveServerPort saveServerPort,
-                         @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder) {
+                         @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder,
+                         UserPort userPort) {
         this.obtainServerPort = obtainServerPort;
         this.saveServerPort = saveServerPort;
         this.randomString = randomString;
         this.passwordEncoder = passwordEncoder;
+        this.userPort = userPort;
     }
 
     @Override
@@ -62,6 +66,7 @@ public class ServerService implements ServerPort {
             throw new InternalException("It is not possible to create or configure a server with because one already " +
                     "exists with the same name and with the same version characteristics.", transactionId);
         }
+
         try {
             final String apiKey = randomString.nextString();
             final String apiSecret = randomString.nextString();
@@ -80,6 +85,7 @@ public class ServerService implements ServerPort {
                     .avatar(AVATAR_SERVER_DEFAULT)
                     .ip(serverCreateDto.getHost())
                     .apiKey(apiKey)
+                    .type(serverCreateDto.getType())
                     .apiSecret(apiSecret)
                     .salt(salt)
                     .password(password)
@@ -92,6 +98,7 @@ public class ServerService implements ServerPort {
                     .externalUsername(serverCreateDto.getExternalUsername())
                     .build();
 
+            userPort.updateRol(Rol.SERVER, userId, transactionId);
             saveServerPort.save(ServerMapper.toEntity(serverDto), transactionId);
 
         } catch (Exception e) {

@@ -182,3 +182,5 @@ CREATE TABLE accounts.user_server_coins
 ALTER TABLE accounts.server
     ADD COLUMN user_id bigint;
 
+ALTER TABLE accounts.server
+    ADD COLUMN type varchar (40);

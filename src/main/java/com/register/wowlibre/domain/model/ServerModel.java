@@ -15,6 +15,7 @@ public class ServerModel {
     public String apiSecret;
     public String expansion;
     public String ip;
+    public String type;
     public LocalDateTime creationDate;
     public String jwt;
     public String refreshToken;
