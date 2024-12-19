@@ -259,7 +259,7 @@ public class UserService implements UserPort {
         UserEntity user = userFound.get();
 
         if (!passwordEncoder.matches(password, user.getPassword())) {
-            throw new InternalException("Could not change password", transactionId);
+            throw new InternalException("The current password entered is invalid", transactionId);
         }
 
         user.setPassword(passwordEncoder.encode(newPassword));

@@ -2,7 +2,7 @@ package com.register.wowlibre.application.services.security_validation_service;
 
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.port.in.security_validation.*;
-import com.register.wowlibre.domain.port.out.user_validation.*;
+import com.register.wowlibre.domain.port.out.security_validation.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
 import org.springframework.beans.factory.annotation.*;

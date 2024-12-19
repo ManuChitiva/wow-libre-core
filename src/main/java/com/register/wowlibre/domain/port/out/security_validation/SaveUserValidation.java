@@ -1,4 +1,4 @@
-package com.register.wowlibre.domain.port.out.user_validation;
+package com.register.wowlibre.domain.port.out.security_validation;
 
 import com.register.wowlibre.infrastructure.entities.*;
 

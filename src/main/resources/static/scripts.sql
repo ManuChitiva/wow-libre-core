@@ -44,7 +44,7 @@ CREATE TABLE accounts.server
     name              varchar(40) NOT NULL,
     emulator          varchar(40) NOT NULL,
     expansion         varchar(5)  NOT NULL,
-    ip                text,
+    ip                text NOT NULL,
     api_key           varchar(80) NOT NULL,
     api_secret        varchar(80) NOT NULL,
     password          text        NOT NULL,
@@ -93,6 +93,7 @@ CREATE TABLE accounts.server_services
     CONSTRAINT uq_name_server_id UNIQUE (name, server_id),
     PRIMARY KEY (id)
 );
+
 
 CREATE TABLE accounts.credit_loans
 (

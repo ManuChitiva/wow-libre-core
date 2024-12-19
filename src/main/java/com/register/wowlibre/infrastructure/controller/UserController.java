@@ -105,8 +105,8 @@ public class UserController {
     @PutMapping("/password-recovery/confirm")
     public ResponseEntity<GenericResponse<UserDetailDto>> validateRecoveryCodeAndResetPassword(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestParam final String email,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale,
+            @RequestParam final String email,
             @RequestParam final String code) {
 
         userPort.resetPasswordWithRecoveryCode(email, code, locale, transactionId);

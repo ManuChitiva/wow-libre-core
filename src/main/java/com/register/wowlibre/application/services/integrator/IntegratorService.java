@@ -47,7 +47,7 @@ public class IntegratorService implements IntegratorPort {
         } catch (Exception e) {
             LOGGER.error("It was not possible to create the account on the server. userId: {} transactionId {}",
                     userId, transactionId);
-            throw new InternalException("Could not create account for server. transactionId {}", transactionId);
+            throw new InternalException("Could not create account for server", transactionId);
         }
 
     }
