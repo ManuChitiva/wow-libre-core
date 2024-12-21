@@ -30,7 +30,7 @@ public class AccountGameController {
         AccountsDto accounts = accountGamePort.accounts(userId, page, size, username, server, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(accounts, transactionId).created().build());
+                .body(new GenericResponseBuilder<>(accounts, transactionId).ok().build());
     }
 
     @PostMapping(path = "/create")
@@ -51,12 +51,12 @@ public class AccountGameController {
     public ResponseEntity<GenericResponse<AccountsDto>> accountsByServerId(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
-            @RequestParam(name = "server_id") Long serverId) {
+            @RequestParam(name = PARAM_SERVER_ID) Long serverId) {
 
         AccountsDto accounts = accountGamePort.accounts(userId, serverId, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(accounts, transactionId).created().build());
+                .body(new GenericResponseBuilder<>(accounts, transactionId).ok().build());
     }
 
 

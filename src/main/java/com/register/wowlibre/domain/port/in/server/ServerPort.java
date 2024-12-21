@@ -23,5 +23,6 @@ public interface ServerPort {
 
     List<ServerEntity> findByStatusIsTrueServers(String transactionId);
 
+    Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId);
 
 }

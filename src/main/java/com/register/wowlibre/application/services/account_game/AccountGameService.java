@@ -18,10 +18,22 @@ import java.util.*;
 
 @Service
 public class AccountGameService implements AccountGamePort {
+    /**
+     * Account Game PORT
+     **/
     private final SaveAccountGamePort saveAccountGamePort;
     private final ObtainAccountGamePort obtainAccountGamePort;
-    private final ServerPort serverPort;
+    /**
+     * USERS PORT
+     **/
     private final UserPort userPort;
+    /**
+     * SERVER PORT
+     **/
+    private final ServerPort serverPort;
+    /**
+     * EXTERNAL
+     **/
     private final IntegratorPort integratorPort;
 
     public AccountGameService(SaveAccountGamePort saveAccountGamePort, ObtainAccountGamePort obtainAccountGamePort,
@@ -74,9 +86,9 @@ public class AccountGameService implements AccountGamePort {
 
         UserEntity user = userModel.get();
 
-        //if (!user.getVerified()) {
-        //    throw new InternalException("Currently your account is not validated, please validate", transactionId);
-       // }
+        if (!user.getVerified()) {
+            throw new InternalException("Currently your account is not validated, please validate", transactionId);
+        }
 
         ServerModel serverAvailable = serverPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion,
                 transactionId);
@@ -110,15 +122,13 @@ public class AccountGameService implements AccountGamePort {
             throw new InternalException("The client is not available or does not exist", transactionId);
         }
 
-        Long sizeAccounts = obtainAccountGamePort.accounts(userId);
         List<AccountGameModel> accountsGame = obtainAccountGamePort.findByUserIdAndServerId(userId, serverId,
                 transactionId).stream().map(this::mapToModel).toList();
 
-        return new AccountsDto(accountsGame, sizeAccounts);
+        return new AccountsDto(accountsGame, (long) accountsGame.size());
     }
 
     @Override
-    //@Cacheable(value = "verify-account", key = "#userId + '_' + #accountId + '_' + #serverId")
     public AccountVerificationDto verifyAccount(Long userId, Long accountId, Long serverId, String transactionId) {
 
         Optional<ServerEntity> server = serverPort.findById(serverId, transactionId);

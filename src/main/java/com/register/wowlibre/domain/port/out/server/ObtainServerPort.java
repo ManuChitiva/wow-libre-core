@@ -19,4 +19,6 @@ public interface ObtainServerPort {
 
     List<ServerEntity> findByStatusIsFalse(String transactionId);
 
+    Optional <ServerEntity>  findAndIdByUser(Long id, Long userId, String transactionId);
+
 }

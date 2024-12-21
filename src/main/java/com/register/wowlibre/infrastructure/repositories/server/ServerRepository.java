@@ -18,4 +18,5 @@ public interface ServerRepository extends CrudRepository<ServerEntity, Long> {
 
     List<ServerEntity> findByUserId(Long userId);
 
+    Optional<ServerEntity> findByIdAndUserId(Long id, Long userId);
 }

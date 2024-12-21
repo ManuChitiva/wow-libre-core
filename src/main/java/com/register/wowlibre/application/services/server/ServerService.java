@@ -114,6 +114,11 @@ public class ServerService implements ServerPort {
         return obtainServerPort.findByStatusIsTrue(transactionId);
     }
 
+    @Override
+    public Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId) {
+        return obtainServerPort.findAndIdByUser(id, userId, transactionId);
+    }
+
 
     @Override
     public List<ServerDto> findByStatusIsTrue(String transactionId) {

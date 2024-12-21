@@ -19,4 +19,13 @@ public interface CreditLoansRepository extends CrudRepository<CreditLoansEntity,
 
     @Query("SELECT c FROM CreditLoansEntity c WHERE c.status = true AND c.send = true AND c.paymentDate < :currentDate")
     List<CreditLoansEntity> findActiveCreditLoans(@Param("currentDate") LocalDateTime currentDate);
+
+
+    @Query("SELECT c FROM CreditLoansEntity c WHERE " +
+            "( :filter = 'ALL' OR (:filter = 'DEBTOR' AND c.debtToPay > 0) OR (:filter = 'NON_DEBTOR' AND c.debtToPay = 0) ) " +
+            "AND c.serverId = :serverId")
+    Page<CreditLoansEntity> findByFilterAndSortAndServerId(String filter, Long serverId, Pageable pageable);
+
+
+
 }

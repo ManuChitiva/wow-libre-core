@@ -4,17 +4,17 @@
       "id": 1,
       "name": "Inicial",
       "description": "Inicia tu aventura en Azeroth con un préstamo básico de oro para ayudarte a comenzar.",
-      "price": "1,050g",
+      "price": "1,100g",
       "frecuency": "/Pago único",
       "features": [
-        "Interés del 5%",
+        "Interés del 10%",
         "Préstamo de 1k de oro",
         "Pago máximo: 1 mes"
       ],
       "button": "Solicitar Préstamo",
-      "interest": 20,
+      "interest": 10,
       "month_payment_period": 1,
-      "gold": 10000000.0
+      "gold": 11000000.0
     },
     {
       "id": 2,
@@ -25,28 +25,28 @@
       "features": [
         "Interés del 20%",
         "Préstamo de 40k de oro",
-        "Pago máximo: 1 meses"
+        "Pago máximo: 1 mes"
       ],
       "button": "Solicitar Préstamo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 400000000.0
+      "gold": 480000000.0
     },
     {
       "id": 3,
       "name": "Starter",
       "description": "Potencia tu aventura con recursos esenciales para tu crecimiento.",
-      "price": "11,000g",
+      "price": "12,000g",
       "frecuency": "/Pago único",
       "features": [
-        "Interés del 10%",
+        "Interés del 20%",
         "Préstamo de 10k de oro",
         "Pago máximo: 1 mes"
       ],
       "button": "Solicitar Préstamo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 100000000.0
+      "gold": 120000000.0
     }
   ],
   "en": [
@@ -54,17 +54,17 @@
       "id": 1,
       "name": "Initial",
       "description": "Start your adventure in Azeroth with a basic gold loan to help you get started.",
-      "price": "1,050g",
+      "price": "1,100g",
       "frecuency": "/One-time payment",
       "features": [
-        "5% interest",
+        "10% interest",
         "1k gold loan",
         "Maximum payment: 1 month"
       ],
       "button": "Apply for Loan",
-      "interest": 20,
+      "interest": 10,
       "month_payment_period": 1,
-      "gold": 10000000.0
+      "gold": 11000000.0
     },
     {
       "id": 2,
@@ -80,23 +80,23 @@
       "button": "Apply for Loan",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 400000000.0
+      "gold": 480000000.0
     },
     {
       "id": 3,
       "name": "Starter",
       "description": "Boost your adventure with essential resources for your growth.",
-      "price": "11,000g",
+      "price": "12,000g",
       "frecuency": "/One-time payment",
       "features": [
-        "10% interest",
+        "20% interest",
         "10k gold loan",
         "Maximum payment: 1 month"
       ],
       "button": "Apply for Loan",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 100000000.0
+      "gold": 120000000.0
     }
   ],
   "pt": [
@@ -104,17 +104,17 @@
       "id": 1,
       "name": "Inicial",
       "description": "Comece sua aventura em Azeroth com um empréstimo básico de ouro para ajudá-lo a começar.",
-      "price": "1,050g",
+      "price": "1,100g",
       "frecuency": "/Pagamento único",
       "features": [
-        "Juros de 5%",
+        "Juros de 10%",
         "Empréstimo de 1k de ouro",
         "Pagamento máximo: 1 mês"
       ],
       "button": "Solicitar Empréstimo",
-      "interest": 20,
+      "interest": 10,
       "month_payment_period": 1,
-      "gold": 10000000.0
+      "gold": 11000000.0
     },
     {
       "id": 2,
@@ -130,7 +130,7 @@
       "button": "Solicitar Empréstimo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 400000000.0
+      "gold": 480000000.0
     },
     {
       "id": 3,
@@ -139,14 +139,14 @@
       "price": "11,000g",
       "frecuency": "/Pagamento único",
       "features": [
-        "Juros de 10%",
+        "Juros de 20%",
         "Empréstimo de 10k de ouro",
         "Pagamento máximo: 1 mês"
       ],
       "button": "Solicitar Empréstimo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 100000000.0
+      "gold": 120000000.0
     }
   ]
 }

@@ -76,5 +76,8 @@ public interface IntegratorPort {
                           List<ItemQuantityModel> items, String transactionId);
 
     ClaimMachineResponse claimMachine(String host, String jwt, Long userId, Long accountId, Long characterId,
-                            String type, String transactionId);
+                                      String type, String transactionId);
+
+    AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
+                                       String transactionId);
 }

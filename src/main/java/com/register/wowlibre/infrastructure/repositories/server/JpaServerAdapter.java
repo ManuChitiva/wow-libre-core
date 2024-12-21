@@ -51,6 +51,11 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     }
 
     @Override
+    public Optional<ServerEntity> findAndIdByUser(Long id, Long userId, String transactionId) {
+        return serverRepository.findByIdAndUserId(id, userId);
+    }
+
+    @Override
     public void save(ServerEntity serverEntity, String transactionId) {
         serverRepository.save(serverEntity);
     }

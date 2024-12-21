@@ -313,4 +313,19 @@ public class IntegratorService implements IntegratorPort {
         return response.getData();
     }
 
+    @Override
+    public AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
+                                              String transactionId) {
+
+        GenericResponse<AccountsResponse> response = integratorClient.accountsServer(host, jwt,
+                size, page, filter, transactionId);
+
+        if (response == null) {
+            throw new InternalException("Could not get server accounts",
+                    transactionId);
+        }
+
+        return response.getData();
+    }
+
 }

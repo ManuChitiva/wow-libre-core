@@ -1,6 +1,7 @@
 package com.register.wowlibre.application.services.bank;
 
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.*;
@@ -20,7 +21,6 @@ import java.util.*;
 @Service
 public class BankService implements BankPort {
     private static final Logger LOGGER = LoggerFactory.getLogger(BankService.class);
-    public static final String BANK_SERVICES_NAME = "BANK";
 
     private final ObtainCreditLoans obtainCreditLoans;
     private final SaveCreditLoans saveCreditLoans;
@@ -57,7 +57,8 @@ public class BankService implements BankPort {
                     "administrator.", transactionId);
         }
 
-        ServerServicesModel serverServicesModel = serverServicesPort.findByNameAndServerId(BANK_SERVICES_NAME, serverId,
+        ServerServicesModel serverServicesModel =
+                serverServicesPort.findByNameAndServerId(ServerServices.BANK.getName(), serverId,
                 transactionId);
 
         if (serverServicesModel == null) {

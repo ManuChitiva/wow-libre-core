@@ -38,6 +38,22 @@ public class JpaCreditLoansAdapter implements ObtainCreditLoans, SaveCreditLoans
     }
 
     @Override
+    public List<CreditLoansEntity> findByServerIdAndPagination(Long serverId, int size, int page, String filter,
+                                                               boolean asc,
+                                                               String transactionId) {
+
+        Sort sort = Sort.by(Sort.Order.by("transactionDate"));
+        if (asc) {
+            sort = sort.ascending();
+        } else {
+            sort = sort.descending();
+        }
+
+        Pageable pageable = PageRequest.of(page, size, sort);
+        return creditLoansRepository.findByFilterAndSortAndServerId(filter, serverId, pageable).stream().toList();
+    }
+
+    @Override
     public void save(CreditLoansEntity creditLoansEntity, String transactionId) {
         creditLoansRepository.save(creditLoansEntity);
     }
