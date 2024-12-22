@@ -79,5 +79,7 @@ public interface IntegratorPort {
                                       String type, String transactionId);
 
     AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
-                                       String transactionId);
+                                    String transactionId);
+
+    DashboardMetricsResponse dashboard(String host, String jwt, String transactionId);
 }

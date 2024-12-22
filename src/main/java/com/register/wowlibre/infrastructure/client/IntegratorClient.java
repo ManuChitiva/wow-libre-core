@@ -1022,8 +1022,8 @@ public class IntegratorClient {
 
 
     public GenericResponse<AccountsResponse> accountsServer(String host, String jwt, int size, int page,
-                                                                String filter,
-                                                                String transactionId) {
+                                                            String filter,
+                                                            String transactionId) {
         HttpHeaders headers = new HttpHeaders();
 
         headers.set(HEADER_TRANSACTION_ID, transactionId);
@@ -1049,7 +1049,51 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get server accounts  " +
+            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get server accounts" +
+                            "  " +
+                            "HTTP Status: {}, Response Body: {}",
+                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
+            throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
+        } catch (Exception e) {
+            LOGGER.error("[IntegratorClient] [accountsServer] Unexpected Error: {}. An unexpected error " +
+                            "occurred " +
+                            "during " +
+                            "the " +
+                            "transaction with ID: {}.",
+                    e.getMessage(), transactionId, e);
+            throw new InternalException("Transaction failed due to client or server error", transactionId);
+        }
+
+        throw new InternalException("Unexpected transaction failure", transactionId);
+    }
+
+
+    public GenericResponse<DashboardMetricsResponse> metricsDashboard(String host, String jwt, String transactionId) {
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set(HEADER_TRANSACTION_ID, transactionId);
+        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
+
+
+        HttpEntity<Void> entity = new HttpEntity<>(headers);
+
+        String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/dashboard/stats", host))
+                .toUriString();
+
+
+        try {
+            ResponseEntity<GenericResponse<DashboardMetricsResponse>> response = restTemplate.exchange(url,
+                    HttpMethod.GET,
+                    entity, new ParameterizedTypeReference<>() {
+                    });
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return Objects.requireNonNull(response.getBody());
+            }
+
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get server accounts" +
+                            "  " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);

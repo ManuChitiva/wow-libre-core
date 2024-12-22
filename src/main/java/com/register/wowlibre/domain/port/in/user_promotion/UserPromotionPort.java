@@ -7,7 +7,7 @@ import java.util.*;
 public interface UserPromotionPort {
     void save(Long userId, Long accountId, Long promotionId, Long characterId, String transactionId);
 
-    Optional<UserPromotionEntity> findByUserIdAndAccountId(Long userId, Long accountId, Long promotionId,
+    Optional<UserPromotionEntity> findByUserIdAndAccountIdAndPromotionIdAndCharacterId(Long userId, Long accountId, Long promotionId,
                                                            Long characterId,
                                                            String transactionId);
 }

@@ -146,4 +146,17 @@ public class DashboardService implements DashboardPort {
                         account.getMuteReason(), account.getMuteBy(), account.isMute(), account.getLastLogin(),
                         account.getOs())).toList(), accountsServer.getSize());
     }
+
+    @Override
+    public DashboardMetricsResponse metrics(Long userId, Long serverId, String transactionId) {
+
+        Optional<ServerEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+
+        if (server.isEmpty() || !server.get().isStatus()) {
+            throw new InternalException("The server is not found or is not available please contact support.",
+                    transactionId);
+        }
+
+        return integratorPort.dashboard(server.get().getIp(), server.get().getJwt(), transactionId);
+    }
 }

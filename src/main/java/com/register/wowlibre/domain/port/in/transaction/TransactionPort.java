@@ -13,7 +13,8 @@ public interface TransactionPort {
                                   List<ItemQuantityModel> items, String benefitType, Double amount,
                                   String transactionId);
 
-    PromotionsDto getPromotions(Long serverId, Long userId, Long accountId, Long characterId, String language,
+    PromotionsDto getPromotions(Long serverId, Long userId, Long accountId, Long characterId, Long classId,
+                                String language,
                                 String transactionId);
 
     void claimPromotion(Long serverId, Long userId, Long accountId, Long characterId, Long promotionId, String language,

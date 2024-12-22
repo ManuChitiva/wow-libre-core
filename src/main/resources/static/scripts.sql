@@ -44,7 +44,7 @@ CREATE TABLE accounts.server
     name              varchar(40) NOT NULL,
     emulator          varchar(40) NOT NULL,
     expansion         varchar(5)  NOT NULL,
-    ip                text NOT NULL,
+    ip                text        NOT NULL,
     api_key           varchar(80) NOT NULL,
     api_secret        varchar(80) NOT NULL,
     password          text        NOT NULL,
@@ -184,4 +184,36 @@ ALTER TABLE accounts.server
     ADD COLUMN user_id bigint;
 
 ALTER TABLE accounts.server
-    ADD COLUMN type varchar (40);
+    ADD COLUMN type varchar(40);
+
+
+
+
+CREATE TABLE accounts.promotion
+(
+    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    reference       varchar(40) NOT NULL,
+    img             text        NOT NULL,
+    name            varchar(30) NOT NULL,
+    description     varchar(40) NOT NULL,
+    btn_text        varchar(30) NOT NULL,
+    send_item       boolean NOT NULL,
+    server_id       bigint      NOT NULL,
+    min_level       integer     NOT NULL,
+    max_level       integer     NOT NULL,
+    type            varchar(30) NOT NULL,
+    amount double NOT NULL,
+    class_character varchar(10) NOT NULL,
+    language varchar (2) NOT NULL,
+    CONSTRAINT uq_reference_promotion UNIQUE (reference)
+)
+
+
+CREATE TABLE accounts.promotion_item
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code varchar (30) NOT NULL,
+    quantity integer NOT NULL,
+    promotion_id bigint NOT NULL,
+    CONSTRAINT fk_promotion_id FOREIGN KEY (promotion_id) references accounts.promotion (id)
+)

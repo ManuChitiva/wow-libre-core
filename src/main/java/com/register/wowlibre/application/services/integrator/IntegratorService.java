@@ -315,7 +315,7 @@ public class IntegratorService implements IntegratorPort {
 
     @Override
     public AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
-                                              String transactionId) {
+                                           String transactionId) {
 
         GenericResponse<AccountsResponse> response = integratorClient.accountsServer(host, jwt,
                 size, page, filter, transactionId);
@@ -326,6 +326,11 @@ public class IntegratorService implements IntegratorPort {
         }
 
         return response.getData();
+    }
+
+    @Override
+    public DashboardMetricsResponse dashboard(String host, String jwt, String transactionId) {
+        return integratorClient.metricsDashboard(host, jwt, transactionId).getData();
     }
 
 }

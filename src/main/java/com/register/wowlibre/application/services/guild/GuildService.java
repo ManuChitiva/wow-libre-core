@@ -87,7 +87,7 @@ public class GuildService implements GuildPort {
 
         List<BenefitModel> beneficiosFiltrados = beneficios.stream()
                 .filter(beneficio -> beneficiosObtenidos.stream()
-                        .anyMatch(beneficioObtenido -> beneficioObtenido.getGuildId().equals(beneficio.id)))
+                        .anyMatch(beneficioObtenido -> beneficioObtenido.getBenefitId().equals(beneficio.id)))
                 .toList();
 
         guildDto.setBenefits(beneficiosFiltrados);

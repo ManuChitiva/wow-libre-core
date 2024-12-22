@@ -6,6 +6,7 @@ import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
+import com.register.wowlibre.domain.port.in.promotion.*;
 import com.register.wowlibre.domain.port.in.transaction.*;
 import com.register.wowlibre.domain.port.in.user_promotion.*;
 import com.register.wowlibre.infrastructure.entities.*;
@@ -23,12 +24,17 @@ public class TransactionService implements TransactionPort {
     private final ResourcesPort resourcesPort;
     private final UserPromotionPort userPromotionPort;
 
+    private final PromotionPort promotionPort;
+
+
     public TransactionService(IntegratorPort integratorPort, AccountGamePort accountGamePort,
-                              ResourcesPort resourcesPort, UserPromotionPort userPromotionPort) {
+                              ResourcesPort resourcesPort, UserPromotionPort userPromotionPort,
+                              PromotionPort promotionPort) {
         this.integratorPort = integratorPort;
         this.accountGamePort = accountGamePort;
         this.resourcesPort = resourcesPort;
         this.userPromotionPort = userPromotionPort;
+        this.promotionPort = promotionPort;
     }
 
 
@@ -71,7 +77,8 @@ public class TransactionService implements TransactionPort {
     }
 
     @Override
-    public PromotionsDto getPromotions(Long serverId, Long userId, Long accountId, Long characterId, String language,
+    public PromotionsDto getPromotions(Long serverId, Long userId, Long accountId, Long characterId, Long classId,
+                                       String language,
                                        String transactionId) {
 
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
@@ -85,7 +92,7 @@ public class TransactionService implements TransactionPort {
         }
 
         List<PromotionModel> promotions =
-                resourcesPort.getPromotions(language, transactionId).stream()
+                promotionPort.findByPromotionServerIdAndLanguage(serverId, classId, language, transactionId).stream()
                         .filter(promos -> Objects.equals(promos.getServerId(), serverId)).toList();
 
         if (promotions.isEmpty()) {
@@ -94,7 +101,7 @@ public class TransactionService implements TransactionPort {
 
         return new PromotionsDto(promotions.stream()
                 .filter(promoValidation ->
-                        userPromotionPort.findByUserIdAndAccountId(
+                        userPromotionPort.findByUserIdAndAccountIdAndPromotionIdAndCharacterId(
                                 userId, accountId, promoValidation.getId(), characterId, transactionId).isEmpty())
                 .map(PromotionDto::new).toList(), promotions.size());
     }
@@ -103,7 +110,7 @@ public class TransactionService implements TransactionPort {
     public void claimPromotion(Long serverId, Long userId, Long accountId, Long characterId, Long promotionId,
                                String language, String transactionId) {
 
-        if (userPromotionPort.findByUserIdAndAccountId(
+        if (userPromotionPort.findByUserIdAndAccountIdAndPromotionIdAndCharacterId(
                 userId, accountId, promotionId, characterId, transactionId).isPresent()) {
             throw new InternalException("You have already consumed the promotion", transactionId);
         }
