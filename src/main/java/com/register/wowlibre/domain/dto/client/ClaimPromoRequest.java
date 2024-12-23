@@ -22,4 +22,5 @@ public class ClaimPromoRequest {
     private Integer minLvl;
     @JsonProperty("max_lvl")
     private Integer maxLvl;
+    private Integer level;
 }

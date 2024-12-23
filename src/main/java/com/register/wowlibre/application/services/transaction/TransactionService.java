@@ -3,7 +3,6 @@ package com.register.wowlibre.application.services.transaction;
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.model.*;
-import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
 import com.register.wowlibre.domain.port.in.promotion.*;
@@ -21,18 +20,15 @@ public class TransactionService implements TransactionPort {
 
     private final IntegratorPort integratorPort;
     private final AccountGamePort accountGamePort;
-    private final ResourcesPort resourcesPort;
     private final UserPromotionPort userPromotionPort;
 
     private final PromotionPort promotionPort;
 
 
     public TransactionService(IntegratorPort integratorPort, AccountGamePort accountGamePort,
-                              ResourcesPort resourcesPort, UserPromotionPort userPromotionPort,
-                              PromotionPort promotionPort) {
+                              UserPromotionPort userPromotionPort, PromotionPort promotionPort) {
         this.integratorPort = integratorPort;
         this.accountGamePort = accountGamePort;
-        this.resourcesPort = resourcesPort;
         this.userPromotionPort = userPromotionPort;
         this.promotionPort = promotionPort;
     }
@@ -92,7 +88,8 @@ public class TransactionService implements TransactionPort {
         }
 
         List<PromotionModel> promotions =
-                promotionPort.findByPromotionServerIdAndLanguage(serverId, classId, language, transactionId).stream()
+                promotionPort.findByPromotionServerIdAndClassIdAndLanguage(serverId, classId, language,
+                                transactionId).stream()
                         .filter(promos -> Objects.equals(promos.getServerId(), serverId)).toList();
 
         if (promotions.isEmpty()) {
@@ -115,7 +112,6 @@ public class TransactionService implements TransactionPort {
             throw new InternalException("You have already consumed the promotion", transactionId);
         }
 
-
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
@@ -126,16 +122,9 @@ public class TransactionService implements TransactionPort {
             throw new InternalException("Server is not available", transactionId);
         }
 
-        Optional<PromotionModel> promotions =
-                resourcesPort.getPromotions(language, transactionId).stream()
-                        .filter(promos -> Objects.equals(promos.getServerId(), serverId)
-                                && promos.getId().equals(promotionId)).findFirst();
+        PromotionModel promo =
+                promotionPort.findByPromotionServerIdAndLanguage(promotionId, serverId, language, transactionId);
 
-        if (promotions.isEmpty()) {
-            throw new InternalException("The promotion is not available, contact support", transactionId);
-        }
-
-        PromotionModel promo = promotions.get();
         List<ItemQuantityModel> items = new ArrayList<>();
 
         if (promo.getSendItem() && !promo.getItems().isEmpty()) {
@@ -144,7 +133,7 @@ public class TransactionService implements TransactionPort {
         }
 
         integratorPort.sendPromo(server.getIp(), server.getJwt(), userId, accountId, characterId, items,
-                promo.getType(), promo.getAmount(), promo.getMinLvl(), promo.getMaxLvl(),
+                promo.getType(), promo.getAmount(), promo.getMinLvl(), promo.getMaxLvl(), promo.getLevel(),
                 transactionId);
 
         userPromotionPort.save(userId, accountId, promotionId, characterId, transactionId);

@@ -21,6 +21,8 @@ public class PromotionModel {
     private Double amount;
     private Long serverId;
     private Long classId;
+    private boolean status;
+    private Integer level;
 
 
     @AllArgsConstructor

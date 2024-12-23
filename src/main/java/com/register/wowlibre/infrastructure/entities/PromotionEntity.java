@@ -29,4 +29,6 @@ public class PromotionEntity {
     @Column(name = "class_character")
     private Long classCharacter;
     private String language;
+    private boolean status;
+    private Integer level;
 }

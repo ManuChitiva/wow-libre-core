@@ -195,7 +195,7 @@ CREATE TABLE accounts.promotion
     reference       varchar(40) NOT NULL,
     img             text        NOT NULL,
     name            varchar(30) NOT NULL,
-    description     varchar(40) NOT NULL,
+    description     varchar(80) NOT NULL,
     btn_text        varchar(30) NOT NULL,
     send_item       boolean NOT NULL,
     server_id       bigint      NOT NULL,
@@ -204,6 +204,8 @@ CREATE TABLE accounts.promotion
     type            varchar(30) NOT NULL,
     amount double NOT NULL,
     class_character varchar(10) NOT NULL,
+    level integer,
+    status boolean NOT NULL,
     language varchar (2) NOT NULL,
     CONSTRAINT uq_reference_promotion UNIQUE (reference)
 )

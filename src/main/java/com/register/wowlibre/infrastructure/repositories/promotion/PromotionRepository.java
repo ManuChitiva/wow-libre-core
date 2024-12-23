@@ -7,5 +7,7 @@ import java.util.*;
 
 public interface PromotionRepository extends CrudRepository<PromotionEntity, Long> {
 
-    List<PromotionEntity> findByServerIdAndLanguage(Long serverId, String language);
+    List<PromotionEntity> findByServerIdAndLanguageAndStatusIsTrue(Long serverId, String language);
+
+    Optional<PromotionEntity> findByIdAndServerIdAndLanguageAndStatusIsTrue(Long Id, Long serverId, String language);
 }

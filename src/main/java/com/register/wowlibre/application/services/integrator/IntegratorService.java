@@ -287,9 +287,10 @@ public class IntegratorService implements IntegratorPort {
     @Override
     public void sendPromo(String host, String jwt, Long userId, Long accountId, Long characterId,
                           List<ItemQuantityModel> items, String type, Double amount, Integer minLvl, Integer maxLvl,
+                          Integer level,
                           String transactionId) {
         integratorClient.sendPromo(host, jwt, new ClaimPromoRequest(userId, accountId, characterId, items, type,
-                amount, minLvl, maxLvl), transactionId);
+                amount, minLvl, maxLvl, level), transactionId);
     }
 
     @Override
