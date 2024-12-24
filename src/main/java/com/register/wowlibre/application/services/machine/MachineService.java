@@ -42,8 +42,8 @@ public class MachineService implements MachinePort {
 
         final ServerEntity server = verificationDto.server();
 
-        int[] weights = {4, 3, 5, 2, 84};
-        String[] outcomes = {"Item", "Level", "Menas", "Gold", "None"};
+        int[] weights = {9, 1, 8, 4, 78};
+        String[] outcomes = {"Item", "Level", "Mount", "Gold", "None"};
 
         Optional<MachineEntity> machine = obtainMachine.findByUserIdAndServerId(userId,
                 verificationDto.server().getId());
@@ -60,7 +60,7 @@ public class MachineService implements MachinePort {
 
             machineModel.setCoint(Math.max(machineModel.getCoint() - 1, 0));
         } else {
-            machineModel.setCoint(99);
+            machineModel.setCoint(10);
             machineModel.setUserId(userId);
             machineModel.setServerId(serverId);
             saveMachine.save(machineModel, transactionId);
@@ -102,7 +102,6 @@ public class MachineService implements MachinePort {
             return MachineDto.builder().winner(false).message(i18nService.tr("message-machine-failed", locale)).build();
         }
 
-        // Imprimir el resultado
         machineModel.setLastWin(LocalDateTime.now());
         saveMachine.save(machineModel, transactionId);
 

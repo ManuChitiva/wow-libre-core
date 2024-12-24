@@ -25,7 +25,7 @@ import java.util.*;
 @Service
 public class UserService implements UserPort {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
-    private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://i.ibb.co/M8Kfq9X/icon-Default.png";
+    private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://static.wixstatic.com/media/5dd8a0_32431551f29b4644a774d8c55d2666fd~mv2.webp";
 
     /**
      * USERS PORT
@@ -39,11 +39,11 @@ public class UserService implements UserPort {
     private final I18nService i18nService;
     private final RandomString randomString;
     /**
-     * JWT  SERVICE
+     * Rol Port
      **/
     private final RolPort rolPort;
     /**
-     * MAILS - SECURITY
+     * MAILS - JWT SECURITY
      **/
     private final JwtPort jwtPort;
     private final SecurityValidationPort securityValidationPort;
