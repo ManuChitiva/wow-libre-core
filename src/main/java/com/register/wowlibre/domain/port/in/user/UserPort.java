@@ -9,7 +9,7 @@ import com.register.wowlibre.infrastructure.util.*;
 import java.util.*;
 
 public interface UserPort {
-    JwtDto create(UserDto accountWebDto, Locale locale, String transactionId);
+    JwtDto create(UserDto accountWebDto, String ip, Locale locale, String transactionId);
 
     UserModel findByEmail(String email, String transactionId);
 
@@ -23,7 +23,7 @@ public interface UserPort {
 
     void generateRecoveryCode(String email, String transactionId);
 
-    void resetPasswordWithRecoveryCode(String email, String code,Locale locale, String transactionId);
+    void resetPasswordWithRecoveryCode(String email, String code, Locale locale, String transactionId);
 
     void sendMailValidation(String mail, String transactionId);
 

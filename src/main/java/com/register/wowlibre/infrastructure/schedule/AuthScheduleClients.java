@@ -27,13 +27,14 @@ public class AuthScheduleClients {
         this.saveServerPort = saveServerPort;
     }
 
-    @Scheduled(cron = "1/10 * * * * *")
+    @Scheduled(cron = "1 0/20 * * * *")
     public void authServers() {
-        LOGGER.info("Init Refresh Jwt Servers [authServers] [AuthScheduleClients]");
         final String transactionId = "Auth-Client";
         List<ServerEntity> servers = obtainServerPort.findByStatusIsTrue(transactionId);
 
         for (ServerEntity server : servers) {
+            LOGGER.info("[AuthScheduleClients][authServers] JWT Refresh Server  {} ", server.getName());
+
             try {
                 Date expirationDate = server.getExpirationDate();
 
@@ -68,12 +69,14 @@ public class AuthScheduleClients {
 
     }
 
-    @Scheduled(cron = "1/10 * * * * *")
+    @Scheduled(cron = "1 0/10 * * * *")
     public void availableServers() {
         final String transactionId = "Auth-Client";
-        List<ServerEntity> servers = obtainServerPort.findByStatusIsFalse(transactionId);
+        List<ServerEntity> servers = obtainServerPort.findByStatusIsFalseAndRetry(5L, transactionId);
 
         for (ServerEntity server : servers) {
+            LOGGER.info("[AuthScheduleClients][availableServers] Register Server  {} ", server.getName());
+
             try {
                 byte[] salt = server.getSalt();
                 final String password = server.getExternalPassword();
@@ -97,9 +100,12 @@ public class AuthScheduleClients {
                 server.setExpirationDate(authToken.getExpirationDate());
                 server.setRefreshToken(authToken.getRefreshToken());
                 server.setStatus(true);
+                server.setRetry(0);
                 saveServerPort.save(server, transactionId);
             } catch (Exception e) {
-                LOGGER.error("[AuthScheduleClients] [availableServers] {}", e.getMessage());
+                LOGGER.error("[AuthScheduleClients][availableServers]  Fail Register {}", e.getMessage());
+                server.setRetry(server.getRetry() == null ? 0 : server.getRetry() + 1);
+                saveServerPort.save(server, transactionId);
             }
         }
 

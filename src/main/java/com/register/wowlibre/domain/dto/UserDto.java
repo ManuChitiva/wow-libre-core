@@ -34,10 +34,13 @@ public class UserDto {
     @NotNull
     @Length(min = 5, max = 50)
     private String email;
-    @Length( max = 30)
+    @Length(max = 30)
     @NotNull
     private String password;
     @NotNull
     @Length(min = 1, max = 4)
     private String language;
+
+    @NotNull
+    private String token;
 }

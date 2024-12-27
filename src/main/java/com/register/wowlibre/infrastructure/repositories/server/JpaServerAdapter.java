@@ -56,6 +56,11 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     }
 
     @Override
+    public List<ServerEntity> findByStatusIsFalseAndRetry(Long retry, String transactionId) {
+        return serverRepository.findByStatusIsFalseAndRetry(retry);
+    }
+
+    @Override
     public void save(ServerEntity serverEntity, String transactionId) {
         serverRepository.save(serverEntity);
     }

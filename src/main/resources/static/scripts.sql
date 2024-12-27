@@ -219,3 +219,6 @@ CREATE TABLE accounts.promotion_item
     promotion_id bigint NOT NULL,
     CONSTRAINT fk_promotion_id FOREIGN KEY (promotion_id) references accounts.promotion (id)
 )
+
+ALTER TABLE accounts.server
+    ADD retry integer;

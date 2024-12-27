@@ -4,6 +4,7 @@ import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.security.*;
 import com.register.wowlibre.domain.shared.*;
+import jakarta.servlet.http.*;
 import jakarta.validation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -25,9 +26,10 @@ public class UserController {
     public ResponseEntity<GenericResponse<JwtDto>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale,
-            @RequestBody @Valid UserDto accountWeb) {
+            @RequestBody @Valid UserDto accountWeb, HttpServletRequest request) {
+        String clientIp = request.getRemoteAddr();
 
-        final JwtDto jwtDto = userPort.create(accountWeb, locale, transactionId);
+        final JwtDto jwtDto = userPort.create(accountWeb, clientIp, locale, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<>(jwtDto, transactionId).created().build());

@@ -5,10 +5,11 @@ import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
-import com.register.wowlibre.domain.port.in.security_validation.*;
+import com.register.wowlibre.domain.port.in.google.*;
 import com.register.wowlibre.domain.port.in.jwt.*;
 import com.register.wowlibre.domain.port.in.mail.*;
 import com.register.wowlibre.domain.port.in.rol.*;
+import com.register.wowlibre.domain.port.in.security_validation.*;
 import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.user.*;
 import com.register.wowlibre.domain.security.*;
@@ -25,7 +26,8 @@ import java.util.*;
 @Service
 public class UserService implements UserPort {
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
-    private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://static.wixstatic.com/media/5dd8a0_32431551f29b4644a774d8c55d2666fd~mv2.webp";
+    private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://static.wixstatic" +
+            ".com/media/5dd8a0_32431551f29b4644a774d8c55d2666fd~mv2.webp";
 
     /**
      * USERS PORT
@@ -48,11 +50,16 @@ public class UserService implements UserPort {
     private final JwtPort jwtPort;
     private final SecurityValidationPort securityValidationPort;
     private final MailPort mailPort;
+    /**
+     * VERIFY CAPCHAT PORT
+     **/
+    private final GooglePort googlePort;
 
     public UserService(ObtainUserPort obtainUserPort, SaveUserPort saveUserPort, PasswordEncoder passwordEncoder,
                        JwtPort jwtPort, RolPort rolPort, MailPort mailPort,
                        SecurityValidationPort securityValidationPort,
-                       I18nService i18nService, @Qualifier("random-string") RandomString randomString) {
+                       I18nService i18nService, @Qualifier("random-string") RandomString randomString,
+                       GooglePort googlePort) {
         this.obtainUserPort = obtainUserPort;
         this.saveUserPort = saveUserPort;
         this.passwordEncoder = passwordEncoder;
@@ -62,11 +69,16 @@ public class UserService implements UserPort {
         this.securityValidationPort = securityValidationPort;
         this.i18nService = i18nService;
         this.randomString = randomString;
+        this.googlePort = googlePort;
     }
 
 
     @Override
-    public JwtDto create(UserDto userDto, Locale locale, String transactionId) {
+    public JwtDto create(UserDto userDto, String ip, Locale locale, String transactionId) {
+
+        if (!googlePort.verifyCaptcha("6LcbSqcqAAAAAE6r0D529XeZtuaIsueNUzz7jWen", userDto.getToken(), ip, transactionId)) {
+            throw new InternalException("The captcha is invalid", transactionId);
+        }
 
         final String email = userDto.getEmail();
 

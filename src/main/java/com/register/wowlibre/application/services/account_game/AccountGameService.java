@@ -86,9 +86,6 @@ public class AccountGameService implements AccountGamePort {
 
         UserEntity user = userModel.get();
 
-        if (!user.getVerified()) {
-            throw new InternalException("Currently your account is not validated, please validate", transactionId);
-        }
 
         ServerModel serverAvailable = serverPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion,
                 transactionId);

@@ -42,4 +42,5 @@ public class ServerEntity implements Serializable {
     private byte[] salt;
     private Long userId;
     private String type;
+    private Integer retry;
 }
