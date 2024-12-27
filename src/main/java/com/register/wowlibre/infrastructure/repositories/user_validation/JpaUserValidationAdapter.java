@@ -1,6 +1,6 @@
 package com.register.wowlibre.infrastructure.repositories.user_validation;
 
-import com.register.wowlibre.domain.port.out.user_validation.*;
+import com.register.wowlibre.domain.port.out.security_validation.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import org.springframework.stereotype.*;
 

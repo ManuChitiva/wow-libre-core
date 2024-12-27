@@ -54,10 +54,11 @@ public class TransactionController {
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestParam(name = PARAM_ACCOUNT_ID) final Long accountId,
             @RequestParam(name = PARAM_SERVER_ID) final Long serverId,
-            @RequestParam(name = PARAM_CHARACTER_ID) final Long characterId) {
+            @RequestParam(name = PARAM_CHARACTER_ID) final Long characterId,
+            @RequestParam(name = "class_id") final Long classId) {
 
         PromotionsDto promotionsDto = transactionPort.getPromotions(serverId, userId, accountId,
-                characterId, locale.getLanguage(), transactionId);
+                characterId, classId, locale.getLanguage(), transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(promotionsDto, transactionId).ok().build());

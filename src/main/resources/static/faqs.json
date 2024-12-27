@@ -1,6 +1,10 @@
 {
   "es": [
     {
+      "question": "¿Es Wow Libre un servidor de World of Warcraft?",
+      "answer": "No, Wow Libre no es un servidor de World of Warcraft. Nuestra plataforma está diseñada para proporcionar herramientas avanzadas que permiten a los administradores crear experiencias únicas y personalizadas dentro del mundo de los videojuegos. Nos enfocamos en ofrecer soluciones que faciliten la creación y gestión de servidores para diversas experiencias de juego."
+    },
+    {
       "question": "¿Existen canales adicionales de atención al jugador?",
       "answer": "Únete al canal de Telegram dedicado a la atención al jugador, donde podrás encontrar respuestas a preguntas comunes realizadas por la comunidad."
     },
@@ -10,10 +14,14 @@
     },
     {
       "question": "¿Puedo descargar mis datos para evitar pérdidas y migrar a otros servidores?",
-      "answer": "Nuestro objetivo es que todos los jugadores de Wow Libre puedan descargar sus datos y migrar a otros servidores 'privados' sin perder su información. Además, Wow Libre está constantemente buscando nuevas integraciones con servidores para mejorar la experiencia de juego."
+      "answer": "En Wow Libre, los jugadores pueden cambiar de servidor sin necesidad de descargar sus datos. Nuestro objetivo es facilitar la migración entre servidores privados sin que se pierda ninguna información. Además, estamos trabajando en nuevas integraciones con otros servidores para seguir mejorando la experiencia de juego."
     }
   ],
   "en": [
+    {
+      "question": "Is Wow Libre a World of Warcraft server?",
+      "answer": "No, Wow Libre is not a World of Warcraft server. Our platform is designed to provide advanced tools that enable administrators to create unique and customized experiences within the world of video games. We focus on offering solutions that simplify the creation and management of servers for various gaming experiences."
+    },
     {
       "question": "Are there additional support channels for players?",
       "answer": "Join the dedicated Telegram channel for player support, where you can find answers to common questions asked by the community."
@@ -23,11 +31,15 @@
       "answer": "In the 'Accounts' section of the website, you can manage your account's characters and find the option to unlock a character."
     },
     {
-      "question": "Can I download my data to prevent losses and migrate to other servers?",
-      "answer": "Our goal is for all Wow Libre players to be able to download their data and migrate to other 'private' servers without losing information. Additionally, Wow Libre is constantly seeking new integrations with servers to enhance the gaming experience."
+      "question": "Can I download my data to prevent loss and migrate to other servers?",
+      "answer": "At Wow Libre, players can switch servers without needing to download their data. Our goal is to enable smooth migration between private servers without any data loss. We're also working on new integrations with other servers to further enhance the gaming experience."
     }
   ],
   "pt": [
+    {
+      "question": "O Wow Libre é um servidor de World of Warcraft?",
+      "answer": "Não, o Wow Libre não é um servidor de World of Warcraft. Nossa plataforma foi projetada para fornecer ferramentas avançadas que permitem aos administradores criar experiências únicas e personalizadas dentro do mundo dos videogames. Nosso foco é oferecer soluções que facilitem a criação e gestão de servidores para diversas experiências de jogo."
+    },
     {
       "question": "Existem canais adicionais de suporte ao jogador?",
       "answer": "Junte-se ao canal dedicado no Telegram para suporte ao jogador, onde você pode encontrar respostas para perguntas comuns feitas pela comunidade."
@@ -38,7 +50,7 @@
     },
     {
       "question": "Posso baixar meus dados para evitar perdas e migrar para outros servidores?",
-      "answer": "Nosso objetivo é que todos os jogadores do Wow Libre possam baixar seus dados e migrar para outros servidores 'privados' sem perder suas informações. Além disso, o Wow Libre está constantemente buscando novas integrações com servidores para melhorar a experiência de jogo."
+      "answer": "No Wow Libre, os jogadores podem mudar de servidor sem precisar baixar seus dados. Nosso objetivo é permitir uma migração suave entre servidores privados sem perda de informações. Além disso, estamos trabalhando em novas integrações com outros servidores para melhorar ainda mais a experiência de jogo."
     }
   ]
 }

@@ -46,11 +46,12 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
             throws ServletException, IOException {
 
         GenericResponse<Void> responseBody = new GenericResponse<>();
+        String clientIp = request.getRemoteAddr();
 
         final String authHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
         final String transactionId = request.getHeader(Constants.HEADER_TRANSACTION_ID);
         ThreadContext.put(CONSTANT_UNIQUE_ID, transactionId);
-        LOGGER.info("{} Transaction {}", request.getRequestURI(), transactionId);
+        LOGGER.info("{} Transaction {} IP {}", request.getRequestURI(), clientIp, transactionId);
 
         try {
 
@@ -68,6 +69,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
             requestWrapper.setHeader(HEADER_EMAIL, email);
             requestWrapper.setHeader(HEADER_USER_ID, String.valueOf(userId));
+            requestWrapper.setHeader(HEADER_IP_ADDRESS, clientIp);
 
             if (SecurityContextHolder.getContext().getAuthentication() == null) {
 

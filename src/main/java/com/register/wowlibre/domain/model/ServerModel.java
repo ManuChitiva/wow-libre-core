@@ -15,6 +15,7 @@ public class ServerModel {
     public String apiSecret;
     public String expansion;
     public String ip;
+    public String type;
     public LocalDateTime creationDate;
     public String jwt;
     public String refreshToken;
@@ -26,4 +27,5 @@ public class ServerModel {
     public byte[] salt;
     public String externalPassword;
     public String externalUsername;
+    public Long userId;
 }

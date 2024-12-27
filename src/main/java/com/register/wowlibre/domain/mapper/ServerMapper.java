@@ -51,11 +51,14 @@ public class ServerMapper {
         serverEntity.setApiSecret(server.apiSecret);
         serverEntity.setRefreshToken(server.refreshToken);
         serverEntity.setJwt(server.jwt);
+        serverEntity.setType(server.type);
         serverEntity.setExpirationDate(server.expirationDate);
         serverEntity.setRealmlist(server.realmlist);
         serverEntity.setExternalPassword(server.externalPassword);
         serverEntity.setExternalUsername(server.externalUsername);
         serverEntity.setSalt(server.salt);
+        serverEntity.setUserId(server.userId);
+        serverEntity.setRetry(0);
         return serverEntity;
     }
 

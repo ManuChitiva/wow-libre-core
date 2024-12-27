@@ -83,7 +83,7 @@ public class TransactionBanks {
     }
 
 
-    @Scheduled(cron = "0 0 */6 * * *")
+    @Scheduled(cron = "0 0 1/6 * * *")
     public void makeCreditCollections() {
         LOGGER.info("[TransactionBanks] [makeCreditCollections] Realizando Cobros");
         String transactionId = "[TransactionBanks] [makeCreditCollections]";

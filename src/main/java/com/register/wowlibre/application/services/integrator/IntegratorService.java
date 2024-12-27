@@ -47,7 +47,7 @@ public class IntegratorService implements IntegratorPort {
         } catch (Exception e) {
             LOGGER.error("It was not possible to create the account on the server. userId: {} transactionId {}",
                     userId, transactionId);
-            throw new InternalException("Could not create account for server. transactionId {}", transactionId);
+            throw new InternalException("Could not create account for server", transactionId);
         }
 
     }
@@ -287,9 +287,10 @@ public class IntegratorService implements IntegratorPort {
     @Override
     public void sendPromo(String host, String jwt, Long userId, Long accountId, Long characterId,
                           List<ItemQuantityModel> items, String type, Double amount, Integer minLvl, Integer maxLvl,
+                          Integer level,
                           String transactionId) {
         integratorClient.sendPromo(host, jwt, new ClaimPromoRequest(userId, accountId, characterId, items, type,
-                amount, minLvl, maxLvl), transactionId);
+                amount, minLvl, maxLvl, level), transactionId);
     }
 
     @Override
@@ -311,6 +312,26 @@ public class IntegratorService implements IntegratorPort {
         }
 
         return response.getData();
+    }
+
+    @Override
+    public AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
+                                           String transactionId) {
+
+        GenericResponse<AccountsResponse> response = integratorClient.accountsServer(host, jwt,
+                size, page, filter, transactionId);
+
+        if (response == null) {
+            throw new InternalException("Could not get server accounts",
+                    transactionId);
+        }
+
+        return response.getData();
+    }
+
+    @Override
+    public DashboardMetricsResponse dashboard(String host, String jwt, String transactionId) {
+        return integratorClient.metricsDashboard(host, jwt, transactionId).getData();
     }
 
 }

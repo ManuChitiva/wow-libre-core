@@ -1,14 +1,15 @@
 package com.register.wowlibre.domain.port.in.user;
 
-import com.register.wowlibre.domain.dto.UserDto;
-import com.register.wowlibre.domain.model.UserModel;
-import com.register.wowlibre.domain.security.JwtDto;
+import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.security.*;
 import com.register.wowlibre.infrastructure.entities.*;
+import com.register.wowlibre.infrastructure.util.*;
 
 import java.util.*;
 
 public interface UserPort {
-    JwtDto create(UserDto accountWebDto, Locale locale, String transactionId);
+    JwtDto create(UserDto accountWebDto, String ip, Locale locale, String transactionId);
 
     UserModel findByEmail(String email, String transactionId);
 
@@ -18,13 +19,15 @@ public interface UserPort {
 
     Optional<UserEntity> findByEmailEntity(String email, String transactionId);
 
-    void validationAccount(Long userId, String code, String transactionId);
+    void validateEmailCodeForAccount(Long userId, String code, String transactionId);
 
-    void resetPassword(String email, String transactionId);
+    void generateRecoveryCode(String email, String transactionId);
 
-    void validateOtpRecoverPassword(String email, String code, String transactionId);
+    void resetPasswordWithRecoveryCode(String email, String code, Locale locale, String transactionId);
 
     void sendMailValidation(String mail, String transactionId);
 
     void changePassword(Long userId, String password, String newPassword, String transactionId);
+
+    void updateRol(Rol rolName, Long userId, String transactionId);
 }

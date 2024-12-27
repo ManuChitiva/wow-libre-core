@@ -44,7 +44,7 @@ CREATE TABLE accounts.server
     name              varchar(40) NOT NULL,
     emulator          varchar(40) NOT NULL,
     expansion         varchar(5)  NOT NULL,
-    ip                text,
+    ip                text        NOT NULL,
     api_key           varchar(80) NOT NULL,
     api_secret        varchar(80) NOT NULL,
     password          text        NOT NULL,
@@ -93,6 +93,7 @@ CREATE TABLE accounts.server_services
     CONSTRAINT uq_name_server_id UNIQUE (name, server_id),
     PRIMARY KEY (id)
 );
+
 
 CREATE TABLE accounts.credit_loans
 (
@@ -177,3 +178,47 @@ CREATE TABLE accounts.user_server_coins
     last_win  DATETIME,
     UNIQUE (user_id, server_id)
 );
+
+
+ALTER TABLE accounts.server
+    ADD COLUMN user_id bigint;
+
+ALTER TABLE accounts.server
+    ADD COLUMN type varchar(40);
+
+
+
+
+CREATE TABLE accounts.promotion
+(
+    id              BIGINT AUTO_INCREMENT PRIMARY KEY,
+    reference       varchar(40) NOT NULL,
+    img             text        NOT NULL,
+    name            varchar(30) NOT NULL,
+    description     varchar(80) NOT NULL,
+    btn_text        varchar(30) NOT NULL,
+    send_item       boolean NOT NULL,
+    server_id       bigint      NOT NULL,
+    min_level       integer     NOT NULL,
+    max_level       integer     NOT NULL,
+    type            varchar(30) NOT NULL,
+    amount double NOT NULL,
+    class_character varchar(10) NOT NULL,
+    level integer,
+    status boolean NOT NULL,
+    language varchar (2) NOT NULL,
+    CONSTRAINT uq_reference_promotion UNIQUE (reference)
+)
+
+
+CREATE TABLE accounts.promotion_item
+(
+    id BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code varchar (30) NOT NULL,
+    quantity integer NOT NULL,
+    promotion_id bigint NOT NULL,
+    CONSTRAINT fk_promotion_id FOREIGN KEY (promotion_id) references accounts.promotion (id)
+)
+
+ALTER TABLE accounts.server
+    ADD retry integer;

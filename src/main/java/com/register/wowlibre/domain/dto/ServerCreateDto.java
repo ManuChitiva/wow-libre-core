@@ -19,19 +19,22 @@ public class ServerCreateDto {
     @Length(min = 5, max = 50)
     private String webSite;
     @NotNull
-    @Length(min = 2, max = 50)
-    private String ip;
+    @Length(min = 5, max = 50)
+    private String host;
     @NotNull
-    @Length(min = 2, max = 30)
+    @Length(min = 5, max = 30)
     private String password;
     @NotNull
     @Length(min = 5, max = 80)
     private String realmlist;
     @NotNull
-    @Length(min = 5, max = 80)
+    @Length(min = 5, max = 30)
     private String externalUsername;
     @NotNull
-    @Length(min = 5, max = 80)
+    @Length(min = 5, max = 30)
     private String externalPassword;
+    @NotNull
+    @Length(min = 5, max = 30)
+    private String type;
 
 }

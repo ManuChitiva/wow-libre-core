@@ -8,17 +8,18 @@ import java.util.Collection;
 import java.util.Date;
 
 public interface JwtPort {
-  String generateToken(CustomUserDetails userDetails);
+    String generateToken(CustomUserDetails userDetails);
 
-  String extractUsername(String token);
-  Long extractUserId(String token);
+    String extractUsername(String token);
 
-  boolean isTokenValid(String token);
+    Long extractUserId(String token);
 
-  String generateRefreshToken(CustomUserDetails userDetails);
+    boolean isTokenValid(String token);
 
-  Date extractExpiration(String token);
+    String generateRefreshToken(CustomUserDetails userDetails);
 
-  Collection<GrantedAuthority>  extractRoles(String token);
+    Date extractExpiration(String token);
+
+    Collection<GrantedAuthority> extractRoles(String token);
 
 }

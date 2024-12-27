@@ -70,11 +70,16 @@ public interface IntegratorPort {
 
     void sendPromo(String host, String jwt, Long userId, Long accountId,
                    Long characterId, List<ItemQuantityModel> items,
-                   String type, Double amount, Integer minLvl, Integer maxLvl, String transactionId);
+                   String type, Double amount, Integer minLvl, Integer maxLvl, Integer level, String transactionId);
 
     void sendGuildBenefit(String host, String jwt, Long userId, Long accountId, Long characterId,
                           List<ItemQuantityModel> items, String transactionId);
 
     ClaimMachineResponse claimMachine(String host, String jwt, Long userId, Long accountId, Long characterId,
-                            String type, String transactionId);
+                                      String type, String transactionId);
+
+    AccountsResponse accountsServer(String host, String jwt, int size, int page, String filter,
+                                    String transactionId);
+
+    DashboardMetricsResponse dashboard(String host, String jwt, String transactionId);
 }

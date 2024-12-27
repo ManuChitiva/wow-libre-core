@@ -6,6 +6,7 @@ import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.server.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
@@ -28,15 +29,22 @@ public class ServerService implements ServerPort {
     private final SaveServerPort saveServerPort;
     private final RandomString randomString;
     private final PasswordEncoder passwordEncoder;
+    private final UserPort userPort;
 
     public ServerService(ObtainServerPort obtainServerPort, SaveServerPort saveServerPort,
-                         @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder) {
+                         @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder,
+                         UserPort userPort) {
         this.obtainServerPort = obtainServerPort;
         this.saveServerPort = saveServerPort;
         this.randomString = randomString;
         this.passwordEncoder = passwordEncoder;
+        this.userPort = userPort;
     }
 
+    @Override
+    public List<ServerDto> findByUserId(Long userId, String transactionId) {
+        return obtainServerPort.findByUser(userId, transactionId).stream().map(this::mapToModel).toList();
+    }
 
     @Override
     //@Cacheable(value = "server-apikey", key = "#apiKey")
@@ -51,13 +59,14 @@ public class ServerService implements ServerPort {
     }
 
     @Override
-    public void create(ServerCreateDto serverCreateDto, String transactionId) {
+    public void create(ServerCreateDto serverCreateDto, Long userId, String transactionId) {
 
         if (obtainServerPort.findByNameAndExpansion(serverCreateDto.getName(), serverCreateDto.getExpansion(),
                 transactionId).isPresent()) {
             throw new InternalException("It is not possible to create or configure a server with because one already " +
                     "exists with the same name and with the same version characteristics.", transactionId);
         }
+
         try {
             final String apiKey = randomString.nextString();
             final String apiSecret = randomString.nextString();
@@ -74,8 +83,9 @@ public class ServerService implements ServerPort {
                     .emulator(serverCreateDto.getEmulator())
                     .expansion(serverCreateDto.getExpansion())
                     .avatar(AVATAR_SERVER_DEFAULT)
-                    .ip(serverCreateDto.getIp())
+                    .ip(serverCreateDto.getHost())
                     .apiKey(apiKey)
+                    .type(serverCreateDto.getType())
                     .apiSecret(apiSecret)
                     .salt(salt)
                     .password(password)
@@ -84,9 +94,11 @@ public class ServerService implements ServerPort {
                     .realmlist(serverCreateDto.getRealmlist())
                     .webSite(serverCreateDto.getWebSite())
                     .externalPassword(encryptedMessage)
+                    .userId(userId)
                     .externalUsername(serverCreateDto.getExternalUsername())
                     .build();
 
+            userPort.updateRol(Rol.SERVER, userId, transactionId);
             saveServerPort.save(ServerMapper.toEntity(serverDto), transactionId);
 
         } catch (Exception e) {
@@ -102,24 +114,30 @@ public class ServerService implements ServerPort {
         return obtainServerPort.findByStatusIsTrue(transactionId);
     }
 
+    @Override
+    public Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId) {
+        return obtainServerPort.findAndIdByUser(id, userId, transactionId);
+    }
+
 
     @Override
-    public List<ServersDto> findByStatusIsTrue(String transactionId) {
+    public List<ServerDto> findByStatusIsTrue(String transactionId) {
         return findByStatusIsTrueServers(transactionId).stream().map(this::mapToModel).toList();
     }
 
-    private ServersDto mapToModel(ServerEntity server) {
-        ServersDto serversDto = new ServersDto();
-        serversDto.setId(server.getId());
-        serversDto.setName(server.getName());
-        serversDto.setStatus(server.isStatus());
-        serversDto.setEmulator(server.getEmulator());
-        serversDto.setExpansion(server.getExpansion());
-        serversDto.setCreationDate(server.getCreationDate());
-        serversDto.setWebSite(server.getWebSite());
-        serversDto.setAvatar(server.getAvatar());
-        serversDto.setExpName(Expansion.getById(Integer.parseInt(serversDto.expansion)).getDisplayName());
-        return serversDto;
+    private ServerDto mapToModel(ServerEntity server) {
+        ServerDto serverDto = new ServerDto();
+        serverDto.setId(server.getId());
+        serverDto.setName(server.getName());
+        serverDto.setStatus(server.isStatus());
+        serverDto.setEmulator(server.getEmulator());
+        serverDto.setExpansion(server.getExpansion());
+        serverDto.setCreationDate(server.getCreationDate());
+        serverDto.setWebSite(server.getWebSite());
+        serverDto.setAvatar(server.getAvatar());
+        serverDto.setApiKey(server.getApiKey());
+        serverDto.setExpName(Expansion.getById(Integer.parseInt(serverDto.getExpansion())).getDisplayName());
+        return serverDto;
     }
 
     @Override

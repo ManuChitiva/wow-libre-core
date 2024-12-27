@@ -14,4 +14,6 @@ public interface ObtainCreditLoans {
 
     List<CreditLoansEntity> creditRequestPending(LocalDateTime localDateTime, String transactionId);
 
+    List<CreditLoansEntity> findByServerIdAndPagination(Long serverId, int size, int page, String filter, boolean asc,
+                                                        String transactionId);
 }

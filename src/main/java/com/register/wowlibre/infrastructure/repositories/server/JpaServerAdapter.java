@@ -15,6 +15,11 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     }
 
     @Override
+    public List<ServerEntity> findByUser(Long userId, String transactionId) {
+        return serverRepository.findByUserId(userId);
+    }
+
+    @Override
     public List<ServerEntity> findByStatusIsTrue(String transactionId) {
         return serverRepository.findByStatusIsTrue();
     }
@@ -43,6 +48,16 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     @Override
     public List<ServerEntity> findByStatusIsFalse(String transactionId) {
         return serverRepository.findByStatusIsFalse();
+    }
+
+    @Override
+    public Optional<ServerEntity> findAndIdByUser(Long id, Long userId, String transactionId) {
+        return serverRepository.findByIdAndUserId(id, userId);
+    }
+
+    @Override
+    public List<ServerEntity> findByStatusIsFalseAndRetry(Long retry, String transactionId) {
+        return serverRepository.findByStatusIsFalseAndRetry(retry);
     }
 
     @Override

@@ -47,6 +47,24 @@ public class ServerServicesService implements ServerServicesPort {
 
     }
 
+    @Override
+    public void updateOrCreateAmountByServerId(String name, ServerEntity server, Double amount, String transactionId) {
+        Optional<ServerServicesEntity> existingService =
+                obtainServiceServices.findByNameAndServerId(name, server.getId(), transactionId);
+
+
+        ServerServicesEntity serviceEntity = existingService.orElseGet(() -> {
+            ServerServicesEntity newService = new ServerServicesEntity();
+            newService.setServerId(server);
+            newService.setName(name);
+            return newService;
+        });
+
+        serviceEntity.setAmount(amount);
+
+        saveServiceServices.save(serviceEntity, transactionId);
+    }
+
     private ServerServicesModel mapToModel(ServerServicesEntity serverServicesEntity) {
         return new ServerServicesModel(serverServicesEntity.getId(), serverServicesEntity.getName(),
                 serverServicesEntity.getAmount(), serverServicesEntity.getServerId().getId(),
