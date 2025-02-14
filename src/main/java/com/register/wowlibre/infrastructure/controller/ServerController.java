@@ -76,5 +76,17 @@ public class ServerController {
                 .body(new GenericResponseBuilder<>(serverList, transactionId).ok().build());
     }
 
+    @GetMapping("/vdp")
+    public ResponseEntity<GenericResponse<ServerVdpDto>> vdpServer(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestParam(name = "name") String name,
+            @RequestParam(name = "expansion") String expansion) {
+
+        final ServerVdpDto server = serverPort.findByServerNameAndExpansion(name, expansion,
+                transactionId);
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(server, transactionId).ok().build());
+    }
 
 }

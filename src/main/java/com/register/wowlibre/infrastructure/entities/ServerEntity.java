@@ -9,7 +9,7 @@ import java.util.*;
 
 @Data
 @Entity
-@Table(name = "server")
+@Table(name = "servers")
 public class ServerEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,4 +43,5 @@ public class ServerEntity implements Serializable {
     private Long userId;
     private String type;
     private Integer retry;
+    private String disclaimer;
 }

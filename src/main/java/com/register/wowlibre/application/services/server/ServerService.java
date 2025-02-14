@@ -1,11 +1,15 @@
 package com.register.wowlibre.application.services.server;
 
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.port.in.integrator.*;
 import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.server_details.*;
+import com.register.wowlibre.domain.port.in.server_events.*;
 import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.server.*;
 import com.register.wowlibre.infrastructure.entities.*;
@@ -18,6 +22,7 @@ import org.springframework.stereotype.*;
 import javax.crypto.*;
 import java.time.*;
 import java.util.*;
+import java.util.stream.*;
 
 @Repository
 public class ServerService implements ServerPort {
@@ -30,15 +35,23 @@ public class ServerService implements ServerPort {
     private final RandomString randomString;
     private final PasswordEncoder passwordEncoder;
     private final UserPort userPort;
+    private final ObtainServerDetailsPort obtainServerDetailsPort;
+
+    private final IntegratorPort integratorPort;
+    private final ServerEventsPort serverEventsPort;
 
     public ServerService(ObtainServerPort obtainServerPort, SaveServerPort saveServerPort,
                          @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder,
-                         UserPort userPort) {
+                         UserPort userPort, ObtainServerDetailsPort obtainServerDetailsPort,
+                         IntegratorPort integratorPort, ServerEventsPort serverEventsPort) {
         this.obtainServerPort = obtainServerPort;
         this.saveServerPort = saveServerPort;
         this.randomString = randomString;
         this.passwordEncoder = passwordEncoder;
         this.userPort = userPort;
+        this.obtainServerDetailsPort = obtainServerDetailsPort;
+        this.integratorPort = integratorPort;
+        this.serverEventsPort = serverEventsPort;
     }
 
     @Override
@@ -125,10 +138,65 @@ public class ServerService implements ServerPort {
         return obtainServerPort.findAndIdByUser(id, userId, transactionId);
     }
 
+    @Override
+    public ServerVdpDto findByServerNameAndExpansion(String name, String expansion, String transactionId) {
+
+        ServerEntity serverModel = obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, expansion,
+                transactionId).orElse(null);
+
+        if (serverModel == null) {
+            throw new InternalException("", transactionId);
+        }
+
+        List<ServerDetailsEntity> serverDetails = obtainServerDetailsPort.findByServerId(serverModel, transactionId);
+
+        Map<String, String> serverDetailsMap = (serverDetails == null) ?
+                Collections.emptyMap() :
+                serverDetails.stream()
+                        .collect(Collectors.toMap(ServerDetailsEntity::getKey, ServerDetailsEntity::getValue,
+                                (existing, replacement) -> existing));
+
+
+        DashboardMetricsResponse dashboard = integratorPort.dashboard(serverModel.getIp(),
+                serverModel.getJwt(), transactionId);
+
+        List<ServerVdpDto.Event> events = serverEventsPort.findByServerId(serverModel, transactionId).stream()
+                .map(this::buildEventServerVdp).toList();
+
+        List<ServerVdpDto.Card> cards = new ArrayList<>();
+        cards.add(buildCardServerVdp(1, String.valueOf(dashboard.getOnlineUsers()), 1, "Jugadores Online"));
+        cards.add(buildCardServerVdp(2, String.valueOf(dashboard.getTotalUsers()), 2, "Total de Usuarios"));
+        cards.add(buildCardServerVdp(3, String.valueOf(dashboard.getTotalGuilds()), 3, "Número de Hermandades"));
+
+        return ServerVdpDto.builder()
+                .name(serverModel.getName())
+                .type(serverModel.getType())
+                .disclaimer(serverModel.getDisclaimer())
+                .information(serverDetailsMap)
+                .cards(cards)
+                .events(events)
+                .realmlist(serverModel.getRealmlist()).build();
+    }
+
+    private ServerVdpDto.Card buildCardServerVdp(int id, String value, int iconId, String description) {
+        return new ServerVdpDto.Card(id, value, iconId, description);
+    }
+
+    private ServerVdpDto.Event buildEventServerVdp(ServerEventsEntity events) {
+        return new ServerVdpDto.Event(events.getId(), events.getImg(), events.getTitle(), events.getDescription(),
+                events.getDisclaimer());
+    }
 
     @Override
     public List<ServerDto> findByStatusIsTrue(String transactionId) {
         return findByStatusIsTrueServers(transactionId).stream().map(this::mapToModel).toList();
+    }
+
+    @Override
+    public ServerModel findByNameAndVersionAndStatusIsTrue(String name, String version,
+                                                           String transactionId) {
+        return obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, version, transactionId)
+                .map(ServerMapper::toModel).orElse(null);
     }
 
     private ServerDto mapToModel(ServerEntity server) {
@@ -145,13 +213,5 @@ public class ServerService implements ServerPort {
         serverDto.setExpName(Expansion.getById(Integer.parseInt(serverDto.getExpansion())).getDisplayName());
         return serverDto;
     }
-
-    @Override
-    public ServerModel findByNameAndVersionAndStatusIsTrue(String name, String version,
-                                                           String transactionId) {
-        return obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, version, transactionId)
-                .map(ServerMapper::toModel).orElse(null);
-    }
-
 
 }

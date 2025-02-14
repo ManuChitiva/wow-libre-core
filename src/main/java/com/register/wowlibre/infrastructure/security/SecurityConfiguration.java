@@ -99,6 +99,7 @@ public class SecurityConfiguration {
                                         "/api/server",
                                         "/api/guilds",
                                         "/api/guilds/{id}",
+                                        "/api/server/vdp",
                                         //SWAGGER
                                         "/v2/api-docs",
                                         "/swagger-resources",

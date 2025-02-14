@@ -57,7 +57,7 @@ CREATE TABLE accounts.server
     realmlist         varchar(80),
     status            boolean,
     external_username varchar(50) NOT NULL,
-    external_password varchar(50) NOT NULL,
+    external_password text        NOT NULL,
     salt              VARBINARY(16),
 
     CONSTRAINT uq_email_server UNIQUE (name, expansion),
@@ -188,7 +188,6 @@ ALTER TABLE accounts.server
 
 
 
-
 CREATE TABLE accounts.promotion
 (
     id              BIGINT AUTO_INCREMENT PRIMARY KEY,
@@ -197,26 +196,26 @@ CREATE TABLE accounts.promotion
     name            varchar(30) NOT NULL,
     description     varchar(80) NOT NULL,
     btn_text        varchar(30) NOT NULL,
-    send_item       boolean NOT NULL,
+    send_item       boolean     NOT NULL,
     server_id       bigint      NOT NULL,
     min_level       integer     NOT NULL,
     max_level       integer     NOT NULL,
     type            varchar(30) NOT NULL,
     amount double NOT NULL,
     class_character varchar(10) NOT NULL,
-    level integer,
-    status boolean NOT NULL,
-    language varchar (2) NOT NULL,
+    level           integer,
+    status          boolean     NOT NULL,
+    language        varchar(2)  NOT NULL,
     CONSTRAINT uq_reference_promotion UNIQUE (reference)
 )
 
 
 CREATE TABLE accounts.promotion_item
 (
-    id BIGINT AUTO_INCREMENT PRIMARY KEY,
-    code varchar (30) NOT NULL,
-    quantity integer NOT NULL,
-    promotion_id bigint NOT NULL,
+    id           BIGINT AUTO_INCREMENT PRIMARY KEY,
+    code         varchar(30) NOT NULL,
+    quantity     integer     NOT NULL,
+    promotion_id bigint      NOT NULL,
     CONSTRAINT fk_promotion_id FOREIGN KEY (promotion_id) references accounts.promotion (id)
 )
 
@@ -226,3 +225,32 @@ ALTER TABLE accounts.server
 
 ALTER TABLE accounts.user_promotion
     ADD server_id bigint;
+
+
+ALTER TABLE accounts.server RENAME TO servers;
+
+
+CREATE TABLE accounts.server_details
+(
+    id         bigint AUTO_INCREMENT PRIMARY KEY,
+    server_id  bigint      NOT NULL,
+    `key`      VARCHAR(30) NOT NULL,
+    `value`    VARCHAR(80) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (server_id) REFERENCES accounts.servers (id) ON DELETE CASCADE
+);
+
+ALTER TABLE accounts.servers
+    ADD disclaimer varchar(80);
+
+
+CREATE TABLE accounts.server_events
+(
+    id          bigint AUTO_INCREMENT PRIMARY KEY,
+    img         text         NOT NULL,
+    title       VARCHAR(50)  NOT NULL,
+    description VARCHAR(120) NOT NULL,
+    disclaimer  varchar(200) NOT NULL,
+    server_id  bigint      NOT NULL,
+    FOREIGN KEY (server_id) REFERENCES accounts.servers (id) ON DELETE CASCADE
+);
