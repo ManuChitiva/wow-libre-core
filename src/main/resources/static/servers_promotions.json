@@ -21,28 +21,6 @@
       "realmlist": "set realmlist 89.117.148.21",
       "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
       "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
-    },
-    {
-      "id": 3,
-      "name": "Wow Libre - Escuela de gms",
-      "sub_title": "Servidor para ser un game master",
-      "description": "Comienza tu aventura y conquista el desafío!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8846d740cb6743a2b298e958449826b0~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 4,
-      "name": "Wow Libre - Twinks",
-      "sub_title": "Servidor Progresivo 3.3.5",
-      "description": "Comienza tu aventura y conquista el desafío!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_faae8b906f904b88bedb03d3025bed7d~mv2.jpeg",
-      "link": "",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ],
   "en": [
@@ -67,28 +45,6 @@
       "realmlist": "set realmlist 89.117.148.21",
       "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
       "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
-    },
-    {
-      "id": 3,
-      "name": "Wow Libre - GM School",
-      "sub_title": "Server to become a Game Master",
-      "description": "Begin your adventure and conquer the challenge!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8846d740cb6743a2b298e958449826b0~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 4,
-      "name": "Wow Libre - Twinks",
-      "sub_title": "Progressive Server 3.3.5",
-      "description": "Begin your adventure and conquer the challenge!",
-      "logo": "https://seeklogo.com/images/W/world-of-warcraft-logo-F6AAB54AD8-seeklogo.com.png",
-      "link": "",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ],
   "pt": [
@@ -113,28 +69,6 @@
       "realmlist": "set realmlist 89.117.148.21",
       "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
       "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
-    },
-    {
-      "id": 3,
-      "name": "Wow Libre - Escola de GMs",
-      "sub_title": "Servidor para se tornar um Game Master",
-      "description": "Comece sua aventura e conquiste o desafio!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8846d740cb6743a2b298e958449826b0~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 4,
-      "name": "Wow Libre - Twinks",
-      "sub_title": "Servidor Progressivo 3.3.5",
-      "description": "Comece sua aventura e conquiste o desafio!",
-      "logo": "https://seeklogo.com/images/W/world-of-warcraft-logo-F6AAB54AD8-seeklogo.com.png",
-      "link": "",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ]
 }

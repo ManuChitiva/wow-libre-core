@@ -3,28 +3,15 @@
     {
       "title": "Elysium - WoW",
       "title_disclaimer": "Libre",
-      "subtitle": "Reino x100 - ¡Salta directo a la acción en nivel 80!",
+      "subtitle": "Reino x10 - ¡Salta directo a la acción en nivel 80!",
       "description": "¡Enfréntate al Rey Exánime sin barreras! Nuestro innovador sistema de auto-balanceo te permite conquistar mazmorras en solitario o en pequeños grupos. Disfruta el contenido más épico de WoW sin límites.",
       "button_primary_text": "¡Únete Ahora!",
       "button_secondary_text": "Copiar Realmlist",
       "background_image": "https://static.wixstatic.com/media/5dd8a0_7c9f1d9542df413b8d161ef38b82a373~mv2.jpg",
       "realmlist": "set realmlist elysium.wowlibre.com",
       "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
+      "redirect": "https://www.wowlibre.com/vdp?name=elysium&expansion=2",
       "disclaimer": "¡Vive la mejor experiencia de WoW como nunca antes!"
-    },
-    {
-      "title": "Escuela de Gms - WoW",
-      "title_disclaimer": "Libre",
-      "subtitle": "¡El reino donde todos pueden ser Game Masters!",
-      "description": "Únete a un servidor único donde cada jugador puede convertirse en un Game Master. Crea eventos, personaliza el mundo y desafía a otros en un entorno dinámico y equilibrado. ¡Es tu turno de tomar el control!",
-      "button_primary_text": "¡Regístrate y Domina!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_dab97483de80443f82e59ffd7c6db12e~mv2.webp",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "¡Vive la experiencia de ser un GM y crea tu propia aventura!"
     },
     {
       "title": "WoW",
@@ -36,28 +23,15 @@
       "background_image": "https://bnetcmsus-a.akamaihd.net/cms/blog_header/sy/SY33A044Y7P31650501276320.png",
       "realmlist": "set realmlist 89.117.148.21",
       "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
+      "redirect": "https://www.wowlibre.com/vdp?name=frozen&expansion=2",
       "disclaimer": "¡Forja tu leyenda en un mundo en constante evolución!"
-    },
-    {
-      "title": "Twinks - WoW",
-      "title_disclaimer": "Libre",
-      "subtitle": "¡El reino definitivo para Twinks!",
-      "description": "Enfréntate a otros jugadores en un entorno balanceado diseñado para los verdaderos guerreros del campo de batalla. ¿Listo para demostrar tu dominio?",
-      "button_primary_text": "¡Regístrate y Domina!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_21f1bf864e994a4ea6578ec0433629ca~mv2.jpg",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "¡La mejor experiencia, hecha a tu medida!"
     }
   ],
   "en": [
     {
       "title": "Elysium - WoW",
       "title_disclaimer": "Free",
-      "subtitle": "Realm x100 - Jump straight into the action at level 80!",
+      "subtitle": "Realm x10 - Jump straight into the action at level 80!",
       "description": "Face the Lich King without barriers! Our innovative auto-balancing system allows you to conquer dungeons solo or in small groups. Enjoy the most epic WoW content without limits.",
       "button_primary_text": "Join Now!",
       "button_secondary_text": "Copy Realmlist",
@@ -66,19 +40,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/register",
       "disclaimer": "Live the best WoW experience like never before!"
-    },
-    {
-      "title": "GM School - WoW",
-      "title_disclaimer": "Free Server",
-      "subtitle": "The realm where everyone can be a Game Master!",
-      "description": "Join a unique server where every player can become a Game Master. Create events, customize the world, and challenge others in a dynamic and balanced environment. It’s your turn to take control!",
-      "button_primary_text": "Sign Up and Become a GM!",
-      "button_secondary_text": "Copy Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_dab97483de80443f82e59ffd7c6db12e~mv2.webp",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "Experience life as a GM and create your own adventure!"
     },
     {
       "title": "WoW",
@@ -92,26 +53,13 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/register",
       "disclaimer": "Forge your legend in a constantly evolving world!"
-    },
-    {
-      "title": "Twinks - WoW",
-      "title_disclaimer": "Free",
-      "subtitle": "The ultimate realm for Twinks!",
-      "description": "Face other players in a balanced environment designed for true battlefield warriors. Ready to prove your mastery?",
-      "button_primary_text": "Register and Dominate!",
-      "button_secondary_text": "Copy Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_21f1bf864e994a4ea6578ec0433629ca~mv2.jpg",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "The best experience, tailored for you!"
     }
   ],
   "pt": [
     {
       "title": "Elysium - WoW",
       "title_disclaimer": "Livre",
-      "subtitle": "Reino x100 - Pule direto para a ação no nível 80!",
+      "subtitle": "Reino x10 - Pule direto para a ação no nível 80!",
       "description": "Enfrente o Lich Rei sem barreiras! Nosso inovador sistema de auto-balanceamento permite que você conquiste masmorras sozinho ou em pequenos grupos. Desfrute do conteúdo mais épico de WoW sem limites.",
       "button_primary_text": "Junte-se Agora!",
       "button_secondary_text": "Copiar Realmlist",
@@ -120,19 +68,6 @@
       "copy_success": false,
       "redirect": "www.wowlibre.com/register",
       "disclaimer": "Viva a melhor experiência de WoW como nunca antes!"
-    },
-    {
-      "title": "Escola de GMs - WoW",
-      "title_disclaimer": "Livre",
-      "subtitle": "O reino onde todos podem ser Game Masters!",
-      "description": "Junte-se a um servidor único onde cada jogador pode se tornar um Game Master. Crie eventos, personalize o mundo e desafie outros em um ambiente dinâmico e equilibrado. Agora é sua vez de assumir o controle!",
-      "button_primary_text": "Cadastre-se e Torne-se um GM!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_dab97483de80443f82e59ffd7c6db12e~mv2.webp",
-      "realmlist": "set realmlist gm.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "Experimente ser um GM e crie sua própria aventura!"
     },
     {
       "title": "WoW",
@@ -146,19 +81,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/register",
       "disclaimer": "Forje sua lenda em um mundo em constante evolução!"
-    },
-    {
-      "title": "Twinks - WoW",
-      "title_disclaimer": "Livre",
-      "subtitle": "O reino definitivo para Twinks!",
-      "description": "Enfrente outros jogadores em um ambiente equilibrado projetado para verdadeiros guerreiros do campo de batalha. Pronto para provar sua maestria?",
-      "button_primary_text": "Registre-se e Domine!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_21f1bf864e994a4ea6578ec0433629ca~mv2.jpg",
-      "realmlist": "set realmlist twinks.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "A melhor experiência, feita para você!"
     }
   ]
 }

@@ -30,7 +30,7 @@ spring:
   datasource:
     url: jdbc:mysql://localhost:3306/accounts
     username: root
-    password: Loquendo96@
+    password: Wowlibre96@@
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
     host: 'smtp-relay.brevo.com'
