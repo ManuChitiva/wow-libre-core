@@ -10,17 +10,6 @@
       "realmlist": "set realmlist elysium.wowlibre.com",
       "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
       "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 2,
-      "name": "Wow Frozen",
-      "sub_title": "Servidor Progresivo 3.3.5",
-      "description": "¡Tu aventura empieza aquí!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
-      "link": "",
-      "realmlist": "set realmlist 89.117.148.21",
-      "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
-      "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
     }
   ],
   "en": [
@@ -34,17 +23,6 @@
       "realmlist": "set realmlist elysium.wowlibre.com",
       "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
       "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 2,
-      "name": "Wow Frozen",
-      "sub_title": "Progressive Server 3.3.5",
-      "description": "Your adventure begins here!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
-      "link": "",
-      "realmlist": "set realmlist 89.117.148.21",
-      "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
-      "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
     }
   ],
   "pt": [
@@ -58,17 +36,6 @@
       "realmlist": "set realmlist elysium.wowlibre.com",
       "whatsapp": "https://chat.whatsapp.com/KpvQJSOAujI4DlYjweWDxW",
       "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
-    },
-    {
-      "id": 2,
-      "name": "Wow Frozen",
-      "sub_title": "Servidor Progressivo 3.3.5",
-      "description": "Sua aventura começa aqui!",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_8b56bcb73bda451782f0e1afc9f8a0e3~mv2.webp",
-      "link": "",
-      "realmlist": "set realmlist 89.117.148.21",
-      "whatsapp": "https://whatsapp.com/channel/0029VaunNgVGJP8EyR009A2H",
-      "facebook": "https://www.facebook.com/profile.php?id=61571061710360"
     }
   ]
 }
