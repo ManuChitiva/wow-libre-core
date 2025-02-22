@@ -1,44 +1,44 @@
 {
   "es": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_3e5cdb74a08d403aa38c6ac9be148c14~mv2.webp",
-      "alt": "vip-account"
+      "url": "https://static.wixstatic.com/media/5dd8a0_dff4981a283346be9acdce49d7c929d2~mv2.webp",
+      "alt": "dashboard-banner"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_48869dcf0dc6427c98cd394ab58520ab~mv2.webp",
-      "alt": "new-realm"
+      "url": "https://static.wixstatic.com/media/5dd8a0_d0c7248d2c4f4c868d1150fb8ea9d5ee~mv2.webp",
+      "alt": "vip-home-banner"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_4a310acbe45843f781126d771ac4cb6f~mv2.webp",
-      "alt": "casino-img"
+      "url": "https://static.wixstatic.com/media/5dd8a0_aeb4452176ea417a86acdfde31d8cbe3~mv2.webp",
+      "alt": "admin-banner"
     }
   ],
   "en": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_485224506cd44177a3c877a29f55f066~mv2.webp",
-      "alt": "vip-account"
+      "url": "https://static.wixstatic.com/media/5dd8a0_bced8313400d4526931228e81971edf7~mv2.webp",
+      "alt": "dashboard-account"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_8d6208e1630f4ba6a08d80c54971184a~mv2.webp",
-      "alt": "new-realm"
+      "url": "https://static.wixstatic.com/media/5dd8a0_dc3b0348af9b427bbf36e20138262af8~mv2.webp",
+      "alt": "vip-home-banner"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_0e8de15c70be4bf3836858d312ad72a8~mv2.webp",
-      "alt": "casino-img"
+      "url": "https://static.wixstatic.com/media/5dd8a0_7677d889425348e38a6c2a032eab5307~mv2.webp",
+      "alt": "admin-banner"
     }
   ],
   "pt": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_62eb352bb90a4ecd97f245170b704dd1~mv2.webp",
-      "alt": "vip-account"
+      "url": "https://static.wixstatic.com/media/5dd8a0_2f0a7444751e40358d8de0deab90f3d2~mv2.webp",
+      "alt": "dashboard-banner"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_2b0ff7bec32d4684b89c52f305613d02~mv2.webp",
-      "alt": "new-realm"
+      "url": "https://static.wixstatic.com/media/5dd8a0_9e2f65735db34951901c993f57ea69a4~mv2.webp",
+      "alt": "vip-home-banner"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_308ffb8bb262475a8f34684d80161220~mv2.webp",
-      "alt": "casino-img"
+      "url": "https://static.wixstatic.com/media/5dd8a0_eaa655bd465f46479df7d7adedd759ab~mv2.webp",
+      "alt": "admin-banner"
     }
   ]
 }

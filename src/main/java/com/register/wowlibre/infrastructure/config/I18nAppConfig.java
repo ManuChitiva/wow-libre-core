@@ -15,6 +15,7 @@ public class I18nAppConfig {
         messageSource.setBasename("classpath:i18n/messages");
         messageSource.setDefaultEncoding("UTF-8");
         messageSource.setCacheSeconds(3600);
+
         return messageSource;
     }
 

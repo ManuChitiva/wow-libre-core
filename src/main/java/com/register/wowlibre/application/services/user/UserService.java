@@ -21,6 +21,7 @@ import org.springframework.beans.factory.annotation.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
+import java.nio.charset.*;
 import java.util.*;
 
 @Service
@@ -201,7 +202,11 @@ public class UserService implements UserPort {
 
         final String body = i18nService.tr("recovery-password-body", new Object[]{codeOtp.toUpperCase()}, locale);
         final String subject = i18nService.tr("recovery-password-subject", locale);
-
+        final String body2 = new String(
+                i18nService.tr("send-code-mail-validation-mail", new Object[]{codeOtp.toUpperCase()}, locale)
+                        .getBytes(StandardCharsets.ISO_8859_1),
+                StandardCharsets.UTF_8
+        );
         mailPort.sendMail(account.get().getEmail(), subject, body, transactionId);
     }
 

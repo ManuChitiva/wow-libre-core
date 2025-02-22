@@ -33,17 +33,17 @@ spring:
     password: Wowlibre96@@
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
-    host: 'smtp-relay.brevo.com'
+    host: 'smtp.gmail.com'
     port: 587
-    username: '7e339a001@smtp-brevo.com'
-    password: 'RyfB7JX3E0YIcktG'
+    username: 'mschitiva68@gmail.com'
+    password: 'mfbv fjfc eond lzhc'
     properties:
       mail:
         smtp:
           auth: true
           starttls:
-            enable: false
-    default-encoding: UTF-8
+            enable: true
+    default-encoding: 'UTF-8'
 server:
   servlet:
     context-path: /core

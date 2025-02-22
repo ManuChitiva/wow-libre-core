@@ -15,7 +15,7 @@ import java.util.*;
 @Component
 public class MailSend {
     private static final Logger LOGGER = LoggerFactory.getLogger(MailSend.class);
-    private static final String EMAIL_DEFAULT = "wowlibrecomunidad@gmail.com";
+    private static final String EMAIL_DEFAULT = "mschitiva68@gmail.com";
     private final JavaMailSender mailSender;
     private final Configuration freeMakerConfiguration;
 
@@ -47,16 +47,17 @@ public class MailSend {
     public void sendMail(String email, String subject, String body, String transactionId) {
         try {
             MimeMessage emailMessage = mailSender.createMimeMessage();
-            emailMessage.setContent(body, "text/plain; charset=UTF-8");
 
-            // Configura MimeMessageHelper en UTF-8, sin HTML (texto plano)
-            MimeMessageHelper mailBuilder = new MimeMessageHelper(emailMessage, false, "UTF-8");
+            // Usamos true para el segundo parámetro para manejar UTF-8 correctamente
+            MimeMessageHelper mailBuilder = new MimeMessageHelper(emailMessage, true, "UTF-8");
 
-            // Establece el cuerpo como texto plano
-            mailBuilder.setText(body, false);  // false indica texto plano
+            // Aseguramos que el texto se envía en UTF-8 sin conflictos
+            mailBuilder.setText(body, false); // false = texto plano
             mailBuilder.setTo(email);
             mailBuilder.setFrom(EMAIL_DEFAULT);
             mailBuilder.setSubject(subject);
+
+            // **IMPORTANTE**: No usar `emailMessage.setContent()`, porque ya lo maneja MimeMessageHelper
 
             // Envía el correo
             mailSender.send(emailMessage);
@@ -66,6 +67,7 @@ public class MailSend {
             throw new InternalException("It was not possible to send the communication message", transactionId);
         }
     }
+
 
 
     private String sendRegisterConfirmation(MailSenderVars<?> body, String template) {
