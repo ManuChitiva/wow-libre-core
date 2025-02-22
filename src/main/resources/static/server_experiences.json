@@ -12,19 +12,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/vdp?name=elysium&expansion=2",
       "disclaimer": "¡Vive la mejor experiencia de WoW como nunca antes!"
-    },
-    {
-      "title": "WoW",
-      "title_disclaimer": "Frozen",
-      "subtitle": "Progresión desde Classic hasta 3.3.5",
-      "description": "Revive la historia de World of Warcraft en un viaje progresivo que te llevará desde los inicios hasta la épica batalla final contra el Rey Exánime. ¿Tienes lo que se necesita para hacer historia?",
-      "button_primary_text": "¡Empieza tu Aventura!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://bnetcmsus-a.akamaihd.net/cms/blog_header/sy/SY33A044Y7P31650501276320.png",
-      "realmlist": "set realmlist 89.117.148.21",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/vdp?name=frozen&expansion=2",
-      "disclaimer": "¡Forja tu leyenda en un mundo en constante evolución!"
     }
   ],
   "en": [
@@ -40,19 +27,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/register",
       "disclaimer": "Live the best WoW experience like never before!"
-    },
-    {
-      "title": "WoW",
-      "title_disclaimer": "Frozen",
-      "subtitle": "Progression from Classic to 3.3.5",
-      "description": "Relive the history of World of Warcraft in a progressive journey that takes you from its origins to the epic final battle against the Lich King. Do you have what it takes to make history?",
-      "button_primary_text": "Start Your Adventure!",
-      "button_secondary_text": "Copy Realmlist",
-      "background_image": "https://bnetcmsus-a.akamaihd.net/cms/blog_header/sy/SY33A044Y7P31650501276320.png",
-      "realmlist": "set realmlist 89.117.148.21",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "Forge your legend in a constantly evolving world!"
     }
   ],
   "pt": [
@@ -68,19 +42,6 @@
       "copy_success": false,
       "redirect": "www.wowlibre.com/register",
       "disclaimer": "Viva a melhor experiência de WoW como nunca antes!"
-    },
-    {
-      "title": "WoW",
-      "title_disclaimer": "Frozen",
-      "subtitle": "Progressão do Classic ao 3.3.5",
-      "description": "Reviva a história do World of Warcraft em uma jornada progressiva que o levará desde o início até a épica batalha final contra o Lich Rei. Você tem o que é preciso para fazer história?",
-      "button_primary_text": "Comece Sua Aventura!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://bnetcmsus-a.akamaihd.net/cms/blog_header/sy/SY33A044Y7P31650501276320.png",
-      "realmlist": "set realmlist 89.117.148.21",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/register",
-      "disclaimer": "Forje sua lenda em um mundo em constante evolução!"
     }
   ]
 }
