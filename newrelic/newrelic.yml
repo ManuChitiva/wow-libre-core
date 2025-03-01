@@ -13,7 +13,7 @@ common: &default_settings
   # account. For example, if your license key is 12345 use this:
   # license_key: '12345'
   # The key binds your agent's data to your account in the New Relic service.
-  license_key: '2c12aaf94b4d262e662f258759c5ce77FFFFNRAL'
+  license_key: '82ff848c92a86cfccb796e3c22d3b01aFFFFNRAL'
 
   # Agent Enabled
   # Use this setting to disable the agent instead of removing it from the startup command.
@@ -29,7 +29,7 @@ common: &default_settings
   # app_name: My Application;My Application 2
   # This setting is required. Up to 3 different application names can be specified.
   # The first application name must be unique.
-  app_name: ''
+  app_name: 'wowlibre'
 
   # To enable high security, set this property to true. When in high
   # security mode, the agent will use SSL and obfuscated SQL. Additionally,
@@ -386,15 +386,15 @@ common: &default_settings
 
 development:
   <<: *default_settings
-  app_name: ' (Development)'
+  app_name: 'wowlibre (Development)'
 
 test:
   <<: *default_settings
-  app_name: ' (Test)'
+  app_name: 'wowlibre (Test)'
 
 production:
   <<: *default_settings
 
 staging:
   <<: *default_settings
-  app_name: ' (Staging)'
+  app_name: 'wowlibre (Staging)'
