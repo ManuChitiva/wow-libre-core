@@ -32,4 +32,4 @@ ENV SPRING_PROFILES_ACTIVE=prod
 
 EXPOSE 8091
 
-ENTRYPOINT ["java", "-jar", "wowlibre-0.0.1-SNAPSHOT.jar"]
+ENTRYPOINT ["java", "-javaagent:/full/path/to/newrelic.jar", "-jar", "wowlibre-0.0.1-SNAPSHOT.jar"]
