@@ -67,7 +67,7 @@
       "button": "Apply for Loan",
       "interest": 10,
       "month_payment_period": 1,
-      "gold": 11000000.0
+      "gold": 10000000.0
     },
     {
       "id": 2,
@@ -99,7 +99,7 @@
       "button": "Apply for Loan",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 120000000.0
+      "gold": 100000000.0
     }
   ],
   "pt": [
@@ -117,7 +117,7 @@
       "button": "Solicitar Empréstimo",
       "interest": 10,
       "month_payment_period": 1,
-      "gold": 11000000.0
+      "gold": 10000000.0
     },
     {
       "id": 2,
@@ -133,7 +133,7 @@
       "button": "Solicitar Empréstimo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 480000000.0
+      "gold": 400000000.0
     },
     {
       "id": 3,
@@ -149,7 +149,7 @@
       "button": "Solicitar Empréstimo",
       "interest": 20,
       "month_payment_period": 1,
-      "gold": 120000000.0
+      "gold": 100000000.0
     }
   ]
 }
