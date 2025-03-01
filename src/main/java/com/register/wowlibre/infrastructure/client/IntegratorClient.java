@@ -404,7 +404,7 @@ public class IntegratorClient {
 
         String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/characters/loan/bank", host))
                 .queryParam(PARAM_ACCOUNT_ID, accountId)
-                .queryParam("time", 0) //23horas
+                .queryParam("time", 82800) //23horas
                 .queryParam("level", 80)
                 .toUriString();
 
