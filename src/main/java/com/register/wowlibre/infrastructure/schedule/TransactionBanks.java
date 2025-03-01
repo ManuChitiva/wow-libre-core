@@ -34,13 +34,13 @@ public class TransactionBanks {
         this.i18nService = i18nService;
     }
 
-    @Scheduled(cron = "1/10 * * * * *")
+    @Scheduled(cron = "1 1 * * * *")
     public void sendCreditLoans() {
         String transactionId = "[TransactionBanks] [SendCreditLoans]";
         List<CreditLoansEntity> credits = obtainCreditLoans.creditPendingSend(transactionId);
 
         credits.forEach(credit -> {
-            LOGGER.info("[TransactionBanks] [SendCreditLoans] Sending credit applications");
+            LOGGER.info("[TransactionBanks] [SendCreditLoans] Sending credit applications CreditId {}", credit.getId());
 
             Optional<ServerEntity> server = serverPort.findById(credit.getServerId(), transactionId);
             if (server.isPresent()) {
@@ -60,9 +60,9 @@ public class TransactionBanks {
                         return;
                     }
                     final String characterName = charactersDto.getName();
-                    final Locale locale = new Locale(credit.getUserId().getLanguage());
+                    final Locale locale = new Locale(credit.getUserId().getLanguage().toUpperCase());
 
-                    String command = CommandsCore.sendMoney(characterName, "", getGoblinMessage(characterName, locale),
+                    final String command = CommandsCore.sendMoney(characterName, "", getGoblinMessage(characterName, locale),
                             String.valueOf(credit.getAmountTransferred().intValue()));
 
                     SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(server.get().getApiSecret(), salt);
@@ -72,8 +72,10 @@ public class TransactionBanks {
                             transactionId);
                     credit.setSend(true);
                     saveCreditLoans.save(credit, transactionId);
+                    LOGGER.info("Gold credit sent successfully  ID: {}", credit.getId());
                 } catch (Exception e) {
-                    LOGGER.error("[TransactionBanks] [SendCreditLoans] An error occurred with encryption");
+                    LOGGER.error("[TransactionBanks] [SendCreditLoans] An error occurred while sending the requested " +
+                            "loan money {}", e.getMessage());
                 }
             } else {
                 LOGGER.error("[TransactionBanks] [SendCreditLoans]  The server was not found for the requested credit");
@@ -82,8 +84,7 @@ public class TransactionBanks {
         });
     }
 
-
-    @Scheduled(cron = "0 0 1/6 * * *")
+    @Scheduled(cron = "1 0 1/6 * * *")
     public void makeCreditCollections() {
         LOGGER.info("[TransactionBanks] [makeCreditCollections] Realizando Cobros");
         String transactionId = "[TransactionBanks] [makeCreditCollections]";
@@ -93,7 +94,6 @@ public class TransactionBanks {
             Optional<ServerEntity> server = serverPort.findById(credit.getServerId(), transactionId);
 
             if (server.isPresent()) {
-
                 try {
 
                     Double pendingPayment = integratorPort.collectGold(server.get().getIp(), server.get().getJwt(),
@@ -104,17 +104,18 @@ public class TransactionBanks {
                     }
                     credit.setDebtToPay(pendingPayment);
                     saveCreditLoans.save(credit, transactionId);
+                    LOGGER.info("Successful collection made to the Id {}", credit.getId());
                 } catch (Exception e) {
-                    LOGGER.error("[TransactionBanks] [makeCreditCollections] An error occurred with encryption");
+                    LOGGER.error("[TransactionBanks] [makeCreditCollections]  An error has occurred when collecting " +
+                            "credit from the customer {}", e.getMessage());
                 }
             } else {
                 LOGGER.error("[TransactionBanks] [makeCreditCollections]  The server was not found for the requested " +
-                        "credit");
+                        "credit ServerId: {}", credit.getServerId());
             }
 
         });
     }
-
 
     private String getGoblinMessage(String characterName, Locale locale) {
         return i18nService.tr("message-loans-globin", new Object[]{characterName}, locale);

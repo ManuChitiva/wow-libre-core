@@ -76,7 +76,8 @@ public class SecurityConfiguration {
                         endpoints -> endpoints.requestMatchers("/api/auth/login").authenticated()
                 ).addFilterBefore(new AuthenticationFilter(authenticationProvider(), jwtPort),
                         UsernamePasswordAuthenticationFilter.class)
-                .cors(cors -> cors.configurationSource(corsConfigurationSource())).csrf(AbstractHttpConfigurer::disable)
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         "/actuator/health",

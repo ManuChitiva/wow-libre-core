@@ -404,7 +404,7 @@ public class IntegratorClient {
 
         String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/characters/loan/bank", host))
                 .queryParam(PARAM_ACCOUNT_ID, accountId)
-                .queryParam("time", 82800) //23horas
+                .queryParam("time", 0) //23horas
                 .queryParam("level", 80)
                 .toUriString();
 
@@ -655,11 +655,9 @@ public class IntegratorClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[IntegratorClient] [sendCommand]  Client/Server Error: {}. Error with server client " +
-                            "getting " +
-                            "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [sendCommand] Unexpected Error: {}. An unexpected error occurred " +
                             "during " +
