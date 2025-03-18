@@ -10,4 +10,7 @@ public interface ObtainPromotion {
 
     Optional<PromotionEntity> findByIdAndServerIdAndLanguage(Long id, Long serverId, String language);
 
+    List<PromotionEntity> findByPromotionServerId(Long serverId);
+
+
 }

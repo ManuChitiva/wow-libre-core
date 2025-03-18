@@ -254,3 +254,7 @@ CREATE TABLE accounts.server_events
     server_id  bigint      NOT NULL,
     FOREIGN KEY (server_id) REFERENCES accounts.servers (id) ON DELETE CASCADE
 );
+
+
+ALTER TABLE user_validation RENAME TO otp_verification;
+ALTER TABLE otp_verification ADD COLUMN created_at TIMESTAMP DEFAULT NOW();

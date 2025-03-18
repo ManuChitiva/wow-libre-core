@@ -355,4 +355,11 @@ public class IntegratorService implements IntegratorPort {
                 quantity, accountId), transactionId);
     }
 
+    @Override
+    public void bannedUser(String host, String jwt, String username, Integer days, Integer hours, Integer minutes,
+                           Integer seconds, String bannedBy, String banReason, String transactionId) {
+        integratorClient.banAccount(host, jwt, new AccountBanRequest(username, days, hours, minutes, seconds,
+                bannedBy, banReason), transactionId);
+    }
+
 }

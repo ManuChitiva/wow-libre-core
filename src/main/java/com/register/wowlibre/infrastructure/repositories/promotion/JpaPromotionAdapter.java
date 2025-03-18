@@ -26,6 +26,11 @@ public class JpaPromotionAdapter implements SavePromotion, ObtainPromotion {
     }
 
     @Override
+    public List<PromotionEntity> findByPromotionServerId(Long serverId) {
+        return promotionRepository.findByServerIdAndStatusIsTrue(serverId);
+    }
+
+    @Override
     public void save(PromotionEntity promotion) {
         promotionRepository.save(promotion);
     }

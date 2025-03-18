@@ -26,4 +26,5 @@ public class AccountGameResponse {
     @JsonProperty("last_login")
     private LocalDate lastLogin;
     private String os;
+    private boolean banned;
 }

@@ -117,8 +117,8 @@ public class UserController {
                 .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
     }
 
-    @PutMapping("/send-mail")
-    public ResponseEntity<GenericResponse<UserDetailDto>> validateMail(
+    @PutMapping("/validated-mail/send")
+    public ResponseEntity<GenericResponse<UserDetailDto>> sendValidationEmail(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_EMAIL, required = false) final String email) {
 

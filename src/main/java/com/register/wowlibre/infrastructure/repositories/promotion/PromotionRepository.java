@@ -9,5 +9,7 @@ public interface PromotionRepository extends CrudRepository<PromotionEntity, Lon
 
     List<PromotionEntity> findByServerIdAndLanguageAndStatusIsTrue(Long serverId, String language);
 
+    List<PromotionEntity> findByServerIdAndStatusIsTrue(Long serverId);
+
     Optional<PromotionEntity> findByIdAndServerIdAndLanguageAndStatusIsTrue(Long Id, Long serverId, String language);
 }

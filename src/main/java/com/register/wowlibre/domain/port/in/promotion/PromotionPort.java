@@ -9,5 +9,7 @@ public interface PromotionPort {
                                                                       String transactionId);
 
     PromotionModel findByPromotionServerIdAndLanguage(Long id, Long serverId, String language,
-                                                            String transactionId);
+                                                      String transactionId);
+
+    List<PromotionModel> findByPromotionServerId(Long serverId, String transactionId);
 }

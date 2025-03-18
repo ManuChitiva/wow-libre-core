@@ -43,29 +43,7 @@ public class PromotionService implements PromotionPort {
             return promotions;
         }
 
-        for (PromotionEntity promotionEntity : filterClassPromotional) {
-            List<PromotionItemEntity> promotionItem = obtainPromotionItem.findByPromotionId(promotionEntity,
-                    transactionId);
-
-            promotions.add(PromotionModel.builder()
-                    .id(promotionEntity.getId())
-                    .amount(promotionEntity.getAmount())
-                    .reference(promotionEntity.getReference())
-                    .img(promotionEntity.getImg())
-                    .name(promotionEntity.getName())
-                    .description(promotionEntity.getDescription())
-                    .btnTxt(promotionEntity.getBtnText())
-                    .sendItem(promotionEntity.isSendItem())
-                    .level(promotionEntity.getLevel())
-                    .status(promotionEntity.isStatus())
-                    .type(promotionEntity.getType())
-                    .minLvl(promotionEntity.getMinLevel())
-                    .maxLvl(promotionEntity.getMaxLevel())
-                    .serverId(promotionEntity.getServerId())
-                    .items(promotionItem.stream().map(this::promotionItemMapToModel).toList())
-                    .classId(promotionEntity.getClassCharacter())
-                    .build());
-        }
+        promotionsBuild(transactionId, filterClassPromotional, promotions);
 
         return promotions;
     }
@@ -105,6 +83,43 @@ public class PromotionService implements PromotionPort {
                 .items(promotionItem.stream().map(this::promotionItemMapToModel).toList())
                 .classId(promotionEntity.getClassCharacter())
                 .build();
+    }
+
+    @Override
+    public List<PromotionModel> findByPromotionServerId(Long serverId, String transactionId) {
+        List<PromotionModel> promotions = new ArrayList<>();
+
+        List<PromotionEntity> promotionDb = obtainPromotion.findByPromotionServerId(serverId);
+
+        promotionsBuild(transactionId, promotionDb, promotions);
+
+        return promotions;
+    }
+
+    private void promotionsBuild(String transactionId, List<PromotionEntity> promotionDb, List<PromotionModel> promotions) {
+        for (PromotionEntity promotionEntity : promotionDb) {
+            List<PromotionItemEntity> promotionItem = obtainPromotionItem.findByPromotionId(promotionEntity,
+                    transactionId);
+
+            promotions.add(PromotionModel.builder()
+                    .id(promotionEntity.getId())
+                    .amount(promotionEntity.getAmount())
+                    .reference(promotionEntity.getReference())
+                    .img(promotionEntity.getImg())
+                    .name(promotionEntity.getName())
+                    .description(promotionEntity.getDescription())
+                    .btnTxt(promotionEntity.getBtnText())
+                    .sendItem(promotionEntity.isSendItem())
+                    .level(promotionEntity.getLevel())
+                    .status(promotionEntity.isStatus())
+                    .type(promotionEntity.getType())
+                    .minLvl(promotionEntity.getMinLevel())
+                    .maxLvl(promotionEntity.getMaxLevel())
+                    .serverId(promotionEntity.getServerId())
+                    .items(promotionItem.stream().map(this::promotionItemMapToModel).toList())
+                    .classId(promotionEntity.getClassCharacter())
+                    .build());
+        }
     }
 
     private PromotionModel.Items promotionItemMapToModel(PromotionItemEntity promotionItem) {

@@ -88,6 +88,9 @@ public interface IntegratorPort {
     List<CharacterInventoryResponse> getCharacterInventory(String host, String jwt, Long characterId,
                                                            Long accountId, String transactionId);
 
-    void transferInventoryItem(String host, String jwt, Long accountId,  Long characterId, Long friendId,
+    void transferInventoryItem(String host, String jwt, Long accountId, Long characterId, Long friendId,
                                Integer count, Long itemId, String transactionId);
+
+    void bannedUser(String host, String jwt, String username, Integer days, Integer hours, Integer minutes,
+                    Integer seconds, String bannedBy, String banReason, String transactionId);
 }

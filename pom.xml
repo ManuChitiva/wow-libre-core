@@ -12,7 +12,7 @@
     <artifactId>wowlibre</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>wow-libre-register</name>
-    <description>Web Services para la administracion del sitio web wow libre</description>
+    <description>Wow Core - Wow Libre</description>
     <url/>
     <licenses>
         <license/>
@@ -129,7 +129,17 @@
             <scope>provided</scope>
             <type>zip</type>
         </dependency>
-
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-aws-dependencies</artifactId>
+            <version>3.3.0</version>
+            <type>pom</type>
+        </dependency>
+        <dependency>
+            <groupId>io.awspring.cloud</groupId>
+            <artifactId>spring-cloud-starter-aws-ses</artifactId>
+            <version>2.4.4</version>
+        </dependency>
     </dependencies>
 
     <build>

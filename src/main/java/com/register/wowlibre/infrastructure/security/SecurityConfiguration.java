@@ -112,7 +112,7 @@ public class SecurityConfiguration {
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**")
                                 .permitAll()
-                                .requestMatchers("/api/server/key").hasAuthority(Rol.SERVER.getName())
+                                .requestMatchers("/api/server/key","/api/dashboard/**").hasAuthority(Rol.SERVER.getName())
                                 .requestMatchers("/api/transaction/purchase", "/api/transaction/subscription-benefits"
                                 ).hasAuthority(Rol.ADMIN.getName())
                                 .anyRequest().authenticated())

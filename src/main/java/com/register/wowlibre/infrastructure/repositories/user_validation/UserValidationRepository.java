@@ -5,6 +5,6 @@ import org.springframework.data.repository.*;
 
 import java.util.*;
 
-public interface UserValidationRepository extends CrudRepository<UserValidationEntity, Long> {
-    Optional<UserValidationEntity> findByEmail(String email);
+public interface UserValidationRepository extends CrudRepository<OtpVerificationEntity, Long> {
+    Optional<OtpVerificationEntity> findByEmail(String email);
 }

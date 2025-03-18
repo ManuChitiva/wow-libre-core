@@ -20,4 +20,5 @@ public class AccountGameDto {
     private boolean mute;
     private LocalDate lastLogin;
     private String os;
+    private boolean banned;
 }

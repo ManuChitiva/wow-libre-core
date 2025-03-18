@@ -7,11 +7,13 @@ import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.dashboard.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
+import com.register.wowlibre.domain.port.in.promotion.*;
 import com.register.wowlibre.domain.port.in.server.*;
 import com.register.wowlibre.domain.port.in.server_services.*;
 import com.register.wowlibre.domain.port.in.user_promotion.*;
 import com.register.wowlibre.domain.port.out.credit_loans.*;
 import com.register.wowlibre.infrastructure.entities.*;
+import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -37,14 +39,20 @@ public class DashboardService implements DashboardPort {
      **/
     private final UserPromotionPort userPromotionPort;
 
+    private final PromotionPort promotionPort;
+    private final PasswordEncoder passwordEncoder;
+
     public DashboardService(ObtainCreditLoans obtainCreditLoans, ServerPort serverPort,
                             ServerServicesPort serverServicesPort, IntegratorPort integratorPort,
-                            UserPromotionPort userPromotionPort) {
+                            UserPromotionPort userPromotionPort, PromotionPort promotionPort,
+                            PasswordEncoder passwordEncoder) {
         this.obtainCreditLoans = obtainCreditLoans;
         this.serverPort = serverPort;
         this.serverServicesPort = serverServicesPort;
         this.integratorPort = integratorPort;
         this.userPromotionPort = userPromotionPort;
+        this.promotionPort = promotionPort;
+        this.passwordEncoder = passwordEncoder;
     }
 
     @Override
@@ -150,7 +158,7 @@ public class DashboardService implements DashboardPort {
                         Expansion.getById(Integer.parseInt(account.getExpansion())).getDisplayName()
                         , account.isOnline(), account.getFailedLogins(), account.getJoinDate(), account.getLastIp(),
                         account.getMuteReason(), account.getMuteBy(), account.isMute(), account.getLastLogin(),
-                        account.getOs())).toList(), accountsServer.getSize());
+                        account.getOs(), account.isBanned())).toList(), accountsServer.getSize());
     }
 
     @Override
@@ -188,5 +196,38 @@ public class DashboardService implements DashboardPort {
                 server.get().getIp(), server.get().getJwt(),
                 new AccountUpdateMailRequest(newMail, username),
                 transactionId);
+    }
+
+    @Override
+    public List<PromotionModel> getPromotions(Long userId, Long serverId, String transactionId) {
+
+        Optional<ServerEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+
+        if (server.isEmpty() || !server.get().isStatus()) {
+            throw new InternalException("The server is not found or is not available please contact support.",
+                    transactionId);
+        }
+
+
+        return promotionPort.findByPromotionServerId(serverId, transactionId);
+    }
+
+    @Override
+    public void bannedUser(AccountBanDto banDto, Long userId, String transactionId) {
+        Optional<ServerEntity> serverProps = serverPort.findByIdAndUserId(banDto.getServerId(), userId, transactionId);
+
+        if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
+            throw new InternalException("The server is not found or is not available please contact support.",
+                    transactionId);
+        }
+        ServerEntity server = serverProps.get();
+
+        if (!passwordEncoder.matches(banDto.getPassword(), server.getPassword())) {
+            throw new InternalException("The password is invalid", transactionId);
+        }
+
+        integratorPort.bannedUser(server.getIp(), server.getJwt(), banDto.getUsername(), banDto.getDays(),
+                banDto.getHours(), banDto.getMinutes(), banDto.getSeconds(), banDto.getBannedBy(),
+                banDto.getBanReason(), transactionId);
     }
 }

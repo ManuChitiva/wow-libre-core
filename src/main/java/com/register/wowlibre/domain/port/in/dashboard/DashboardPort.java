@@ -1,6 +1,7 @@
 package com.register.wowlibre.domain.port.in.dashboard;
 
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.model.*;
 
 import java.util.*;
 
@@ -20,4 +21,9 @@ public interface DashboardPort {
     DashboardMetricsDto metrics(Long userId, Long serverId, String transactionId);
 
     void updateMail(Long userId, Long serverId, String username, String newMail, String transactionId);
+
+    List<PromotionModel> getPromotions(Long userId, Long serverId, String transactionId);
+
+    void bannedUser(AccountBanDto banDto, Long userId, String transactionId);
+
 }

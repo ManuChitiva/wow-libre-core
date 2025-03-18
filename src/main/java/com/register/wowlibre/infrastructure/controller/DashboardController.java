@@ -1,6 +1,7 @@
 package com.register.wowlibre.infrastructure.controller;
 
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.dashboard.*;
 import com.register.wowlibre.domain.shared.*;
 import jakarta.validation.*;
@@ -133,4 +134,29 @@ public class DashboardController {
                 .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
     }
 
+    @GetMapping("/promotions")
+    public ResponseEntity<GenericResponse<List<PromotionModel>>> promotions(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_USER_ID) final Long userId,
+            @RequestParam(name = PARAM_SERVER_ID) final Long serverId) {
+
+        List<PromotionModel> promotionsServer = dashboardPort.getPromotions(userId, serverId, transactionId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(promotionsServer, transactionId).ok().build());
+    }
+
+    @PostMapping("/account/ban")
+    public ResponseEntity<GenericResponse<Void>> accountBan(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_USER_ID) final Long userId,
+            @RequestBody @Valid AccountBanDto request) {
+
+        dashboardPort.bannedUser(request, userId, transactionId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
+    }
 }
