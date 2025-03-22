@@ -26,4 +26,6 @@ public interface DashboardPort {
 
     void bannedUser(AccountBanDto banDto, Long userId, String transactionId);
 
+    Map<String, String> getConfigs(Long userId, Long serverId, String url, boolean authServer,
+                                   String transactionId);
 }

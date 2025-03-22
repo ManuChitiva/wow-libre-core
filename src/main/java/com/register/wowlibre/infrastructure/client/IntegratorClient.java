@@ -1183,11 +1183,9 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [getCharacterInventory]  Client/Server Error: {}. Could not get server " +
-                            "accounts" +
-                            "  " +
-                            "HTTP Status: {}, Response Body: {}",
-                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
+            LOGGER.error("[IntegratorClient] [getCharacterInventory] Error: {}. Status: {} Response Body:  {} " +
+                            "transactionId {} ",
+                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString(), transactionId);
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [getCharacterInventory] Unexpected Error: {}. An unexpected error " +
@@ -1275,6 +1273,43 @@ public class IntegratorClient {
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [banAccount]  Error: {}. TransactionId: {}.", e.getMessage(),
+                    transactionId, e);
+            throw new InternalException("Transaction failed due to client or server error", transactionId);
+        }
+
+        throw new InternalException("Unexpected transaction failure", transactionId);
+    }
+
+
+    public GenericResponse<Map<String, String>> emulatorConfiguration(String host, String jwt,
+                                                                      EmulatorConfigRequest request,
+                                                                      String transactionId) {
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set(HEADER_TRANSACTION_ID, transactionId);
+        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
+
+        HttpEntity<EmulatorConfigRequest> entity = new HttpEntity<>(request, headers);
+        String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/dashboard/emulator-config", host))
+                .toUriString();
+
+        try {
+            ResponseEntity<GenericResponse<Map<String, String>>> response = restTemplate.exchange(url,
+                    HttpMethod.POST,
+                    entity, new ParameterizedTypeReference<>() {
+                    });
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return Objects.requireNonNull(response.getBody());
+            }
+
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            LOGGER.error("[IntegratorClient] [emulatorConfiguration] Error: {}. Status: {} Response Body:  {} " +
+                            "transactionId {} ",
+                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString(), transactionId);
+            throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
+        } catch (Exception e) {
+            LOGGER.error("[IntegratorClient] [emulatorConfiguration]  Error: {}. TransactionId: {}.", e.getMessage(),
                     transactionId, e);
             throw new InternalException("Transaction failed due to client or server error", transactionId);
         }

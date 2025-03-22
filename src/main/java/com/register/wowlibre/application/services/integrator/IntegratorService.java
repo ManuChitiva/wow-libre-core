@@ -362,4 +362,11 @@ public class IntegratorService implements IntegratorPort {
                 bannedBy, banReason), transactionId);
     }
 
+    @Override
+    public Map<String, String> getConfigs(String host, String jwt, String url, boolean authServer,
+                                          String transactionId) {
+        return integratorClient.emulatorConfiguration(host, jwt, new EmulatorConfigRequest(url),
+                transactionId).getData();
+    }
+
 }

@@ -230,4 +230,21 @@ public class DashboardService implements DashboardPort {
                 banDto.getHours(), banDto.getMinutes(), banDto.getSeconds(), banDto.getBannedBy(),
                 banDto.getBanReason(), transactionId);
     }
+
+    @Override
+    public Map<String, String> getConfigs(Long userId, Long serverId, String url, boolean authServer,
+                                          String transactionId) {
+
+        Optional<ServerEntity> serverProps = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+
+        if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
+            throw new InternalException("The server is not found or is not available please contact support.",
+                    transactionId);
+        }
+
+        ServerEntity server = serverProps.get();
+
+
+        return integratorPort.getConfigs(server.getIp(), server.getJwt(), url, authServer, transactionId);
+    }
 }

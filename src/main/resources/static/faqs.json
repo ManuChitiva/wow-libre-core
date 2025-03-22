@@ -10,47 +10,59 @@
     },
     {
       "question": "¿Cómo puedo integrar mi servidor privado?",
-      "answer": "Para integrar tu servidor privado, dirígete al canal de Discord en la sección de integración o contacta a través de cualquiera de nuestros canales de comunicación, como WhatsApp o Telegram. Estaremos encantados de guiarte en todo el proceso."
+      "answer": "Para integrar tu servidor privado, visita nuestra sección de integraciones en https://www.wowlibre.com/integrations. También puedes contactarnos a través de nuestros canales de soporte, como Discord, WhatsApp o Telegram. Estaremos encantados de guiarte en cada paso del proceso."
     },
     {
-      "question": "¿Tiene un costo la integración de mi servidor?",
-      "answer": "El costo de integración si ya tienes un servidor es de 5 dólares mensuales. Si necesitas que te creemos un servidor, tiene un costo adicional."
+      "question": "¿Tiene algún costo la integración de mi servidor?",
+      "answer": "Ofrecemos distintos planes diseñados para adaptarse a tus necesidades. Consulta nuestras opciones y elige la que mejor se ajuste a tu comunidad."
+    },
+    {
+      "question": "¿Qué beneficios obtengo al integrar mi servidor?",
+      "answer": "Al integrar tu servidor, accedes a herramientas avanzadas que potencian el crecimiento de tu comunidad. Nuestra plataforma simplifica la administración, mejora la experiencia de los jugadores y optimiza la gestión de tu servidor."
     }
   ],
   "en": [
     {
       "question": "Is Wow Libre a World of Warcraft server?",
-      "answer": "No, Wow Libre is not a World of Warcraft server. Our platform is designed to provide advanced tools that allow administrators to create unique and customized gaming experiences. We focus on offering solutions that facilitate the creation and management of servers for various gaming experiences."
+      "answer": "No, Wow Libre is not a World of Warcraft server. Our platform is designed to provide advanced tools that allow administrators to create unique and customized experiences within the gaming world. We focus on offering solutions that facilitate the creation and management of servers for various gaming experiences."
     },
     {
-      "question": "Are there additional player support channels?",
-      "answer": "Yes, we have various support channels on our platform where you can find answers to frequently asked community questions and receive personalized assistance."
+      "question": "Are there additional support channels for players?",
+      "answer": "Yes, we have various support channels on our platform where you can find answers to frequently asked questions from the community and receive personalized assistance."
     },
     {
       "question": "How can I integrate my private server?",
-      "answer": "To integrate your private server, go to the Discord channel in the integration section or contact us through any of our communication channels, such as WhatsApp or Telegram. We will be happy to guide you through the entire process."
+      "answer": "To integrate your private server, visit our integrations section at https://www.wowlibre.com/integrations. You can also contact us through our support channels, such as Discord, WhatsApp, or Telegram. We will be happy to guide you through every step of the process."
     },
     {
-      "question": "Is there a cost for integrating my server?",
-      "answer": "The cost of integration if you already have a server is $5 per month. If you need us to create a server for you, there is an additional cost."
+      "question": "Does integrating my server have a cost?",
+      "answer": "We offer different plans designed to suit your needs. Check out our options and choose the one that best fits your community."
+    },
+    {
+      "question": "What benefits do I get by integrating my server?",
+      "answer": "By integrating your server, you gain access to advanced tools that boost the growth of your community. Our platform simplifies administration, enhances the player experience, and optimizes server management."
     }
   ],
   "pt": [
     {
       "question": "O Wow Libre é um servidor de World of Warcraft?",
-      "answer": "Não, o Wow Libre não é um servidor de World of Warcraft. Nossa plataforma foi desenvolvida para fornecer ferramentas avançadas que permitem aos administradores criar experiências de jogo únicas e personalizadas. Nosso foco é oferecer soluções que facilitem a criação e gestão de servidores para diversas experiências de jogo."
+      "answer": "Não, o Wow Libre não é um servidor de World of Warcraft. Nossa plataforma foi projetada para fornecer ferramentas avançadas que permitem aos administradores criar experiências únicas e personalizadas no mundo dos jogos. Nosso foco é oferecer soluções que facilitem a criação e gestão de servidores para diversas experiências de jogo."
     },
     {
-      "question": "Existem canais adicionais de suporte ao jogador?",
-      "answer": "Sim, temos vários canais de suporte em nossa plataforma, onde você pode encontrar respostas para as perguntas mais frequentes da comunidade e obter assistência personalizada."
+      "question": "Existem canais adicionais de suporte para os jogadores?",
+      "answer": "Sim, temos diversos canais de suporte em nossa plataforma, onde você pode encontrar respostas para as perguntas mais frequentes da comunidade e obter assistência personalizada."
     },
     {
       "question": "Como posso integrar meu servidor privado?",
-      "answer": "Para integrar seu servidor privado, acesse o canal do Discord na seção de integração ou entre em contato através de qualquer um dos nossos canais de comunicação, como WhatsApp ou Telegram. Teremos o prazer de guiá-lo durante todo o processo."
+      "answer": "Para integrar seu servidor privado, visite nossa seção de integrações em https://www.wowlibre.com/integrations. Você também pode entrar em contato conosco através dos nossos canais de suporte, como Discord, WhatsApp ou Telegram. Ficaremos felizes em guiá-lo em cada etapa do processo."
     },
     {
       "question": "A integração do meu servidor tem algum custo?",
-      "answer": "O custo da integração, caso você já tenha um servidor, é de 5 dólares por mês. Se precisar que criemos um servidor para você, há um custo adicional."
+      "answer": "Oferecemos diferentes planos projetados para atender às suas necessidades. Confira nossas opções e escolha aquela que melhor se adapta à sua comunidade."
+    },
+    {
+      "question": "Quais benefícios eu obtenho ao integrar meu servidor?",
+      "answer": "Ao integrar seu servidor, você terá acesso a ferramentas avançadas que impulsionam o crescimento da sua comunidade. Nossa plataforma simplifica a administração, melhora a experiência dos jogadores e otimiza a gestão do servidor."
     }
   ]
 }

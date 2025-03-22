@@ -93,4 +93,6 @@ public interface IntegratorPort {
 
     void bannedUser(String host, String jwt, String username, Integer days, Integer hours, Integer minutes,
                     Integer seconds, String bannedBy, String banReason, String transactionId);
+
+    Map<String, String> getConfigs(String host, String jwt, String url, boolean authServer, String transactionId);
 }
