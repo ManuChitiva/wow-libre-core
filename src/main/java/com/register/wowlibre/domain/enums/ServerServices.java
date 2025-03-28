@@ -7,7 +7,8 @@ import java.util.*;
 
 @Getter
 public enum ServerServices {
-    BANK("BANK");
+    BANK("BANK"),
+    SEND_LEVEL("SEND_LEVEL");
 
     private final String name;
 

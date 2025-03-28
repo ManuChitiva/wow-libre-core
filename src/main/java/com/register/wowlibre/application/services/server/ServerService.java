@@ -1,5 +1,6 @@
 package com.register.wowlibre.application.services.server;
 
+import com.register.wowlibre.application.services.*;
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.enums.*;
@@ -10,6 +11,7 @@ import com.register.wowlibre.domain.port.in.integrator.*;
 import com.register.wowlibre.domain.port.in.server.*;
 import com.register.wowlibre.domain.port.in.server_details.*;
 import com.register.wowlibre.domain.port.in.server_events.*;
+import com.register.wowlibre.domain.port.in.server_resources.*;
 import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.server.*;
 import com.register.wowlibre.infrastructure.entities.*;
@@ -39,11 +41,14 @@ public class ServerService implements ServerPort {
 
     private final IntegratorPort integratorPort;
     private final ServerEventsPort serverEventsPort;
+    private final ServerResourcesPort serverResourcesPort;
+    private final I18nService i18nService;
 
     public ServerService(ObtainServerPort obtainServerPort, SaveServerPort saveServerPort,
                          @Qualifier("random-string") RandomString randomString, PasswordEncoder passwordEncoder,
                          UserPort userPort, ObtainServerDetailsPort obtainServerDetailsPort,
-                         IntegratorPort integratorPort, ServerEventsPort serverEventsPort) {
+                         IntegratorPort integratorPort, ServerEventsPort serverEventsPort,
+                         ServerResourcesPort serverResourcesPort, I18nService i18nService) {
         this.obtainServerPort = obtainServerPort;
         this.saveServerPort = saveServerPort;
         this.randomString = randomString;
@@ -52,6 +57,8 @@ public class ServerService implements ServerPort {
         this.obtainServerDetailsPort = obtainServerDetailsPort;
         this.integratorPort = integratorPort;
         this.serverEventsPort = serverEventsPort;
+        this.serverResourcesPort = serverResourcesPort;
+        this.i18nService = i18nService;
     }
 
     @Override
@@ -139,7 +146,8 @@ public class ServerService implements ServerPort {
     }
 
     @Override
-    public ServerVdpDto findByServerNameAndExpansion(String name, String expansion, String transactionId) {
+    public ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale,
+                                                     String transactionId) {
 
         ServerEntity serverModel = obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, expansion,
                 transactionId).orElse(null);
@@ -147,6 +155,7 @@ public class ServerService implements ServerPort {
         if (serverModel == null) {
             throw new InternalException("", transactionId);
         }
+
 
         List<ServerDetailsEntity> serverDetails = obtainServerDetailsPort.findByServerId(serverModel, transactionId);
 
@@ -156,6 +165,11 @@ public class ServerService implements ServerPort {
                         .collect(Collectors.toMap(ServerDetailsEntity::getKey, ServerDetailsEntity::getValue,
                                 (existing, replacement) -> existing));
 
+        List<ServerResourcesEntity> serverResource = serverResourcesPort.findByServerId(serverModel, transactionId);
+
+        Map<ResourceType, ServerResourcesEntity> resourceMap = serverResource.stream()
+                .collect(Collectors.toMap(ServerResourcesEntity::getResourceType,
+                        resource -> resource, (a, b) -> a));
 
         DashboardMetricsResponse dashboard = integratorPort.dashboard(serverModel.getIp(),
                 serverModel.getJwt(), transactionId);
@@ -164,16 +178,35 @@ public class ServerService implements ServerPort {
                 .map(this::buildEventServerVdp).toList();
 
         List<ServerVdpDto.Card> cards = new ArrayList<>();
-        cards.add(buildCardServerVdp(1, String.valueOf(dashboard.getOnlineUsers()), 1, "Jugadores Online"));
-        cards.add(buildCardServerVdp(2, String.valueOf(dashboard.getTotalUsers()), 2, "Total de Usuarios"));
-        cards.add(buildCardServerVdp(3, String.valueOf(dashboard.getTotalGuilds()), 3, "Número de Hermandades"));
+        cards.add(buildCardServerVdp(1, String.valueOf(dashboard.getOnlineUsers()), 1, i18nService.tr("card-users" +
+                "-online", locale)));
+        cards.add(buildCardServerVdp(2, String.valueOf(dashboard.getTotalUsers()), 2, i18nService.tr("card-total" +
+                "-users", locale)));
+        cards.add(buildCardServerVdp(3, String.valueOf(dashboard.getTotalGuilds()), 3, i18nService.tr("card-total" +
+                "-guild", locale)));
 
         return ServerVdpDto.builder()
+                .logo(Optional.ofNullable(resourceMap.get(ResourceType.LOGO))
+                        .map(ServerResourcesEntity::getUrl)
+                        .orElse(null))
+                .headerLeftImg(Optional.ofNullable(resourceMap.get(ResourceType.HEADER_LEFT))
+                        .map(ServerResourcesEntity::getUrl)
+                        .orElse(null))
+                .headerRightImg(Optional.ofNullable(resourceMap.get(ResourceType.HEADER_RIGHT))
+                        .map(ServerResourcesEntity::getUrl)
+                        .orElse(null))
+                .headerCenterImg(Optional.ofNullable(resourceMap.get(ResourceType.HEADER_CENTER))
+                        .map(ServerResourcesEntity::getUrl)
+                        .orElse(null))
+                .youtubeUrl(Optional.ofNullable(resourceMap.get(ResourceType.YOUTUBE_URL))
+                        .map(ServerResourcesEntity::getUrl)
+                        .orElse(null))
                 .name(serverModel.getName())
                 .type(serverModel.getType())
                 .disclaimer(serverModel.getDisclaimer())
                 .information(serverDetailsMap)
                 .cards(cards)
+                .url(serverModel.getWebSite())
                 .events(events)
                 .realmlist(serverModel.getRealmlist()).build();
     }

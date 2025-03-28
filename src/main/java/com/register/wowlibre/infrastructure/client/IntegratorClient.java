@@ -320,7 +320,6 @@ public class IntegratorClient {
 
         headers.set(HEADER_TRANSACTION_ID, transactionId);
         headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
-
         HttpEntity<SendLevelRequest> entity = new HttpEntity<>(sendLevelRequest, headers);
 
         String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/social/send/level", host))
@@ -337,19 +336,14 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendLevel] Client/Server Error: {}. The request failed with a client or" +
-                            " server error. " +
-                            "HTTP Status: {}, Response Body: {}",
+            LOGGER.error("[IntegratorClient] [sendLevel] Message [{}] StatusCode [{}]  Body [{}]",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
-            LOGGER.error("[IntegratorClient] [sendLevel] Unexpected Error: {}. An unexpected error occurred during " +
-                            "the transaction with ID: {}.",
-                    e.getMessage(), transactionId, e);
+            LOGGER.error("[IntegratorClient] [sendLevel] Message [{}]  TransactionId [{}]", e.getMessage(),
+                    transactionId, e);
             throw new InternalException("Unexpected transaction failure", transactionId);
         }
-
         throw new InternalException("[IntegratorClient] [sendLevel] Unexpected transaction failure", transactionId);
 
     }
@@ -378,15 +372,12 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendMoney] Client/Server Error: {}. The request failed with a client or" +
-                            " server error. " +
-                            "HTTP Status: {}, Response Body: {}",
+            LOGGER.error("[IntegratorClient] [sendMoney] Message [{}] StatusCode [{}]  Body [{}]",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
-            LOGGER.error("[IntegratorClient] [sendMoney] Unexpected Error: {}. An unexpected error occurred during " +
-                            "the transaction with ID: {}.",
-                    e.getMessage(), transactionId, e);
+            LOGGER.error("[IntegratorClient] [sendLevel] Message [{}]  TransactionId [{}]", e.getMessage(),
+                    transactionId, e);
             throw new InternalException("Unexpected transaction failure", transactionId);
         }
 
@@ -800,15 +791,13 @@ public class IntegratorClient {
     }
 
 
-    public GenericResponse<Void> sendAnnouncement(String host, String jwt, Long userId, Long accountId,
-                                                  Long characterId,
-                                                  Long skillId, String transactionId) {
+    public GenericResponse<Void> sendAnnouncement(String host, String jwt, AnnouncementRequest request,
+                                                  String transactionId) {
         HttpHeaders headers = new HttpHeaders();
 
         headers.set(HEADER_TRANSACTION_ID, transactionId);
         headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
 
-        AnnouncementRequest request = new AnnouncementRequest(accountId, characterId, skillId, userId);
         HttpEntity<AnnouncementRequest> entity = new HttpEntity<>(request, headers);
 
         String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/professions/announcement", host))

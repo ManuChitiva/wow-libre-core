@@ -29,7 +29,7 @@ public interface CharactersPort {
     void sendMoney(Long userId, Long accountId, Long serverId, Long characterId, Long friendId, Long money,
                    String transactionId);
 
-    void sendAnnouncement(Long userId, Long accountId, Long serverId, Long characterId, Long skillId,
+    void sendAnnouncement(Long userId, Long accountId, Long serverId, Long characterId, Long skillId, String message,
                           String transactionId);
 
     List<CharacterInventoryResponse> getCharacterInventory(Long userId, Long accountId, Long serverId, Long characterId,

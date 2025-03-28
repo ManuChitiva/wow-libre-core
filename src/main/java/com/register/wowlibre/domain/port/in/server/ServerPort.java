@@ -25,5 +25,5 @@ public interface ServerPort {
 
     Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId);
 
-    ServerVdpDto findByServerNameAndExpansion(String name, String expansion, String transactionId);
+    ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale, String transactionId);
 }

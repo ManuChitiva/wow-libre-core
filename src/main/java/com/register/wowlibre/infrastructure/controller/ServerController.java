@@ -80,9 +80,10 @@ public class ServerController {
     public ResponseEntity<GenericResponse<ServerVdpDto>> vdpServer(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam(name = "name") String name,
-            @RequestParam(name = "expansion") String expansion) {
+            @RequestParam(name = "expansion") String expansion,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
 
-        final ServerVdpDto server = serverPort.findByServerNameAndExpansion(name, expansion,
+        final ServerVdpDto server = serverPort.findByServerNameAndExpansion(name, expansion, locale,
                 transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)

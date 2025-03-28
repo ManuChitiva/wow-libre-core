@@ -186,7 +186,7 @@ public class CharactersController {
             @RequestBody @Valid AnnouncementDto sendMoneyDto) {
 
         charactersPort.sendAnnouncement(userId, sendMoneyDto.getAccountId(), sendMoneyDto.getServerId(),
-                sendMoneyDto.getCharacterId(), sendMoneyDto.getSkillId(), transactionId);
+                sendMoneyDto.getCharacterId(), sendMoneyDto.getSkillId(), sendMoneyDto.getMessage(), transactionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

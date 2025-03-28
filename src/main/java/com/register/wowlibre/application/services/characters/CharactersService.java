@@ -2,10 +2,13 @@ package com.register.wowlibre.application.services.characters;
 
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.dto.client.*;
+import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.exception.*;
+import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.characters.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
+import com.register.wowlibre.domain.port.in.server_services.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
@@ -17,12 +20,14 @@ public class CharactersService implements CharactersPort {
     private final IntegratorPort integratorService;
     private final AccountGamePort accountGamePort;
     private final PasswordEncoder passwordEncoder;
+    private final ServerServicesPort serverServicesPort;
 
     public CharactersService(IntegratorPort integratorService, AccountGamePort accountGamePort,
-                             PasswordEncoder passwordEncoder) {
+                             PasswordEncoder passwordEncoder, ServerServicesPort serverServicesPort) {
         this.integratorService = integratorService;
         this.accountGamePort = accountGamePort;
         this.passwordEncoder = passwordEncoder;
+        this.serverServicesPort = serverServicesPort;
     }
 
 
@@ -129,9 +134,16 @@ public class CharactersService implements CharactersPort {
             throw new InternalException("The server is currently not verified", transactionId);
         }
 
-        //TODO : Ajustar el cobro de la transaction de la tabla  los server services
+        ServerServicesModel serverServicesModel =
+                serverServicesPort.findByNameAndServerId(ServerServices.SEND_LEVEL.getName(), serverId, transactionId);
+
+        double cost = 0.0;
+        if (serverServicesModel != null && serverServicesModel.amount() > 0) {
+            cost = serverServicesModel.amount();
+        }
+
         integratorService.sendLevel(serverModel.getIp(), serverModel.getJwt(), accountGame.getAccountId(),
-                accountGame.getUserId().getId(), characterId, friendId, level, 0.0, transactionId);
+                accountGame.getUserId().getId(), characterId, friendId, level, cost, transactionId);
     }
 
     @Override
@@ -148,13 +160,13 @@ public class CharactersService implements CharactersPort {
         }
 
 
-        //TODO : Ajustar el cobro de la transaction de la tabla  los server services
         integratorService.sendMoney(serverModel.getIp(), serverModel.getJwt(), accountGame.getAccountId(),
                 accountGame.getUserId().getId(), characterId, friendId, money, 0.0, transactionId);
     }
 
     @Override
     public void sendAnnouncement(Long userId, Long accountId, Long serverId, Long characterId, Long skillId,
+                                 String message,
                                  String transactionId) {
         AccountVerificationDto verifyData = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
@@ -166,7 +178,7 @@ public class CharactersService implements CharactersPort {
         }
 
         integratorService.sendAnnouncement(serverModel.getIp(), serverModel.getJwt(), userId, accountId, characterId,
-                skillId, transactionId);
+                skillId, message, transactionId);
     }
 
     @Override

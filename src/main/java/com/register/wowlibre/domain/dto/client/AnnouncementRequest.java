@@ -19,4 +19,5 @@ public class AnnouncementRequest {
     @NotNull
     @JsonProperty("user_id")
     private Long userId;
+    private String message;
 }

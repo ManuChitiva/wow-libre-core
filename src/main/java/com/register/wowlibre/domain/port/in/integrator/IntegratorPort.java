@@ -61,7 +61,7 @@ public interface IntegratorPort {
                      boolean multiFaction, String discord, String transactionId);
 
 
-    void sendAnnouncement(String host, String jwt, Long userId, Long accountId, Long characterId, Long skillId,
+    void sendAnnouncement(String host, String jwt, Long userId, Long accountId, Long characterId, Long skillId,String message,
                           String transactionId);
 
     void sendBenefitsPremium(String host, String jwt, Long userId, Long accountId,

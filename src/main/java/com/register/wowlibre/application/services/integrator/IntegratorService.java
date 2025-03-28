@@ -149,17 +149,16 @@ public class IntegratorService implements IntegratorPort {
     public void sendMoney(String host, String jwt, Long accountId, Long userId, Long characterId, Long friendId,
                           Long money, Double cost, String transactionId) {
 
-        SendMoneyRequest sendMoneyRequest = new SendMoneyRequest(characterId, friendId, accountId, userId, money, cost);
-        integratorClient.sendMoney(host, jwt, sendMoneyRequest, transactionId);
+        integratorClient.sendMoney(host, jwt, new SendMoneyRequest(characterId, friendId, accountId, userId, money,
+                cost), transactionId);
     }
 
     @Override
     public void sendLevel(String host, String jwt, Long accountId, Long userId, Long characterId, Long friendId,
                           Integer level, Double cost, String transactionId) {
 
-        SendLevelRequest request = new SendLevelRequest(characterId, friendId, accountId, userId, level, cost);
-        integratorClient.sendLevel(host, jwt, request, transactionId);
-
+        integratorClient.sendLevel(host, jwt, new SendLevelRequest(characterId, friendId, accountId, userId, level,
+                cost), transactionId);
     }
 
     @Override
@@ -272,8 +271,10 @@ public class IntegratorService implements IntegratorPort {
 
     @Override
     public void sendAnnouncement(String host, String jwt, Long userId, Long accountId, Long characterId, Long skillId,
-                                 String transactionId) {
-        integratorClient.sendAnnouncement(host, jwt, userId, accountId, characterId, skillId, transactionId);
+                                 String message, String transactionId) {
+
+        integratorClient.sendAnnouncement(host, jwt, new AnnouncementRequest(accountId, characterId, skillId, userId,
+                message), transactionId);
     }
 
     @Override

@@ -251,10 +251,24 @@ CREATE TABLE accounts.server_events
     title       VARCHAR(50)  NOT NULL,
     description VARCHAR(120) NOT NULL,
     disclaimer  varchar(200) NOT NULL,
-    server_id  bigint      NOT NULL,
+    server_id   bigint       NOT NULL,
     FOREIGN KEY (server_id) REFERENCES accounts.servers (id) ON DELETE CASCADE
 );
 
 
 ALTER TABLE user_validation RENAME TO otp_verification;
-ALTER TABLE otp_verification ADD COLUMN created_at TIMESTAMP DEFAULT NOW();
+ALTER TABLE otp_verification
+    ADD COLUMN created_at TIMESTAMP DEFAULT NOW();
+
+
+
+CREATE TABLE accounts.server_resources
+(
+    id            bigint AUTO_INCREMENT PRIMARY KEY,
+    server_id     bigint NOT NULL,
+    resource_type ENUM('HEADER_LEFT', 'HEADER_CENTER', 'HEADER_RIGHT', 'LOGO', 'YOUTUBE_URL') NOT NULL,
+    url           TEXT   NOT NULL,
+    created_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (server_id) REFERENCES accounts.servers (id) ON DELETE CASCADE
+);

@@ -16,6 +16,8 @@ public class AnnouncementDto {
     @NotNull
     @JsonProperty("skill_id")
     private Long skillId;
-
+    @NotNull
+    private String message;
+    @NotNull
     private Long serverId;
 }
