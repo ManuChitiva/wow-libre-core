@@ -76,7 +76,8 @@ public class UserService implements UserPort {
     @Override
     public JwtDto create(UserDto userDto, String ip, Locale locale, String transactionId) {
 
-        if (!googlePort.verifyCaptcha("6LcbSqcqAAAAAE6r0D529XeZtuaIsueNUzz7jWen", userDto.getToken(), ip, transactionId)) {
+        if (!googlePort.verifyCaptcha("6LcbSqcqAAAAAE6r0D529XeZtuaIsueNUzz7jWen", userDto.getToken(), ip,
+                transactionId)) {
             throw new InternalException("The captcha is invalid", transactionId);
         }
 
@@ -296,6 +297,11 @@ public class UserService implements UserPort {
 
         user.setRolId(RolMapper.toEntity(rolModel));
         saveUserPort.save(user, transactionId);
+    }
+
+    @Override
+    public List<UserEntity> findAll(String transactionId) {
+        return obtainUserPort.findAll();
     }
 
 

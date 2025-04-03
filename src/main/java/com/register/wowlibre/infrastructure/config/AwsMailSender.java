@@ -74,6 +74,7 @@ public class AwsMailSender {
                     .withSource(fromEmail);
 
             sesClient.sendEmail(request);
+            System.out.println("Email sent successfully!");
         } catch (Exception e) {
             throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }

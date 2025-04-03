@@ -1,12 +1,10 @@
 package com.register.wowlibre.infrastructure.repositories.user;
 
-import com.register.wowlibre.domain.port.out.user.ObtainUserPort;
-import com.register.wowlibre.domain.port.out.user.SaveUserPort;
-import com.register.wowlibre.infrastructure.entities.UserEntity;
-import org.springframework.cache.annotation.*;
-import org.springframework.stereotype.Repository;
+import com.register.wowlibre.domain.port.out.user.*;
+import com.register.wowlibre.infrastructure.entities.*;
+import org.springframework.stereotype.*;
 
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public class JpaUserAdapter implements ObtainUserPort, SaveUserPort {
@@ -30,6 +28,11 @@ public class JpaUserAdapter implements ObtainUserPort, SaveUserPort {
     //@Cacheable(value = "findByUserIdAndStatusIsTrue", key = "#userId")
     public Optional<UserEntity> findByUserIdAndStatusIsTrue(Long userId, String transactionId) {
         return userRepository.findById(userId);
+    }
+
+    @Override
+    public List<UserEntity> findAll() {
+        return userRepository.findAll();
     }
 
     @Override

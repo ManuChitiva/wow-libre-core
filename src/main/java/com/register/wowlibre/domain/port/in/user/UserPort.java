@@ -30,4 +30,6 @@ public interface UserPort {
     void changePassword(Long userId, String password, String newPassword, String transactionId);
 
     void updateRol(Rol rolName, Long userId, String transactionId);
+
+    List<UserEntity> findAll(String transactionId);
 }
