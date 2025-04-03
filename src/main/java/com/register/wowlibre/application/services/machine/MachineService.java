@@ -14,6 +14,7 @@ import org.springframework.stereotype.*;
 
 import java.time.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 @Service
 public class MachineService implements MachinePort {
@@ -72,8 +73,7 @@ public class MachineService implements MachinePort {
         }
 
 
-        Random random = new Random();
-        int randomNumber = random.nextInt(totalWeight);
+        int randomNumber = ThreadLocalRandom.current().nextInt(totalWeight);
 
 
         String result = "";
