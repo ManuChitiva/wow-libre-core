@@ -29,14 +29,6 @@ public class Marketing {
 
     @Scheduled(cron = "0 0 0 1/30 * ?") // Se ejecuta cada 30 días a la medianoche
     public void sendMailsMarketing() {
-        userPort.findAll("Marketing").forEach(user -> {
-          try{
-              awsMailSender.sendTemplatedEmail(user.getEmail(), "¡Te extrañamos! Vuelve y descubre lo que tenemos para " +
-                      "ti", "casino.html", new HashMap<>());
-              Thread.sleep(1000);
-          }catch (Exception e){
-              LOGGER.error("Error al enviar el correo: {}", e.getMessage());
-          }
-        });
+
     }
 }
