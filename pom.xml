@@ -6,7 +6,7 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.3.4</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
     <groupId>com.register</groupId>
     <artifactId>wowlibre</artifactId>
@@ -87,7 +87,6 @@
             <scope>runtime</scope>
         </dependency>
 
-
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-lang3</artifactId>
@@ -116,6 +115,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
+
         <dependency>
             <groupId>org.freemarker</groupId>
             <artifactId>freemarker</artifactId>
@@ -135,11 +135,13 @@
             <version>3.3.0</version>
             <type>pom</type>
         </dependency>
+
         <dependency>
             <groupId>io.awspring.cloud</groupId>
             <artifactId>spring-cloud-starter-aws-ses</artifactId>
             <version>2.4.4</version>
         </dependency>
+
     </dependencies>
 
     <build>

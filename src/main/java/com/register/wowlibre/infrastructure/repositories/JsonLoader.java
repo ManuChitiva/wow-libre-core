@@ -23,9 +23,9 @@ public class JsonLoader implements JsonLoaderPort {
     private final Resource serversPromos;
     private final Resource bannersHome;
     private final Resource widgetHomeSubscription;
-    private final Resource promotions;
     private final Resource faqsSubscriptionJsonFile;
     private final Resource serverExperience;
+    private final Resource plansAcquisition;
 
     private List<CountryModel> jsonCountryModel;
     private Map<String, List<FaqsModel>> jsonFaqsModel;
@@ -34,9 +34,9 @@ public class JsonLoader implements JsonLoaderPort {
     private Map<String, List<ServersPromotions>> jsonServerPromos;
     private Map<String, List<BannerHomeModel>> jsonBannerHome;
     private Map<String, List<WidgetHomeSubscriptionModel>> jsonWidgetSubscription;
-    private Map<String, List<PromotionModel>> jsonPromotions;
     private Map<String, List<FaqsModel>> jsonFaqsSubscriptionModel;
     private Map<String, List<ExperiencesHomeModel>> jsonServerExperienceModel;
+    private Map<String, List<PlanAcquisitionModel>> jsonPlanAcquisitionModel;
 
     public JsonLoader(ObjectMapper objectMapper,
                       @Value("classpath:/static/countryAvailable.json") Resource jsonFile,
@@ -46,9 +46,9 @@ public class JsonLoader implements JsonLoaderPort {
                       @Value("classpath:/static/servers_promotions.json") Resource serverPromos,
                       @Value("classpath:/static/banner_home.json") Resource bannersHome,
                       @Value("classpath:/static/subscription_benefit.json") Resource widgetHomeSubscription,
-                      @Value("classpath:/static/promotions.json") Resource promotions,
                       @Value("classpath:/static/faqs_subscriptions.json") Resource faqsSubscriptionJsonFile,
-                      @Value("classpath:/static/server_experiences.json") Resource serverExperience) {
+                      @Value("classpath:/static/server_experiences.json") Resource serverExperience,
+                      @Value("classpath:/static/plans_acquisition.json") Resource plansAcquisition) {
         this.objectMapper = objectMapper;
         this.jsonFile = jsonFile;
         this.faqsJsonFile = faqsJsonFile;
@@ -57,10 +57,9 @@ public class JsonLoader implements JsonLoaderPort {
         this.serversPromos = serverPromos;
         this.bannersHome = bannersHome;
         this.widgetHomeSubscription = widgetHomeSubscription;
-        this.promotions = promotions;
         this.faqsSubscriptionJsonFile = faqsSubscriptionJsonFile;
         this.serverExperience = serverExperience;
-
+        this.plansAcquisition = plansAcquisition;
     }
 
     @PostConstruct
@@ -84,10 +83,10 @@ public class JsonLoader implements JsonLoaderPort {
             jsonWidgetSubscription = objectMapper.readValue(widgetHomeSubscription.getInputStream(),
                     new TypeReference<>() {
                     });
-            jsonPromotions = objectMapper.readValue(promotions.getInputStream(),
+            jsonServerExperienceModel = objectMapper.readValue(serverExperience.getInputStream(),
                     new TypeReference<>() {
                     });
-            jsonServerExperienceModel = objectMapper.readValue(serverExperience.getInputStream(),
+            jsonPlanAcquisitionModel = objectMapper.readValue(plansAcquisition.getInputStream(),
                     new TypeReference<>() {
                     });
 
@@ -139,14 +138,13 @@ public class JsonLoader implements JsonLoaderPort {
     }
 
     @Override
-    public List<PromotionModel> getPromotions(String language, String transactionId) {
-        return Optional.of(jsonPromotions.get(language)).orElse(jsonPromotions.get("es"));
-    }
-
-    @Override
     public List<ExperiencesHomeModel> getExperiencesHome(String language, String transactionId) {
         return Optional.of(jsonServerExperienceModel.get(language)).orElse(jsonServerExperienceModel.get("es"));
     }
 
-
+    @Override
+    public List<PlanAcquisitionModel> getPlansAcquisition(String language, String transactionId) {
+        return Optional.of(jsonPlanAcquisitionModel.get(language)).orElse(jsonPlanAcquisitionModel.get("es"));
+    }
+    
 }

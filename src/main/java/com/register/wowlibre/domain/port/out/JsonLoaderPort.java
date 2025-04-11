@@ -21,7 +21,7 @@ public interface JsonLoaderPort {
 
     WidgetHomeSubscriptionModel getWidgetSubscription(String language, String transactionId);
 
-    List<PromotionModel> getPromotions(String language, String transactionId);
-
     List<ExperiencesHomeModel> getExperiencesHome(String language, String transactionId);
+
+    List<PlanAcquisitionModel> getPlansAcquisition(String language, String transactionId);
 }

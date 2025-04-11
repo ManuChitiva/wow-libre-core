@@ -56,14 +56,15 @@ public class ResourcesService implements ResourcesPort {
         return jsonLoaderPort.getWidgetSubscription(language, transactionId);
     }
 
-    @Override
-    public List<PromotionModel> getPromotions(String language, String transactionId) {
-        return jsonLoaderPort.getPromotions(language, transactionId);
-    }
 
     @Override
     public List<ExperiencesHomeModel> getExperiencesHome(String language, String transactionId) {
         return jsonLoaderPort.getExperiencesHome(language, transactionId);
+    }
+
+    @Override
+    public List<PlanAcquisitionModel> getPlansAcquisition(String language, String transactionId) {
+        return jsonLoaderPort.getPlansAcquisition(language, transactionId);
     }
 
 }

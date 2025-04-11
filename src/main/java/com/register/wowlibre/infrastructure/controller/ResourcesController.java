@@ -64,9 +64,9 @@ public class ResourcesController {
     @GetMapping("/bank/plans")
     public ResponseEntity<GenericResponse<List<PlanModel>>> plans(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestParam(name = "language", defaultValue = "es") final String language) {
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
 
-        final List<PlanModel> countryModelList = resourcesPort.getPlansBank(language, transactionId);
+        final List<PlanModel> countryModelList = resourcesPort.getPlansBank(locale.getLanguage(), transactionId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(countryModelList, transactionId).ok().build());
@@ -75,8 +75,8 @@ public class ResourcesController {
     @GetMapping("/benefits-guild")
     public ResponseEntity<GenericResponse<List<BenefitModel>>> benefitsGuild(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestParam(name = "language", defaultValue = "es") final String language) {
-        final List<BenefitModel> benefitsGuild = resourcesPort.getBenefitsGuild(language, transactionId);
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
+        final List<BenefitModel> benefitsGuild = resourcesPort.getBenefitsGuild(locale.getLanguage(), transactionId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(benefitsGuild, transactionId).ok().build());
@@ -119,5 +119,18 @@ public class ResourcesController {
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
+    }
+
+
+    @GetMapping("/plan-acquisition")
+    public ResponseEntity<GenericResponse<List<PlanAcquisitionModel>>> planAcquisition(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
+
+        final List<PlanAcquisitionModel> benefitsGuild = resourcesPort.getPlansAcquisition(locale.getLanguage(),
+                transactionId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(benefitsGuild, transactionId).ok().build());
     }
 }

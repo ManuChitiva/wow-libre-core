@@ -1,0 +1,272 @@
+{
+  "es": [
+    {
+      "name": "Gratis",
+      "price": "$0",
+      "description": "Empieza sin costo y accede a nuestras funciones esenciales.",
+      "features": [
+        "Vinculaciones ilimitadas",
+        "Tráfico sin restricciones",
+        "Landing page incluida",
+        "Dashboard para gestionar todo",
+        "Requiere integración con plan VIP",
+        "Launcher (Próximamente)"
+      ],
+      "button_text": "¡Regístrate Gratis!",
+      "url": "https://www.wowlibre.com/register"
+    },
+    {
+      "name": "Pro",
+      "price": "$300/año",
+      "description": "La mejor opción para empresas y startups. Solo $25/mes facturado anualmente.",
+      "features": [
+        "Vinculaciones ilimitadas",
+        "Tráfico sin restricciones",
+        "Landing page personalizada",
+        "Dashboard avanzado",
+        "Sin obligación de plan VIP",
+        "App móvil (Próximamente)",
+        "Launcher (Próximamente)",
+        "Soporte prioritario",
+        "Servidor VPS incluido",
+        "Monitoreo y alertas 24/7",
+        "Descargas de recursos ilimitadas",
+        "Vinculación automática",
+        "Estrategias de marketing en redes",
+        "Instalación web completa",
+        "Módulos Azeroth Core",
+        "Dominio personalizado gratis"
+      ],
+      "button_text": "¡Adquiere el Plan Pro!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Starter",
+      "price": "$192 cada 6 meses",
+      "description": "Ideal para pequeñas empresas y emprendedores. Solo $30/mes facturado cada 6 meses.",
+      "features": [
+        "Vinculaciones ilimitadas",
+        "Tráfico sin restricciones",
+        "Landing page personalizada",
+        "Dashboard avanzado",
+        "Sin obligación de plan VIP",
+        "App móvil (Próximamente)",
+        "Launcher (Próximamente)",
+        "Soporte prioritario",
+        "Servidor VPS incluido",
+        "Monitoreo y alertas 24/7",
+        "Descargas de recursos ilimitadas",
+        "Vinculación automática",
+        "Estrategias de marketing en redes",
+        "Instalación web completa",
+        "Módulos Azeroth Core",
+        "Dominio personalizado gratis"
+      ],
+      "button_text": "¡Empieza Ahora!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Mensual",
+      "price": "$35/mes",
+      "description": "La flexibilidad que necesitas. Pago mensual de $35, con un pago inicial adicional por el dominio.",
+      "features": [
+        "Vinculaciones ilimitadas",
+        "Tráfico sin restricciones",
+        "Landing page personalizada",
+        "Dashboard avanzado",
+        "Sin obligación de plan VIP",
+        "App móvil (Próximamente)",
+        "Launcher (Próximamente)",
+        "Soporte prioritario",
+        "Servidor VPS incluido",
+        "Monitoreo y alertas 24/7",
+        "Descargas de recursos ilimitadas",
+        "Vinculación automática",
+        "Dominio personalizado (requiere pago inicial)",
+        "Instalación web completa"
+      ],
+      "button_text": "¡Suscríbete Hoy!",
+      "url": "https://wa.link/ab85xk"
+    }
+  ],
+  "en": [
+    {
+      "name": "Free",
+      "price": "$0",
+      "description": "Get started at no cost and access our essential features.",
+      "features": [
+        "Unlimited linkages",
+        "Unlimited traffic",
+        "Landing page included",
+        "Dashboard to manage everything",
+        "Requires integration with VIP plan",
+        "Launcher (Coming Soon)"
+      ],
+      "button_text": "Sign Up Free!",
+      "url": "https://www.wowlibre.com/register"
+    },
+    {
+      "name": "Pro",
+      "price": "$300/year",
+      "description": "The best choice for companies and startups. Only $25/month billed annually.",
+      "features": [
+        "Unlimited linkages",
+        "Unlimited traffic",
+        "Custom landing page",
+        "Advanced dashboard",
+        "No VIP plan required",
+        "Mobile app (Coming Soon)",
+        "Launcher (Coming Soon)",
+        "Priority support",
+        "VPS server included",
+        "24/7 monitoring and alerts",
+        "Unlimited resource downloads",
+        "Automatic linking",
+        "Social media marketing strategies",
+        "Complete web installation",
+        "Azeroth Core modules",
+        "Free custom domain"
+      ],
+      "button_text": "Get the Pro Plan!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Starter",
+      "price": "$192 every 6 months",
+      "description": "Ideal for small businesses and entrepreneurs. Only $30/month billed every 6 months.",
+      "features": [
+        "Unlimited linkages",
+        "Unlimited traffic",
+        "Custom landing page",
+        "Advanced dashboard",
+        "No VIP plan required",
+        "Mobile app (Coming Soon)",
+        "Launcher (Coming Soon)",
+        "Priority support",
+        "VPS server included",
+        "24/7 monitoring and alerts",
+        "Unlimited resource downloads",
+        "Automatic linking",
+        "Social media marketing strategies",
+        "Complete web installation",
+        "Azeroth Core modules",
+        "Free custom domain"
+      ],
+      "button_text": "Start Now!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Monthly",
+      "price": "$35/month",
+      "description": "The flexibility you need. Monthly payment of $35, with an additional one-time domain payment.",
+      "features": [
+        "Unlimited linkages",
+        "Unlimited traffic",
+        "Custom landing page",
+        "Advanced dashboard",
+        "No VIP plan required",
+        "Mobile app (Coming Soon)",
+        "Launcher (Coming Soon)",
+        "Priority support",
+        "VPS server included",
+        "24/7 monitoring and alerts",
+        "Unlimited resource downloads",
+        "Automatic linking",
+        "Custom domain (requires one-time payment)",
+        "Complete web installation"
+      ],
+      "button_text": "Subscribe Today!",
+      "url": "https://wa.link/ab85xk"
+    }
+  ],
+  "pt": [
+    {
+      "name": "Gratuito",
+      "price": "R$0",
+      "description": "Comece sem custo e acesse nossos recursos essenciais.",
+      "features": [
+        "Vinculações ilimitadas",
+        "Tráfego sem limites",
+        "Landing page incluída",
+        "Painel para gerenciar tudo",
+        "Requer integração com plano VIP",
+        "Launcher (Em breve)"
+      ],
+      "button_text": "Cadastre-se Gratuitamente!",
+      "url": "https://www.wowlibre.com/register"
+    },
+    {
+      "name": "Pro",
+      "price": "R$300/ano",
+      "description": "A melhor opção para empresas e startups. Apenas R$25/mês cobrados anualmente.",
+      "features": [
+        "Vinculações ilimitadas",
+        "Tráfego sem limites",
+        "Landing page personalizada",
+        "Painel avançado",
+        "Sem exigência de plano VIP",
+        "App móvel (Em breve)",
+        "Launcher (Em breve)",
+        "Suporte prioritário",
+        "Servidor VPS incluído",
+        "Monitoramento e alertas 24/7",
+        "Downloads de recursos ilimitados",
+        "Vinculação automática",
+        "Estratégias de marketing nas redes sociais",
+        "Instalação web completa",
+        "Módulos Azeroth Core",
+        "Domínio personalizado gratuito"
+      ],
+      "button_text": "Adquira o Plano Pro!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Starter",
+      "price": "R$192 a cada 6 meses",
+      "description": "Ideal para pequenos negócios e empreendedores. Apenas R$30/mês cobrados a cada 6 meses.",
+      "features": [
+        "Vinculações ilimitadas",
+        "Tráfego sem limites",
+        "Landing page personalizada",
+        "Painel avançado",
+        "Sem exigência de plano VIP",
+        "App móvel (Em breve)",
+        "Launcher (Em breve)",
+        "Suporte prioritário",
+        "Servidor VPS incluído",
+        "Monitoramento e alertas 24/7",
+        "Downloads de recursos ilimitados",
+        "Vinculação automática",
+        "Estratégias de marketing nas redes sociais",
+        "Instalação web completa",
+        "Módulos Azeroth Core",
+        "Domínio personalizado gratuito"
+      ],
+      "button_text": "Comece Agora!",
+      "url": "https://wa.link/ab85xk"
+    },
+    {
+      "name": "Mensal",
+      "price": "R$35/mês",
+      "description": "A flexibilidade que você precisa. Pagamento mensal de R$35, com pagamento inicial adicional para o domínio.",
+      "features": [
+        "Vinculações ilimitadas",
+        "Tráfego sem limites",
+        "Landing page personalizada",
+        "Painel avançado",
+        "Sem exigência de plano VIP",
+        "App móvel (Em breve)",
+        "Launcher (Em breve)",
+        "Suporte prioritário",
+        "Servidor VPS incluído",
+        "Monitoramento e alertas 24/7",
+        "Downloads de recursos ilimitados",
+        "Vinculação automática",
+        "Domínio personalizado (requer pagamento inicial)",
+        "Instalação web completa"
+      ],
+      "button_text": "Assine Hoje!",
+      "url": "https://wa.link/ab85xk"
+    }
+  ]
+}

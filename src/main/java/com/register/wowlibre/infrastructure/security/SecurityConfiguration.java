@@ -97,6 +97,7 @@ public class SecurityConfiguration {
                                         "/api/resources/benefit",
                                         "/api/resources/benefits-guild",
                                         "/api/resources/experiences",
+                                        "/api/resources/plan-acquisition",
                                         "/api/server",
                                         "/api/guilds",
                                         "/api/guilds/{id}",

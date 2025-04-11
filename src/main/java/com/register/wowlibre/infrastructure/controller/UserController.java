@@ -26,10 +26,10 @@ public class UserController {
     public ResponseEntity<GenericResponse<JwtDto>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale,
-            @RequestBody @Valid UserDto accountWeb, HttpServletRequest request) {
+            @RequestBody @Valid UserDto userDtoRequest, HttpServletRequest request) {
         String clientIp = request.getRemoteAddr();
 
-        final JwtDto jwtDto = userPort.create(accountWeb, clientIp, locale, transactionId);
+        final JwtDto jwtDto = userPort.create(userDtoRequest, clientIp, locale, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<>(jwtDto, transactionId).created().build());
