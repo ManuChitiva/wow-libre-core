@@ -8,7 +8,7 @@ import java.util.*;
 public enum MachineType {
     ITEMS("Item", "World of Warcraft Clásico", "https://i.ibb.co/tCwJwz5/classic-wow-libre-expansion.png"),
     LEVEL("Level", "World of Warcraft Clásico", "https://i.ibb.co/tCwJwz5/classic-wow-libre-expansion.png"),
-    MENAS("Menas", "World of Warcraft Clásico", "https://i.ibb.co/tCwJwz5/classic-wow-libre-expansion.png"),
+    MOUNT("Mount", "World of Warcraft Clásico", "https://i.ibb.co/tCwJwz5/classic-wow-libre-expansion.png"),
     GOLD("Gold", "World of Warcraft Clásico", "https://i.ibb.co/tCwJwz5/classic-wow-libre-expansion.png");
 
     private final String name;

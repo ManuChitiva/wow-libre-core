@@ -43,7 +43,7 @@ public class MachineService implements MachinePort {
 
         final ServerEntity server = verificationDto.server();
 
-        int[] weights = {19, 1, 15, 5, 60};
+        int[] weights = {21, 1, 5, 3, 70};
         String[] outcomes = {"Item", "Level", "Mount", "Gold", "None"};
 
         Optional<MachineEntity> machine = obtainMachine.findByUserIdAndServerId(userId,
@@ -122,7 +122,8 @@ public class MachineService implements MachinePort {
                 machineModel.setCoint(10);
             } else {
                 machineModel.setCoint(0);
-            }            machineModel.setUserId(userId);
+            }
+            machineModel.setUserId(userId);
             machineModel.setServerId(serverId);
             saveMachine.save(machineModel, transactionId);
         }

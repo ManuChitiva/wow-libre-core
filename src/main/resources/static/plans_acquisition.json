@@ -67,8 +67,8 @@
     },
     {
       "name": "Mensual",
-      "price": "$35/mes",
-      "description": "La flexibilidad que necesitas. Pago mensual de $35, con un pago inicial adicional por el dominio.",
+      "price": "$39/mes",
+      "description": "La flexibilidad que necesitas. Pago mensual de $39, con un pago inicial adicional por el dominio.",
       "features": [
         "Vinculaciones ilimitadas",
         "Tráfico sin restricciones",
@@ -80,10 +80,10 @@
         "Soporte prioritario",
         "Servidor VPS incluido",
         "Monitoreo y alertas 24/7",
-        "Descargas de recursos ilimitadas",
         "Vinculación automática",
         "Dominio personalizado (requiere pago inicial)",
-        "Instalación web completa"
+        "Instalación web completa",
+        "Estrategias de marketing en redes"
       ],
       "button_text": "¡Suscríbete Hoy!",
       "url": "https://wa.link/ab85xk"
@@ -157,8 +157,8 @@
     },
     {
       "name": "Monthly",
-      "price": "$35/month",
-      "description": "The flexibility you need. Monthly payment of $35, with an additional one-time domain payment.",
+      "price": "$39/month",
+      "description": "The flexibility you need. Monthly payment of $39, with an additional one-time domain payment.",
       "features": [
         "Unlimited linkages",
         "Unlimited traffic",
@@ -170,10 +170,10 @@
         "Priority support",
         "VPS server included",
         "24/7 monitoring and alerts",
-        "Unlimited resource downloads",
         "Automatic linking",
         "Custom domain (requires one-time payment)",
-        "Complete web installation"
+        "Complete web installation",
+        "Social media marketing strategies"
       ],
       "button_text": "Subscribe Today!",
       "url": "https://wa.link/ab85xk"
@@ -182,7 +182,7 @@
   "pt": [
     {
       "name": "Gratuito",
-      "price": "R$0",
+      "price": "$0",
       "description": "Comece sem custo e acesse nossos recursos essenciais.",
       "features": [
         "Vinculações ilimitadas",
@@ -197,8 +197,8 @@
     },
     {
       "name": "Pro",
-      "price": "R$300/ano",
-      "description": "A melhor opção para empresas e startups. Apenas R$25/mês cobrados anualmente.",
+      "price": "$300/ano",
+      "description": "A melhor opção para empresas e startups. Apenas $25/mês cobrados anualmente.",
       "features": [
         "Vinculações ilimitadas",
         "Tráfego sem limites",
@@ -210,7 +210,6 @@
         "Suporte prioritário",
         "Servidor VPS incluído",
         "Monitoramento e alertas 24/7",
-        "Downloads de recursos ilimitados",
         "Vinculação automática",
         "Estratégias de marketing nas redes sociais",
         "Instalação web completa",
@@ -222,8 +221,8 @@
     },
     {
       "name": "Starter",
-      "price": "R$192 a cada 6 meses",
-      "description": "Ideal para pequenos negócios e empreendedores. Apenas R$30/mês cobrados a cada 6 meses.",
+      "price": "$192 a cada 6 meses",
+      "description": "Ideal para pequenos negócios e empreendedores. Apenas $30/mês cobrados a cada 6 meses.",
       "features": [
         "Vinculações ilimitadas",
         "Tráfego sem limites",
@@ -247,8 +246,8 @@
     },
     {
       "name": "Mensal",
-      "price": "R$35/mês",
-      "description": "A flexibilidade que você precisa. Pagamento mensal de R$35, com pagamento inicial adicional para o domínio.",
+      "price": "$39/mês",
+      "description": "A flexibilidade que você precisa. Pagamento mensal de $39, com pagamento inicial adicional para o domínio.",
       "features": [
         "Vinculações ilimitadas",
         "Tráfego sem limites",
@@ -260,10 +259,10 @@
         "Suporte prioritário",
         "Servidor VPS incluído",
         "Monitoramento e alertas 24/7",
-        "Downloads de recursos ilimitados",
         "Vinculação automática",
         "Domínio personalizado (requer pagamento inicial)",
-        "Instalação web completa"
+        "Instalação web completa",
+        "Social media marketing strategies"
       ],
       "button_text": "Assine Hoje!",
       "url": "https://wa.link/ab85xk"
