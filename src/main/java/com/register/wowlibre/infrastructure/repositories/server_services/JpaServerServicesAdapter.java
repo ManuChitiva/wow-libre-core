@@ -16,27 +16,27 @@ public class JpaServerServicesAdapter implements ObtainServiceServices, SaveServ
 
 
     @Override
-    public List<ServerServicesEntity> findByServerId(Long serverId, String transactionId) {
+    public List<RealmServicesEntity> findByServerId(Long serverId, String transactionId) {
         return serverServicesRepository.findByServerId_Id(serverId);
     }
 
     @Override
-    public Optional<ServerServicesEntity> findByNameAndServerId(String name, Long serverId, String transactionId) {
+    public Optional<RealmServicesEntity> findByNameAndServerId(String name, Long serverId, String transactionId) {
         return serverServicesRepository.findByNameAndServerId_id(name, serverId);
     }
 
     @Override
-    public List<ServerServicesEntity> findByServersAvailableRequestLoa(String transactionId) {
+    public List<RealmServicesEntity> findByServersAvailableRequestLoa(String transactionId) {
         return serverServicesRepository.findActiveServerServicesWithAmountGreaterThanZero();
     }
 
     @Override
-    public Optional<ServerServicesEntity> findById(Long id) {
+    public Optional<RealmServicesEntity> findById(Long id) {
         return serverServicesRepository.findById(id);
     }
 
     @Override
-    public void save(ServerServicesEntity serverServicesEntity, String transactionId) {
-        serverServicesRepository.save(serverServicesEntity);
+    public void save(RealmServicesEntity realmServicesEntity, String transactionId) {
+        serverServicesRepository.save(realmServicesEntity);
     }
 }

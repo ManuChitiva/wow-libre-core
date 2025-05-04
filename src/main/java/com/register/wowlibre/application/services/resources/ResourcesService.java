@@ -1,7 +1,7 @@
 package com.register.wowlibre.application.services.resources;
 
 
-import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.out.*;
 import org.springframework.stereotype.*;
@@ -14,6 +14,11 @@ public class ResourcesService implements ResourcesPort {
 
     public ResourcesService(JsonLoaderPort jsonLoaderPort) {
         this.jsonLoaderPort = jsonLoaderPort;
+    }
+
+    @Override
+    public List<BannerHomeModel> getBannersHome(String language, String transactionId) {
+        return jsonLoaderPort.getBannersHome(language, transactionId);
     }
 
     @Override
@@ -46,10 +51,6 @@ public class ResourcesService implements ResourcesPort {
         return jsonLoaderPort.getJsonServersPromoGuild(language, transactionId);
     }
 
-    @Override
-    public List<BannerHomeModel> getBannersHome(String language, String transactionId) {
-        return jsonLoaderPort.getBannersHome(language, transactionId);
-    }
 
     @Override
     public WidgetHomeSubscriptionModel getWidgetSubscription(String language, String transactionId) {

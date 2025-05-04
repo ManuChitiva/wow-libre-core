@@ -1,6 +1,6 @@
 package com.register.wowlibre.infrastructure.controller;
 
-import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.shared.*;
 import org.springframework.http.*;
@@ -19,6 +19,21 @@ public class ResourcesController {
     public ResourcesController(ResourcesPort resourcesPort) {
         this.resourcesPort = resourcesPort;
     }
+
+
+    @GetMapping("/banners-home")
+    public ResponseEntity<GenericResponse<List<BannerHomeModel>>> bannersHome(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
+
+        final List<BannerHomeModel> serversPromotions = resourcesPort.getBannersHome(locale.getLanguage(),
+                transactionId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
+    }
+
 
     @GetMapping("/country")
     public ResponseEntity<GenericResponse<List<CountryModel>>> country(
@@ -94,18 +109,6 @@ public class ResourcesController {
                 .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
     }
 
-    @GetMapping("/banners-home")
-    public ResponseEntity<GenericResponse<List<BannerHomeModel>>> bannersHome(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
-
-        final List<BannerHomeModel> serversPromotions = resourcesPort.getBannersHome(locale.getLanguage(),
-                transactionId);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
-    }
 
     @GetMapping("/widget-home")
     public ResponseEntity<GenericResponse<WidgetHomeSubscriptionModel>> widgetSubscription(

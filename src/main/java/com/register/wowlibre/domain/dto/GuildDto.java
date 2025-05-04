@@ -2,6 +2,7 @@ package com.register.wowlibre.domain.dto;
 
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.model.resources.*;
 import lombok.*;
 
 import java.util.*;

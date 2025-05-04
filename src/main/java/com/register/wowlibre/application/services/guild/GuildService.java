@@ -5,6 +5,7 @@ import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
+import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.benefit_guild.*;
@@ -52,7 +53,7 @@ public class GuildService implements GuildPort {
 
         } else {
 
-            Optional<ServerEntity> servers = serverPort.findByStatusIsTrueServers(transactionId).stream().findFirst();
+            Optional<RealmEntity> servers = serverPort.findByStatusIsTrueServers(transactionId).stream().findFirst();
 
             if (servers.isEmpty()) {
                 return new GuildsDto(new ArrayList<>(), 0L);
@@ -68,13 +69,13 @@ public class GuildService implements GuildPort {
     @Override
     public GuildDto detail(Long serverId, Long guildId, String transactionId) {
 
-        Optional<ServerEntity> server = serverPort.findById(serverId, transactionId);
+        Optional<RealmEntity> server = serverPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("", transactionId);
         }
 
-        ServerEntity serverModel = server.get();
+        RealmEntity serverModel = server.get();
 
         GuildDto guildDto = integratorPort.guild(serverModel.getName(), serverModel.getId(), serverModel.getIp(),
                 serverModel.getJwt(), guildId,
@@ -170,7 +171,7 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        ServerEntity serverModel = verificationDto.server();
+        RealmEntity serverModel = verificationDto.server();
 
         GuildDetailMemberResponse guildDto = integratorPort.guildMember(verificationDto.server().getIp(),
                 verificationDto.server().getJwt(), userId,

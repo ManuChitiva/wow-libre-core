@@ -36,25 +36,25 @@ public class ServerServicesService implements ServerServicesPort {
 
     @Override
     public void updateAmount(Long id, Double amount, String transactionId) {
-        Optional<ServerServicesEntity> updateAmount = obtainServiceServices.findById(id);
+        Optional<RealmServicesEntity> updateAmount = obtainServiceServices.findById(id);
 
         if (updateAmount.isEmpty()) {
             throw new InternalException("The available money from the loan limit could not be updated", transactionId);
         }
-        ServerServicesEntity update = updateAmount.get();
+        RealmServicesEntity update = updateAmount.get();
         update.setAmount(amount);
         saveServiceServices.save(update, transactionId);
 
     }
 
     @Override
-    public void updateOrCreateAmountByServerId(String name, ServerEntity server, Double amount, String transactionId) {
-        Optional<ServerServicesEntity> existingService =
+    public void updateOrCreateAmountByServerId(String name, RealmEntity server, Double amount, String transactionId) {
+        Optional<RealmServicesEntity> existingService =
                 obtainServiceServices.findByNameAndServerId(name, server.getId(), transactionId);
 
 
-        ServerServicesEntity serviceEntity = existingService.orElseGet(() -> {
-            ServerServicesEntity newService = new ServerServicesEntity();
+        RealmServicesEntity serviceEntity = existingService.orElseGet(() -> {
+            RealmServicesEntity newService = new RealmServicesEntity();
             newService.setServerId(server);
             newService.setName(name);
             return newService;
@@ -65,9 +65,9 @@ public class ServerServicesService implements ServerServicesPort {
         saveServiceServices.save(serviceEntity, transactionId);
     }
 
-    private ServerServicesModel mapToModel(ServerServicesEntity serverServicesEntity) {
-        return new ServerServicesModel(serverServicesEntity.getId(), serverServicesEntity.getName(),
-                serverServicesEntity.getAmount(), serverServicesEntity.getServerId().getId(),
-                serverServicesEntity.getServerId().getName());
+    private ServerServicesModel mapToModel(RealmServicesEntity realmServicesEntity) {
+        return new ServerServicesModel(realmServicesEntity.getId(), realmServicesEntity.getName(),
+                realmServicesEntity.getAmount(), realmServicesEntity.getServerId().getId(),
+                realmServicesEntity.getServerId().getName());
     }
 }

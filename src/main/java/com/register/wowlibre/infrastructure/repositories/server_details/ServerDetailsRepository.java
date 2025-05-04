@@ -7,5 +7,5 @@ import java.util.*;
 
 public interface ServerDetailsRepository extends CrudRepository<ServerDetailsEntity, Long> {
 
-    List<ServerDetailsEntity> findByServerId(ServerEntity serverId);
+    List<ServerDetailsEntity> findByServerId(RealmEntity serverId);
 }

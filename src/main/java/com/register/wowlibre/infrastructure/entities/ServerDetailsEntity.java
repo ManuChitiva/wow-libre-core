@@ -23,5 +23,5 @@ public class ServerDetailsEntity implements Serializable {
     @ManyToOne(
             optional = false,
             fetch = FetchType.EAGER)
-    private ServerEntity serverId;
+    private RealmEntity serverId;
 }

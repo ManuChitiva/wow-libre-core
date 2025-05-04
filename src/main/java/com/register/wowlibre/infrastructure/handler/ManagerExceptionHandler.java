@@ -13,6 +13,19 @@ import java.util.*;
 @RestControllerAdvice
 public class ManagerExceptionHandler {
 
+    @ExceptionHandler(
+            value = {
+                    MissingRequestHeaderException.class
+            })
+    public ResponseEntity<GenericResponse<Void>> missingRequestHeaderException(MissingRequestHeaderException e) {
+
+        GenericResponse<Void> response = new GenericResponse<>();
+        response.setMessage(e.getMessage());
+        response.setCode(400);
+
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(response);
+    }
+
     @ExceptionHandler({MethodArgumentNotValidException.class})
     public ResponseEntity<GenericResponse<NotNullValuesDto>> methodArgumentNotValidException(MethodArgumentNotValidException e) {
 
@@ -70,7 +83,6 @@ public class ManagerExceptionHandler {
         response.setTransactionId(e.transactionId);
         return ResponseEntity.status(e.httpStatus).body(response);
     }
-
 
 
 }

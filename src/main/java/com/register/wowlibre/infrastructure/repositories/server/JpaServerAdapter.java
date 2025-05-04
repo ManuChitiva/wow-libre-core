@@ -15,54 +15,54 @@ public class JpaServerAdapter implements ObtainServerPort, SaveServerPort {
     }
 
     @Override
-    public List<ServerEntity> findByUser(Long userId, String transactionId) {
+    public List<RealmEntity> findByUser(Long userId, String transactionId) {
         return serverRepository.findByUserId(userId);
     }
 
     @Override
-    public List<ServerEntity> findByStatusIsTrue(String transactionId) {
+    public List<RealmEntity> findByStatusIsTrue(String transactionId) {
         return serverRepository.findByStatusIsTrue();
     }
 
     @Override
-    public Optional<ServerEntity> findByNameAndExpansionAndStatusIsTrue(String name, String version,
-                                                                        String transactionId) {
+    public Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, String version,
+                                                                       String transactionId) {
         return serverRepository.findByNameAndExpansionAndStatusIsTrue(name, version);
     }
 
     @Override
-    public Optional<ServerEntity> findByApiKey(String apikey, String transactionId) {
+    public Optional<RealmEntity> findByApiKey(String apikey, String transactionId) {
         return serverRepository.findByApiKey(apikey);
     }
 
     @Override
-    public Optional<ServerEntity> findById(Long id, String transactionId) {
+    public Optional<RealmEntity> findById(Long id, String transactionId) {
         return serverRepository.findById(id);
     }
 
     @Override
-    public Optional<ServerEntity> findByNameAndExpansion(String name, String expansion, String transactionId) {
+    public Optional<RealmEntity> findByNameAndExpansion(String name, String expansion, String transactionId) {
         return serverRepository.findByNameAndExpansionAndStatusIsTrue(name, expansion);
     }
 
     @Override
-    public List<ServerEntity> findByStatusIsFalse(String transactionId) {
+    public List<RealmEntity> findByStatusIsFalse(String transactionId) {
         return serverRepository.findByStatusIsFalse();
     }
 
     @Override
-    public Optional<ServerEntity> findAndIdByUser(Long id, Long userId, String transactionId) {
+    public Optional<RealmEntity> findAndIdByUser(Long id, Long userId, String transactionId) {
         return serverRepository.findByIdAndUserId(id, userId);
     }
 
     @Override
-    public List<ServerEntity> findByStatusIsFalseAndRetry(Long retry, String transactionId) {
+    public List<RealmEntity> findByStatusIsFalseAndRetry(Long retry, String transactionId) {
         return serverRepository.findByStatusIsFalseAndRetry(retry);
     }
 
     @Override
-    public void save(ServerEntity serverEntity, String transactionId) {
-        serverRepository.save(serverEntity);
+    public void save(RealmEntity realmEntity, String transactionId) {
+        serverRepository.save(realmEntity);
     }
 }
 

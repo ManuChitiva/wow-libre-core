@@ -5,5 +5,5 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.util.*;
 
 public interface ObtainServerDetails {
-    List<ServerDetailsEntity> findByServerId(ServerEntity server, String transactionId);
+    List<ServerDetailsEntity> findByServerId(RealmEntity server, String transactionId);
 }

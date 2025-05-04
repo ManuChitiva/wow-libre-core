@@ -14,6 +14,6 @@ public interface ServerServicesPort {
 
     void updateAmount(Long id, Double amount, String transactionId);
 
-    void updateOrCreateAmountByServerId(String name, ServerEntity server, Double amount, String transactionId);
+    void updateOrCreateAmountByServerId(String name, RealmEntity server, Double amount, String transactionId);
 
 }

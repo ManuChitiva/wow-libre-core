@@ -42,7 +42,7 @@ public class TransactionBanks {
         credits.forEach(credit -> {
             LOGGER.info("[TransactionBanks] [SendCreditLoans] Sending credit applications CreditId {}", credit.getId());
 
-            Optional<ServerEntity> server = serverPort.findById(credit.getServerId(), transactionId);
+            Optional<RealmEntity> server = serverPort.findById(credit.getServerId(), transactionId);
             if (server.isPresent()) {
 
                 try {
@@ -91,7 +91,7 @@ public class TransactionBanks {
         List<CreditLoansEntity> credits = obtainCreditLoans.creditRequestPending(LocalDateTime.now(), transactionId);
 
         credits.forEach(credit -> {
-            Optional<ServerEntity> server = serverPort.findById(credit.getServerId(), transactionId);
+            Optional<RealmEntity> server = serverPort.findById(credit.getServerId(), transactionId);
 
             if (server.isPresent()) {
                 try {

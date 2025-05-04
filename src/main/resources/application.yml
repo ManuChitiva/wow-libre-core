@@ -20,15 +20,11 @@ spring:
   config:
     activate:
       on-profile: local
-  data:
-    redis:
-      host: localhost
-      port: 6379
   jpa:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/accounts
+    url: jdbc:mysql://localhost:3306/core
     username: root
     password: Wowlibre96@@
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -59,10 +55,8 @@ server:
   port: 8091
 application:
   host:
-    wow-libre: http://localhost:3000
+    domain: http://localhost:3000
   security:
-    mail:
-      api-key: 'mlsn.0ebc57351a0ce3a6b78a6e2e80f0233d8b826f34cdccc052e3946909de563769'
     jwt:
       secret-key: 6E4D574873506B4A72434B6A614B39786F736B7855666B4D456A6E466F785572
       expiration: 604800000 # a day
@@ -78,17 +72,13 @@ spring:
   config:
     activate:
       on-profile: prod
-  data:
-    redis:
-      host: ${REDIS-URL}
-      port: ${REDIS-PORT}
   jpa:
     hibernate:
       ddl-auto: none
   datasource:
-    url: ${DB_URL}
-    username: ${DB_USERNAME}
-    password: ${DB_PASSWORD}
+    url: ${DB_CORE_URL}
+    username: ${DB_CORE_USERNAME}
+    password: ${DB_CORE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
     host: 'smtp-relay.brevo.com'
@@ -109,7 +99,7 @@ aws:
     region: us-east-1
     from-email: wowlibrecomunidad@gmail.com
 google:
-  api-key: ${GOOGLE_SERVER_API_KEY}
+  api-key: ${GOOGLE_API_SECRET}
 server:
   servlet:
     context-path: /core
@@ -117,7 +107,7 @@ server:
   port: 8091
 application:
   host:
-    wow-libre: ${WOW_LIBRE_HOST}
+    domain: ${HOST_DOMAIN}
   security:
     jwt:
       secret-key: 404E635266556A586E3272357538782F413F4428472B4B6250645367566B5970

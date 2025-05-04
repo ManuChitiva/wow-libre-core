@@ -9,30 +9,34 @@ import java.util.*;
 
 @Data
 @Entity
-@Table(name = "servers")
-public class ServerEntity implements Serializable {
+@Table(name = "realm")
+public class RealmEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
     private String emulator;
-    private String avatar;
-    private String expansion;
-    private String ip;
-    private String password;
+    @Column(name = "expansion_id")
+    private int expansionId;
+    private String type;
+    private String host;
+    private int port;
     @Column(name = "api_key")
     private String apiKey;
     @Column(name = "api_secret")
     private String apiSecret;
-    @Column(name = "creation_date")
-    private LocalDateTime creationDate;
+    private String password;
     private String jwt;
-    @Column(name = "refresh_token")
-    private String refreshToken;
     @Column(name = "expiration_date")
     private Date expirationDate;
-    @Column(name = "web_site")
-    private String webSite;
+    @Column(name = "refresh_token")
+    private String refreshToken;
+    @Column(name = "avatar_url")
+    private String avatarUrl;
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+    @Column(name = "web")
+    private String web;
     private String realmlist;
     private boolean status;
     @Column(name = "external_username")
@@ -40,8 +44,7 @@ public class ServerEntity implements Serializable {
     @Column(name = "external_password")
     private String externalPassword;
     private byte[] salt;
-    private Long userId;
-    private String type;
     private Integer retry;
     private String disclaimer;
+    private Long userId;
 }

@@ -1,4 +1,4 @@
-package com.register.wowlibre.domain.model;
+package com.register.wowlibre.domain.model.resources;
 
 import java.util.*;
 

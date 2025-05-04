@@ -5,5 +5,5 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.io.*;
 
 
-public record AccountVerificationDto(ServerEntity server, AccountGameEntity accountGame) implements Serializable {
+public record AccountVerificationDto(RealmEntity server, AccountGameEntity accountGame) implements Serializable {
 }

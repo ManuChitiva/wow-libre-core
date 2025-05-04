@@ -2,25 +2,14 @@
   "es": [
     {
       "id": 1,
-      "name": "Wow Hero",
+      "name": "Tu Server",
       "sub_title": "Blizzlike Autobalance",
-      "description": "Forja tu destino sin barreras",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_660821f872c74ff0b965625d0ba5d52f~mv2.webp",
+      "description": "Apoya al servidor con tu voto y hazlo crecer.",
+      "logo": "https://static.wixstatic.com/media/5dd8a0_ec2e09defd004b48812e1b2811bcba0f~mv2.jpg",
       "link": "",
-      "realmlist": "set realmlist play.wowlibre.com",
+      "realmlist": "set realmlist tuserverwow.com",
       "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
       "facebook": "https://www.facebook.com/profile.php?id=61574830231332"
-    },
-    {
-      "id": 2,
-      "name": "Wow Elysium",
-      "sub_title": "Version 3.3.5",
-      "description": "Instant 80",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_6d2b2e558df54680842500a325f8a6b4~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ],
   "en": [
@@ -34,17 +23,6 @@
       "realmlist": "set realmlist play.wowlibre.com",
       "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
       "facebook": "https://www.facebook.com/profile.php?id=61574830231332"
-    },
-    {
-      "id": 2,
-      "name": "Wow Elysium",
-      "sub_title": "Version 3.3.5",
-      "description": "Instant level 80",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_6d2b2e558df54680842500a325f8a6b4~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ],
   "pt": [
@@ -58,17 +36,6 @@
       "realmlist": "set realmlist play.wowlibre.com",
       "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
       "facebook": "https://www.facebook.com/profile.php?id=61574830231332"
-    },
-    {
-      "id": 2,
-      "name": "Wow Elysium",
-      "sub_title": "Versão 3.3.5",
-      "description": "Nível 80 instantâneo",
-      "logo": "https://static.wixstatic.com/media/5dd8a0_6d2b2e558df54680842500a325f8a6b4~mv2.jpg",
-      "link": "",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "whatsapp": "https://chat.whatsapp.com/JwE1UAGX6Zo7uM6OTOj2oo",
-      "facebook": "https://www.facebook.com/profile.php?id=61570471507937"
     }
   ]
 }

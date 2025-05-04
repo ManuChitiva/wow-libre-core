@@ -16,7 +16,7 @@ public class JpaServerDetailsAdapter implements ObtainServerDetails, DeleteServe
     }
 
     @Override
-    public List<ServerDetailsEntity> findByServerId(ServerEntity server, String transactionId) {
+    public List<ServerDetailsEntity> findByServerId(RealmEntity server, String transactionId) {
         return serverDetailsRepository.findByServerId(server);
     }
 

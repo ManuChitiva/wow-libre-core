@@ -7,6 +7,6 @@ import java.util.*;
 
 public interface ServerEventsRepository extends CrudRepository<ServerEventsEntity, Long> {
 
-    List<ServerEventsEntity> findByServerId(ServerEntity server);
+    List<ServerEventsEntity> findByServerId(RealmEntity server);
 
 }

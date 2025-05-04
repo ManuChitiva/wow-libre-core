@@ -30,9 +30,9 @@ public class AuthScheduleClients {
     @Scheduled(cron = "1 0/1 * * * *")
     public void authServers() {
         final String transactionId = "Auth-Client";
-        List<ServerEntity> servers = obtainServerPort.findByStatusIsTrue(transactionId);
+        List<RealmEntity> servers = obtainServerPort.findByStatusIsTrue(transactionId);
 
-        for (ServerEntity server : servers) {
+        for (RealmEntity server : servers) {
             LOGGER.info("[AuthScheduleClients][authServers] JWT Refresh Server  {} ", server.getName());
 
             try {
@@ -72,9 +72,9 @@ public class AuthScheduleClients {
     @Scheduled(cron = "1 0/1 * * * *")
     public void availableServers() {
         final String transactionId = "Auth-Client";
-        List<ServerEntity> servers = obtainServerPort.findByStatusIsFalseAndRetry(5L, transactionId);
+        List<RealmEntity> servers = obtainServerPort.findByStatusIsFalseAndRetry(5L, transactionId);
 
-        for (ServerEntity server : servers) {
+        for (RealmEntity server : servers) {
             LOGGER.info("[AuthScheduleClients][availableServers] Register Server  {} ", server.getName());
 
             try {

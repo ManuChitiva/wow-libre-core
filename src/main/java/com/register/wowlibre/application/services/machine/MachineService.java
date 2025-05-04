@@ -41,7 +41,7 @@ public class MachineService implements MachinePort {
                 transactionId);
 
 
-        final ServerEntity server = verificationDto.server();
+        final RealmEntity server = verificationDto.server();
 
         int[] weights = {21, 1, 5, 3, 70};
         String[] outcomes = {"Item", "Level", "Mount", "Gold", "None"};

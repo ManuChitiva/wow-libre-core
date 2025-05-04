@@ -6,7 +6,7 @@ import com.register.wowlibre.infrastructure.entities.*;
 public class ServerMapper {
 
 
-    public static ServerModel toModel(ServerEntity server) {
+    public static ServerModel toModel(RealmEntity server) {
         if (server == null) {
             return null;
         }
@@ -31,35 +31,35 @@ public class ServerMapper {
                 .build();
     }
 
-    public static ServerEntity toEntity(ServerModel server) {
+    public static RealmEntity toEntity(ServerModel server) {
         if (server == null) {
             return null;
         }
 
-        ServerEntity serverEntity = new ServerEntity();
-        serverEntity.setId(server.id);
-        serverEntity.setName(server.name);
-        serverEntity.setEmulator(server.emulator);
-        serverEntity.setExpansion(server.expansion);
-        serverEntity.setAvatar(server.avatar);
-        serverEntity.setIp(server.ip);
-        serverEntity.setApiKey(server.apiKey);
-        serverEntity.setStatus(server.status);
-        serverEntity.setPassword(server.password);
-        serverEntity.setWebSite(server.webSite);
-        serverEntity.setCreationDate(server.creationDate);
-        serverEntity.setApiSecret(server.apiSecret);
-        serverEntity.setRefreshToken(server.refreshToken);
-        serverEntity.setJwt(server.jwt);
-        serverEntity.setType(server.type);
-        serverEntity.setExpirationDate(server.expirationDate);
-        serverEntity.setRealmlist(server.realmlist);
-        serverEntity.setExternalPassword(server.externalPassword);
-        serverEntity.setExternalUsername(server.externalUsername);
-        serverEntity.setSalt(server.salt);
-        serverEntity.setUserId(server.userId);
-        serverEntity.setRetry(server.retry);
-        return serverEntity;
+        RealmEntity realmEntity = new RealmEntity();
+        realmEntity.setId(server.id);
+        realmEntity.setName(server.name);
+        realmEntity.setEmulator(server.emulator);
+        realmEntity.setExpansion(server.expansion);
+        realmEntity.setAvatar(server.avatar);
+        realmEntity.setIp(server.ip);
+        realmEntity.setApiKey(server.apiKey);
+        realmEntity.setStatus(server.status);
+        realmEntity.setPassword(server.password);
+        realmEntity.setWebSite(server.webSite);
+        realmEntity.setCreationDate(server.creationDate);
+        realmEntity.setApiSecret(server.apiSecret);
+        realmEntity.setRefreshToken(server.refreshToken);
+        realmEntity.setJwt(server.jwt);
+        realmEntity.setType(server.type);
+        realmEntity.setExpirationDate(server.expirationDate);
+        realmEntity.setRealmlist(server.realmlist);
+        realmEntity.setExternalPassword(server.externalPassword);
+        realmEntity.setExternalUsername(server.externalUsername);
+        realmEntity.setSalt(server.salt);
+        realmEntity.setUserId(server.userId);
+        realmEntity.setRetry(server.retry);
+        return realmEntity;
     }
 
 

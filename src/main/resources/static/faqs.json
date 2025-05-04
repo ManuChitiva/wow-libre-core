@@ -1,68 +1,30 @@
 {
   "es": [
     {
-      "question": "¿Es Wow Libre un servidor de World of Warcraft?",
-      "answer": "No, Wow Libre no es un servidor de World of Warcraft. Nuestra plataforma está diseñada para proporcionar herramientas avanzadas que permiten a los administradores crear experiencias únicas y personalizadas dentro del mundo de los videojuegos. Nos enfocamos en ofrecer soluciones que faciliten la creación y gestión de servidores para diversas experiencias de juego."
+      "question": "¿Donde consigo los realmlist del servidor?",
+      "answer": "Visita la pagina inicial y encuentra los reinos disponibles."
     },
     {
       "question": "¿Existen canales adicionales de atención al jugador?",
-      "answer": "Sí, contamos con diversos canales de atención en nuestra plataforma, donde podrás encontrar respuestas a las preguntas más frecuentes de la comunidad y obtener asistencia personalizada."
+      "answer": "Sí, contamos con diversos canales de atención en la parte final de la pagina en el footer encuentras las diferentes medios de atencion."
     },
     {
-      "question": "¿Cómo puedo integrar mi servidor privado?",
-      "answer": "Para integrar tu servidor privado, visita nuestra sección de integraciones en https://www.wowlibre.com/integrations. También puedes contactarnos a través de nuestros canales de soporte, como Discord, WhatsApp o Telegram. Estaremos encantados de guiarte en cada paso del proceso."
+      "question": "¿Cómo puedo hacer que mi hermandad salga en la seccion de hermandades?",
+      "answer": "Para habilitar tu hermandad visible debes entrar a la seccion de tus cuentas. en esa seccion busca la cuenta donde tienen el personaje guild master y entra en la seccion de hermandades le das administrar y hacer publica la hermandad."
     },
     {
-      "question": "¿Tiene algún costo la integración de mi servidor?",
-      "answer": "Ofrecemos distintos planes diseñados para adaptarse a tus necesidades. Consulta nuestras opciones y elige la que mejor se ajuste a tu comunidad."
+      "question": "¿Donde puedo descargar el juego?",
+      "answer": ""
     },
     {
       "question": "¿Qué beneficios obtengo al integrar mi servidor?",
-      "answer": "Al integrar tu servidor, accedes a herramientas avanzadas que potencian el crecimiento de tu comunidad. Nuestra plataforma simplifica la administración, mejora la experiencia de los jugadores y optimiza la gestión de tu servidor."
+      "answer": ","
     }
   ],
   "en": [
-    {
-      "question": "Is Wow Libre a World of Warcraft server?",
-      "answer": "No, Wow Libre is not a World of Warcraft server. Our platform is designed to provide advanced tools that allow administrators to create unique and customized experiences within the gaming world. We focus on offering solutions that facilitate the creation and management of servers for various gaming experiences."
-    },
-    {
-      "question": "Are there additional support channels for players?",
-      "answer": "Yes, we have various support channels on our platform where you can find answers to frequently asked questions from the community and receive personalized assistance."
-    },
-    {
-      "question": "How can I integrate my private server?",
-      "answer": "To integrate your private server, visit our integrations section at https://www.wowlibre.com/integrations. You can also contact us through our support channels, such as Discord, WhatsApp, or Telegram. We will be happy to guide you through every step of the process."
-    },
-    {
-      "question": "Does integrating my server have a cost?",
-      "answer": "We offer different plans designed to suit your needs. Check out our options and choose the one that best fits your community."
-    },
-    {
-      "question": "What benefits do I get by integrating my server?",
-      "answer": "By integrating your server, you gain access to advanced tools that boost the growth of your community. Our platform simplifies administration, enhances the player experience, and optimizes server management."
-    }
+
   ],
   "pt": [
-    {
-      "question": "O Wow Libre é um servidor de World of Warcraft?",
-      "answer": "Não, o Wow Libre não é um servidor de World of Warcraft. Nossa plataforma foi projetada para fornecer ferramentas avançadas que permitem aos administradores criar experiências únicas e personalizadas no mundo dos jogos. Nosso foco é oferecer soluções que facilitem a criação e gestão de servidores para diversas experiências de jogo."
-    },
-    {
-      "question": "Existem canais adicionais de suporte para os jogadores?",
-      "answer": "Sim, temos diversos canais de suporte em nossa plataforma, onde você pode encontrar respostas para as perguntas mais frequentes da comunidade e obter assistência personalizada."
-    },
-    {
-      "question": "Como posso integrar meu servidor privado?",
-      "answer": "Para integrar seu servidor privado, visite nossa seção de integrações em https://www.wowlibre.com/integrations. Você também pode entrar em contato conosco através dos nossos canais de suporte, como Discord, WhatsApp ou Telegram. Ficaremos felizes em guiá-lo em cada etapa do processo."
-    },
-    {
-      "question": "A integração do meu servidor tem algum custo?",
-      "answer": "Oferecemos diferentes planos projetados para atender às suas necessidades. Confira nossas opções e escolha aquela que melhor se adapta à sua comunidade."
-    },
-    {
-      "question": "Quais benefícios eu obtenho ao integrar meu servidor?",
-      "answer": "Ao integrar seu servidor, você terá acesso a ferramentas avançadas que impulsionam o crescimento da sua comunidade. Nossa plataforma simplifica a administração, melhora a experiência dos jogadores e otimiza a gestão do servidor."
-    }
+
   ]
 }

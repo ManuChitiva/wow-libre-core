@@ -6,16 +6,16 @@ import org.springframework.data.repository.*;
 
 import java.util.*;
 
-public interface ServerServicesRepository extends CrudRepository<ServerServicesEntity, Long> {
-    List<ServerServicesEntity> findByServerId_Id(Long serverId);
+public interface ServerServicesRepository extends CrudRepository<RealmServicesEntity, Long> {
+    List<RealmServicesEntity> findByServerId_Id(Long serverId);
 
-    Optional<ServerServicesEntity> findByNameAndServerId_id(String name, Long serverId);
+    Optional<RealmServicesEntity> findByNameAndServerId_id(String name, Long serverId);
 
-    @Query("SELECT ss FROM ServerServicesEntity ss " +
+    @Query("SELECT ss FROM RealmServicesEntity ss " +
             "INNER JOIN ss.serverId s " +
             "WHERE ss.amount > 0 AND s.status = true")
-    List<ServerServicesEntity> findActiveServerServicesWithAmountGreaterThanZero();
+    List<RealmServicesEntity> findActiveServerServicesWithAmountGreaterThanZero();
 
     @Override
-    Optional<ServerServicesEntity> findById(Long id);
+    Optional<RealmServicesEntity> findById(Long id);
 }

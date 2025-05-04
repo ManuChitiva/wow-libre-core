@@ -1,8 +1,8 @@
 {
   "es": [
     {
-      "title": "Wow",
-      "title_disclaimer": "Hero",
+      "title": "Reino",
+      "title_disclaimer": "Uno",
       "subtitle": "Reino x1 - ¡Empuña una leyenda y equipa lo que quieras, sin límites.!",
       "description": "Ármate sin límites, equípate con lo que quieras y forja tu leyenda desde nivel 1.",
       "button_primary_text": "¡Únete Ahora!",
@@ -10,12 +10,12 @@
       "background_image": "https://static.wixstatic.com/media/5dd8a0_3403438a20cf4cb7baff8341cdabeeaf~mv2.jpg",
       "realmlist": "set realmlist play.wowlibre.com",
       "copy_success": false,
-      "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
+      "redirect": "/vdp?name=wowhero&expansion=2",
       "disclaimer": "¡El poder está en tus manos, úsalo con sabiduría!"
     },
     {
-      "title": "Wow",
-      "title_disclaimer": "Elysium",
+      "title": "Reino",
+      "title_disclaimer": "Dos",
       "subtitle": "Instant 80 Full PVP",
       "description": "¡Salta directo al nivel 80 y domina los campos de batalla con equipo PvP completo!",
       "button_primary_text": "¡Únete Ahora!",
@@ -23,14 +23,14 @@
       "background_image": "https://static.wixstatic.com/media/5dd8a0_066c7389fe6d427da2cbb3ef258784c9~mv2.webp",
       "realmlist": "set realmlist play.wowlibre.com",
       "copy_success": false,
-      "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
-      "disclaimer": "Solo los valientes triunfan en Elysium."
+      "redirect": "/vdp?name=wowhero&expansion=2",
+      "disclaimer": "Solo los valientes triunfan en el Reino Dos."
     }
   ],
   "en": [
     {
-      "title": "Wow",
-      "title_disclaimer": "Hero",
+      "title": "Realm",
+      "title_disclaimer": "One",
       "subtitle": "Reino x1 - Wield a legend and equip whatever you want, with no limits!",
       "description": "Gear up with no limits, equip yourself with whatever you want, and forge your legend from level 1.",
       "button_primary_text": "Join Now!",
@@ -42,8 +42,8 @@
       "disclaimer": "The power is in your hands, use it wisely!"
     },
     {
-      "title": "Wow",
-      "title_disclaimer": "Elysium",
+      "title": "Realm",
+      "title_disclaimer": "Two",
       "subtitle": "Instant 80 Full PVP",
       "description": "Jump straight to level 80 and dominate the battlegrounds with full PvP gear!",
       "button_primary_text": "Join Now!",

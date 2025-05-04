@@ -74,7 +74,7 @@ public class ServerService implements ServerPort {
     }
 
     @Override
-    public Optional<ServerEntity> findById(Long id, String transactionId) {
+    public Optional<RealmEntity> findById(Long id, String transactionId) {
         return obtainServerPort.findById(id, transactionId);
     }
 
@@ -136,12 +136,12 @@ public class ServerService implements ServerPort {
     }
 
     @Override
-    public List<ServerEntity> findByStatusIsTrueServers(String transactionId) {
+    public List<RealmEntity> findByStatusIsTrueServers(String transactionId) {
         return obtainServerPort.findByStatusIsTrue(transactionId);
     }
 
     @Override
-    public Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId) {
+    public Optional<RealmEntity> findByIdAndUserId(Long id, Long userId, String transactionId) {
         return obtainServerPort.findAndIdByUser(id, userId, transactionId);
     }
 
@@ -149,7 +149,7 @@ public class ServerService implements ServerPort {
     public ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale,
                                                      String transactionId) {
 
-        ServerEntity serverModel = obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, expansion,
+        RealmEntity serverModel = obtainServerPort.findByNameAndExpansionAndStatusIsTrue(name, expansion,
                 transactionId).orElse(null);
 
         if (serverModel == null) {
@@ -232,7 +232,7 @@ public class ServerService implements ServerPort {
                 .map(ServerMapper::toModel).orElse(null);
     }
 
-    private ServerDto mapToModel(ServerEntity server) {
+    private ServerDto mapToModel(RealmEntity server) {
         ServerDto serverDto = new ServerDto();
         serverDto.setId(server.getId());
         serverDto.setName(server.getName());

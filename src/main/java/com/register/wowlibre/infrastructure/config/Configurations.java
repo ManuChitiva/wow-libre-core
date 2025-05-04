@@ -7,8 +7,8 @@ import org.springframework.context.annotation.*;
 @Configuration
 @Data
 public class Configurations {
-    @Value("${application.host.wow-libre}")
-    private String hostWowLibre;
+    @Value("${application.host.domain}")
+    private String hostDomain;
     @Value("${google.api-key}")
     private String googleSecret;
 }

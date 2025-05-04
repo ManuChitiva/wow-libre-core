@@ -18,12 +18,12 @@ public interface ServerPort {
 
     ServerModel findByApiKey(String apiKey, String transactionId);
 
-    Optional<ServerEntity> findById(Long id, String transactionId);
+    Optional<RealmEntity> findById(Long id, String transactionId);
 
 
-    List<ServerEntity> findByStatusIsTrueServers(String transactionId);
+    List<RealmEntity> findByStatusIsTrueServers(String transactionId);
 
-    Optional<ServerEntity> findByIdAndUserId(Long id, Long userId, String transactionId);
+    Optional<RealmEntity> findByIdAndUserId(Long id, Long userId, String transactionId);
 
     ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale, String transactionId);
 }

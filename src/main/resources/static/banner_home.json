@@ -1,44 +1,44 @@
 {
   "es": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_dff4981a283346be9acdce49d7c929d2~mv2.webp",
-      "alt": "dashboard-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_21a165a3316e459f88b1b47e3ff0c4d0~mv2.webp",
+      "alt": "banner-one"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_d0c7248d2c4f4c868d1150fb8ea9d5ee~mv2.webp",
-      "alt": "vip-home-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_0bc636a5a6b94d1780c3b2687e9ada99~mv2.webp",
+      "alt": "banner-two"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_aeb4452176ea417a86acdfde31d8cbe3~mv2.webp",
-      "alt": "admin-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_46e0fd932f7c491387e024f0178ee681~mv2.webp",
+      "alt": "banner-three"
     }
   ],
   "en": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_bced8313400d4526931228e81971edf7~mv2.webp",
-      "alt": "dashboard-account"
+      "url": "https://static.wixstatic.com/media/5dd8a0_21a165a3316e459f88b1b47e3ff0c4d0~mv2.webp",
+      "alt": "banner-one"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_dc3b0348af9b427bbf36e20138262af8~mv2.webp",
-      "alt": "vip-home-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_0bc636a5a6b94d1780c3b2687e9ada99~mv2.webp",
+      "alt": "banner-two"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_7677d889425348e38a6c2a032eab5307~mv2.webp",
-      "alt": "admin-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_46e0fd932f7c491387e024f0178ee681~mv2.webp",
+      "alt": "banner-three"
     }
   ],
   "pt": [
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_2f0a7444751e40358d8de0deab90f3d2~mv2.webp",
-      "alt": "dashboard-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_21a165a3316e459f88b1b47e3ff0c4d0~mv2.webp",
+      "alt": "banner-one"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_9e2f65735db34951901c993f57ea69a4~mv2.webp",
-      "alt": "vip-home-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_0bc636a5a6b94d1780c3b2687e9ada99~mv2.webp",
+      "alt": "banner-two"
     },
     {
-      "url": "https://static.wixstatic.com/media/5dd8a0_eaa655bd465f46479df7d7adedd759ab~mv2.webp",
-      "alt": "admin-banner"
+      "url": "https://static.wixstatic.com/media/5dd8a0_46e0fd932f7c491387e024f0178ee681~mv2.webp",
+      "alt": "banner-three"
     }
   ]
 }

@@ -1,15 +1,19 @@
 package com.register.wowlibre.infrastructure.entities;
 
+import com.register.wowlibre.domain.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Data
 @Entity
-@Table(name = "benefit_guild")
-public class BenefitGuildEntity {
+@Table(name = "realm_services")
+public class RealmServicesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private RealmServices name;
+    @Column(name = "amount")
+    private Double amount;
     @JoinColumn(
             name = "realm_id",
             referencedColumnName = "id")
@@ -17,11 +21,4 @@ public class BenefitGuildEntity {
             optional = false,
             fetch = FetchType.EAGER)
     private RealmEntity realmId;
-    @Column(name = "guild_name")
-    private String guildName;
-    @Column(name = "guild_id")
-    private Long guildId;
-    @Column(name = "benefit_id")
-    private Long benefitId;
-    private Boolean status;
 }

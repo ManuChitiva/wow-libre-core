@@ -5,5 +5,5 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.util.*;
 
 public interface ObtainServerEvents {
-    List<ServerEventsEntity> findByServerId(ServerEntity server, String transactionId);
+    List<ServerEventsEntity> findByServerId(RealmEntity server, String transactionId);
 }

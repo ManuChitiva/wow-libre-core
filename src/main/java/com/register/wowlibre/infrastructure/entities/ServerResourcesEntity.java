@@ -18,7 +18,7 @@ public class ServerResourcesEntity {
     @ManyToOne(
             optional = false,
             fetch = FetchType.EAGER)
-    private ServerEntity serverId;
+    private RealmEntity serverId;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "resource_type", nullable = false)

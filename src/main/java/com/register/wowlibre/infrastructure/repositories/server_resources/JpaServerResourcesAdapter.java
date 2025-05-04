@@ -15,7 +15,7 @@ public class JpaServerResourcesAdapter implements ObtainServerResources {
         this.serverResourcesRepository = serverResourcesRepository;
     }
 
-    public List<ServerResourcesEntity> findByServerId(ServerEntity server, String transactionId) {
+    public List<ServerResourcesEntity> findByServerId(RealmEntity server, String transactionId) {
         return serverResourcesRepository.findByServerId(server);
     }
 

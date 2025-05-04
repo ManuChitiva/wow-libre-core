@@ -6,21 +6,21 @@ import lombok.*;
 import java.util.*;
 
 @Getter
-public enum ServerServices {
+public enum RealmServices {
     BANK("BANK"),
     SEND_LEVEL("SEND_LEVEL");
 
     private final String name;
 
-    ServerServices(String name) {
+    RealmServices(String name) {
         this.name = name;
     }
 
-    public static ServerServices getName(String name, String transactionId) {
+    public static RealmServices getName(String name, String transactionId) {
         return Arrays.stream(values())
                 .filter(data -> Objects.equals(data.name, name))
                 .findFirst()
-                .orElseThrow(() -> new InternalException("The server service with name " + name + " was not found.",
+                .orElseThrow(() -> new InternalException("The realm service with name " + name + " was not found.",
                         transactionId));
     }
 }

@@ -21,7 +21,7 @@ public class MailService implements MailPort {
     @Async
     @Override
     public void sendCodeMail(String email, String subject, String code, Locale locale, String transactionId) {
-        final String url = String.format("%s/confirmation?email=%s&code=%s", configurations.getHostWowLibre(), email,
+        final String url = String.format("%s/confirmation?email=%s&code=%s", configurations.getHostDomain(), email,
                 code);
 
 
