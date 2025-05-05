@@ -2,6 +2,7 @@ package com.register.wowlibre.infrastructure.config;
 
 import com.amazonaws.services.simpleemail.*;
 import com.amazonaws.services.simpleemail.model.*;
+import org.slf4j.*;
 import org.springframework.beans.factory.annotation.*;
 import org.springframework.stereotype.*;
 
@@ -11,13 +12,14 @@ import java.util.*;
 
 @Component
 public class AwsMailSender {
+    private static final Logger LOGGER = LoggerFactory.getLogger(AwsMailSender.class);
 
     private final AmazonSimpleEmailService sesClient;
     private final String fromEmail;
     private static final String TEMPLATES_PATH = "templates/";
 
     public AwsMailSender(AmazonSimpleEmailService sesClient,
-                        @Value("${aws.ses.from-email}") String fromEmail) {
+                         @Value("${aws.ses.from-email}") String fromEmail) {
         this.sesClient = sesClient;
         this.fromEmail = fromEmail;
     }
@@ -25,15 +27,17 @@ public class AwsMailSender {
     public void sendEmail(String to, String subject, String htmlBody, String transactionId) {
         try {
             SendEmailRequest request = new SendEmailRequest()
-                .withDestination(new Destination().withToAddresses(to))
-                .withMessage(new Message()
-                    .withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData(htmlBody)))
-                    .withSubject(new Content().withCharset("UTF-8").withData(subject)))
-                .withSource(fromEmail);
+                    .withDestination(new Destination().withToAddresses(to))
+                    .withMessage(new Message()
+                            .withBody(new Body().withHtml(new Content().withCharset("UTF-8").withData(htmlBody)))
+                            .withSubject(new Content().withCharset("UTF-8").withData(subject)))
+                    .withSource(fromEmail);
 
             sesClient.sendEmail(request);
         } catch (Exception e) {
-            throw new RuntimeException("Error sending email through AWS SES. Transaction ID: " + transactionId, e);
+            LOGGER.error("Error sending email through AWS SES. TransactionID: {} Error: {} ", transactionId,
+                    e.getMessage());
+            // throw new RuntimeException("Error sending email through AWS SES. Transaction ID: " + transactionId, e);
         }
     }
 
@@ -74,9 +78,9 @@ public class AwsMailSender {
                     .withSource(fromEmail);
 
             sesClient.sendEmail(request);
-            System.out.println("Email sent successfully!");
         } catch (Exception e) {
-            throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
+            LOGGER.error("Error sending email through AWS SES. Error: {} ", e.getMessage());
+            //  throw new RuntimeException("Failed to send email: " + e.getMessage(), e);
         }
     }
 
@@ -99,7 +103,6 @@ public class AwsMailSender {
     }
 
     private String convertHtmlToPlainText(String html) {
-        // Simple HTML to plain text conversion
         return html.replaceAll("<[^>]*>", "")
                 .replaceAll("\\s+", " ")
                 .trim();

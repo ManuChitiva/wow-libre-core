@@ -7,16 +7,21 @@ import java.time.*;
 
 @Data
 @Entity
-@Table(name = "user_server_coins")
+@Table(name = "machine")
 public class MachineEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(name = "user_id")
     private Long userId;
-    @Column(name = "server_id")
-    private Long serverId;
     private Integer coint;
     @Column(name = "last_win")
     private LocalDateTime lastWin;
+    @JoinColumn(
+            name = "realm_id",
+            referencedColumnName = "id")
+    @ManyToOne(
+            optional = false,
+            fetch = FetchType.LAZY)
+    private RealmEntity realmId;
 }

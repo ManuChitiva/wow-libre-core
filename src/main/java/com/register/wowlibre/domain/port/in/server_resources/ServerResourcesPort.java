@@ -5,5 +5,5 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.util.*;
 
 public interface ServerResourcesPort {
-    List<ServerResourcesEntity> findByServerId(RealmEntity server, String transactionId);
+    List<RealmResourcesEntity> findByServerId(RealmEntity server, String transactionId);
 }

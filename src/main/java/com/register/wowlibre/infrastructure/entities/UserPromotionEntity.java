@@ -3,7 +3,7 @@ package com.register.wowlibre.infrastructure.entities;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.*;
+import java.time.*;
 
 @Data
 @Entity
@@ -13,16 +13,32 @@ public class UserPromotionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
-    @Column(name = "user_id")
-    private Long userId;
-    @Column(name = "account_id")
-    private Long accountId;
+    @JoinColumn(
+            name = "account_game_id",
+            referencedColumnName = "id")
+    @ManyToOne(
+            optional = false,
+            fetch = FetchType.EAGER)
+    private AccountGameEntity accountGameId;
     @Column(name = "character_id")
     private Long characterId;
     @Column(name = "promotion_id")
     private Long promotionId;
-    @Column(name = "created_at")
-    private Date createdAt;
-    @Column(name = "server_id")
-    private Long serverId;
+    @Column(name = "created_at", updatable = false)
+    private LocalDateTime createdAt;
+    @Column(name = "updated_at", updatable = false)
+    private LocalDateTime updatedAt;
+    @Column(name = "realm_id")
+    private Long reamId;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
 }

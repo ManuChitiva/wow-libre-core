@@ -26,24 +26,23 @@ public class UserController {
     public ResponseEntity<GenericResponse<JwtDto>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale,
-            @RequestBody @Valid UserDto userDtoRequest, HttpServletRequest request) {
-        String clientIp = request.getRemoteAddr();
+            @RequestBody @Valid UserDto createUser, HttpServletRequest request) {
 
-        final JwtDto jwtDto = userPort.create(userDtoRequest, clientIp, locale, transactionId);
+        final JwtDto jwtDto = userPort.create(createUser, request.getRemoteAddr(), locale, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<>(jwtDto, transactionId).created().build());
     }
 
     @GetMapping(path = "/search")
-    public ResponseEntity<GenericResponse<UserSearchDto>> search(
+    public ResponseEntity<GenericResponse<UserExistenceDto>> search(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam(name = "email", required = false) final String email,
             @RequestParam(name = "cell_phone", required = false) final String cellPhone) {
 
         if (email == null && cellPhone == null) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST)
-                    .body(new GenericResponseBuilder<UserSearchDto>(transactionId).build());
+                    .body(new GenericResponseBuilder<UserExistenceDto>(transactionId).build());
         }
 
         boolean exists;
@@ -54,9 +53,9 @@ public class UserController {
             exists = Optional.ofNullable(userPort.findByPhone(cellPhone, transactionId)).isPresent();
         }
 
-        UserSearchDto searchResult = new UserSearchDto(exists);
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<UserSearchDto>(transactionId).ok(searchResult).build());
+                .body(new GenericResponseBuilder<UserExistenceDto>(transactionId)
+                        .ok(new UserExistenceDto(exists)).build());
     }
 
 
@@ -66,10 +65,18 @@ public class UserController {
             @RequestHeader(name = HEADER_USER_ID) final Long userId) {
 
         UserDetailDto userResponse = userPort.findByUserId(userId, transactionId)
-                .map(model -> new UserDetailDto(model.getId(), model.getCountry(), model.getDateOfBirth(),
-                        model.getFirstName(),
-                        model.getLastName(), model.getCellPhone(), model.getEmail(), model.getRolId().getName(),
-                        model.getStatus(), model.getVerified())).orElse(null);
+                .map(model -> UserDetailDto.builder()
+                        .id(model.getId())
+                        .country(model.getCountry())
+                        .dateOfBirth(model.getDateOfBirth())
+                        .firstName(model.getFirstName())
+                        .lastName(model.getLastName())
+                        .cellPhone(model.getCellPhone())
+                        .email(model.getEmail())
+                        .rolName(model.getRolId().getName())
+                        .status(model.getStatus())
+                        .verified(model.getVerified())
+                        .build()).orElse(null);
 
         if (userResponse == null) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -82,7 +89,7 @@ public class UserController {
 
 
     @PutMapping("/email/confirmation")
-    public ResponseEntity<GenericResponse<UserDetailDto>> validateEmailCodeForAccount(
+    public ResponseEntity<GenericResponse<Void>> validateEmailCodeForAccount(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestParam final String code) {
@@ -90,22 +97,22 @@ public class UserController {
         userPort.validateEmailCodeForAccount(userId, code, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
     }
 
     @GetMapping("/password-recovery/request")
-    public ResponseEntity<GenericResponse<UserDetailDto>> requestPasswordRecoveryCode(
+    public ResponseEntity<GenericResponse<Void>> requestPasswordRecoveryCode(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam final String email) {
 
         userPort.generateRecoveryCode(email, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
     }
 
     @PutMapping("/password-recovery/confirm")
-    public ResponseEntity<GenericResponse<UserDetailDto>> validateRecoveryCodeAndResetPassword(
+    public ResponseEntity<GenericResponse<Void>> validateRecoveryCodeAndResetPassword(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale,
             @RequestParam final String email,
@@ -114,18 +121,18 @@ public class UserController {
         userPort.resetPasswordWithRecoveryCode(email, code, locale, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
     }
 
     @PutMapping("/validated-mail/send")
-    public ResponseEntity<GenericResponse<UserDetailDto>> sendValidationEmail(
+    public ResponseEntity<GenericResponse<Void>> sendValidationEmail(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_EMAIL, required = false) final String email) {
 
         userPort.sendMailValidation(email, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<UserDetailDto>(transactionId).ok().build());
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
     }
 
     @PutMapping(path = "/user-password/change")

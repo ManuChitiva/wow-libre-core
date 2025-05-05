@@ -19,12 +19,12 @@ public class ServerDetailsService implements DeleteServerDetailsPort, ObtainServ
     }
 
     @Override
-    public void delete(ServerDetailsEntity detailsEntity, String transactionId) {
+    public void delete(RealmDetailsEntity detailsEntity, String transactionId) {
         deleteServerDetails.delete(detailsEntity, transactionId);
     }
 
     @Override
-    public List<ServerDetailsEntity> findByServerId(RealmEntity server, String transactionId) {
+    public List<RealmDetailsEntity> findByServerId(RealmEntity server, String transactionId) {
         return obtainServerDetails.findByServerId(server, transactionId);
     }
 }

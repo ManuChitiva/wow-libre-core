@@ -13,14 +13,12 @@ public class CreditLoansEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @JoinColumn(
-            name = "user_id",
+            name = "account_game_id",
             referencedColumnName = "id")
     @ManyToOne(
             optional = false,
             fetch = FetchType.EAGER)
-    private UserEntity userId;
-    @Column(name = "account_id")
-    private Long accountId;
+    private AccountGameEntity accountGameId;
     @Column(name = "character_id")
     private Long characterId;
     @Column(name = "realm_id")

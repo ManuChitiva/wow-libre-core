@@ -4,7 +4,7 @@ import com.register.wowlibre.application.services.*;
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
-import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.port.out.credit_loans.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
@@ -22,15 +22,15 @@ public class TransactionBanks {
     private final ObtainCreditLoans obtainCreditLoans;
     private final SaveCreditLoans saveCreditLoans;
     private final IntegratorPort integratorPort;
-    private final ServerPort serverPort;
+    private final RealmPort realmPort;
     private final I18nService i18nService;
 
     public TransactionBanks(ObtainCreditLoans obtainCreditLoans, SaveCreditLoans saveCreditLoans,
-                            IntegratorPort integratorPort, ServerPort serverPort, I18nService i18nService) {
+                            IntegratorPort integratorPort, RealmPort realmPort, I18nService i18nService) {
         this.obtainCreditLoans = obtainCreditLoans;
         this.saveCreditLoans = saveCreditLoans;
         this.integratorPort = integratorPort;
-        this.serverPort = serverPort;
+        this.realmPort = realmPort;
         this.i18nService = i18nService;
     }
 
@@ -42,15 +42,15 @@ public class TransactionBanks {
         credits.forEach(credit -> {
             LOGGER.info("[TransactionBanks] [SendCreditLoans] Sending credit applications CreditId {}", credit.getId());
 
-            Optional<RealmEntity> server = serverPort.findById(credit.getServerId(), transactionId);
+            Optional<RealmEntity> server = realmPort.findById(credit.getRealmId(), transactionId);
             if (server.isPresent()) {
 
                 try {
                     final Long characterId = credit.getCharacterId();
                     final byte[] salt = KeyDerivationUtil.generateSalt();
-                    final CharacterDetailDto charactersDto = integratorPort.characters(server.get().getIp(),
-                                    server.get().getJwt(), credit.getAccountId(),
-                                    credit.getUserId().getId(), transactionId).getCharacters()
+                    final CharacterDetailDto charactersDto = integratorPort.characters(server.get().getHost(),
+                                    server.get().getJwt(), null,
+                                    null, transactionId).getCharacters()
                             .stream().filter(character -> character.getId().equals(characterId)).findFirst()
                             .orElse(null);
 
@@ -60,7 +60,7 @@ public class TransactionBanks {
                         return;
                     }
                     final String characterName = charactersDto.getName();
-                    final Locale locale = new Locale(credit.getUserId().getLanguage().toUpperCase());
+                    final Locale locale = new Locale(null);
 
                     final String command = CommandsCore.sendMoney(characterName, "", getGoblinMessage(characterName, locale),
                             String.valueOf(credit.getAmountTransferred().intValue()));
@@ -68,7 +68,7 @@ public class TransactionBanks {
                     SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(server.get().getApiSecret(), salt);
                     String encryptedMessage = EncryptionUtil.encrypt(command, derivedKey);
 
-                    integratorPort.executeCommand(server.get().getIp(), server.get().getJwt(), encryptedMessage, salt,
+                    integratorPort.executeCommand(server.get().getHost(), server.get().getJwt(), encryptedMessage, salt,
                             transactionId);
                     credit.setSend(true);
                     saveCreditLoans.save(credit, transactionId);
@@ -91,13 +91,13 @@ public class TransactionBanks {
         List<CreditLoansEntity> credits = obtainCreditLoans.creditRequestPending(LocalDateTime.now(), transactionId);
 
         credits.forEach(credit -> {
-            Optional<RealmEntity> server = serverPort.findById(credit.getServerId(), transactionId);
+            Optional<RealmEntity> server = realmPort.findById(credit.getRealmId(), transactionId);
 
             if (server.isPresent()) {
                 try {
 
-                    Double pendingPayment = integratorPort.collectGold(server.get().getIp(), server.get().getJwt(),
-                            credit.getUserId().getId(), credit.getDebtToPay(), transactionId);
+                    Double pendingPayment = integratorPort.collectGold(server.get().getHost(), server.get().getJwt(),
+                            credit.getId(), credit.getDebtToPay(), transactionId);
 
                     if (pendingPayment <= 0) {
                         credit.setStatus(false);
@@ -111,7 +111,7 @@ public class TransactionBanks {
                 }
             } else {
                 LOGGER.error("[TransactionBanks] [makeCreditCollections]  The server was not found for the requested " +
-                        "credit ServerId: {}", credit.getServerId());
+                        "credit ServerId: {}", credit.getRealmId());
             }
 
         });

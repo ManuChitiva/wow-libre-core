@@ -48,7 +48,7 @@ public class TransactionService implements TransactionPort {
             throw new InternalException("Server is not available", transactionId);
         }
 
-        integratorPort.purchase(server.getIp(), server.getJwt(), userId, accountId, reference, items, amount,
+        integratorPort.purchase(server.getHost(), server.getJwt(), userId, accountId, reference, items, amount,
                 transactionId);
     }
 
@@ -67,7 +67,7 @@ public class TransactionService implements TransactionPort {
             throw new InternalException("Server is not available", transactionId);
         }
 
-        integratorPort.sendBenefitsPremium(server.getIp(), server.getJwt(), userId, accountId, characterId, items,
+        integratorPort.sendBenefitsPremium(server.getHost(), server.getJwt(), userId, accountId, characterId, items,
                 benefitType, amount, transactionId);
 
     }
@@ -132,7 +132,7 @@ public class TransactionService implements TransactionPort {
                     benefit.quantity)).toList();
         }
 
-        integratorPort.sendPromo(server.getIp(), server.getJwt(), userId, accountId, characterId, items,
+        integratorPort.sendPromo(server.getHost(), server.getJwt(), userId, accountId, characterId, items,
                 promo.getType(), promo.getAmount(), promo.getMinLvl(), promo.getMaxLvl(), promo.getLevel(),
                 transactionId);
 

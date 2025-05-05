@@ -24,7 +24,7 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/core
+    url: jdbc:mysql://localhost:3306/platform
     username: root
     password: Wowlibre96@@
     driver-class-name: com.mysql.cj.jdbc.Driver

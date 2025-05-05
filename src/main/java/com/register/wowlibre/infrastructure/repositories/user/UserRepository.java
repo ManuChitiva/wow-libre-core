@@ -10,6 +10,4 @@ public interface UserRepository extends CrudRepository<UserEntity, Long> {
 
     Optional<UserEntity> findByCellPhoneAndStatusIsTrue(final String cellPhone);
 
-    @Override
-    List<UserEntity> findAll();
 }

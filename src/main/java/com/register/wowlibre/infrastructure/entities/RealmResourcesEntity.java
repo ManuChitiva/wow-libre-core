@@ -8,27 +8,24 @@ import java.time.*;
 
 @Data
 @Entity
-@Table(name = "server_resources")
-public class ServerResourcesEntity {
+@Table(name = "realm_resources")
+public class RealmResourcesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String url;
-    @JoinColumn(name = "server_id", nullable = false)
-    @ManyToOne(
-            optional = false,
-            fetch = FetchType.EAGER)
-    private RealmEntity serverId;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "resource_type", nullable = false)
     private ResourceType resourceType;
-
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
-
-    @Column(name = "updated_at")
+    @Column(name = "updated_at", updatable = false)
     private LocalDateTime updatedAt;
+    @JoinColumn(name = "realm_id", nullable = false)
+    @ManyToOne(
+            optional = false,
+            fetch = FetchType.LAZY)
+    private RealmEntity realmId;
 
     @PrePersist
     protected void onCreate() {

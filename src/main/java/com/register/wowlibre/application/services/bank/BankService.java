@@ -93,13 +93,11 @@ public class BankService implements BankPort {
         LocalDateTime futurePaymentDate = currentDate.plusMonths(monthPaymentPeriod);
 
         CreditLoansEntity creditLoansEntity = new CreditLoansEntity();
-        creditLoansEntity.setAccountId(accountId);
         creditLoansEntity.setCharacterId(characterId);
         creditLoansEntity.setStatus(true);
-        creditLoansEntity.setUserId(verificationDto.accountGame().getUserId());
+        creditLoansEntity.setAccountGameId(verificationDto.accountGame());
         creditLoansEntity.setInterests(plan.interest());
-        creditLoansEntity.setServerId(serverId);
-        creditLoansEntity.setTransactionDate(currentDate);
+        creditLoansEntity.setRealmId(serverId);
         creditLoansEntity.setPaymentDate(futurePaymentDate);
         creditLoansEntity.setDebtToPay(cost);
         creditLoansEntity.setAmountTransferred(plan.gold());

@@ -15,7 +15,7 @@ public class BenefitGuildEntity {
             referencedColumnName = "id")
     @ManyToOne(
             optional = false,
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private RealmEntity realmId;
     @Column(name = "guild_name")
     private String guildName;

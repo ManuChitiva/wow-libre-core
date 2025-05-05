@@ -1,4 +1,4 @@
-package com.register.wowlibre.domain.port.in.server;
+package com.register.wowlibre.domain.port.in.realm;
 
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.model.*;
@@ -6,7 +6,7 @@ import com.register.wowlibre.infrastructure.entities.*;
 
 import java.util.*;
 
-public interface ServerPort {
+public interface RealmPort {
 
     List<ServerDto> findByUserId(Long userId, String transactionId);
 

@@ -13,7 +13,7 @@ CREATE TABLE platform.rol
 
 INSERT INTO platform.rol (name, status) VALUES ('ADMIN', TRUE);
 INSERT INTO platform.rol (name, status) VALUES ('CLIENT', TRUE);
-INSERT INTO platform.rol (name, status) VALUES ('SERVER', TRUE);
+INSERT INTO platform.rol (name, status) VALUES ('SUPPORT', TRUE);
 
 CREATE TABLE platform.user
 (
@@ -61,7 +61,7 @@ CREATE TABLE platform.realm
     salt              VARBINARY(16),
     retry             integer,
     disclaimer        varchar(80),
-    user_id           bigint      NOT NULL,
+
     CONSTRAINT uq_realm_name_expansion UNIQUE (name, expansion_id),
     CONSTRAINT uq_realm_api_key UNIQUE (api_key),
     PRIMARY KEY (id)
@@ -91,12 +91,12 @@ CREATE TABLE platform.otp_verification
     created_at TIMESTAMP DEFAULT NOW()
 );
 
-CREATE TABLE platform.coins
+CREATE TABLE platform.machine
 (
     id       BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id  BIGINT NOT NULL,
     realm_id BIGINT NOT NULL,
-    coins    INT    NOT NULL,
+    points    INT    NOT NULL,
     last_win TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uq_coins_user_realm UNIQUE (user_id, realm_id)
 );
@@ -219,6 +219,7 @@ CREATE TABLE platform.user_promotion
     character_id    bigint                              NOT NULL,
     promotion_id    bigint                              NOT NULL,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     realm_id        bigint                              NOT NULL,
     user_id         bigint                              NOT NULL,
     PRIMARY KEY (id),

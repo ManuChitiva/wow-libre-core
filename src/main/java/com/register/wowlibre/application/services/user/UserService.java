@@ -26,6 +26,7 @@ import java.util.*;
 
 @Service
 public class UserService implements UserPort {
+
     private static final Logger LOGGER = LoggerFactory.getLogger(UserService.class);
     private static final String PICTURE_DEFAULT_PROFILE_WEB = "https://static.wixstatic" +
             ".com/media/5dd8a0_32431551f29b4644a774d8c55d2666fd~mv2.webp";
@@ -56,14 +57,14 @@ public class UserService implements UserPort {
      **/
     private final GooglePort googlePort;
     /**
-     * Configs
+     * Configurations
      **/
     private final Configurations configurations;
 
     public UserService(ObtainUserPort obtainUserPort, SaveUserPort saveUserPort, PasswordEncoder passwordEncoder,
                        JwtPort jwtPort, RolPort rolPort, MailPort mailPort,
                        SecurityValidationPort securityValidationPort,
-                       I18nService i18nService, @Qualifier("random-string") RandomString randomString,
+                       I18nService i18nService, @Qualifier("reset-password-string") RandomString randomString,
                        GooglePort googlePort, Configurations configurations) {
         this.obtainUserPort = obtainUserPort;
         this.saveUserPort = saveUserPort;
@@ -84,33 +85,48 @@ public class UserService implements UserPort {
 
         if (!googlePort.verifyCaptcha(configurations.getGoogleSecret(), userDto.getToken(), ip,
                 transactionId)) {
-            LOGGER.error("Ha ocurrido un error al verificar el captcha. transactionId: {}", transactionId);
+            LOGGER.error("[UserService] [create] An error occurred while verifying the captcha. -  [transactionId: " +
+                    "{}]", transactionId);
             throw new InternalException("The captcha is invalid", transactionId);
         }
 
         final String email = userDto.getEmail();
 
-        if (findByEmail(userDto.getEmail(), transactionId) != null) {
+        if (findByEmail(email, transactionId) != null) {
             throw new FoundException("There is already a registered client with this data", transactionId);
         }
 
         final RolModel rolModel = rolPort.findByName(Rol.CLIENT.name(), transactionId);
 
         if (rolModel == null) {
-            LOGGER.error("An error occurred while assigning a role. email {} transactionId: {}", email,
+            LOGGER.error("[UserService] [create] An error occurred while assigning a role. - [transactionId: {}]",
                     transactionId);
-            throw new InternalException("An error occurred while assigning a role.", transactionId);
+            throw new InternalException("An unexpected error has occurred", transactionId);
         }
 
         final String passwordEncode = passwordEncoder.encode(userDto.getPassword());
         userDto.setPassword(passwordEncode);
 
-        final UserEntity user = saveUserPort.save(mapToModel(userDto, rolModel), transactionId);
+        UserEntity userRegister = new UserEntity();
+        userRegister.setAvatarUrl(PICTURE_DEFAULT_PROFILE_WEB);
+        userRegister.setEmail(userDto.getEmail());
+        userRegister.setCountry(userDto.getCountry());
+        userRegister.setFirstName(userDto.getFirstName());
+        userRegister.setCellPhone(userDto.getCellPhone());
+        userRegister.setLanguage(userDto.getLanguage());
+        userRegister.setPassword(userDto.getPassword());
+        userRegister.setLastName(userDto.getLastName());
+        userRegister.setDateOfBirth(userDto.getDateOfBirth());
+        userRegister.setStatus(true);
+        userRegister.setVerified(false);
+        userRegister.setRolId(RolMapper.toEntity(rolModel));
+
+        final UserEntity user = saveUserPort.save(userRegister, transactionId);
 
         CustomUserDetails customUserDetails = new CustomUserDetails(
                 List.of(rolModel),
                 passwordEncode,
-                userDto.getEmail(),
+                email,
                 true,
                 true,
                 true,
@@ -124,26 +140,10 @@ public class UserService implements UserPort {
         final Date expiration = jwtPort.extractExpiration(token);
         final String refreshToken = jwtPort.generateRefreshToken(customUserDetails);
 
-        return new JwtDto(token, refreshToken, expiration, PICTURE_DEFAULT_PROFILE_WEB, customUserDetails.getLanguage(),
+        return new JwtDto(token, refreshToken, expiration, user.getAvatarUrl(), customUserDetails.getLanguage(),
                 true);
     }
 
-    private UserEntity mapToModel(UserDto userDto, RolModel rolModel) {
-        UserEntity user = new UserEntity();
-        user.setAvatarUrl(PICTURE_DEFAULT_PROFILE_WEB);
-        user.setEmail(userDto.getEmail());
-        user.setCountry(userDto.getCountry());
-        user.setFirstName(userDto.getFirstName());
-        user.setCellPhone(userDto.getCellPhone());
-        user.setLanguage(userDto.getLanguage());
-        user.setPassword(userDto.getPassword());
-        user.setLastName(userDto.getLastName());
-        user.setDateOfBirth(userDto.getDateOfBirth());
-        user.setStatus(true);
-        user.setVerified(false);
-        user.setRolId(RolMapper.toEntity(rolModel));
-        return user;
-    }
 
     @Override
     public UserModel findByEmail(String email, String transactionId) {
@@ -172,8 +172,8 @@ public class UserService implements UserPort {
         Optional<UserEntity> userFound = findByUserId(userId, transactionId);
 
         if (userFound.isEmpty() || !userFound.get().getStatus()) {
-            throw new InternalException("It was not possible to validate your code, the account is disabled or " +
-                    "does not exist.", transactionId);
+            throw new InternalException("It was not possible to validate your code, the " +
+                    "account is disabled or does not exist.", transactionId);
         }
 
         if (userFound.get().getVerified()) {
@@ -283,33 +283,5 @@ public class UserService implements UserPort {
         user.setPassword(passwordEncoder.encode(newPassword));
         saveUserPort.save(user, transactionId);
     }
-
-    @Override
-    public void updateRol(Rol rol, Long userId, String transactionId) {
-
-        Optional<UserEntity> userFound = findByUserId(userId, transactionId);
-
-        if (userFound.isEmpty() || !userFound.get().getStatus()) {
-            throw new InternalException("It was not possible to validate your code, the account is disabled or " +
-                    "does not exist.", transactionId);
-        }
-
-        UserEntity user = userFound.get();
-
-        if (!user.getVerified()) {
-            throw new InternalException("You do not have a valid account, please validate your email", transactionId);
-        }
-
-        final RolModel rolModel = rolPort.findByName(rol.name(), transactionId);
-
-        user.setRolId(RolMapper.toEntity(rolModel));
-        saveUserPort.save(user, transactionId);
-    }
-
-    @Override
-    public List<UserEntity> findAll(String transactionId) {
-        return obtainUserPort.findAll();
-    }
-
 
 }

@@ -8,7 +8,7 @@ import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.dashboard.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
 import com.register.wowlibre.domain.port.in.promotion.*;
-import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.port.in.server_services.*;
 import com.register.wowlibre.domain.port.in.user_promotion.*;
 import com.register.wowlibre.domain.port.out.credit_loans.*;
@@ -28,7 +28,7 @@ public class DashboardService implements DashboardPort {
     /**
      * ServerPort
      **/
-    private final ServerPort serverPort;
+    private final RealmPort realmPort;
     private final ServerServicesPort serverServicesPort;
     /**
      * Integrator Port
@@ -42,12 +42,12 @@ public class DashboardService implements DashboardPort {
     private final PromotionPort promotionPort;
     private final PasswordEncoder passwordEncoder;
 
-    public DashboardService(ObtainCreditLoans obtainCreditLoans, ServerPort serverPort,
+    public DashboardService(ObtainCreditLoans obtainCreditLoans, RealmPort realmPort,
                             ServerServicesPort serverServicesPort, IntegratorPort integratorPort,
                             UserPromotionPort userPromotionPort, PromotionPort promotionPort,
                             PasswordEncoder passwordEncoder) {
         this.obtainCreditLoans = obtainCreditLoans;
-        this.serverPort = serverPort;
+        this.realmPort = realmPort;
         this.serverServicesPort = serverServicesPort;
         this.integratorPort = integratorPort;
         this.userPromotionPort = userPromotionPort;
@@ -59,7 +59,7 @@ public class DashboardService implements DashboardPort {
     public LoansDto creditLoans(Long userId, Long serverId, int size, int page, String filter, boolean asc,
                                 String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -72,8 +72,8 @@ public class DashboardService implements DashboardPort {
                 transactionId)).map(ServerServicesModel::amount).orElse(null));
         loansDto.setUsers(obtainCreditLoans.findByServerIdAndPagination(serverId, size, page, filter, asc,
                 transactionId).stream().map(credit -> new LoansDto.UsersCreditLoans(credit.getId(),
-                credit.getUserId().getEmail(),
-                credit.getTransactionDate(), credit.getDebtToPay() > 0, credit.getPaymentDate(),
+                credit.getAccountGameId().getUserId().getEmail(),
+                credit.getCreatedAt(), credit.getDebtToPay() > 0, credit.getPaymentDate(),
                 credit.getDebtToPay() / 10000.0)).toList());
 
         return loansDto;
@@ -81,7 +81,7 @@ public class DashboardService implements DashboardPort {
 
     @Override
     public void enableLoan(Long userId, Long serverId, Double loans, String service, String transactionId) {
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -99,7 +99,7 @@ public class DashboardService implements DashboardPort {
                                                                                                      Long serverId,
                                                                                                      String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -112,11 +112,11 @@ public class DashboardService implements DashboardPort {
         Map<Integer, Map<String, Map<Integer, Map<String, Integer>>>> data = new TreeMap<>();
 
         for (CreditLoansEntity creditLoans : creditLoansEntities) {
-            int year = creditLoans.getTransactionDate().getYear();
+            int year = creditLoans.getCreatedAt().getYear();
 
-            String month = creditLoans.getTransactionDate().getMonth().toString();
+            String month = creditLoans.getCreatedAt().getMonth().toString();
             month = month.substring(0, 1).toUpperCase() + month.substring(1).toLowerCase();
-            int day = creditLoans.getTransactionDate().getDayOfMonth();
+            int day = creditLoans.getCreatedAt().getDayOfMonth();
 
             data.computeIfAbsent(year, k -> new TreeMap<>());
 
@@ -141,14 +141,14 @@ public class DashboardService implements DashboardPort {
                                           String transactionId) {
 
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
                     transactionId);
         }
 
-        AccountsResponse accountsServer = integratorPort.accountsServer(server.get().getIp(),
+        AccountsResponse accountsServer = integratorPort.accountsServer(server.get().getHost(),
                 server.get().getJwt(), size, page, filter,
                 transactionId);
 
@@ -164,14 +164,14 @@ public class DashboardService implements DashboardPort {
     @Override
     public DashboardMetricsDto metrics(Long userId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
                     transactionId);
         }
 
-        DashboardMetricsResponse dashboard = integratorPort.dashboard(server.get().getIp(),
+        DashboardMetricsResponse dashboard = integratorPort.dashboard(server.get().getHost(),
                 server.get().getJwt(), transactionId);
 
         Long redeemedPromotion = userPromotionPort.countRedeemedPromotion(serverId, transactionId);
@@ -184,7 +184,7 @@ public class DashboardService implements DashboardPort {
     @Override
     public void updateMail(Long userId, Long serverId, String username, String newMail, String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -193,7 +193,7 @@ public class DashboardService implements DashboardPort {
 
 
         integratorPort.updateMailAccount(
-                server.get().getIp(), server.get().getJwt(),
+                server.get().getHost(), server.get().getJwt(),
                 new AccountUpdateMailRequest(newMail, username),
                 transactionId);
     }
@@ -201,7 +201,7 @@ public class DashboardService implements DashboardPort {
     @Override
     public List<PromotionModel> getPromotions(Long userId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -214,7 +214,7 @@ public class DashboardService implements DashboardPort {
 
     @Override
     public void bannedUser(AccountBanDto banDto, Long userId, String transactionId) {
-        Optional<RealmEntity> serverProps = serverPort.findByIdAndUserId(banDto.getServerId(), userId, transactionId);
+        Optional<RealmEntity> serverProps = realmPort.findByIdAndUserId(banDto.getServerId(), userId, transactionId);
 
         if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -226,7 +226,7 @@ public class DashboardService implements DashboardPort {
             throw new InternalException("The password is invalid", transactionId);
         }
 
-        integratorPort.bannedUser(server.getIp(), server.getJwt(), banDto.getUsername(), banDto.getDays(),
+        integratorPort.bannedUser(server.getHost(), server.getJwt(), banDto.getUsername(), banDto.getDays(),
                 banDto.getHours(), banDto.getMinutes(), banDto.getSeconds(), banDto.getBannedBy(),
                 banDto.getBanReason(), transactionId);
     }
@@ -235,7 +235,7 @@ public class DashboardService implements DashboardPort {
     public Map<String, String> getConfigs(Long userId, Long serverId, String url, boolean authServer,
                                           String transactionId) {
 
-        Optional<RealmEntity> serverProps = serverPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> serverProps = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
             throw new InternalException("The server is not found or is not available please contact support.",
@@ -245,6 +245,6 @@ public class DashboardService implements DashboardPort {
         RealmEntity server = serverProps.get();
 
 
-        return integratorPort.getConfigs(server.getIp(), server.getJwt(), url, authServer, transactionId);
+        return integratorPort.getConfigs(server.getHost(), server.getJwt(), url, authServer, transactionId);
     }
 }

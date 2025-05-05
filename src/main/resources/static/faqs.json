@@ -1,30 +1,68 @@
 {
   "es": [
     {
-      "question": "¿Donde consigo los realmlist del servidor?",
-      "answer": "Visita la pagina inicial y encuentra los reinos disponibles."
+      "question": "¿Dónde puedo encontrar los realmlist del servidor?",
+      "answer": "Puedes acceder a los realmlist disponibles directamente desde la página principal del servidor. Están claramente indicados para facilitar tu conexión."
     },
     {
       "question": "¿Existen canales adicionales de atención al jugador?",
-      "answer": "Sí, contamos con diversos canales de atención en la parte final de la pagina en el footer encuentras las diferentes medios de atencion."
+      "answer": "Sí. Disponemos de varios canales de atención. Puedes encontrarlos en la parte inferior del sitio web (footer), donde verás las distintas opciones para ponerte en contacto con nuestro equipo."
     },
     {
-      "question": "¿Cómo puedo hacer que mi hermandad salga en la seccion de hermandades?",
-      "answer": "Para habilitar tu hermandad visible debes entrar a la seccion de tus cuentas. en esa seccion busca la cuenta donde tienen el personaje guild master y entra en la seccion de hermandades le das administrar y hacer publica la hermandad."
+      "question": "¿Cómo puedo hacer que mi hermandad aparezca en la sección de hermandades?",
+      "answer": "Debes acceder a la sección de tus cuentas. Selecciona la cuenta donde tengas el personaje líder de hermandad (guild master), entra en la sección de hermandades y selecciona la opción 'Administrar'. Desde ahí, podrás hacerla pública para que aparezca en la sección correspondiente."
     },
     {
-      "question": "¿Donde puedo descargar el juego?",
-      "answer": ""
+      "question": "Mi hermandad ha desbloqueado un logro, pero no hemos recibido el premio. ¿Qué hago?",
+      "answer": "Actualmente, los logros de hermandad se procesan manualmente. Si has cumplido los requisitos y no has recibido tu recompensa, contacta con un administrador. En próximas actualizaciones se implementará un sistema automático para este proceso."
     },
     {
-      "question": "¿Qué beneficios obtengo al integrar mi servidor?",
-      "answer": ","
+      "question": "¿Puedo poner mi hermandad como privada?",
+      "answer": "Sí. Desde la sección de gestión de cuentas, selecciona el personaje guild master y accede a la administración de hermandades. Allí podrás cambiar su visibilidad y ponerla como privada si así lo deseas."
     }
   ],
   "en": [
-
+    {
+      "question": "Where can I find the server's realmlist?",
+      "answer": "You can find the available realmlist directly on the server's homepage. They are clearly listed to make your connection easier."
+    },
+    {
+      "question": "Are there additional player support channels?",
+      "answer": "Yes. We offer various support channels. You can find them at the bottom of the website (footer), where you'll see the different ways to contact our team."
+    },
+    {
+      "question": "How can I make my guild appear in the guild section?",
+      "answer": "Go to your account section. Select the account with the guild master character, enter the guild management area and click 'Manage'. From there, you can make your guild public to show it in the guild listings."
+    },
+    {
+      "question": "My guild unlocked an achievement, but we haven’t received the reward. What should I do?",
+      "answer": "Guild achievements are currently processed manually. If your guild met the requirements but didn’t receive the reward, please contact an administrator. We are working on a future update to make this process automatic."
+    },
+    {
+      "question": "Can I make my guild private?",
+      "answer": "Yes. In the account management section, select your guild master character and go to guild management. There, you'll be able to set the guild to private if you wish."
+    }
   ],
   "pt": [
-
+    {
+      "question": "Onde posso encontrar o realmlist do servidor?",
+      "answer": "Você pode encontrar o realmlist disponível diretamente na página principal do servidor. Está claramente indicado para facilitar a sua conexão."
+    },
+    {
+      "question": "Existem canais adicionais de suporte ao jogador?",
+      "answer": "Sim. Oferecemos diversos canais de suporte. Você pode encontrá-los no rodapé do site, onde verá as diferentes formas de entrar em contacto com a nossa equipa."
+    },
+    {
+      "question": "Como posso fazer com que a minha guilda apareça na secção de guildas?",
+      "answer": "Aceda à secção da sua conta. Selecione a conta com o personagem líder da guilda (guild master), entre na área de gestão de guildas e clique em 'Gerir'. A partir daí, poderá torná-la pública para que apareça na listagem de guildas."
+    },
+    {
+      "question": "A minha guilda desbloqueou uma conquista, mas não recebemos a recompensa. O que devo fazer?",
+      "answer": "As conquistas de guilda são atualmente processadas manualmente. Se a sua guilda cumpriu os requisitos mas não recebeu a recompensa, entre em contacto com um administrador. Em breve, lançaremos uma atualização para automatizar este processo."
+    },
+    {
+      "question": "Posso tornar a minha guilda privada?",
+      "answer": "Sim. Na secção de gestão da conta, selecione o personagem guild master e vá para a gestão da guilda. Lá poderá definir a guilda como privada, se desejar."
+    }
   ]
 }

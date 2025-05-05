@@ -22,12 +22,8 @@ public class UserPromotionService implements UserPromotionPort {
     public void save(Long userId, Long accountId, Long promotionId, Long characterId, Long serverId,
                      String transactionId) {
         UserPromotionEntity userPromotionEntity = new UserPromotionEntity();
-        userPromotionEntity.setUserId(userId);
-        userPromotionEntity.setCreatedAt(new Date());
         userPromotionEntity.setPromotionId(promotionId);
         userPromotionEntity.setCharacterId(characterId);
-        userPromotionEntity.setAccountId(accountId);
-        userPromotionEntity.setServerId(serverId);
         saveUserPromotion.save(userPromotionEntity, transactionId);
     }
 

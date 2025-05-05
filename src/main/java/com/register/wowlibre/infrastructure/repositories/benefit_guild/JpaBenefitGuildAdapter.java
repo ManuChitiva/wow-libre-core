@@ -18,7 +18,7 @@ public class JpaBenefitGuildAdapter implements ObtainBenefitGuild, SaveBenefitGu
     @Override
     public List<BenefitGuildEntity> findByServerIdAndGuildIdAndStatusIsTrue(Long serverId, Long guildId,
                                                                             String transactionId) {
-        return benefitGuildRepository.findByServerId_idAndGuildIdAndStatusIsTrue(serverId, guildId);
+        return benefitGuildRepository.findByRealmId_idAndGuildIdAndStatusIsTrue(serverId, guildId);
     }
 
     @Override

@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.*;
 import java.util.*;
 
 public interface BenefitGuildRepository extends CrudRepository<BenefitGuildEntity, Long> {
-    List<BenefitGuildEntity> findByServerId_idAndGuildIdAndStatusIsTrue(Long serverId, Long guildId);
+    List<BenefitGuildEntity> findByRealmId_idAndGuildIdAndStatusIsTrue(Long serverId, Long guildId);
 
     // Consulta para obtener los beneficios restantes de la guild
     @Query("SELECT bg FROM BenefitGuildEntity bg " +
@@ -17,7 +17,7 @@ public interface BenefitGuildRepository extends CrudRepository<BenefitGuildEntit
             "   AND cbg.characterId = :characterId " +
             "   AND cbg.accountId = :accountId " +
             "WHERE bg.guildId = :guildId " +
-            "  AND bg.serverId.id = :serverId " +
+            "  AND bg.realmId.id = :serverId " +
             "  AND cbg.id IS NULL")
     List<BenefitGuildEntity> findRemainingBenefitsForGuildAndServerIdAndCharacter(
             @Param("serverId") Long serverId,

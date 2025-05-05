@@ -17,7 +17,7 @@ public class JpaRolAdapter implements ObtainRolPort {
     }
 
     @Override
-    public Optional<RolEntity> findByName(String name, String transactionId) {
+    public Optional<RolEntity> findByName(String name) {
         return rolRepository.findByNameAndStatusIsTrue(name);
     }
 }

@@ -37,7 +37,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.characters(accountVerificationDto.server().getIp(),
+        return integratorService.characters(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(),
                 accountId, userId, transactionId);
     }
@@ -47,7 +47,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.loanApplicationCharacters(accountVerificationDto.server().getIp(),
+        return integratorService.loanApplicationCharacters(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(),
                 accountId, userId, transactionId);
     }
@@ -60,7 +60,7 @@ public class CharactersService implements CharactersPort {
                 transactionId);
 
 
-        integratorService.deleteFriend(accountVerificationDto.server().getIp(),
+        integratorService.deleteFriend(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(),
                 characterId, friendId, accountId, userId, transactionId);
     }
@@ -72,7 +72,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.mails(accountVerificationDto.server().getIp(),
+        return integratorService.mails(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(), characterId, transactionId);
     }
 
@@ -83,7 +83,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.friends(accountVerificationDto.server().getIp(),
+        return integratorService.friends(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(), characterId, transactionId);
     }
 
@@ -102,8 +102,9 @@ public class CharactersService implements CharactersPort {
         if (!passwordEncoder.matches(password, accountVerificationDto.accountGame().getUserId().getPassword())) {
             throw new InternalException("The password is invalid", transactionId);
         }
-        Integer expansionId = Integer.valueOf(server.getExpansion());
-        integratorService.changePassword(accountVerificationDto.server().getIp(),
+
+        Integer expansionId = server.getExpansionId();
+        integratorService.changePassword(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getApiSecret(),
                 accountVerificationDto.server().getJwt(),
                 accountId, userIdAccount, newPassword, expansionId, transactionId);
@@ -116,7 +117,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.professions(accountVerificationDto.server().getIp(),
+        return integratorService.professions(accountVerificationDto.server().getHost(),
                 accountVerificationDto.server().getJwt(), accountId, characterId, transactionId);
     }
 
@@ -142,7 +143,7 @@ public class CharactersService implements CharactersPort {
             cost = serverServicesModel.amount();
         }
 
-        integratorService.sendLevel(serverModel.getIp(), serverModel.getJwt(), accountGame.getAccountId(),
+        integratorService.sendLevel(serverModel.getHost(), serverModel.getJwt(), accountGame.getAccountId(),
                 accountGame.getUserId().getId(), characterId, friendId, level, cost, transactionId);
     }
 
@@ -160,7 +161,7 @@ public class CharactersService implements CharactersPort {
         }
 
 
-        integratorService.sendMoney(serverModel.getIp(), serverModel.getJwt(), accountGame.getAccountId(),
+        integratorService.sendMoney(serverModel.getHost(), serverModel.getJwt(), accountGame.getAccountId(),
                 accountGame.getUserId().getId(), characterId, friendId, money, 0.0, transactionId);
     }
 
@@ -177,7 +178,7 @@ public class CharactersService implements CharactersPort {
             throw new InternalException("The server is currently not verified", transactionId);
         }
 
-        integratorService.sendAnnouncement(serverModel.getIp(), serverModel.getJwt(), userId, accountId, characterId,
+        integratorService.sendAnnouncement(serverModel.getHost(), serverModel.getJwt(), userId, accountId, characterId,
                 skillId, message, transactionId);
     }
 
@@ -189,7 +190,7 @@ public class CharactersService implements CharactersPort {
 
         final RealmEntity serverModel = verifyData.server();
 
-        return integratorService.getCharacterInventory(serverModel.getIp(), serverModel.getJwt(), characterId,
+        return integratorService.getCharacterInventory(serverModel.getHost(), serverModel.getJwt(), characterId,
                 accountId,
                 transactionId);
     }
@@ -203,7 +204,7 @@ public class CharactersService implements CharactersPort {
 
         final RealmEntity serverModel = verifyData.server();
 
-        integratorService.transferInventoryItem(serverModel.getIp(), serverModel.getJwt(), accountId, characterId,
+        integratorService.transferInventoryItem(serverModel.getHost(), serverModel.getJwt(), accountId, characterId,
                 friendId, count, itemId, transactionId);
     }
 

@@ -19,6 +19,6 @@ public class RealmServicesEntity {
             referencedColumnName = "id")
     @ManyToOne(
             optional = false,
-            fetch = FetchType.EAGER)
+            fetch = FetchType.LAZY)
     private RealmEntity realmId;
 }

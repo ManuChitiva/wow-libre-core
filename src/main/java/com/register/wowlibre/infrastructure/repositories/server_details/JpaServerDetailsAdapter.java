@@ -16,12 +16,12 @@ public class JpaServerDetailsAdapter implements ObtainServerDetails, DeleteServe
     }
 
     @Override
-    public List<ServerDetailsEntity> findByServerId(RealmEntity server, String transactionId) {
-        return serverDetailsRepository.findByServerId(server);
+    public List<RealmDetailsEntity> findByServerId(RealmEntity server, String transactionId) {
+        return serverDetailsRepository.findByRealmId(server);
     }
 
     @Override
-    public void delete(ServerDetailsEntity detailsEntity, String transactionId) {
+    public void delete(RealmDetailsEntity detailsEntity, String transactionId) {
         serverDetailsRepository.delete(detailsEntity);
     }
 }

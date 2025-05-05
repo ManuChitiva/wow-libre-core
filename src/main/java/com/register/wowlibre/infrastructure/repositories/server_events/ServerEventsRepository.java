@@ -5,8 +5,8 @@ import org.springframework.data.repository.*;
 
 import java.util.*;
 
-public interface ServerEventsRepository extends CrudRepository<ServerEventsEntity, Long> {
+public interface ServerEventsRepository extends CrudRepository<RealmEventsEntity, Long> {
 
-    List<ServerEventsEntity> findByServerId(RealmEntity server);
+    List<RealmEventsEntity> findByRealmId(RealmEntity server);
 
 }

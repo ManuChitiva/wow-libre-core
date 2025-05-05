@@ -11,15 +11,16 @@ public class PromotionEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String reference;
-    private String img;
+    @Column(name = "img_url")
+    private String imgUrl;
     private String name;
     private String description;
     @Column(name = "btn_text")
     private String btnText;
     @Column(name = "send_item")
     private boolean sendItem;
-    @Column(name = "server_id")
-    private Long serverId;
+    @Column(name = "realm_id")
+    private Long realmId;
     @Column(name = "min_level")
     private Integer minLevel;
     @Column(name = "max_level")
@@ -28,7 +29,7 @@ public class PromotionEntity {
     private Double amount;
     @Column(name = "class_character")
     private Long classCharacter;
-    private String language;
-    private boolean status;
     private Integer level;
+    private boolean status;
+    private String language;
 }

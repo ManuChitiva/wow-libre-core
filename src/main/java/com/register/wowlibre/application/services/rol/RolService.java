@@ -16,6 +16,6 @@ public class RolService implements RolPort {
 
     @Override
     public RolModel findByName(String name, String transactionId) {
-        return obtainRolPort.findByName(name, transactionId).map(RolMapper::toModel).orElse(null);
+        return obtainRolPort.findByName(name).map(RolMapper::toModel).orElse(null);
     }
 }

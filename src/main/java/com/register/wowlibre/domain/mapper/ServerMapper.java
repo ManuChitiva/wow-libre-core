@@ -12,16 +12,16 @@ public class ServerMapper {
         }
         return ServerModel.builder()
                 .id(server.getId())
-                .avatar(server.getAvatar())
+                .avatar(server.getAvatarUrl())
                 .name(server.getName())
-                .creationDate(server.getCreationDate())
-                .ip(server.getIp())
+                .creationDate(server.getCreatedAt())
+                .ip(server.getHost())
                 .emulator(server.getEmulator())
                 .status(server.isStatus())
                 .apiSecret(server.getApiSecret())
-                .expansion(server.getExpansion())
-                .webSite(server.getWebSite())
-                .avatar(server.getAvatar())
+                .expansion(String.valueOf(server.getExpansionId()))
+                .webSite(server.getWeb())
+                .avatar(server.getAvatarUrl())
                 .password(server.getPassword())
                 .apiKey(server.getApiKey())
                 .jwt(server.getJwt())
@@ -40,14 +40,14 @@ public class ServerMapper {
         realmEntity.setId(server.id);
         realmEntity.setName(server.name);
         realmEntity.setEmulator(server.emulator);
-        realmEntity.setExpansion(server.expansion);
-        realmEntity.setAvatar(server.avatar);
-        realmEntity.setIp(server.ip);
+        realmEntity.setExpansionId(Integer.parseInt(server.expansion));
+        realmEntity.setAvatarUrl(server.avatar);
+        realmEntity.setHost(server.ip);
         realmEntity.setApiKey(server.apiKey);
         realmEntity.setStatus(server.status);
         realmEntity.setPassword(server.password);
-        realmEntity.setWebSite(server.webSite);
-        realmEntity.setCreationDate(server.creationDate);
+        realmEntity.setWeb(server.webSite);
+        realmEntity.setCreatedAt(server.creationDate);
         realmEntity.setApiSecret(server.apiSecret);
         realmEntity.setRefreshToken(server.refreshToken);
         realmEntity.setJwt(server.jwt);
@@ -57,7 +57,6 @@ public class ServerMapper {
         realmEntity.setExternalPassword(server.externalPassword);
         realmEntity.setExternalUsername(server.externalUsername);
         realmEntity.setSalt(server.salt);
-        realmEntity.setUserId(server.userId);
         realmEntity.setRetry(server.retry);
         return realmEntity;
     }

@@ -1,9 +1,7 @@
 package com.register.wowlibre.domain.enums;
 
 public enum EmailTemplate {
-    NEW_USER(1, "new-user.ftlh"),
-    OTP(2, "otp-reset.ftlh"),
-    PASSWORD_RESET(3, "new-password.ftlh");
+    NEW_USER(1, "register.ftlh");
 
     private final int id;
     private final String templateName;

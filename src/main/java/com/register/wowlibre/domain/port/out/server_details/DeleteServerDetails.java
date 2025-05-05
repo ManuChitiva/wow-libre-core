@@ -3,5 +3,5 @@ package com.register.wowlibre.domain.port.out.server_details;
 import com.register.wowlibre.infrastructure.entities.*;
 
 public interface DeleteServerDetails {
-    void delete(ServerDetailsEntity detailsEntity, String transactionId);
+    void delete(RealmDetailsEntity detailsEntity, String transactionId);
 }

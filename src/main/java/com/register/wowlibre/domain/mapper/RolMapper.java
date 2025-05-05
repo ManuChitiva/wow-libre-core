@@ -16,9 +16,9 @@ public class RolMapper {
             return null;
         }
         RolEntity rolEntity = new RolEntity();
-        rolEntity.setId(rolModel.id);
-        rolEntity.setName(rolModel.name);
-        rolEntity.setStatus(rolModel.status);
+        rolEntity.setId(rolModel.id());
+        rolEntity.setName(rolModel.name());
+        rolEntity.setStatus(rolModel.status());
         return rolEntity;
     }
 }

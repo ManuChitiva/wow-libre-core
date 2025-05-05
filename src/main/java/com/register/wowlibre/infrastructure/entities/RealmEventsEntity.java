@@ -7,8 +7,8 @@ import java.io.*;
 
 @Data
 @Entity
-@Table(name = "server_events")
-public class ServerEventsEntity implements Serializable {
+@Table(name = "realm_events")
+public class RealmEventsEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,11 +18,11 @@ public class ServerEventsEntity implements Serializable {
     private String description;
     private String disclaimer;
     @JoinColumn(
-            name = "server_id",
+            name = "realm_id",
             referencedColumnName = "id")
     @ManyToOne(
             optional = false,
-            fetch = FetchType.EAGER)
-    private RealmEntity serverId;
+            fetch = FetchType.LAZY)
+    private RealmEntity realmId;
 
 }

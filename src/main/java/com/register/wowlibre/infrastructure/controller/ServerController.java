@@ -2,7 +2,7 @@ package com.register.wowlibre.infrastructure.controller;
 
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.model.*;
-import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.shared.*;
 import jakarta.validation.*;
 import org.springframework.http.*;
@@ -15,10 +15,10 @@ import static com.register.wowlibre.domain.constant.Constants.*;
 @RestController
 @RequestMapping("/api/server")
 public class ServerController {
-    private final ServerPort serverPort;
+    private final RealmPort realmPort;
 
-    public ServerController(ServerPort serverPort) {
-        this.serverPort = serverPort;
+    public ServerController(RealmPort realmPort) {
+        this.realmPort = realmPort;
     }
 
     @PostMapping(path = "/create")
@@ -27,7 +27,7 @@ public class ServerController {
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestBody @Valid ServerCreateDto serverCreateDto) {
 
-        serverPort.create(serverCreateDto, userId, transactionId);
+        realmPort.create(serverCreateDto, userId, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());
@@ -38,7 +38,7 @@ public class ServerController {
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId) {
 
-        List<ServerDto> servers = serverPort.findByUserId(userId, transactionId);
+        List<ServerDto> servers = realmPort.findByUserId(userId, transactionId);
 
         if (servers == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
@@ -54,7 +54,7 @@ public class ServerController {
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam(name = "api_key") String apiKey) {
 
-        final ServerModel server = serverPort.findByApiKey(apiKey, transactionId);
+        final ServerModel server = realmPort.findByApiKey(apiKey, transactionId);
 
         if (server == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
@@ -70,7 +70,7 @@ public class ServerController {
     public ResponseEntity<GenericResponse<List<ServerDto>>> servers(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
 
-        final List<ServerDto> serverList = serverPort.findByStatusIsTrue(transactionId);
+        final List<ServerDto> serverList = realmPort.findByStatusIsTrue(transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(serverList, transactionId).ok().build());
@@ -83,7 +83,7 @@ public class ServerController {
             @RequestParam(name = "expansion") String expansion,
             @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
 
-        final ServerVdpDto server = serverPort.findByServerNameAndExpansion(name, expansion, locale,
+        final ServerVdpDto server = realmPort.findByServerNameAndExpansion(name, expansion, locale,
                 transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)

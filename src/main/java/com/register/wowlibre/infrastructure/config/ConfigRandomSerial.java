@@ -6,7 +6,7 @@ import org.springframework.stereotype.*;
 
 @Component
 public class ConfigRandomSerial {
-    @Bean("random-string")
+    @Bean("reset-password-string")
     public RandomString configRandomString() {
         return new RandomString(15, "abcdefghijklmnopqrstuvwxyz0123456789");
     }

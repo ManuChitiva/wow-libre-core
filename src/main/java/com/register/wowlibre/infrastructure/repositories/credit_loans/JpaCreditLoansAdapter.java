@@ -18,7 +18,7 @@ public class JpaCreditLoansAdapter implements ObtainCreditLoans, SaveCreditLoans
 
     @Override
     public List<CreditLoansEntity> findByUserIdAndStatusIsTrue(Long userId) {
-        return creditLoansRepository.findByUserId_idAndStatusIsTrue(userId);
+        return null;
     }
 
     @Override

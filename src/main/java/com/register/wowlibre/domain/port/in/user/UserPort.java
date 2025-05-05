@@ -4,7 +4,6 @@ import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.security.*;
 import com.register.wowlibre.infrastructure.entities.*;
-import com.register.wowlibre.infrastructure.util.*;
 
 import java.util.*;
 
@@ -29,7 +28,5 @@ public interface UserPort {
 
     void changePassword(Long userId, String password, String newPassword, String transactionId);
 
-    void updateRol(Rol rolName, Long userId, String transactionId);
 
-    List<UserEntity> findAll(String transactionId);
 }

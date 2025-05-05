@@ -17,17 +17,17 @@ public class JpaServerServicesAdapter implements ObtainServiceServices, SaveServ
 
     @Override
     public List<RealmServicesEntity> findByServerId(Long serverId, String transactionId) {
-        return serverServicesRepository.findByServerId_Id(serverId);
+        return null;
     }
 
     @Override
     public Optional<RealmServicesEntity> findByNameAndServerId(String name, Long serverId, String transactionId) {
-        return serverServicesRepository.findByNameAndServerId_id(name, serverId);
+        return null;
     }
 
     @Override
     public List<RealmServicesEntity> findByServersAvailableRequestLoa(String transactionId) {
-        return serverServicesRepository.findActiveServerServicesWithAmountGreaterThanZero();
+        return null;
     }
 
     @Override

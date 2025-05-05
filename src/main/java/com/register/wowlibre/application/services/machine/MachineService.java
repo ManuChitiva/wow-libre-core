@@ -63,7 +63,7 @@ public class MachineService implements MachinePort {
         } else {
             machineModel.setCoint(10);
             machineModel.setUserId(userId);
-            machineModel.setServerId(serverId);
+            machineModel.setRealmId(null);
             saveMachine.save(machineModel, transactionId);
         }
 
@@ -94,7 +94,7 @@ public class MachineService implements MachinePort {
             return MachineDto.builder().winner(false).message(i18nService.tr("message-machine-loss", locale)).build();
         }
 
-        ClaimMachineResponse claimMachineResponse = integratorPort.claimMachine(server.getIp(), server.getJwt(),
+        ClaimMachineResponse claimMachineResponse = integratorPort.claimMachine(server.getHost(), server.getJwt(),
                 userId, accountId, characterId,
                 machineType.getName(), transactionId);
 
@@ -124,7 +124,7 @@ public class MachineService implements MachinePort {
                 machineModel.setCoint(0);
             }
             machineModel.setUserId(userId);
-            machineModel.setServerId(serverId);
+            machineModel.setRealmId(null);
             saveMachine.save(machineModel, transactionId);
         }
 

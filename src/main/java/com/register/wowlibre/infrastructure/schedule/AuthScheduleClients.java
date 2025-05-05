@@ -2,7 +2,7 @@ package com.register.wowlibre.infrastructure.schedule;
 
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.port.in.auth_integrator.*;
-import com.register.wowlibre.domain.port.out.server.*;
+import com.register.wowlibre.domain.port.out.realm.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
 import org.slf4j.*;
@@ -16,27 +16,27 @@ import java.util.*;
 public class AuthScheduleClients {
     private static final Logger LOGGER = LoggerFactory.getLogger(AuthScheduleClients.class);
 
-    private final ObtainServerPort obtainServerPort;
+    private final ObtainRealmPort obtainRealmPort;
+    private final SaveRealmPort saveRealmPort;
     private final AuthIntegratorPort authIntegratorPort;
-    private final SaveServerPort saveServerPort;
 
-    public AuthScheduleClients(ObtainServerPort obtainServerPort, AuthIntegratorPort authIntegratorPort,
-                               SaveServerPort saveServerPort) {
-        this.obtainServerPort = obtainServerPort;
+    public AuthScheduleClients(ObtainRealmPort obtainRealmPort, AuthIntegratorPort authIntegratorPort,
+                               SaveRealmPort saveRealmPort) {
+        this.obtainRealmPort = obtainRealmPort;
         this.authIntegratorPort = authIntegratorPort;
-        this.saveServerPort = saveServerPort;
+        this.saveRealmPort = saveRealmPort;
     }
 
     @Scheduled(cron = "1 0/1 * * * *")
     public void authServers() {
-        final String transactionId = "Auth-Client";
-        List<RealmEntity> servers = obtainServerPort.findByStatusIsTrue(transactionId);
+        final String transactionId = "[AuthScheduleClients][authServers]";
+        List<RealmEntity> realms = obtainRealmPort.findByStatusIsTrue(transactionId);
 
-        for (RealmEntity server : servers) {
-            LOGGER.info("[AuthScheduleClients][authServers] JWT Refresh Server  {} ", server.getName());
+        for (RealmEntity realm : realms) {
+            LOGGER.info("[AuthScheduleClients] [authServers] Automatic start of JWT refresh  {} ", realm.getName());
 
             try {
-                Date expirationDate = server.getExpirationDate();
+                Date expirationDate = realm.getExpirationDate();
 
                 if (expirationDate == null || isExpirationDateExpired(expirationDate)) {
                     Date adjustedExpirationDate = expirationDate != null ? expirationDate :
@@ -44,26 +44,26 @@ public class AuthScheduleClients {
 
                     if (adjustedExpirationDate.before(new Date())) {
 
-                        byte[] salt = server.getSalt();
-                        final String apiSecret = server.getApiSecret();
-                        final String password = server.getExternalPassword();
+                        byte[] salt = realm.getSalt();
+                        final String apiSecret = realm.getApiSecret();
+                        final String password = realm.getExternalPassword();
 
                         SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
                         String decryptPassword = EncryptionUtil.decrypt(password, derivedKey);
                         AuthClientResponse authToken = authIntegratorPort.auth(
-                                server.getIp(), server.getExternalUsername(),
+                                realm.getHost(), realm.getExternalUsername(),
                                 decryptPassword, transactionId
                         );
 
-                        server.setJwt(authToken.getJwt());
-                        server.setExpirationDate(authToken.getExpirationDate());
-                        server.setRefreshToken(authToken.getRefreshToken());
+                        realm.setJwt(authToken.getJwt());
+                        realm.setExpirationDate(authToken.getExpirationDate());
+                        realm.setRefreshToken(authToken.getRefreshToken());
 
-                        saveServerPort.save(server, transactionId);
+                        saveRealmPort.save(realm, transactionId);
                     }
                 }
             } catch (Exception e) {
-                LOGGER.error("[AuthScheduleClients] [authServers] {}", e.getMessage());
+                LOGGER.error("[AuthScheduleClients] [authServers] Error: [{}]", e.getMessage());
             }
         }
 
@@ -71,11 +71,12 @@ public class AuthScheduleClients {
 
     @Scheduled(cron = "1 0/1 * * * *")
     public void availableServers() {
-        final String transactionId = "Auth-Client";
-        List<RealmEntity> servers = obtainServerPort.findByStatusIsFalseAndRetry(5L, transactionId);
+        final String transactionId = "[AuthScheduleClients][availableServers]";
+        List<RealmEntity> servers = obtainRealmPort.findByStatusIsFalseAndRetry(5L, transactionId);
 
         for (RealmEntity server : servers) {
-            LOGGER.info("[AuthScheduleClients][availableServers] Register Server  {} ", server.getName());
+            LOGGER.info("[AuthScheduleClients][availableServers] Start authentication generation process {} ",
+                    server.getName());
 
             try {
                 byte[] salt = server.getSalt();
@@ -83,7 +84,7 @@ public class AuthScheduleClients {
                 final String apiSecret = server.getApiSecret();
                 final String username = server.getExternalUsername();
 
-                authIntegratorPort.create(server.getIp(), username, password, salt,
+                authIntegratorPort.create(server.getHost(), username, password, salt,
                         transactionId);
 
                 SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
@@ -91,7 +92,7 @@ public class AuthScheduleClients {
 
 
                 AuthClientResponse authToken = authIntegratorPort.auth(
-                        server.getIp(), server.getExternalUsername(), decryptPassword, transactionId
+                        server.getHost(), server.getExternalUsername(), decryptPassword, transactionId
                 );
 
                 server.setJwt(authToken.getJwt());
@@ -99,12 +100,13 @@ public class AuthScheduleClients {
                 server.setRefreshToken(authToken.getRefreshToken());
                 server.setStatus(true);
                 server.setRetry(0);
-                saveServerPort.save(server, transactionId);
-                LOGGER.info("SUCCESS SERVER REGISTER");
+                saveRealmPort.save(server, transactionId);
+                LOGGER.info("The kingdom is linked correctly {} ", server.getName());
             } catch (Exception e) {
-                LOGGER.error("[AuthScheduleClients][availableServers]  Fail Register {}", e.getMessage());
+                LOGGER.error("[AuthScheduleClients][availableServers]  an unexpected error has occurred Error: {}",
+                        e.getMessage());
                 server.setRetry(server.getRetry() == null ? 0 : server.getRetry() + 1);
-                saveServerPort.save(server, transactionId);
+                saveRealmPort.save(server, transactionId);
             }
         }
 

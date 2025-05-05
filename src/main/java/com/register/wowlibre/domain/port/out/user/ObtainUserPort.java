@@ -11,5 +11,4 @@ public interface ObtainUserPort {
 
     Optional<UserEntity> findByUserIdAndStatusIsTrue(Long userId, String transactionId);
 
-    List<UserEntity> findAll();
 }

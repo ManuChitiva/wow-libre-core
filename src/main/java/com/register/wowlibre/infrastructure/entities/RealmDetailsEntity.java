@@ -9,19 +9,24 @@ import java.time.*;
 @Data
 @Entity
 @Table(name = "server_details")
-public class ServerDetailsEntity implements Serializable {
+public class RealmDetailsEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String key;
     private String value;
-    @Column(name = "created_at")
+    @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     @JoinColumn(
-            name = "server_id",
+            name = "realm_id",
             referencedColumnName = "id")
     @ManyToOne(
             optional = false,
-            fetch = FetchType.EAGER)
-    private RealmEntity serverId;
+            fetch = FetchType.LAZY)
+    private RealmEntity realmId;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
 }

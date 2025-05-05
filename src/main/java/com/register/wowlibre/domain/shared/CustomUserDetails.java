@@ -50,7 +50,7 @@ public class CustomUserDetails implements UserDetails {
                              boolean enabled, Long userId, String avatarUrl, String language) {
 
         this.authorities = authorities.stream()
-                .map(rolModel -> new SimpleGrantedAuthority(rolModel.name))
+                .map(rolModel -> new SimpleGrantedAuthority(rolModel.name()))
                 .collect(Collectors.toList());
         this.password = password;
         this.username = username;

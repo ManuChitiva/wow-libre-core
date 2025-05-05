@@ -55,8 +55,8 @@ public class ServerServicesService implements ServerServicesPort {
 
         RealmServicesEntity serviceEntity = existingService.orElseGet(() -> {
             RealmServicesEntity newService = new RealmServicesEntity();
-            newService.setServerId(server);
-            newService.setName(name);
+            newService.setRealmId(null);
+            newService.setName(null);
             return newService;
         });
 
@@ -66,8 +66,8 @@ public class ServerServicesService implements ServerServicesPort {
     }
 
     private ServerServicesModel mapToModel(RealmServicesEntity realmServicesEntity) {
-        return new ServerServicesModel(realmServicesEntity.getId(), realmServicesEntity.getName(),
-                realmServicesEntity.getAmount(), realmServicesEntity.getServerId().getId(),
-                realmServicesEntity.getServerId().getName());
+        return new ServerServicesModel(realmServicesEntity.getId(), null,
+                realmServicesEntity.getAmount(), realmServicesEntity.getRealmId().getId(),
+                realmServicesEntity.getRealmId().getName());
     }
 }

@@ -16,7 +16,7 @@ public class ServerResourcesService implements ServerResourcesPort {
     }
 
     @Override
-    public List<ServerResourcesEntity> findByServerId(RealmEntity server, String transactionId) {
+    public List<RealmResourcesEntity> findByServerId(RealmEntity server, String transactionId) {
         return obtainServerResources.findByServerId(server, transactionId);
     }
 }

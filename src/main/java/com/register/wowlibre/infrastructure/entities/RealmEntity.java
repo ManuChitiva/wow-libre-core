@@ -46,5 +46,4 @@ public class RealmEntity implements Serializable {
     private byte[] salt;
     private Integer retry;
     private String disclaimer;
-    private Long userId;
 }

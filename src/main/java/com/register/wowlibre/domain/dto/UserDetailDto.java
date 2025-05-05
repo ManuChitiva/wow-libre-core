@@ -5,7 +5,7 @@ import lombok.*;
 import java.time.*;
 
 @Getter
-@AllArgsConstructor
+@Builder
 public class UserDetailDto {
     private Long id;
     private String country;

@@ -21,13 +21,12 @@ public class JpaUserPromotionAdapter implements SaveUserPromotion, ObtainUserPro
                                                                                               Long promotionId,
                                                                                               Long characterId,
                                                                                               String transactionId) {
-        return userPromotionRepository.findByUserIdAndAccountIdAndPromotionIdAndCharacterId(userId, accountId,
-                promotionId, characterId);
+        return null;
     }
 
     @Override
     public Long countRedeemedPromotion(Long serverId, String transactionId) {
-        return userPromotionRepository.countByServerId(serverId);
+        return null;
     }
 
     @Override

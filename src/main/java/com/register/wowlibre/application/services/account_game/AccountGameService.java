@@ -8,7 +8,7 @@ import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
-import com.register.wowlibre.domain.port.in.server.*;
+import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.account_game.*;
 import com.register.wowlibre.infrastructure.entities.*;
@@ -30,18 +30,18 @@ public class AccountGameService implements AccountGamePort {
     /**
      * SERVER PORT
      **/
-    private final ServerPort serverPort;
+    private final RealmPort realmPort;
     /**
      * EXTERNAL
      **/
     private final IntegratorPort integratorPort;
 
     public AccountGameService(SaveAccountGamePort saveAccountGamePort, ObtainAccountGamePort obtainAccountGamePort,
-                              ServerPort serverPort, UserPort userPort,
+                              RealmPort realmPort, UserPort userPort,
                               IntegratorPort integratorPort) {
         this.saveAccountGamePort = saveAccountGamePort;
         this.obtainAccountGamePort = obtainAccountGamePort;
-        this.serverPort = serverPort;
+        this.realmPort = realmPort;
         this.userPort = userPort;
         this.integratorPort = integratorPort;
     }
@@ -87,7 +87,7 @@ public class AccountGameService implements AccountGamePort {
         UserEntity user = userModel.get();
 
 
-        ServerModel serverAvailable = serverPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion,
+        ServerModel serverAvailable = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion,
                 transactionId);
 
         if (serverAvailable == null) {
@@ -104,7 +104,7 @@ public class AccountGameService implements AccountGamePort {
 
         AccountGameEntity accountGameEntity = new AccountGameEntity();
         accountGameEntity.setAccountId(accountId);
-        accountGameEntity.setServerId(ServerMapper.toEntity(serverAvailable));
+        accountGameEntity.setRealmId(ServerMapper.toEntity(serverAvailable));
         accountGameEntity.setUserId(user);
         accountGameEntity.setUsername(username);
         accountGameEntity.setStatus(true);
@@ -128,7 +128,7 @@ public class AccountGameService implements AccountGamePort {
     @Override
     public AccountVerificationDto verifyAccount(Long userId, Long accountId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = serverPort.findById(serverId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty()) {
             throw new InternalException("The server where your character is currently located is not available",
@@ -162,7 +162,7 @@ public class AccountGameService implements AccountGamePort {
                     transactionId);
         }
 
-        AccountDetailResponse account = integratorPort.account(serverRequest.getIp(),
+        AccountDetailResponse account = integratorPort.account(serverRequest.getHost(),
                 serverRequest.getJwt(), accountId, transactionId);
 
 
@@ -186,7 +186,7 @@ public class AccountGameService implements AccountGamePort {
 
 
     private RealmEntity getServer(Long serverId, String transactionId) {
-        Optional<RealmEntity> server = serverPort.findById(serverId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The server where your character is currently located is not available",
@@ -197,13 +197,13 @@ public class AccountGameService implements AccountGamePort {
     }
 
     private AccountGameModel mapToModel(AccountGameEntity accountGameEntity) {
-        boolean status = accountGameEntity.isStatus() && accountGameEntity.getServerId().isStatus();
-        Expansion expansion = Expansion.getById(Integer.parseInt(accountGameEntity.getServerId().getExpansion()));
+        boolean status = accountGameEntity.isStatus() && accountGameEntity.getRealmId().isStatus();
+        Expansion expansion = Expansion.getById(accountGameEntity.getRealmId().getExpansionId());
         return new AccountGameModel(accountGameEntity.getId(), accountGameEntity.getUsername(),
                 accountGameEntity.getAccountId(), accountGameEntity.getUserId().getEmail(),
-                accountGameEntity.getServerId().getName(), accountGameEntity.getServerId().getId(),
+                accountGameEntity.getRealmId().getName(), accountGameEntity.getRealmId().getId(),
                 expansion.getDisplayName()
-                , accountGameEntity.getServerId().getAvatar(),
-                accountGameEntity.getServerId().getWebSite(), status, accountGameEntity.getServerId().getRealmlist());
+                , accountGameEntity.getRealmId().getAvatarUrl(),
+                accountGameEntity.getRealmId().getWeb(), status, accountGameEntity.getRealmId().getRealmlist());
     }
 }

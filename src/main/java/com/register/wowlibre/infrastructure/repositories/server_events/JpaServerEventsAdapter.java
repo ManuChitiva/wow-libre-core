@@ -16,7 +16,7 @@ public class JpaServerEventsAdapter implements ObtainServerEvents {
     }
 
     @Override
-    public List<ServerEventsEntity> findByServerId(RealmEntity server, String transactionId) {
-        return serverEventsRepository.findByServerId(server);
+    public List<RealmEventsEntity> findByServerId(RealmEntity server, String transactionId) {
+        return serverEventsRepository.findByRealmId(server);
     }
 }

@@ -17,7 +17,7 @@ public class ServerEventsService implements ServerEventsPort {
     }
 
     @Override
-    public List<ServerEventsEntity> findByServerId(RealmEntity server, String transactionId) {
+    public List<RealmEventsEntity> findByServerId(RealmEntity server, String transactionId) {
         return obtainServerEvents.findByServerId(server, transactionId);
     }
 }

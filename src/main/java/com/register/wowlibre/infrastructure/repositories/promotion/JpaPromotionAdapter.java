@@ -17,17 +17,17 @@ public class JpaPromotionAdapter implements SavePromotion, ObtainPromotion {
 
     @Override
     public List<PromotionEntity> findByPromotionServerIdAndLanguage(Long serverId, String language) {
-        return promotionRepository.findByServerIdAndLanguageAndStatusIsTrue(serverId, language);
+        return null;
     }
 
     @Override
     public Optional<PromotionEntity> findByIdAndServerIdAndLanguage(Long id, Long serverId, String language) {
-        return promotionRepository.findByIdAndServerIdAndLanguageAndStatusIsTrue(id, serverId, language);
+        return null;
     }
 
     @Override
     public List<PromotionEntity> findByPromotionServerId(Long serverId) {
-        return promotionRepository.findByServerIdAndStatusIsTrue(serverId);
+        return null;
     }
 
     @Override

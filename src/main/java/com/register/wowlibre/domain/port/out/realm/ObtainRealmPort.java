@@ -1,13 +1,13 @@
-package com.register.wowlibre.domain.port.out.server;
+package com.register.wowlibre.domain.port.out.realm;
 
 import com.register.wowlibre.infrastructure.entities.*;
 
 import java.util.*;
 
-public interface ObtainServerPort {
-    List<RealmEntity> findByUser(Long userId, String transactionId);
-
+public interface ObtainRealmPort {
     List<RealmEntity> findByStatusIsTrue(String transactionId);
+
+    List<RealmEntity> findByUser(Long userId, String transactionId);
 
     Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, String expansion, String transactionId);
 

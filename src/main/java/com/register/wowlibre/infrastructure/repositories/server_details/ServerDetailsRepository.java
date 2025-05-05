@@ -5,7 +5,7 @@ import org.springframework.data.repository.*;
 
 import java.util.*;
 
-public interface ServerDetailsRepository extends CrudRepository<ServerDetailsEntity, Long> {
+public interface ServerDetailsRepository extends CrudRepository<RealmDetailsEntity, Long> {
 
-    List<ServerDetailsEntity> findByServerId(RealmEntity serverId);
+    List<RealmDetailsEntity> findByRealmId(RealmEntity serverId);
 }
