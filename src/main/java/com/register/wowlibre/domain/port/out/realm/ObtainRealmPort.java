@@ -9,13 +9,13 @@ public interface ObtainRealmPort {
 
     List<RealmEntity> findAll(String transactionId);
 
-    Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, String expansion, String transactionId);
+    Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, Integer expansionId);
 
     Optional<RealmEntity> findByApiKey(String apikey, String transactionId);
 
     Optional<RealmEntity> findById(Long id, String transactionId);
 
-    Optional<RealmEntity> findByNameAndExpansion(String name, String expansion, String transactionId);
+    Optional<RealmEntity> findByNameAndExpansion(String name, Integer expansionId, String transactionId);
 
     List<RealmEntity> findByStatusIsFalse(String transactionId);
 

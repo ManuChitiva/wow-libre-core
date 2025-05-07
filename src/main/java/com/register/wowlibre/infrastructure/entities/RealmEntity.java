@@ -17,7 +17,7 @@ public class RealmEntity implements Serializable {
     private String name;
     private String emulator;
     @Column(name = "expansion_id")
-    private int expansionId;
+    private Integer expansionId;
     private String type;
     private String host;
     private int port;

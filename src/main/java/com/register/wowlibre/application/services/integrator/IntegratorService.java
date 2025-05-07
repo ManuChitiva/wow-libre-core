@@ -26,7 +26,7 @@ public class IntegratorService implements IntegratorPort {
     }
 
     @Override
-    public Long create(String host, String apiSecret, String expansion, String username, String password,
+    public Long create(String host, String apiSecret, Integer expansion, String username, String password,
                        String email, Long userId, String transactionId) {
         byte[] salt = KeyDerivationUtil.generateSalt();
         String encryptedMessage;
@@ -45,7 +45,7 @@ public class IntegratorService implements IntegratorPort {
                 .password(encryptedMessage)
                 .email(email)
                 .userId(userId)
-                .expansionId(Integer.valueOf(expansion))
+                .expansionId(expansion)
                 .salt(salt)
                 .build();
 

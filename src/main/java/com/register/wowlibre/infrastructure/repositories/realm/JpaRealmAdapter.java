@@ -25,14 +25,13 @@ public class JpaRealmAdapter implements ObtainRealmPort, SaveRealmPort {
     }
 
     @Override
-    public Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, String version,
-                                                                       String transactionId) {
-        return null;
+    public Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, Integer expansionId) {
+        return realmRepository.findByNameAndExpansionIdAndStatusIsTrue(name, expansionId);
     }
 
     @Override
     public Optional<RealmEntity> findByApiKey(String apikey, String transactionId) {
-        return null;
+        return realmRepository.findByApiKey(apikey);
     }
 
     @Override
@@ -41,8 +40,8 @@ public class JpaRealmAdapter implements ObtainRealmPort, SaveRealmPort {
     }
 
     @Override
-    public Optional<RealmEntity> findByNameAndExpansion(String name, String expansion, String transactionId) {
-        return null;
+    public Optional<RealmEntity> findByNameAndExpansion(String name, Integer expansionId, String transactionId) {
+        return realmRepository.findByNameAndExpansionId(name, expansionId);
     }
 
     @Override

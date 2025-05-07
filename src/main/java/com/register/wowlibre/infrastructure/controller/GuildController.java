@@ -28,9 +28,9 @@ public class GuildController {
             @RequestParam final Integer page,
             @RequestParam final String search,
             @RequestParam(required = false) final String server,
-            @RequestParam(required = false) final String expansion) {
+            @RequestParam(required = false) final Integer expansionId) {
 
-        GuildsDto guilds = guildPort.findAll(size, page, search, server, expansion, transactionId);
+        GuildsDto guilds = guildPort.findAll(size, page, search, server, expansionId, transactionId);
 
         if (guilds == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();

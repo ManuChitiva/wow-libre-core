@@ -6,11 +6,11 @@ import com.register.wowlibre.infrastructure.entities.*;
 public class ServerMapper {
 
 
-    public static ServerModel toModel(RealmEntity server) {
+    public static RealmModel toModel(RealmEntity server) {
         if (server == null) {
             return null;
         }
-        return ServerModel.builder()
+        return RealmModel.builder()
                 .id(server.getId())
                 .avatar(server.getAvatarUrl())
                 .name(server.getName())
@@ -19,7 +19,7 @@ public class ServerMapper {
                 .emulator(server.getEmulator())
                 .status(server.isStatus())
                 .apiSecret(server.getApiSecret())
-                .expansion(String.valueOf(server.getExpansionId()))
+                .expansion(server.getExpansionId())
                 .webSite(server.getWeb())
                 .avatar(server.getAvatarUrl())
                 .password(server.getPassword())
@@ -31,7 +31,7 @@ public class ServerMapper {
                 .build();
     }
 
-    public static RealmEntity toEntity(ServerModel server) {
+    public static RealmEntity toEntity(RealmModel server) {
         if (server == null) {
             return null;
         }
@@ -40,7 +40,7 @@ public class ServerMapper {
         realmEntity.setId(server.id);
         realmEntity.setName(server.name);
         realmEntity.setEmulator(server.emulator);
-        realmEntity.setExpansionId(Integer.parseInt(server.expansion));
+        realmEntity.setExpansionId(server.expansion);
         realmEntity.setAvatarUrl(server.avatar);
         realmEntity.setHost(server.ip);
         realmEntity.setApiKey(server.apiKey);

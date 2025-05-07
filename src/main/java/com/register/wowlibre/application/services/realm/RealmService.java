@@ -65,7 +65,7 @@ public class RealmService implements RealmPort {
 
     @Override
     //@Cacheable(value = "server-apikey", key = "#apiKey")
-    public ServerModel findByApiKey(String apiKey, String transactionId) {
+    public RealmModel findByApiKey(String apiKey, String transactionId) {
         return obtainRealmPort.findByApiKey(apiKey, transactionId).map(ServerMapper::toModel)
                 .orElse(null);
     }
@@ -96,7 +96,7 @@ public class RealmService implements RealmPort {
             SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
             String encryptedMessage = EncryptionUtil.encrypt(externalPass, derivedKey);
 
-            ServerModel serverDto = ServerModel.builder()
+            RealmModel serverDto = RealmModel.builder()
                     .name(realmCreateDto.getName())
                     .emulator(realmCreateDto.getEmulator())
                     .expansion(realmCreateDto.getExpansion())
@@ -138,11 +138,10 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    public ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale,
+    public ServerVdpDto findByServerNameAndExpansion(String name, Integer expansionId, Locale locale,
                                                      String transactionId) {
 
-        RealmEntity serverModel = obtainRealmPort.findByNameAndExpansionAndStatusIsTrue(name, expansion,
-                transactionId).orElse(null);
+        RealmEntity serverModel = obtainRealmPort.findByNameAndExpansionAndStatusIsTrue(name, expansionId).orElse(null);
 
         if (serverModel == null) {
             throw new InternalException("", transactionId);
@@ -218,9 +217,9 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    public ServerModel findByNameAndVersionAndStatusIsTrue(String name, String version,
-                                                           String transactionId) {
-        return obtainRealmPort.findByNameAndExpansionAndStatusIsTrue(name, version, transactionId)
+    public RealmModel findByNameAndVersionAndStatusIsTrue(String name, Integer expansionId,
+                                                          String transactionId) {
+        return obtainRealmPort.findByNameAndExpansionAndStatusIsTrue(name, expansionId)
                 .map(ServerMapper::toModel).orElse(null);
     }
 

@@ -15,4 +15,11 @@ public interface RealmRepository extends CrudRepository<RealmEntity, Long> {
 
     @Override
     List<RealmEntity> findAll();
+
+    Optional<RealmEntity> findByNameAndExpansionIdAndStatusIsTrue(String name, Integer expansionId);
+
+    Optional<RealmEntity> findByNameAndExpansionId(String name, Integer expansionId);
+
+    Optional<RealmEntity> findByApiKey(String apiKey);
+
 }

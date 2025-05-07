@@ -14,6 +14,5 @@ public class CreateAccountGameDto {
     @NotNull
     private String serverName;
     @NotNull
-    @Length(min = 1, max = 10)
-    private String expansion;
+    private Integer expansion;
 }

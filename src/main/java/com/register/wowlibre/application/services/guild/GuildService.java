@@ -40,12 +40,12 @@ public class GuildService implements GuildPort {
     }
 
     @Override
-    public GuildsDto findAll(Integer size, Integer page, String search, String serverName, String expansion,
+    public GuildsDto findAll(Integer size, Integer page, String search, String serverName, Integer expansionId,
                              String transactionId) {
-        ServerModel server;
+        RealmModel server;
 
-        if (serverName != null && !serverName.isEmpty() && expansion != null) {
-            server = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion, transactionId);
+        if (serverName != null && !serverName.isEmpty() && expansionId != null) {
+            server = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansionId, transactionId);
 
             if (server == null) {
                 return new GuildsDto(new ArrayList<>(), 0L);
@@ -190,7 +190,7 @@ public class GuildService implements GuildPort {
 
         List<BenefitGuildEntity> benefitsGuild =
                 benefitGuildPort.findRemainingBenefitsForGuildAndServerIdAndCharacter(serverId,
-                guildDto.getId(), characterId, accountId, transactionId);
+                        guildDto.getId(), characterId, accountId, transactionId);
 
         if (benefitsGuild.isEmpty()) {
             throw new InternalException("There are no benefits available to purchase", transactionId);

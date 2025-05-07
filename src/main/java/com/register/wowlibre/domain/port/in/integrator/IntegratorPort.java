@@ -7,7 +7,7 @@ import com.register.wowlibre.domain.model.*;
 import java.util.*;
 
 public interface IntegratorPort {
-    Long create(String host, String apiSecret, String expansion, String username, String password,
+    Long create(String host, String apiSecret, Integer expansion, String username, String password,
                 String email, Long userId, String transactionId);
 
     CharactersDto characters(String host, String jwt, Long accountId, Long userId, String transactionId);

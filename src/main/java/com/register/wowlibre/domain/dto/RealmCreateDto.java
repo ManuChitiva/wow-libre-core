@@ -13,8 +13,7 @@ public class RealmCreateDto {
     @Length(min = 5, max = 40)
     private String emulator;
     @NotNull
-    @Length(min = 1, max = 5)
-    private String expansion;
+    private Integer expansion;
     @NotNull
     @Length(min = 5, max = 50)
     private String webSite;
@@ -36,5 +35,4 @@ public class RealmCreateDto {
     @NotNull
     @Length(min = 5, max = 30)
     private String type;
-
 }

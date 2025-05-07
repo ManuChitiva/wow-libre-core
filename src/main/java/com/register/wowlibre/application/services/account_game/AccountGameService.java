@@ -75,7 +75,7 @@ public class AccountGameService implements AccountGamePort {
     }
 
     @Override
-    public void create(Long userId, String serverName, String expansion, String username, String password,
+    public void create(Long userId, String serverName, Integer expansionId, String username, String password,
                        String transactionId) {
 
         Optional<UserEntity> userModel = userPort.findByUserId(userId, transactionId);
@@ -87,7 +87,7 @@ public class AccountGameService implements AccountGamePort {
         UserEntity user = userModel.get();
 
 
-        ServerModel serverAvailable = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansion,
+        RealmModel serverAvailable = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansionId,
                 transactionId);
 
         if (serverAvailable == null) {

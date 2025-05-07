@@ -14,9 +14,9 @@ public interface RealmPort {
 
     List<RealmDto> findByStatusIsTrue(String transactionId);
 
-    ServerModel findByNameAndVersionAndStatusIsTrue(String name, String version, String transactionId);
+    RealmModel findByNameAndVersionAndStatusIsTrue(String name, Integer expansionId, String transactionId);
 
-    ServerModel findByApiKey(String apiKey, String transactionId);
+    RealmModel findByApiKey(String apiKey, String transactionId);
 
     Optional<RealmEntity> findById(Long id, String transactionId);
 
@@ -25,5 +25,5 @@ public interface RealmPort {
 
     Optional<RealmEntity> findByIdAndUserId(Long id, Long userId, String transactionId);
 
-    ServerVdpDto findByServerNameAndExpansion(String name, String expansion, Locale locale, String transactionId);
+    ServerVdpDto findByServerNameAndExpansion(String name, Integer expansionId, Locale locale, String transactionId);
 }
