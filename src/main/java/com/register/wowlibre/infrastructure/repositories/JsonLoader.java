@@ -17,7 +17,6 @@ public class JsonLoader implements JsonLoaderPort {
     private final ObjectMapper objectMapper;
 
     private final Resource jsonFile;
-    private final Resource faqsJsonFile;
     private final Resource bankPlans;
     private final Resource benefitsGuild;
     private final Resource serversPromos;
@@ -28,7 +27,6 @@ public class JsonLoader implements JsonLoaderPort {
     private final Resource plansAcquisition;
 
     private List<CountryModel> jsonCountryModel;
-    private Map<String, List<FaqsModel>> jsonFaqsModel;
     private Map<String, List<PlanModel>> jsonPlanModel;
     private Map<String, List<BenefitModel>> jsonBenefits;
     private Map<String, List<ServersPromotions>> jsonServerPromos;
@@ -40,7 +38,6 @@ public class JsonLoader implements JsonLoaderPort {
 
     public JsonLoader(ObjectMapper objectMapper,
                       @Value("classpath:/static/countryAvailable.json") Resource jsonFile,
-                      @Value("classpath:/static/faqs.json") Resource faqsJsonFile,
                       @Value("classpath:/static/bank_plans.json") Resource bankPlans,
                       @Value("classpath:/static/benefit_guild.json") Resource benefitsGuild,
                       @Value("classpath:/static/servers_promotions.json") Resource serverPromos,
@@ -51,7 +48,6 @@ public class JsonLoader implements JsonLoaderPort {
                       @Value("classpath:/static/plans_acquisition.json") Resource plansAcquisition) {
         this.objectMapper = objectMapper;
         this.jsonFile = jsonFile;
-        this.faqsJsonFile = faqsJsonFile;
         this.bankPlans = bankPlans;
         this.benefitsGuild = benefitsGuild;
         this.serversPromos = serverPromos;
@@ -68,8 +64,6 @@ public class JsonLoader implements JsonLoaderPort {
             jsonBannerHome = readValue(bannersHome.getInputStream(), new TypeReference<>() {
             });
             jsonCountryModel = readValue(jsonFile.getInputStream(), new TypeReference<>() {
-            });
-            jsonFaqsModel = readValue(faqsJsonFile.getInputStream(), new TypeReference<>() {
             });
             jsonFaqsSubscriptionModel = readValue(faqsSubscriptionJsonFile.getInputStream(), new TypeReference<>() {
             });
@@ -102,12 +96,6 @@ public class JsonLoader implements JsonLoaderPort {
     @Override
     public List<CountryModel> getJsonCountry(String transactionId) {
         return jsonCountryModel;
-    }
-
-    @Override
-    public List<FaqsModel> getJsonFaqs(String language, String transactionId) {
-        return Optional.of(jsonFaqsModel.get(language)).orElse(jsonFaqsModel.get("es"));
-
     }
 
     @Override

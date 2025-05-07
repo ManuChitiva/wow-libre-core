@@ -13,11 +13,11 @@ import java.util.*;
 import static com.register.wowlibre.domain.constant.Constants.*;
 
 @RestController
-@RequestMapping("/api/server")
-public class ServerController {
+@RequestMapping("/api/realm")
+public class RealmController {
     private final RealmPort realmPort;
 
-    public ServerController(RealmPort realmPort) {
+    public RealmController(RealmPort realmPort) {
         this.realmPort = realmPort;
     }
 
@@ -25,28 +25,27 @@ public class ServerController {
     public ResponseEntity<GenericResponse<Void>> create(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
-            @RequestBody @Valid ServerCreateDto serverCreateDto) {
+            @RequestBody @Valid RealmCreateDto realmCreateDto) {
 
-        realmPort.create(serverCreateDto, userId, transactionId);
+        realmPort.create(realmCreateDto, userId, transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());
     }
 
-    @GetMapping("/user")
-    public ResponseEntity<GenericResponse<AssociatedServers>> serverUser(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestHeader(name = HEADER_USER_ID) final Long userId) {
+    @GetMapping("/")
+    public ResponseEntity<GenericResponse<AssociatedRealm>> realms(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
 
-        List<ServerDto> servers = realmPort.findByUserId(userId, transactionId);
+        List<RealmDto> realms = realmPort.findAll(transactionId);
 
-        if (servers == null) {
+        if (realms == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                    .body(new GenericResponseBuilder<AssociatedServers>(transactionId).notContent().build());
+                    .body(new GenericResponseBuilder<AssociatedRealm>(transactionId).notContent().build());
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(new AssociatedServers(servers, servers.size()), transactionId).ok().build());
+                .body(new GenericResponseBuilder<>(new AssociatedRealm(realms, realms.size()), transactionId).ok().build());
     }
 
     @GetMapping("/key")
@@ -67,10 +66,10 @@ public class ServerController {
 
 
     @GetMapping
-    public ResponseEntity<GenericResponse<List<ServerDto>>> servers(
+    public ResponseEntity<GenericResponse<List<RealmDto>>> servers(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
 
-        final List<ServerDto> serverList = realmPort.findByStatusIsTrue(transactionId);
+        final List<RealmDto> serverList = realmPort.findByStatusIsTrue(transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(serverList, transactionId).ok().build());

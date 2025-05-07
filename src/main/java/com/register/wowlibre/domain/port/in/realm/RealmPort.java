@@ -8,11 +8,11 @@ import java.util.*;
 
 public interface RealmPort {
 
-    List<ServerDto> findByUserId(Long userId, String transactionId);
+    List<RealmDto> findAll(String transactionId);
 
-    void create(ServerCreateDto serverCreateDto, Long userId, String transactionId);
+    void create(RealmCreateDto realmCreateDto, Long userId, String transactionId);
 
-    List<ServerDto> findByStatusIsTrue(String transactionId);
+    List<RealmDto> findByStatusIsTrue(String transactionId);
 
     ServerModel findByNameAndVersionAndStatusIsTrue(String name, String version, String transactionId);
 

@@ -12,7 +12,6 @@ import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.port.in.server_details.*;
 import com.register.wowlibre.domain.port.in.server_events.*;
 import com.register.wowlibre.domain.port.in.server_resources.*;
-import com.register.wowlibre.domain.port.in.user.*;
 import com.register.wowlibre.domain.port.out.realm.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
@@ -36,7 +35,6 @@ public class RealmService implements RealmPort {
     private final SaveRealmPort saveRealmPort;
     private final RandomString randomString;
     private final PasswordEncoder passwordEncoder;
-    private final UserPort userPort;
     private final ObtainServerDetailsPort obtainServerDetailsPort;
 
     private final IntegratorPort integratorPort;
@@ -46,14 +44,13 @@ public class RealmService implements RealmPort {
 
     public RealmService(ObtainRealmPort obtainRealmPort, SaveRealmPort saveRealmPort,
                         @Qualifier("reset-password-string") RandomString randomString, PasswordEncoder passwordEncoder,
-                        UserPort userPort, ObtainServerDetailsPort obtainServerDetailsPort,
+                        ObtainServerDetailsPort obtainServerDetailsPort,
                         IntegratorPort integratorPort, ServerEventsPort serverEventsPort,
                         ServerResourcesPort serverResourcesPort, I18nService i18nService) {
         this.obtainRealmPort = obtainRealmPort;
         this.saveRealmPort = saveRealmPort;
         this.randomString = randomString;
         this.passwordEncoder = passwordEncoder;
-        this.userPort = userPort;
         this.obtainServerDetailsPort = obtainServerDetailsPort;
         this.integratorPort = integratorPort;
         this.serverEventsPort = serverEventsPort;
@@ -62,8 +59,8 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    public List<ServerDto> findByUserId(Long userId, String transactionId) {
-        return obtainRealmPort.findByUser(userId, transactionId).stream().map(this::mapToModel).toList();
+    public List<RealmDto> findAll(String transactionId) {
+        return obtainRealmPort.findAll(transactionId).stream().map(this::mapToModel).toList();
     }
 
     @Override
@@ -79,16 +76,12 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    public void create(ServerCreateDto serverCreateDto, Long userId, String transactionId) {
+    public void create(RealmCreateDto realmCreateDto, Long userId, String transactionId) {
 
-        if (obtainRealmPort.findByNameAndExpansion(serverCreateDto.getName(), serverCreateDto.getExpansion(),
+        if (obtainRealmPort.findByNameAndExpansion(realmCreateDto.getName(), realmCreateDto.getExpansion(),
                 transactionId).isPresent()) {
             throw new InternalException("It is not possible to create or configure a server with because one already " +
                     "exists with the same name and with the same version characteristics.", transactionId);
-        }
-
-        if (obtainRealmPort.findByUser(userId, transactionId).size() >= 4) {
-            throw new InternalException("Currently it is not possible to link more than two servers", transactionId);
         }
 
 
@@ -97,31 +90,31 @@ public class RealmService implements RealmPort {
             final String apiSecret = randomString.nextString();
 
             byte[] salt = KeyDerivationUtil.generateSalt();
-            final String externalPass = serverCreateDto.getExternalPassword();
+            final String externalPass = realmCreateDto.getExternalPassword();
 
-            final String password = passwordEncoder.encode(serverCreateDto.getPassword());
+            final String password = passwordEncoder.encode(realmCreateDto.getPassword());
             SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
             String encryptedMessage = EncryptionUtil.encrypt(externalPass, derivedKey);
 
             ServerModel serverDto = ServerModel.builder()
-                    .name(serverCreateDto.getName())
-                    .emulator(serverCreateDto.getEmulator())
-                    .expansion(serverCreateDto.getExpansion())
+                    .name(realmCreateDto.getName())
+                    .emulator(realmCreateDto.getEmulator())
+                    .expansion(realmCreateDto.getExpansion())
                     .avatar(AVATAR_SERVER_DEFAULT)
-                    .ip(serverCreateDto.getHost())
+                    .ip(realmCreateDto.getHost())
                     .apiKey(apiKey)
-                    .type(serverCreateDto.getType())
+                    .type(realmCreateDto.getType())
                     .apiSecret(apiSecret)
                     .salt(salt)
                     .password(password)
                     .creationDate(LocalDateTime.now())
                     .retry(0)
                     .status(false)
-                    .realmlist(serverCreateDto.getRealmlist())
-                    .webSite(serverCreateDto.getWebSite())
+                    .realmlist(realmCreateDto.getRealmlist())
+                    .webSite(realmCreateDto.getWebSite())
                     .externalPassword(encryptedMessage)
                     .userId(userId)
-                    .externalUsername(serverCreateDto.getExternalUsername())
+                    .externalUsername(realmCreateDto.getExternalUsername())
                     .build();
 
             saveRealmPort.save(ServerMapper.toEntity(serverDto), transactionId);
@@ -220,7 +213,7 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    public List<ServerDto> findByStatusIsTrue(String transactionId) {
+    public List<RealmDto> findByStatusIsTrue(String transactionId) {
         return findByStatusIsTrueServers(transactionId).stream().map(this::mapToModel).toList();
     }
 
@@ -231,19 +224,19 @@ public class RealmService implements RealmPort {
                 .map(ServerMapper::toModel).orElse(null);
     }
 
-    private ServerDto mapToModel(RealmEntity server) {
-        ServerDto serverDto = new ServerDto();
-        serverDto.setId(server.getId());
-        serverDto.setName(server.getName());
-        serverDto.setStatus(server.isStatus());
-        serverDto.setEmulator(server.getEmulator());
-        serverDto.setExpansion(String.valueOf(server.getExpansionId()));
-        serverDto.setCreationDate(server.getCreatedAt());
-        serverDto.setWebSite(server.getWeb());
-        serverDto.setAvatar(server.getAvatarUrl());
-        serverDto.setApiKey(server.getApiKey());
-        serverDto.setExpName(Expansion.getById(Integer.parseInt(serverDto.getExpansion())).getDisplayName());
-        return serverDto;
+    private RealmDto mapToModel(RealmEntity server) {
+        RealmDto realmDto = new RealmDto();
+        realmDto.setId(server.getId());
+        realmDto.setName(server.getName());
+        realmDto.setStatus(server.isStatus());
+        realmDto.setEmulator(server.getEmulator());
+        realmDto.setExpansion(String.valueOf(server.getExpansionId()));
+        realmDto.setCreationDate(server.getCreatedAt());
+        realmDto.setWebSite(server.getWeb());
+        realmDto.setAvatar(server.getAvatarUrl());
+        realmDto.setApiKey(server.getApiKey());
+        realmDto.setExpName(Expansion.getById(Integer.parseInt(realmDto.getExpansion())).getDisplayName());
+        return realmDto;
     }
 
 }

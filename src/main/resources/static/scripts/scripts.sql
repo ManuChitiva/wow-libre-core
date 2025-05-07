@@ -236,3 +236,13 @@ CREATE TABLE platform.promotion_item
     promotion_id bigint      NOT NULL,
     CONSTRAINT fk_promotion_item_promotion_id FOREIGN KEY (promotion_id) references platform.promotion (id)
 );
+
+CREATE TABLE platform.faqs
+(
+    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
+    question    text        NOT NULL,
+    answer      text        NOT NULL,
+    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    language    varchar(2)  NOT NULL
+);

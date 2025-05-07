@@ -98,10 +98,10 @@ public class SecurityConfiguration {
                                         "/api/resources/benefits-guild",
                                         "/api/resources/experiences",
                                         "/api/resources/plan-acquisition",
-                                        "/api/server",
+                                        "/api/realm",
                                         "/api/guilds",
                                         "/api/guilds/{id}",
-                                        "/api/server/vdp",
+                                        "/api/realm/vdp",
                                         //SWAGGER
                                         "/v2/api-docs",
                                         "/swagger-resources",
@@ -113,7 +113,7 @@ public class SecurityConfiguration {
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**")
                                 .permitAll()
-                                .requestMatchers("/api/server/key","/api/dashboard/**").hasAuthority(Rol.SERVER.getName())
+                                .requestMatchers("/api/realm/key","/api/realm/**").hasAuthority(Rol.ADMIN.getName())
                                 .requestMatchers("/api/transaction/purchase", "/api/transaction/subscription-benefits"
                                 ).hasAuthority(Rol.ADMIN.getName())
                                 .anyRequest().authenticated())

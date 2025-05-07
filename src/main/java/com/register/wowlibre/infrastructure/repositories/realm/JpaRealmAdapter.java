@@ -15,8 +15,8 @@ public class JpaRealmAdapter implements ObtainRealmPort, SaveRealmPort {
     }
 
     @Override
-    public List<RealmEntity> findByUser(Long userId, String transactionId) {
-        return null;
+    public List<RealmEntity> findAll(String transactionId) {
+        return realmRepository.findAll();
     }
 
     @Override

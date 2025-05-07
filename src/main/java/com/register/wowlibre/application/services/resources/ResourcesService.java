@@ -4,6 +4,7 @@ package com.register.wowlibre.application.services.resources;
 import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.out.*;
+import com.register.wowlibre.domain.port.out.faqs.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
@@ -11,9 +12,11 @@ import java.util.*;
 @Service
 public class ResourcesService implements ResourcesPort {
     private final JsonLoaderPort jsonLoaderPort;
+    private final ObtainFaqs obtainFaqs;
 
-    public ResourcesService(JsonLoaderPort jsonLoaderPort) {
+    public ResourcesService(JsonLoaderPort jsonLoaderPort, ObtainFaqs obtainFaqs) {
         this.jsonLoaderPort = jsonLoaderPort;
+        this.obtainFaqs = obtainFaqs;
     }
 
     @Override
@@ -28,7 +31,8 @@ public class ResourcesService implements ResourcesPort {
 
     @Override
     public List<FaqsModel> getFaqs(String language, String transactionId) {
-        return jsonLoaderPort.getJsonFaqs(language, transactionId);
+        return obtainFaqs.findByLanguage(language).stream().map(faqsEntity -> new FaqsModel(faqsEntity.getQuestion(),
+                faqsEntity.getAnswer())).toList();
     }
 
     @Override

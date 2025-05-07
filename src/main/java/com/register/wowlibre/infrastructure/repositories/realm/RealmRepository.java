@@ -12,4 +12,7 @@ public interface RealmRepository extends CrudRepository<RealmEntity, Long> {
 
     @Query("SELECT s FROM RealmEntity s WHERE s.status = false AND (s.retry <= :retry OR s.retry IS NULL)")
     List<RealmEntity> findByStatusIsFalseAndRetry(@Param("retry") Long retry);
+
+    @Override
+    List<RealmEntity> findAll();
 }

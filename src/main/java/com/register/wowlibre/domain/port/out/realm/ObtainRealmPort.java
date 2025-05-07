@@ -7,7 +7,7 @@ import java.util.*;
 public interface ObtainRealmPort {
     List<RealmEntity> findByStatusIsTrue(String transactionId);
 
-    List<RealmEntity> findByUser(Long userId, String transactionId);
+    List<RealmEntity> findAll(String transactionId);
 
     Optional<RealmEntity> findByNameAndExpansionAndStatusIsTrue(String name, String expansion, String transactionId);
 
