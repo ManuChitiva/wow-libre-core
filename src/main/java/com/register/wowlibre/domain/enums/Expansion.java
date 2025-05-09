@@ -17,12 +17,12 @@ public enum Expansion {
     SHADOWLANDS(8, "Shadowlands", "https://i.ibb.co/JvpHqj6/SHADOWLANDS-wow-libre-expansion.png");
 
     private final int value;
-    private final String displayName;
+    private final String name;
     private final String logo;
 
-    Expansion(int value, String displayName, String logo) {
+    Expansion(int value, String name, String logo) {
         this.value = value;
-        this.displayName = displayName;
+        this.name = name;
         this.logo = logo;
     }
 

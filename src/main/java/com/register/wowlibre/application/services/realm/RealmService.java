@@ -234,7 +234,7 @@ public class RealmService implements RealmPort {
         realmDto.setWebSite(server.getWeb());
         realmDto.setAvatar(server.getAvatarUrl());
         realmDto.setApiKey(server.getApiKey());
-        realmDto.setExpName(Expansion.getById(Integer.parseInt(realmDto.getExpansion())).getDisplayName());
+        realmDto.setExpName(Expansion.getById(Integer.parseInt(realmDto.getExpansion())).getName());
         return realmDto;
     }
 

@@ -2,6 +2,7 @@ package com.register.wowlibre.application.services.machine;
 
 import com.register.wowlibre.application.services.*;
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.dto.account_game.*;
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.exception.*;

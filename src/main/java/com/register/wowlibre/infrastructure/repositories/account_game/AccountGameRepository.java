@@ -20,12 +20,12 @@ public interface AccountGameRepository extends CrudRepository<AccountGameEntity,
     @Query("SELECT a FROM AccountGameEntity a " +
             "INNER JOIN a.realmId s " +
             "INNER JOIN a.userId us " +
-            "WHERE s.name LIKE %:serverName% " +
+            "WHERE s.name LIKE %:realName% " +
             "AND us.id = :userId " +
             "AND a.status = true " +
             "AND a.username LIKE %:username%")
-    Page<AccountGameEntity> findByUserId_IdAndStatusIsTrueAndServerNameAndUsername(
-            @Param("serverName") String serverName,
+    Page<AccountGameEntity> findByUserId_IdAndStatusIsTrueAndRealmNameAndUsername(
+            @Param("realName") String realName,
             @Param("userId") Long userId,
             @Param("username") String username,
             Pageable pageable);

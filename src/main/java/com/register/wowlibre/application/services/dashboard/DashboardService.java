@@ -155,7 +155,7 @@ public class DashboardService implements DashboardPort {
 
         return new AccountsGameDto(accountsServer.getAccounts().stream().map(account ->
                 new AccountGameDto(account.getId(), account.getUsername(), account.getEmail(),
-                        Expansion.getById(Integer.parseInt(account.getExpansion())).getDisplayName()
+                        Expansion.getById(Integer.parseInt(account.getExpansion())).getName()
                         , account.isOnline(), account.getFailedLogins(), account.getJoinDate(), account.getLastIp(),
                         account.getMuteReason(), account.getMuteBy(), account.isMute(), account.getLastLogin(),
                         account.getOs(), account.isBanned())).toList(), accountsServer.getSize());

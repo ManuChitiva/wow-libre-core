@@ -1,4 +1,4 @@
-package com.register.wowlibre.domain.dto;
+package com.register.wowlibre.domain.dto.account_game;
 
 import jakarta.validation.constraints.*;
 import lombok.*;

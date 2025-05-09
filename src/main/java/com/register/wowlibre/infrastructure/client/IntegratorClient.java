@@ -27,11 +27,12 @@ public class IntegratorClient {
     }
 
 
-    public long createAccountGame(String host, AccountGameCreateDto request, String transactionId) {
-        HttpHeaders headers = new HttpHeaders();
+    public long createAccountGame(String host, AccountGameCreateRequest request, String transactionId) {
 
+        HttpHeaders headers = new HttpHeaders();
         headers.set(HEADER_TRANSACTION_ID, transactionId);
-        HttpEntity<AccountGameCreateDto> entity = new HttpEntity<>(request, headers);
+
+        HttpEntity<AccountGameCreateRequest> entity = new HttpEntity<>(request, headers);
 
         try {
             ResponseEntity<GenericResponse<Long>> response = restTemplate.exchange(String.format("%s/api/account"
@@ -43,19 +44,16 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [createAccountGame] Client/Server Error: {}. The request failed with a " +
-                            "client or server error. HTTP Status: {}, Response Body: {}",
-                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
+            LOGGER.error("[IntegratorClient] [createAccountGame] Client/Server Error: {}.  HTTP Status: {},  " +
+                    "Body: {}", e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
-            LOGGER.error("[IntegratorClient] [createAccountGame] Unexpected Error: {}. An unexpected error occurred " +
-                            "during the transaction with ID: {}.",
+            LOGGER.error("[IntegratorClient] [createAccountGame] Unexpected Error: {} - TransactionId{}.",
                     e.getMessage(), transactionId, e);
             throw new InternalException("Unexpected transaction failure", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
-
     }
 
     public CharactersResponse characters(String host, String jwt, Long accountId, String transactionId) {
@@ -421,7 +419,6 @@ public class IntegratorClient {
 
         throw new InternalException("Unexpected transaction failure", transactionId);
     }
-
 
     public GuildsResponse guilds(String host, String jwt, int size, int page, String search, String transactionId) {
         HttpHeaders headers = new HttpHeaders();

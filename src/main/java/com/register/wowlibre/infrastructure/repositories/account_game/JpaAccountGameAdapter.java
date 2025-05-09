@@ -25,7 +25,8 @@ public class JpaAccountGameAdapter implements ObtainAccountGamePort, SaveAccount
                                                                                          Long accountId,
                                                                                          Long realmId,
                                                                                          String transactionId) {
-        return accountGameRepository.findByUserId_IdAndAccountIdAndRealmId_idAndStatusIsTrue(userId, accountId, realmId);
+        return accountGameRepository.findByUserId_IdAndAccountIdAndRealmId_idAndStatusIsTrue(userId, accountId,
+                realmId);
     }
 
     @Override
@@ -34,16 +35,15 @@ public class JpaAccountGameAdapter implements ObtainAccountGamePort, SaveAccount
     }
 
     @Override
-    public List<AccountGameEntity> findByUserIdAndServerNameAndUsernameStatusIsTrue(Long userId, int page, int size,
-                                                                                    String serverName,
-                                                                                    String username,
-                                                                                    String transactionId) {
-        return accountGameRepository.findByUserId_IdAndStatusIsTrueAndServerNameAndUsername(
-                serverName, userId, username, PageRequest.of(page, size)).stream().toList();
+    public List<AccountGameEntity> findByUserIdAndRealmNameAndUsernameStatusIsTrue(Long userId, int page, int size,
+                                                                                   String realmName, String username,
+                                                                                   String transactionId) {
+        return accountGameRepository.findByUserId_IdAndStatusIsTrueAndRealmNameAndUsername(
+                realmName, userId, username, PageRequest.of(page, size)).stream().toList();
     }
 
     @Override
-    public List<AccountGameEntity> findByUserIdAndServerId(Long userId, Long serverId, String transactionId) {
+    public List<AccountGameEntity> findByUserIdAndRealmId(Long userId, Long serverId, String transactionId) {
         return accountGameRepository.findByUserId_IdAndRealmId_IdAndStatusIsTrue(userId, serverId);
     }
 

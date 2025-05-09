@@ -26,8 +26,8 @@ public class IntegratorService implements IntegratorPort {
     }
 
     @Override
-    public Long create(String host, String apiSecret, Integer expansion, String username, String password,
-                       String email, Long userId, String transactionId) {
+    public Long createAccount(String host, String apiSecret, Integer expansion, String username, String password,
+                              String email, Long userId, String transactionId) {
         byte[] salt = KeyDerivationUtil.generateSalt();
         String encryptedMessage;
 
@@ -40,16 +40,12 @@ public class IntegratorService implements IntegratorPort {
             throw new InternalException("Could not create account for server", transactionId);
         }
 
-        AccountGameCreateDto accountGameCreateDto = AccountGameCreateDto.builder()
-                .username(username)
-                .password(encryptedMessage)
-                .email(email)
-                .userId(userId)
-                .expansionId(expansion)
-                .salt(salt)
-                .build();
+        AccountGameCreateRequest accountGameCreateRequest = AccountGameCreateRequest.builder()
+                .username(username).password(encryptedMessage)
+                .email(email).userId(userId)
+                .expansionId(expansion).salt(salt).build();
 
-        return integratorClient.createAccountGame(host, accountGameCreateDto, transactionId);
+        return integratorClient.createAccountGame(host, accountGameCreateRequest, transactionId);
     }
 
 

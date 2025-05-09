@@ -4,7 +4,7 @@ import com.fasterxml.jackson.annotation.*;
 import lombok.*;
 
 @Builder
-public class AccountGameCreateDto {
+public class AccountGameCreateRequest {
     public String username;
     public String password;
     public String email;

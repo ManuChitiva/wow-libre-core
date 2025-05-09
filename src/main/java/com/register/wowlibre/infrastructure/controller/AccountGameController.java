@@ -1,6 +1,7 @@
 package com.register.wowlibre.infrastructure.controller;
 
-import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.dto.account_game.*;
+import com.register.wowlibre.domain.dto.account_game.AccountsGameDto;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.shared.*;
 import jakarta.validation.*;
@@ -19,7 +20,7 @@ public class AccountGameController {
     }
 
     @GetMapping(path = "/available")
-    public ResponseEntity<GenericResponse<AccountsDto>> accounts(
+    public ResponseEntity<GenericResponse<AccountsGameDto>> accounts(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestParam final int page,
@@ -27,7 +28,7 @@ public class AccountGameController {
             @RequestParam(required = false) String username,
             @RequestParam(required = false) String server) {
 
-        AccountsDto accounts = accountGamePort.accounts(userId, page, size, username, server, transactionId);
+        AccountsGameDto accounts = accountGamePort.accounts(userId, page, size, username, server, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(accounts, transactionId).ok().build());
@@ -48,12 +49,12 @@ public class AccountGameController {
 
 
     @GetMapping
-    public ResponseEntity<GenericResponse<AccountsDto>> accountsByServerId(
+    public ResponseEntity<GenericResponse<AccountsGameDto>> accountsByRealm(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestParam(name = PARAM_SERVER_ID) Long serverId) {
 
-        AccountsDto accounts = accountGamePort.accounts(userId, serverId, transactionId);
+        AccountsGameDto accounts = accountGamePort.accounts(userId, serverId, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(accounts, transactionId).ok().build());
@@ -61,22 +62,21 @@ public class AccountGameController {
 
 
     @GetMapping(path = "/{account_id}/{server_id}")
-    public ResponseEntity<GenericResponse<AccountDetailDto>> account(
+    public ResponseEntity<GenericResponse<AccountGameDetailDto>> account(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @PathVariable final Long account_id,
             @PathVariable final Long server_id) {
 
-        final AccountDetailDto account = accountGamePort.account(userId, account_id, server_id, transactionId);
+        final AccountGameDetailDto account = accountGamePort.account(userId, account_id, server_id, transactionId);
 
         if (account != null) {
             return ResponseEntity
                     .status(HttpStatus.OK)
-                    .body(new GenericResponseBuilder<AccountDetailDto>(transactionId).ok(account).build());
+                    .body(new GenericResponseBuilder<AccountGameDetailDto>(transactionId).ok(account).build());
         }
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
     }
-
 
 }
