@@ -7,8 +7,8 @@ import java.util.*;
 public interface ObtainAccountGamePort {
     List<AccountGameEntity> findByUserIdAndStatusIsTrue(Long userId, int page, int size, String transactionId);
 
-    Optional<AccountGameEntity> findByUserIdAndAccountIdAndServerIdAndStatusIsTrue(Long userId, Long accountId, Long serverId,
-                                                                        String transactionId);
+    Optional<AccountGameEntity> findByUserIdAndAccountIdAndRealmIdAndStatusIsTrue(Long userId, Long accountId, Long serverId,
+                                                                                  String transactionId);
 
     Long accounts(Long userId);
 

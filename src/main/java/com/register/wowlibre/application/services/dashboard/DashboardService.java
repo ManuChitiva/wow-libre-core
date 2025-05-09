@@ -67,7 +67,7 @@ public class DashboardService implements DashboardPort {
         }
 
         LoansDto loansDto = new LoansDto();
-        loansDto.setLoans(Optional.ofNullable(serverServicesPort.findByNameAndServerId(RealmServices.BANK.getName(),
+        loansDto.setLoans(Optional.ofNullable(serverServicesPort.findByNameAndServerId(RealmServices.BANK,
                 serverId,
                 transactionId)).map(ServerServicesModel::amount).orElse(null));
         loansDto.setUsers(obtainCreditLoans.findByServerIdAndPagination(serverId, size, page, filter, asc,
@@ -88,7 +88,7 @@ public class DashboardService implements DashboardPort {
                     transactionId);
         }
 
-        serverServicesPort.updateOrCreateAmountByServerId(RealmServices.getName(service, transactionId).getName(),
+        serverServicesPort.updateOrCreateAmountByServerId(RealmServices.getName(service, transactionId),
                 server.get(),
                 loans,
                 transactionId);

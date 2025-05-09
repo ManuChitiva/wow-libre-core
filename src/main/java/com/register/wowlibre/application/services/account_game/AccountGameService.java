@@ -128,16 +128,16 @@ public class AccountGameService implements AccountGamePort {
     @Override
     public AccountVerificationDto verifyAccount(Long userId, Long accountId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
+        Optional<RealmEntity> realm = realmPort.findById(serverId, transactionId);
 
-        if (server.isEmpty()) {
+        if (realm.isEmpty()) {
             throw new InternalException("The server where your character is currently located is not available",
                     transactionId);
         }
 
         Optional<AccountGameEntity> accountGame =
-                obtainAccountGamePort.findByUserIdAndAccountIdAndServerIdAndStatusIsTrue(userId, accountId,
-                        server.get().getId(), transactionId);
+                obtainAccountGamePort.findByUserIdAndAccountIdAndRealmIdAndStatusIsTrue(userId, accountId,
+                        realm.get().getId(), transactionId);
 
         if (accountGame.isEmpty()) {
             throw new InternalException("Currently your account is not found or is not available, please contact " +
@@ -145,7 +145,7 @@ public class AccountGameService implements AccountGamePort {
                     transactionId);
         }
 
-        return new AccountVerificationDto(server.get(), accountGame.get());
+        return new AccountVerificationDto(realm.get(), accountGame.get());
     }
 
     @Override
@@ -153,7 +153,7 @@ public class AccountGameService implements AccountGamePort {
         final RealmEntity serverRequest = getServer(serverId, transactionId);
 
         Optional<AccountGameEntity> accountGame =
-                obtainAccountGamePort.findByUserIdAndAccountIdAndServerIdAndStatusIsTrue(userId, accountId, serverId,
+                obtainAccountGamePort.findByUserIdAndAccountIdAndRealmIdAndStatusIsTrue(userId, accountId, serverId,
                         transactionId);
 
         if (accountGame.isEmpty()) {

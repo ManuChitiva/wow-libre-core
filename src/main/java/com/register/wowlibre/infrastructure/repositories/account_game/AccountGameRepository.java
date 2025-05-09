@@ -10,7 +10,7 @@ import java.util.*;
 
 public interface AccountGameRepository extends CrudRepository<AccountGameEntity, Long> {
     Optional<AccountGameEntity> findByUserId_IdAndAccountIdAndRealmId_idAndStatusIsTrue(Long userId, Long accountId,
-                                                                                      Long serverId);
+                                                                                      Long realmId);
 
     Page<AccountGameEntity> findByUserId_IdAndStatusIsTrue(Long userId, Pageable pageable);
 

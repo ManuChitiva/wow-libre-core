@@ -122,28 +122,28 @@ public class CharactersService implements CharactersPort {
     }
 
     @Override
-    public void sendLevel(Long userId, Long accountId, Long serverId, Long characterId, Long friendId, Integer level,
+    public void sendLevel(Long userId, Long accountId, Long realmId, Long characterId, Long friendId, Integer level,
                           String transactionId) {
 
-        AccountVerificationDto verifyAccount = accountGamePort.verifyAccount(userId, accountId, serverId,
+        AccountVerificationDto verifyAccount = accountGamePort.verifyAccount(userId, accountId, realmId,
                 transactionId);
 
-        final RealmEntity serverModel = verifyAccount.server();
+        final RealmEntity realm = verifyAccount.server();
         final AccountGameEntity accountGame = verifyAccount.accountGame();
 
-        if (!serverModel.isStatus()) {
+        if (!realm.isStatus()) {
             throw new InternalException("The server is currently not verified", transactionId);
         }
 
         ServerServicesModel serverServicesModel =
-                serverServicesPort.findByNameAndServerId(RealmServices.SEND_LEVEL.getName(), serverId, transactionId);
+                serverServicesPort.findByNameAndServerId(RealmServices.SEND_LEVEL, realmId, transactionId);
 
         double cost = 0.0;
         if (serverServicesModel != null && serverServicesModel.amount() > 0) {
             cost = serverServicesModel.amount();
         }
 
-        integratorService.sendLevel(serverModel.getHost(), serverModel.getJwt(), accountGame.getAccountId(),
+        integratorService.sendLevel(realm.getHost(), realm.getJwt(), accountGame.getAccountId(),
                 accountGame.getUserId().getId(), characterId, friendId, level, cost, transactionId);
     }
 
@@ -159,7 +159,6 @@ public class CharactersService implements CharactersPort {
         if (!serverModel.isStatus()) {
             throw new InternalException("The server is currently not verified", transactionId);
         }
-
 
         integratorService.sendMoney(serverModel.getHost(), serverModel.getJwt(), accountGame.getAccountId(),
                 accountGame.getUserId().getId(), characterId, friendId, money, 0.0, transactionId);

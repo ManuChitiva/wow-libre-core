@@ -53,7 +53,7 @@ public class UserService implements UserPort {
     private final SecurityValidationPort securityValidationPort;
     private final MailPort mailPort;
     /**
-     * VERIFY CAPCHAT PORT
+     * VERIFY CAPTCHAT PORT
      **/
     private final GooglePort googlePort;
     /**
@@ -85,8 +85,8 @@ public class UserService implements UserPort {
 
         if (!googlePort.verifyCaptcha(configurations.getGoogleSecret(), userDto.getToken(), ip,
                 transactionId)) {
-            LOGGER.error("[UserService] [create] An error occurred while verifying the captcha. -  [transactionId: " +
-                    "{}]", transactionId);
+            LOGGER.error("[UserService] [create] An error occurred while verifying the captcha. -  " +
+                    "[transactionId: {}]", transactionId);
             throw new InternalException("The captcha is invalid", transactionId);
         }
 
@@ -267,6 +267,7 @@ public class UserService implements UserPort {
 
     @Override
     public void changePassword(Long userId, String password, String newPassword, String transactionId) {
+
         Optional<UserEntity> userFound = findByUserId(userId, transactionId);
 
         if (userFound.isEmpty() || !userFound.get().getStatus()) {

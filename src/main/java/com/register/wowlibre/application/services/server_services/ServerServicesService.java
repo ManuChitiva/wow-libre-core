@@ -1,5 +1,6 @@
 package com.register.wowlibre.application.services.server_services;
 
+import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.server_services.*;
@@ -21,12 +22,12 @@ public class ServerServicesService implements ServerServicesPort {
 
     @Override
     public List<ServerServicesModel> findByServerId(Long serverId, String transactionId) {
-        return obtainServiceServices.findByServerId(serverId, transactionId).stream().map(this::mapToModel).toList();
+        return obtainServiceServices.findByRealmId(serverId, transactionId).stream().map(this::mapToModel).toList();
     }
 
     @Override
-    public ServerServicesModel findByNameAndServerId(String name, Long serverId, String transactionId) {
-        return obtainServiceServices.findByNameAndServerId(name, serverId, transactionId).map(this::mapToModel).orElse(null);
+    public ServerServicesModel findByNameAndServerId(RealmServices name, Long serverId, String transactionId) {
+        return obtainServiceServices.findByNameAndRealmId(name, serverId, transactionId).map(this::mapToModel).orElse(null);
     }
 
     @Override
@@ -48,9 +49,10 @@ public class ServerServicesService implements ServerServicesPort {
     }
 
     @Override
-    public void updateOrCreateAmountByServerId(String name, RealmEntity server, Double amount, String transactionId) {
+    public void updateOrCreateAmountByServerId(RealmServices name, RealmEntity server, Double amount,
+                                               String transactionId) {
         Optional<RealmServicesEntity> existingService =
-                obtainServiceServices.findByNameAndServerId(name, server.getId(), transactionId);
+                obtainServiceServices.findByNameAndRealmId(name, server.getId(), transactionId);
 
 
         RealmServicesEntity serviceEntity = existingService.orElseGet(() -> {

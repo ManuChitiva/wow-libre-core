@@ -44,8 +44,7 @@ public class IntegratorClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[IntegratorClient] [createAccountGame] Client/Server Error: {}. The request failed with a " +
-                            "client or server error. " +
-                            "HTTP Status: {}, Response Body: {}",
+                            "client or server error. HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
         } catch (Exception e) {
@@ -244,7 +243,7 @@ public class IntegratorClient {
         headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
 
         HttpEntity<ChangePasswordRequest> entity = new HttpEntity<>(new ChangePasswordRequest(password, accountId,
-                userId,expansionId,
+                userId, expansionId,
                 salt), headers);
 
         String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/account/change-password", host))

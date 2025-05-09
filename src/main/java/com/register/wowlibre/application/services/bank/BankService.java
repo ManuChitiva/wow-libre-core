@@ -59,7 +59,7 @@ public class BankService implements BankPort {
         }
 
         ServerServicesModel serverServicesModel =
-                serverServicesPort.findByNameAndServerId(RealmServices.BANK.getName(), serverId,
+                serverServicesPort.findByNameAndServerId(RealmServices.BANK, serverId,
                         transactionId);
 
         if (serverServicesModel == null) {

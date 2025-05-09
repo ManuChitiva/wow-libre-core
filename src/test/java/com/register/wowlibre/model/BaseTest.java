@@ -1,6 +1,7 @@
 package com.register.wowlibre.model;
 
 import com.register.wowlibre.infrastructure.entities.*;
+import com.register.wowlibre.infrastructure.util.*;
 
 import java.time.*;
 
@@ -18,7 +19,14 @@ public class BaseTest {
         user.setCountry("US");
         user.setAvatarUrl("avatar.jpg");
         user.setLanguage("en");
+        user.setRolId(rolModel());
         return user;
     }
 
+    private RolEntity rolModel() {
+        RolEntity rol = new RolEntity();
+        rol.setId(1L);
+        rol.setName(Rol.CLIENT.getName());
+        return rol;
+    }
 }
