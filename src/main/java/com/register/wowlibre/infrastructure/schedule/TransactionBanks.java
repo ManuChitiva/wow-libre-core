@@ -78,7 +78,7 @@ public class TransactionBanks {
                             "loan money {}", e.getMessage());
                 }
             } else {
-                LOGGER.error("[TransactionBanks] [SendCreditLoans]  The server was not found for the requested credit");
+                LOGGER.error("[TransactionBanks] [SendCreditLoans]  The realm was not found for the requested credit");
             }
 
         });
@@ -110,7 +110,7 @@ public class TransactionBanks {
                             "credit from the customer {}", e.getMessage());
                 }
             } else {
-                LOGGER.error("[TransactionBanks] [makeCreditCollections]  The server was not found for the requested " +
+                LOGGER.error("[TransactionBanks] [makeCreditCollections]  The realm was not found for the requested " +
                         "credit ServerId: {}", credit.getRealmId());
             }
 

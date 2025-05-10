@@ -14,7 +14,7 @@ public class MachineEntity {
     private Long id;
     @Column(name = "user_id")
     private Long userId;
-    private Integer coint;
+    private Integer points;
     @Column(name = "last_win")
     private LocalDateTime lastWin;
     @JoinColumn(

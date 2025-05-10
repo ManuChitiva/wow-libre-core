@@ -42,7 +42,7 @@ public class TransactionService implements TransactionPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity server = accountVerificationDto.server();
+        RealmEntity server = accountVerificationDto.realm();
 
         if (server == null) {
             LOGGER.error("Server is not available");
@@ -61,7 +61,7 @@ public class TransactionService implements TransactionPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity server = accountVerificationDto.server();
+        RealmEntity server = accountVerificationDto.realm();
 
         if (server == null) {
             LOGGER.error("Server is not available");
@@ -81,7 +81,7 @@ public class TransactionService implements TransactionPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity server = accountVerificationDto.server();
+        RealmEntity server = accountVerificationDto.realm();
 
         if (server == null) {
             LOGGER.error("Server is not available");
@@ -116,7 +116,7 @@ public class TransactionService implements TransactionPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity server = accountVerificationDto.server();
+        RealmEntity server = accountVerificationDto.realm();
 
         if (server == null) {
             LOGGER.error("Server is not available");

@@ -51,7 +51,7 @@ public class AccountGameService implements AccountGamePort {
     }
 
     @Override
-    public void create(Long userId, String serverName, Integer expansionId, String username, String password,
+    public void create(Long userId, String realmName, Integer expansionId, String username, String password,
                        String transactionId) {
 
         Optional<UserEntity> userModel = userPort.findByUserId(userId, transactionId);
@@ -62,28 +62,28 @@ public class AccountGameService implements AccountGamePort {
 
         UserEntity user = userModel.get();
 
-        RealmModel realmServer = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansionId,
+        RealmModel realmModel = realmPort.findByNameAndVersionAndStatusIsTrue(realmName, expansionId,
                 transactionId);
 
-        if (realmServer == null) {
-            LOGGER.error("[AccountGameService] [create] Server {} with expansion {} not found", serverName,
+        if (realmModel == null) {
+            LOGGER.error("[AccountGameService] [create] Server {} with expansion {} not found", realmName,
                     expansionId);
-            throw new InternalException("It is not possible to register on any server, they are currently not " +
+            throw new InternalException("It is not possible to register on any realm, they are currently not " +
                     "available", transactionId);
         }
 
-        if (obtainAccountGamePort.findByUserIdAndRealmId(userId, realmServer.id, transactionId).size() >= 20) {
+        if (obtainAccountGamePort.findByUserIdAndRealmId(userId, realmModel.id, transactionId).size() >= 20) {
             LOGGER.error("[AccountGameService] [create] User {} has reached the " +
-                    "maximum number of accounts on server {}", userId, realmServer.id);
-            throw new InternalException("You cannot create more than 20 accounts per server", transactionId);
+                    "maximum number of accounts on realm {}", userId, realmModel.id);
+            throw new InternalException("You cannot create more than 20 accounts per realm", transactionId);
         }
 
-        Long accountId = integratorPort.createAccount(realmServer.ip, realmServer.apiSecret, realmServer.expansion,
+        Long accountId = integratorPort.createAccount(realmModel.ip, realmModel.apiSecret, realmModel.expansion,
                 username, password, user.getEmail(), user.getId(), transactionId);
 
         AccountGameEntity accountGameEntity = new AccountGameEntity();
         accountGameEntity.setAccountId(accountId);
-        accountGameEntity.setRealmId(ServerMapper.toEntity(realmServer));
+        accountGameEntity.setRealmId(RealmMapper.toEntity(realmModel));
         accountGameEntity.setUserId(user);
         accountGameEntity.setUsername(username);
         accountGameEntity.setStatus(true);
@@ -160,7 +160,7 @@ public class AccountGameService implements AccountGamePort {
         Optional<RealmEntity> realm = realmPort.findById(realmId, transactionId);
 
         if (realm.isEmpty() || !realm.get().isStatus()) {
-            throw new InternalException("The server where your character is currently located is not available",
+            throw new InternalException("The realm where your character is currently located is not available",
                     transactionId);
         }
 
@@ -192,7 +192,7 @@ public class AccountGameService implements AccountGamePort {
                 .muteReason(account.muteReason())
                 .mute(account.mute())
                 .online(account.online())
-                .server(realmDetail.getName())
+                .realm(realmDetail.getName())
                 .failedLogins(account.failedLogins())
                 .accountBanned(account.accountBanned()).build();
     }

@@ -12,19 +12,6 @@
       "copy_success": false,
       "redirect": "/vdp?name=wowhero&expansion=2",
       "disclaimer": "¡El poder está en tus manos, úsalo con sabiduría!"
-    },
-    {
-      "title": "Reino",
-      "title_disclaimer": "Dos",
-      "subtitle": "Instant 80 Full PVP",
-      "description": "¡Salta directo al nivel 80 y domina los campos de batalla con equipo PvP completo!",
-      "button_primary_text": "¡Únete Ahora!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_066c7389fe6d427da2cbb3ef258784c9~mv2.webp",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "copy_success": false,
-      "redirect": "/vdp?name=wowhero&expansion=2",
-      "disclaimer": "Solo los valientes triunfan en el Reino Dos."
     }
   ],
   "en": [
@@ -40,19 +27,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
       "disclaimer": "The power is in your hands, use it wisely!"
-    },
-    {
-      "title": "Realm",
-      "title_disclaimer": "Two",
-      "subtitle": "Instant 80 Full PVP",
-      "description": "Jump straight to level 80 and dominate the battlegrounds with full PvP gear!",
-      "button_primary_text": "Join Now!",
-      "button_secondary_text": "Copy Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_066c7389fe6d427da2cbb3ef258784c9~mv2.webp",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
-      "disclaimer": "Only the brave prevail in Elysium."
     }
   ],
   "pt": [
@@ -68,19 +42,6 @@
       "copy_success": false,
       "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
       "disclaimer": "O poder está em suas mãos, use-o com sabedoria!"
-    },
-    {
-      "title": "Wow",
-      "title_disclaimer": "Elysium",
-      "subtitle": "Instantâneo 80 Full PVP",
-      "description": "Comece direto no nível 80 e domine os campos de batalha com equipamento PvP completo!",
-      "button_primary_text": "Junte-se Agora!",
-      "button_secondary_text": "Copiar Realmlist",
-      "background_image": "https://static.wixstatic.com/media/5dd8a0_066c7389fe6d427da2cbb3ef258784c9~mv2.webp",
-      "realmlist": "set realmlist play.wowlibre.com",
-      "copy_success": false,
-      "redirect": "https://www.wowlibre.com/vdp?name=wowhero&expansion=2",
-      "disclaimer": "Apenas os corajosos vencem em Elysium."
     }
   ]
 }

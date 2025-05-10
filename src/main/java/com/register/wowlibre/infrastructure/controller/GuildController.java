@@ -1,6 +1,7 @@
 package com.register.wowlibre.infrastructure.controller;
 
 import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.dto.guilds.*;
 import com.register.wowlibre.domain.port.in.guild.*;
 import com.register.wowlibre.domain.shared.*;
 import jakarta.validation.*;
@@ -27,10 +28,10 @@ public class GuildController {
             @RequestParam final Integer size,
             @RequestParam final Integer page,
             @RequestParam final String search,
-            @RequestParam(required = false) final String server,
+            @RequestParam(required = false) final String realm,
             @RequestParam(required = false) final Integer expansionId) {
 
-        GuildsDto guilds = guildPort.findAll(size, page, search, server, expansionId, transactionId);
+        GuildsDto guilds = guildPort.findAll(size, page, search, realm, expansionId, transactionId);
 
         if (guilds == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT).build();
@@ -45,9 +46,11 @@ public class GuildController {
     public ResponseEntity<GenericResponse<GuildDto>> guild(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @PathVariable(name = "id") final Long guildId,
-            @RequestParam(name = "server_id") final Long serverId) {
+            @RequestParam(name = "realm_id") final Long realmId,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
 
-        GuildDto guild = guildPort.detail(serverId, guildId, transactionId);
+
+        GuildDto guild = guildPort.detail(realmId, guildId, locale, transactionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

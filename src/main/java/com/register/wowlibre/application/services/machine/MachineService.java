@@ -35,34 +35,32 @@ public class MachineService implements MachinePort {
     }
 
     @Override
-    public MachineDto evaluate(Long userId, Long accountId, Long characterId, Long serverId, Locale locale,
+    public MachineDto evaluate(Long userId, Long accountId, Long characterId, Long realmId, Locale locale,
                                String transactionId) {
 
-        AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
+        AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, realmId,
                 transactionId);
 
-
-        final RealmEntity server = verificationDto.server();
+        final RealmEntity realm = verificationDto.realm();
 
         int[] weights = {21, 1, 5, 3, 70};
         String[] outcomes = {"Item", "Level", "Mount", "Gold", "None"};
 
-        Optional<MachineEntity> machine = obtainMachine.findByUserIdAndServerId(userId,
-                verificationDto.server().getId());
+        Optional<MachineEntity> machine = obtainMachine.findByUserIdAndRealmId(userId,
+                verificationDto.realm().getId());
 
         MachineEntity machineModel = new MachineEntity();
 
         if (machine.isPresent()) {
             machineModel = machine.get();
 
-            if (machineModel.getCoint() <= 0) {
+            if (machineModel.getPoints() <= 0) {
                 throw new InternalException("You do not have the necessary points", transactionId);
             }
 
-
-            machineModel.setCoint(Math.max(machineModel.getCoint() - 1, 0));
+            machineModel.setPoints(Math.max(machineModel.getPoints() - 1, 0));
         } else {
-            machineModel.setCoint(10);
+            machineModel.setPoints(1);
             machineModel.setUserId(userId);
             machineModel.setRealmId(null);
             saveMachine.save(machineModel, transactionId);
@@ -95,7 +93,7 @@ public class MachineService implements MachinePort {
             return MachineDto.builder().winner(false).message(i18nService.tr("message-machine-loss", locale)).build();
         }
 
-        ClaimMachineResponse claimMachineResponse = integratorPort.claimMachine(server.getHost(), server.getJwt(),
+        ClaimMachineResponse claimMachineResponse = integratorPort.claimMachine(realm.getHost(), realm.getJwt(),
                 userId, accountId, characterId,
                 machineType.getName(), transactionId);
 
@@ -112,23 +110,24 @@ public class MachineService implements MachinePort {
     }
 
     @Override
-    public MachineDetailDto coins(Long userId, Long serverId, String transactionId) {
+    public MachineDetailDto points(Long userId, Long accountId, Long realmId, String transactionId) {
 
-        Optional<MachineEntity> machine = obtainMachine.findByUserIdAndServerId(userId,
-                serverId);
+        AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, realmId,
+                transactionId);
+
+        final RealmEntity realm = verificationDto.realm();
+
+        Optional<MachineEntity> machine = obtainMachine.findByUserIdAndRealmId(userId, realmId);
 
         if (machine.isEmpty()) {
             MachineEntity machineModel = new MachineEntity();
-            if (serverId == 7) {
-                machineModel.setCoint(10);
-            } else {
-                machineModel.setCoint(0);
-            }
+            machineModel.setPoints(0);
             machineModel.setUserId(userId);
-            machineModel.setRealmId(null);
+            machineModel.setRealmId(realm);
             saveMachine.save(machineModel, transactionId);
         }
 
-        return machine.map(machineEntity -> new MachineDetailDto(machineEntity.getCoint())).orElse(new MachineDetailDto(0));
+        return machine.map(machineEntity ->
+                new MachineDetailDto(machineEntity.getPoints())).orElse(new MachineDetailDto(0));
     }
 }

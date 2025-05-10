@@ -21,13 +21,14 @@ public class MachineController {
         this.machinePort = machinePort;
     }
 
-    @GetMapping("/coins")
-    public ResponseEntity<GenericResponse<MachineDetailDto>> machineCoins(
+    @GetMapping("/points")
+    public ResponseEntity<GenericResponse<MachineDetailDto>> points(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
-            @RequestParam(name = PARAM_SERVER_ID) final Long serverId) {
+            @RequestParam(name = PARAM_ACCOUNT_ID) final Long accountId,
+            @RequestParam(name = PARAM_SERVER_ID) final Long realmId) {
 
-        MachineDetailDto response = machinePort.coins(userId, serverId, transactionId);
+        MachineDetailDto response = machinePort.points(userId, accountId, realmId, transactionId);
 
         return ResponseEntity
                 .status(HttpStatus.OK)

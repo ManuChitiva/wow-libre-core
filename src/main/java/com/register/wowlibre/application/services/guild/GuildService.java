@@ -1,8 +1,8 @@
 package com.register.wowlibre.application.services.guild;
 
-import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.dto.account_game.*;
 import com.register.wowlibre.domain.dto.client.*;
+import com.register.wowlibre.domain.dto.guilds.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.mapper.*;
 import com.register.wowlibre.domain.model.*;
@@ -41,12 +41,12 @@ public class GuildService implements GuildPort {
     }
 
     @Override
-    public GuildsDto findAll(Integer size, Integer page, String search, String serverName, Integer expansionId,
+    public GuildsDto findAll(Integer size, Integer page, String search, String realmName, Integer expansionId,
                              String transactionId) {
         RealmModel server;
 
-        if (serverName != null && !serverName.isEmpty() && expansionId != null) {
-            server = realmPort.findByNameAndVersionAndStatusIsTrue(serverName, expansionId, transactionId);
+        if (realmName != null && !realmName.isEmpty() && expansionId != null) {
+            server = realmPort.findByNameAndVersionAndStatusIsTrue(realmName, expansionId, transactionId);
 
             if (server == null) {
                 return new GuildsDto(new ArrayList<>(), 0L);
@@ -54,13 +54,13 @@ public class GuildService implements GuildPort {
 
         } else {
 
-            Optional<RealmEntity> servers = realmPort.findByStatusIsTrueServers(transactionId).stream().findFirst();
+            Optional<RealmEntity> realms = realmPort.findByStatusIsTrueServers(transactionId).stream().findFirst();
 
-            if (servers.isEmpty()) {
+            if (realms.isEmpty()) {
                 return new GuildsDto(new ArrayList<>(), 0L);
             }
 
-            server = ServerMapper.toModel(servers.get());
+            server = RealmMapper.toModel(realms.get());
         }
 
 
@@ -68,23 +68,23 @@ public class GuildService implements GuildPort {
     }
 
     @Override
-    public GuildDto detail(Long serverId, Long guildId, String transactionId) {
+    public GuildDto detail(Long realmId, Long guildId, Locale locale, String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
+        Optional<RealmEntity> realm = realmPort.findById(realmId, transactionId);
 
-        if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("", transactionId);
+        if (realm.isEmpty() || !realm.get().isStatus()) {
+            throw new InternalException("The Realm is not available", transactionId);
         }
 
-        RealmEntity serverModel = server.get();
+        RealmEntity realmDetail = realm.get();
 
-        GuildDto guildDto = integratorPort.guild(serverModel.getName(), serverModel.getId(), serverModel.getHost(),
-                serverModel.getJwt(), guildId,
+        GuildDto guildDto = integratorPort.guild(realmDetail.getName(), realmDetail.getId(), realmDetail.getHost(),
+                realmDetail.getJwt(), guildId,
                 transactionId);
 
-        List<BenefitModel> beneficios = resourcesPort.getBenefitsGuild("es", transactionId);
+        List<BenefitModel> beneficios = resourcesPort.getBenefitsGuild(locale.getLanguage(), transactionId);
 
-        List<BenefitGuildEntity> beneficiosObtenidos = benefitGuildPort.benefits(serverModel.getId(), guildId,
+        List<BenefitGuildEntity> beneficiosObtenidos = benefitGuildPort.benefits(realmDetail.getId(), guildId,
                 transactionId);
 
         List<BenefitModel> beneficiosFiltrados = beneficios.stream()
@@ -104,7 +104,7 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        integratorPort.attachGuild(verificationDto.server().getHost(), verificationDto.server().getJwt(),
+        integratorPort.attachGuild(verificationDto.realm().getHost(), verificationDto.realm().getJwt(),
                 verificationDto.accountGame().getAccountId(), guildId, characterId, transactionId);
 
     }
@@ -115,7 +115,7 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        integratorPort.unInviteGuild(verificationDto.server().getHost(), verificationDto.server().getJwt(), userId,
+        integratorPort.unInviteGuild(verificationDto.realm().getHost(), verificationDto.realm().getJwt(), userId,
                 accountId, characterId, transactionId);
     }
 
@@ -125,8 +125,8 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        GuildDetailMemberResponse response = integratorPort.guildMember(verificationDto.server().getHost(),
-                verificationDto.server().getJwt(), userId,
+        GuildDetailMemberResponse response = integratorPort.guildMember(verificationDto.realm().getHost(),
+                verificationDto.realm().getJwt(), userId,
                 accountId, characterId, transactionId);
 
         Integer benefits = benefitGuildPort.findRemainingBenefitsForGuildAndServerIdAndCharacter(serverId,
@@ -159,8 +159,8 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        integratorPort.updateGuild(verificationDto.server().getHost(),
-                verificationDto.server().getJwt(), characterId, accountId, isPublic, multiFaction, discord,
+        integratorPort.updateGuild(verificationDto.realm().getHost(),
+                verificationDto.realm().getJwt(), characterId, accountId, isPublic, multiFaction, discord,
                 transactionId);
     }
 
@@ -172,10 +172,10 @@ public class GuildService implements GuildPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity serverModel = verificationDto.server();
+        RealmEntity serverModel = verificationDto.realm();
 
-        GuildDetailMemberResponse guildDto = integratorPort.guildMember(verificationDto.server().getHost(),
-                verificationDto.server().getJwt(), userId,
+        GuildDetailMemberResponse guildDto = integratorPort.guildMember(verificationDto.realm().getHost(),
+                verificationDto.realm().getJwt(), userId,
                 accountId, characterId, transactionId);
 
         if (guildDto == null) {

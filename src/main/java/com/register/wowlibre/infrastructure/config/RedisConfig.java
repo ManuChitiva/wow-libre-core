@@ -28,7 +28,7 @@ public class RedisConfig {
         cacheConfigurations.put("emailCodeCache", configurationTtl(Duration.ofMinutes(30)));
         cacheConfigurations.put("verifyAccount", configurationTtl(Duration.ofMinutes(15)));
         cacheConfigurations.put("recoveryPassword", configurationTtl(Duration.ofMinutes(2)));
-        cacheConfigurations.put("server-apikey", configurationTtl(Duration.ofHours(2)));
+        cacheConfigurations.put("realm-apikey", configurationTtl(Duration.ofHours(2)));
 
 
         // Construcción del RedisCacheManager con configuraciones específicas

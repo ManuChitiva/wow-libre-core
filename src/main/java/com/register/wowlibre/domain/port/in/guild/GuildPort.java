@@ -1,12 +1,14 @@
 package com.register.wowlibre.domain.port.in.guild;
 
-import com.register.wowlibre.domain.dto.*;
+import com.register.wowlibre.domain.dto.guilds.*;
+
+import java.util.*;
 
 public interface GuildPort {
     GuildsDto findAll(Integer size, Integer page, String search, String serverName, Integer expansionId,
                       String transactionId);
 
-    GuildDto detail(Long serverId, Long guildId, String transactionId);
+    GuildDto detail(Long realmId, Long guildId, Locale locale, String transactionId);
 
     void attach(Long serverId, Long userId, Long accountId, Long characterId, Long guildId, String transactionId);
 

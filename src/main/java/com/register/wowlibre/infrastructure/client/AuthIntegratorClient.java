@@ -40,10 +40,10 @@ public class AuthIntegratorClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[AuthIntegratorClient] [auth] Client/Server Error: {}. The request failed with a " +
-                            "client or server error. " +
+                            "client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[AuthIntegratorClient] [auth] Unexpected Error: {}. An unexpected error occurred " +
                             "during the transaction with ID: {}.",
@@ -74,10 +74,10 @@ public class AuthIntegratorClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[AuthIntegratorClient] [create] Client/Server Error: {}. The request failed with a " +
-                            "client or server error. " +
+                            "client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[AuthIntegratorClient] [create] Unexpected Error: {}. An unexpected error occurred " +
                             "during the transaction with ID: {}.",

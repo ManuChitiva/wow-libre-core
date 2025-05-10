@@ -10,7 +10,6 @@ public interface AccountGamePort {
 
     AccountsGameDto accounts(Long userId, int page, int size, String searchUsername, String serverName,
                              String transactionId);
-
     AccountsGameDto accounts(Long userId, Long realmId, String transactionId);
 
     AccountVerificationDto verifyAccount(Long userId, Long accountId, Long realmId, String transactionId);

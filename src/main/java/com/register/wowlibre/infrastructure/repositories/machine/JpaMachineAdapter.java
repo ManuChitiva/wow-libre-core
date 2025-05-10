@@ -16,8 +16,8 @@ public class JpaMachineAdapter implements ObtainMachine, SaveMachine {
 
 
     @Override
-    public Optional<MachineEntity> findByUserIdAndServerId(Long userId, Long serverId) {
-        return null;
+    public Optional<MachineEntity> findByUserIdAndRealmId(Long userId, Long realmId) {
+        return machineRepository.findByUserIdAndRealmId_Id(userId, realmId);
     }
 
     @Override

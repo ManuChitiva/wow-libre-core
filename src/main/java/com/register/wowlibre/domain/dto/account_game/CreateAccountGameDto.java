@@ -12,7 +12,7 @@ public class CreateAccountGameDto {
     @NotNull
     private String password;
     @NotNull
-    private String serverName;
+    private String realmName;
     @NotNull
     private Integer expansion;
 }

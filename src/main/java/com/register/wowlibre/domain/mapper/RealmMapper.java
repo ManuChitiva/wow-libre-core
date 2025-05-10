@@ -3,7 +3,7 @@ package com.register.wowlibre.domain.mapper;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.infrastructure.entities.*;
 
-public class ServerMapper {
+public class RealmMapper {
 
 
     public static RealmModel toModel(RealmEntity server) {

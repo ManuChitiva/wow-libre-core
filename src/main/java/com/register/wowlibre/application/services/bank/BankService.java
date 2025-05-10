@@ -52,10 +52,10 @@ public class BankService implements BankPort {
         AccountVerificationDto verificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        RealmEntity server = verificationDto.server();
+        RealmEntity server = verificationDto.realm();
 
         if (!server.isStatus()) {
-            throw new InternalException("Currently the server is not available to accept loans, contact the " +
+            throw new InternalException("Currently the realm is not available to accept loans, contact the " +
                     "administrator.", transactionId);
         }
 
@@ -64,7 +64,7 @@ public class BankService implements BankPort {
                         transactionId);
 
         if (serverServicesModel == null) {
-            throw new InternalException("The server currently does not have loans configured", transactionId);
+            throw new InternalException("The realm currently does not have loans configured", transactionId);
         }
 
         if (serverServicesModel.amount() <= 0) {

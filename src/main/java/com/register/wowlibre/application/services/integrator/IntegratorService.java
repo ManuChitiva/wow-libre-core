@@ -2,6 +2,7 @@ package com.register.wowlibre.application.services.integrator;
 
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.dto.client.*;
+import com.register.wowlibre.domain.dto.guilds.*;
 import com.register.wowlibre.domain.exception.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
@@ -35,9 +36,9 @@ public class IntegratorService implements IntegratorPort {
             SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
             encryptedMessage = EncryptionUtil.encrypt(password, derivedKey);
         } catch (Exception e) {
-            LOGGER.error("It was not possible to create the account on the server. userId: {} transactionId {}",
+            LOGGER.error("It was not possible to create the account on the realm. userId: {} transactionId {}",
                     userId, transactionId);
-            throw new InternalException("Could not create account for server", transactionId);
+            throw new InternalException("Could not create account for realm", transactionId);
         }
 
         AccountGameCreateRequest accountGameCreateRequest = AccountGameCreateRequest.builder()
@@ -54,9 +55,9 @@ public class IntegratorService implements IntegratorPort {
         CharactersResponse response = integratorClient.characters(host, jwt, accountId, transactionId);
 
         if (response == null) {
-            LOGGER.error("It was not possible to get the characters from the server.  Host: {} userId: {}",
+            LOGGER.error("It was not possible to get the characters from the realm.  Host: {} userId: {}",
                     host, userId);
-            throw new InternalException("It was not possible to get the characters from the server.", transactionId);
+            throw new InternalException("It was not possible to get the characters from the realm.", transactionId);
         }
 
         CharactersDto characters = new CharactersDto();
@@ -71,9 +72,9 @@ public class IntegratorService implements IntegratorPort {
         AccountDetailResponse accountDetailResponse = integratorClient.account(host, jwt, accountId, transactionId);
 
         if (accountDetailResponse == null) {
-            LOGGER.error("Could not get account details for this server.  Host: {} accountId: {} " +
+            LOGGER.error("Could not get account details for this realm.  Host: {} accountId: {} " +
                     "transactionId {}", host, accountId, transactionId);
-            throw new InternalException("It was not possible to obtain the account details for this server",
+            throw new InternalException("It was not possible to obtain the account details for this realm",
                     transactionId);
         }
 
@@ -86,9 +87,9 @@ public class IntegratorService implements IntegratorPort {
         MailsResponse mailsResponse = integratorClient.mails(host, jwt, characterId, transactionId);
 
         if (mailsResponse == null) {
-            LOGGER.error("It was not possible to obtain the emails for this server.  Host: {} characterId: {} " +
+            LOGGER.error("It was not possible to obtain the emails for this realm.  Host: {} characterId: {} " +
                     "transactionId {}", host, characterId, transactionId);
-            throw new InternalException("It was not possible to obtain the emails for this server",
+            throw new InternalException("It was not possible to obtain the emails for this realm",
                     transactionId);
         }
 
@@ -107,10 +108,10 @@ public class IntegratorService implements IntegratorPort {
                 transactionId);
 
         if (characterSocialResponse == null) {
-            LOGGER.error("It was not possible to obtain the list of friends on this server.  Host: {} characterId: {}" +
+            LOGGER.error("It was not possible to obtain the list of friends on this realm.  Host: {} characterId: {}" +
                     " " +
                     "transactionId {}", host, characterId, transactionId);
-            throw new InternalException("It was not possible to obtain the list of friends on this server",
+            throw new InternalException("It was not possible to obtain the list of friends on this realm",
                     transactionId);
         }
 
@@ -166,9 +167,9 @@ public class IntegratorService implements IntegratorPort {
 
         if (response == null) {
             LOGGER.error("[IntegratorService] [loanApplicationCharacters] It was not possible to get the characters " +
-                            "from the server.  Host: {} userId: {}",
+                            "from the realm.  Host: {} userId: {}",
                     host, userId);
-            throw new InternalException("It was not possible to get the characters from the server.", transactionId);
+            throw new InternalException("It was not possible to get the characters from the realm.", transactionId);
         }
 
         CharactersDto characters = new CharactersDto();
@@ -187,9 +188,9 @@ public class IntegratorService implements IntegratorPort {
 
         if (response == null) {
             LOGGER.error("[IntegratorService] [guilds] It was not possible to obtain the guilds associated with the " +
-                            "server.  Host: {} transactionId{}",
+                            "realm.  Host: {} transactionId{}",
                     host, transactionId);
-            throw new InternalException("It was not possible to obtain the guilds associated with the server.",
+            throw new InternalException("It was not possible to obtain the guilds associated with the realm.",
                     transactionId);
         }
 
@@ -209,9 +210,9 @@ public class IntegratorService implements IntegratorPort {
 
         if (response == null) {
             LOGGER.error("[IntegratorService] [guild] It was not possible to obtain the guilds associated with the " +
-                            "server.  Host: {} transactionId{}",
+                            "realm.  Host: {} transactionId{}",
                     host, transactionId);
-            throw new InternalException("It was not possible to obtain the guilds associated with the server.",
+            throw new InternalException("It was not possible to obtain the guilds associated with the realm.",
                     transactionId);
         }
 
@@ -321,7 +322,7 @@ public class IntegratorService implements IntegratorPort {
                 size, page, filter, transactionId);
 
         if (response == null) {
-            throw new InternalException("Could not get server accounts",
+            throw new InternalException("Could not get realm accounts",
                     transactionId);
         }
 

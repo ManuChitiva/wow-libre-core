@@ -38,8 +38,8 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.characters(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(),
+        return integratorService.characters(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(),
                 accountId, userId, transactionId);
     }
 
@@ -48,8 +48,8 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.loanApplicationCharacters(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(),
+        return integratorService.loanApplicationCharacters(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(),
                 accountId, userId, transactionId);
     }
 
@@ -61,8 +61,8 @@ public class CharactersService implements CharactersPort {
                 transactionId);
 
 
-        integratorService.deleteFriend(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(),
+        integratorService.deleteFriend(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(),
                 characterId, friendId, accountId, userId, transactionId);
     }
 
@@ -73,8 +73,8 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.mails(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(), characterId, transactionId);
+        return integratorService.mails(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(), characterId, transactionId);
     }
 
     @Override
@@ -84,8 +84,8 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.friends(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(), characterId, transactionId);
+        return integratorService.friends(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(), characterId, transactionId);
     }
 
 
@@ -98,16 +98,16 @@ public class CharactersService implements CharactersPort {
 
         AccountGameEntity accountGameModel = accountVerificationDto.accountGame();
         Long userIdAccount = accountGameModel.getUserId().getId();
-        RealmEntity server = accountVerificationDto.server();
+        RealmEntity server = accountVerificationDto.realm();
 
         if (!passwordEncoder.matches(password, accountVerificationDto.accountGame().getUserId().getPassword())) {
             throw new InternalException("The password is invalid", transactionId);
         }
 
         Integer expansionId = server.getExpansionId();
-        integratorService.changePassword(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getApiSecret(),
-                accountVerificationDto.server().getJwt(),
+        integratorService.changePassword(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getApiSecret(),
+                accountVerificationDto.realm().getJwt(),
                 accountId, userIdAccount, newPassword, expansionId, transactionId);
     }
 
@@ -118,8 +118,8 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto accountVerificationDto = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        return integratorService.professions(accountVerificationDto.server().getHost(),
-                accountVerificationDto.server().getJwt(), accountId, characterId, transactionId);
+        return integratorService.professions(accountVerificationDto.realm().getHost(),
+                accountVerificationDto.realm().getJwt(), accountId, characterId, transactionId);
     }
 
     @Override
@@ -129,11 +129,11 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto verifyAccount = accountGamePort.verifyAccount(userId, accountId, realmId,
                 transactionId);
 
-        final RealmEntity realm = verifyAccount.server();
+        final RealmEntity realm = verifyAccount.realm();
         final AccountGameEntity accountGame = verifyAccount.accountGame();
 
         if (!realm.isStatus()) {
-            throw new InternalException("The server is currently not verified", transactionId);
+            throw new InternalException("The realm is currently not verified", transactionId);
         }
 
         ServerServicesModel serverServicesModel =
@@ -154,11 +154,11 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto verifyData = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        final RealmEntity serverModel = verifyData.server();
+        final RealmEntity serverModel = verifyData.realm();
         final AccountGameEntity accountGame = verifyData.accountGame();
 
         if (!serverModel.isStatus()) {
-            throw new InternalException("The server is currently not verified", transactionId);
+            throw new InternalException("The realm is currently not verified", transactionId);
         }
 
         integratorService.sendMoney(serverModel.getHost(), serverModel.getJwt(), accountGame.getAccountId(),
@@ -172,10 +172,10 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto verifyData = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        final RealmEntity serverModel = verifyData.server();
+        final RealmEntity serverModel = verifyData.realm();
 
         if (!serverModel.isStatus()) {
-            throw new InternalException("The server is currently not verified", transactionId);
+            throw new InternalException("The realm is currently not verified", transactionId);
         }
 
         integratorService.sendAnnouncement(serverModel.getHost(), serverModel.getJwt(), userId, accountId, characterId,
@@ -188,7 +188,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto verifyData = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        final RealmEntity serverModel = verifyData.server();
+        final RealmEntity serverModel = verifyData.realm();
 
         return integratorService.getCharacterInventory(serverModel.getHost(), serverModel.getJwt(), characterId,
                 accountId,
@@ -202,7 +202,7 @@ public class CharactersService implements CharactersPort {
         AccountVerificationDto verifyData = accountGamePort.verifyAccount(userId, accountId, serverId,
                 transactionId);
 
-        final RealmEntity serverModel = verifyData.server();
+        final RealmEntity serverModel = verifyData.realm();
 
         integratorService.transferInventoryItem(serverModel.getHost(), serverModel.getJwt(), accountId, characterId,
                 friendId, count, itemId, transactionId);

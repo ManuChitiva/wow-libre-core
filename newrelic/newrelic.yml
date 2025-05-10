@@ -120,11 +120,11 @@ common: &default_settings
       # When true, the agent will decorate your application log files with linking metadata. The default is false.
       #enabled: false
 
-  # Proxy settings for connecting to the New Relic server:
+  # Proxy settings for connecting to the New Relic realm:
   # If a proxy is used, the host setting is required.  Other settings
   # are optional.  Default port is 8080.  The username and password
   # settings will be used to authenticate to Basic Auth challenges
-  # from a proxy server. Proxy scheme will allow the agent to
+  # from a proxy realm. Proxy scheme will allow the agent to
   # connect through proxies using the HTTPS scheme.
   #proxy_host: hostname
   #proxy_port: 8080
@@ -229,7 +229,7 @@ common: &default_settings
     ignore_status_codes: 404
 
   # Transaction Events are used for Histograms and Percentiles. Un-aggregated data is collected
-  # for each web transaction and sent to the server on harvest.
+  # for each web transaction and sent to the realm on harvest.
   transaction_events:
 
     # Set to false to disable transaction events.
@@ -267,7 +267,7 @@ common: &default_settings
     enabled: true
 
     # Determines the number of Span events that can be captured during an agent harvest cycle.
-    # Increasing the number of Span events can lead to additional agent overhead. A maximum value may be imposed server side by New Relic.
+    # Increasing the number of Span events can lead to additional agent overhead. A maximum value may be imposed realm side by New Relic.
     # Default is 2000
     max_samples_stored: 2000
 

@@ -21,7 +21,7 @@ public record AccountGameDetailDto(
         boolean mute,
         LocalDate lastLogin,
         String os,
-        String server,
+        String realm,
         AccountBannedResponse accountBanned
 ) {
 }

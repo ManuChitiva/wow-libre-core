@@ -26,9 +26,9 @@ public class AccountGameController {
             @RequestParam final int page,
             @RequestParam final int size,
             @RequestParam(required = false) String username,
-            @RequestParam(required = false) String server) {
+            @RequestParam(required = false) String realm) {
 
-        AccountsGameDto accounts = accountGamePort.accounts(userId, page, size, username, server, transactionId);
+        AccountsGameDto accounts = accountGamePort.accounts(userId, page, size, username, realm, transactionId);
 
         return ResponseEntity.status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<>(accounts, transactionId).ok().build());
@@ -40,7 +40,7 @@ public class AccountGameController {
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @RequestBody @Valid CreateAccountGameDto account) {
 
-        accountGamePort.create(userId, account.getServerName(), account.getExpansion(), account.getUsername(),
+        accountGamePort.create(userId, account.getRealmName(), account.getExpansion(), account.getUsername(),
                 account.getPassword(), transactionId);
 
         return ResponseEntity.status(HttpStatus.CREATED)
@@ -61,14 +61,14 @@ public class AccountGameController {
     }
 
 
-    @GetMapping(path = "/{account_id}/{server_id}")
-    public ResponseEntity<GenericResponse<AccountGameDetailDto>> account(
+    @GetMapping(path = "/{account_id}/{realm_id}")
+    public ResponseEntity<GenericResponse<AccountGameDetailDto>> detail(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestHeader(name = HEADER_USER_ID) final Long userId,
             @PathVariable final Long account_id,
-            @PathVariable final Long server_id) {
+            @PathVariable(name = "realm_id") final Long realmId) {
 
-        final AccountGameDetailDto account = accountGamePort.account(userId, account_id, server_id, transactionId);
+        final AccountGameDetailDto account = accountGamePort.account(userId, account_id, realmId, transactionId);
 
         if (account != null) {
             return ResponseEntity

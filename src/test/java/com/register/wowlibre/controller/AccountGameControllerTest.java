@@ -69,7 +69,7 @@ class AccountGameControllerTest {
         createDto.setExpansion(2);
         createDto.setUsername("newUser");
         createDto.setPassword("pass123");
-        createDto.setServerName("Azeroth");
+        createDto.setRealmName("Azeroth");
         // Act
         ResponseEntity<GenericResponse<Void>> response = controller.create(transactionId, userId, createDto);
 
@@ -131,13 +131,13 @@ class AccountGameControllerTest {
                 .mute(false)
                 .lastLogin(LocalDate.of(2023, 12, 1))
                 .os("Windows 11")
-                .server("Azeroth")
+                .realm("Azeroth")
                 .accountBanned(bannedResponse)
                 .build();
         when(accountGamePort.account(userId, accountId, serverId, transactionId)).thenReturn(detail);
 
         // Act
-        ResponseEntity<GenericResponse<AccountGameDetailDto>> response = controller.account(
+        ResponseEntity<GenericResponse<AccountGameDetailDto>> response = controller.detail(
                 transactionId, userId, accountId, serverId
         );
 
@@ -159,7 +159,7 @@ class AccountGameControllerTest {
         when(accountGamePort.account(userId, accountId, serverId, transactionId)).thenReturn(null);
 
         // Act
-        ResponseEntity<GenericResponse<AccountGameDetailDto>> response = controller.account(
+        ResponseEntity<GenericResponse<AccountGameDetailDto>> response = controller.detail(
                 transactionId, userId, accountId, serverId
         );
 

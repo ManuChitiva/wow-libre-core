@@ -2,6 +2,7 @@ package com.register.wowlibre.domain.port.in.integrator;
 
 import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.dto.client.*;
+import com.register.wowlibre.domain.dto.guilds.*;
 import com.register.wowlibre.domain.model.*;
 
 import java.util.*;

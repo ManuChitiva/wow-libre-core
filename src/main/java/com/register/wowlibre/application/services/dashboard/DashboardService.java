@@ -59,10 +59,10 @@ public class DashboardService implements DashboardPort {
     public LoansDto creditLoans(Long userId, Long serverId, int size, int page, String filter, boolean asc,
                                 String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -81,10 +81,10 @@ public class DashboardService implements DashboardPort {
 
     @Override
     public void enableLoan(Long userId, Long serverId, Double loans, String service, String transactionId) {
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -99,10 +99,10 @@ public class DashboardService implements DashboardPort {
                                                                                                      Long serverId,
                                                                                                      String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -141,10 +141,10 @@ public class DashboardService implements DashboardPort {
                                           String transactionId) {
 
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -164,10 +164,10 @@ public class DashboardService implements DashboardPort {
     @Override
     public DashboardMetricsDto metrics(Long userId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -184,10 +184,10 @@ public class DashboardService implements DashboardPort {
     @Override
     public void updateMail(Long userId, Long serverId, String username, String newMail, String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -201,10 +201,10 @@ public class DashboardService implements DashboardPort {
     @Override
     public List<PromotionModel> getPromotions(Long userId, Long serverId, String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findByIdAndUserId(serverId, userId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
@@ -217,7 +217,7 @@ public class DashboardService implements DashboardPort {
         Optional<RealmEntity> serverProps = realmPort.findByIdAndUserId(banDto.getServerId(), userId, transactionId);
 
         if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
         RealmEntity server = serverProps.get();
@@ -238,7 +238,7 @@ public class DashboardService implements DashboardPort {
         Optional<RealmEntity> serverProps = realmPort.findByIdAndUserId(serverId, userId, transactionId);
 
         if (serverProps.isEmpty() || !serverProps.get().isStatus()) {
-            throw new InternalException("The server is not found or is not available please contact support.",
+            throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 

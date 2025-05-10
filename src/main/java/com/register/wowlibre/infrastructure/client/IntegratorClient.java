@@ -79,10 +79,10 @@ public class IntegratorClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[IntegratorClient] [characters] Client/Server Error: {}. The request failed with a client " +
-                            "or server error. " +
+                            "or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [characters] Unexpected Error: {}. An unexpected error occurred during " +
                             "the transaction with ID: {}.",
@@ -114,7 +114,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -148,7 +148,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -185,7 +185,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -220,7 +220,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -258,11 +258,11 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[changePasswordGame] Client/Server Error: {}. The request failed with a client or server " +
+            LOGGER.error("[changePasswordGame] Client/Server Error: {}. The request failed with a client or realm " +
                             "error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("Unexpected Error: {}. An unexpected error occurred during the transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
@@ -297,7 +297,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -407,10 +407,10 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("Client/Server Error: {}. The request failed with a client or server error. " +
+            LOGGER.error("Client/Server Error: {}. The request failed with a client or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("Unexpected Error: {}. An unexpected error occurred during the transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
@@ -444,11 +444,11 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [guilds] Client/Server Error: {}. Error with server client getting " +
+            LOGGER.error("[IntegratorClient] [guilds] Client/Server Error: {}. Error with realm client getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [guilds] Unexpected Error: {}. An unexpected error occurred during the " +
                             "transaction with ID: {}.",
@@ -480,11 +480,11 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [guild] Client/Server Error: {}. Error with server client getting " +
+            LOGGER.error("[IntegratorClient] [guild] Client/Server Error: {}. Error with realm client getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [guild] Unexpected Error: {}. An unexpected error occurred during the " +
                             "transaction with ID: {}.",
@@ -520,7 +520,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [attachGuild] Client/Server Error: {}. Error with server client getting " +
+            LOGGER.error("[IntegratorClient] [attachGuild] Client/Server Error: {}. Error with realm client getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
@@ -561,11 +561,11 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [attachGuild] Client/Server Error: {}. Error with server client getting " +
+            LOGGER.error("[IntegratorClient] [attachGuild] Client/Server Error: {}. Error with realm client getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [guildMember] Unexpected Error: {}. An unexpected error occurred during " +
                             "the " +
@@ -602,12 +602,12 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [unInviteGuild] Client/Server Error: {}. Error with server client " +
+            LOGGER.error("[IntegratorClient] [unInviteGuild] Client/Server Error: {}. Error with realm client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [unInviteGuild] Unexpected Error: {}. An unexpected error occurred " +
                             "during " +
@@ -642,7 +642,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendCommand]  Client/Server Error: {}. Error with server client " +
+            LOGGER.error("[IntegratorClient] [sendCommand]  Client/Server Error: {}. Error with realm client " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
             throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
@@ -680,7 +680,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [collectGold]  Client/Server Error: {}. Error with server client " +
+            LOGGER.error("[IntegratorClient] [collectGold]  Client/Server Error: {}. Error with realm client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
@@ -723,13 +723,13 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [createTransactionItems]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [createTransactionItems]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [createTransactionItems] Unexpected Error: {}. An unexpected error " +
                             "occurred " +
@@ -767,13 +767,13 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [updateGuild]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [updateGuild]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [updateGuild] Unexpected Error: {}. An unexpected error " +
                             "occurred " +
@@ -810,13 +810,13 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendAnnouncement]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [sendAnnouncement]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [sendAnnouncement] Unexpected Error: {}. An unexpected error " +
                             "occurred " +
@@ -854,13 +854,13 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendBenefitsPremium]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [sendBenefitsPremium]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [sendBenefitsPremium] Unexpected Error: {}. An unexpected error " +
                             "occurred " +
@@ -898,7 +898,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendPromo]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [sendPromo]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
@@ -942,13 +942,13 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [sendGuildBenefits]  Client/Server Error: {}. Error with server " +
+            LOGGER.error("[IntegratorClient] [sendGuildBenefits]  Client/Server Error: {}. Error with realm " +
                             "client " +
                             "getting " +
                             "associated guilds. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [sendGuildBenefits] Unexpected Error: {}. An unexpected error " +
                             "occurred " +
@@ -1033,7 +1033,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get server accounts" +
+            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get realm accounts" +
                             "  " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
@@ -1045,7 +1045,7 @@ public class IntegratorClient {
                             "the " +
                             "transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1076,7 +1076,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get server accounts" +
+            LOGGER.error("[IntegratorClient] [accountsServer]  Client/Server Error: {}. Could not get realm accounts" +
                             "  " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
@@ -1088,7 +1088,7 @@ public class IntegratorClient {
                             "the " +
                             "transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1121,7 +1121,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [updateMail]  Client/Server Error: {}. Could not get server accounts" +
+            LOGGER.error("[IntegratorClient] [updateMail]  Client/Server Error: {}. Could not get realm accounts" +
                             "  " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
@@ -1133,7 +1133,7 @@ public class IntegratorClient {
                             "the " +
                             "transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1180,7 +1180,7 @@ public class IntegratorClient {
                             "the " +
                             "transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1212,7 +1212,7 @@ public class IntegratorClient {
             }
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
-            LOGGER.error("[IntegratorClient] [transferInventoryItem]  Client/Server Error: {}. Could not get server " +
+            LOGGER.error("[IntegratorClient] [transferInventoryItem]  Client/Server Error: {}. Could not get realm " +
                             "accounts" +
                             "  " +
                             "HTTP Status: {}, Response Body: {}",
@@ -1225,7 +1225,7 @@ public class IntegratorClient {
                             "the " +
                             "transaction with ID: {}.",
                     e.getMessage(), transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1260,7 +1260,7 @@ public class IntegratorClient {
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [banAccount]  Error: {}. TransactionId: {}.", e.getMessage(),
                     transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);
@@ -1297,7 +1297,7 @@ public class IntegratorClient {
         } catch (Exception e) {
             LOGGER.error("[IntegratorClient] [emulatorConfiguration]  Error: {}. TransactionId: {}.", e.getMessage(),
                     transactionId, e);
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         }
 
         throw new InternalException("Unexpected transaction failure", transactionId);

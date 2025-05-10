@@ -5,5 +5,5 @@ import com.register.wowlibre.infrastructure.entities.*;
 import java.util.*;
 
 public interface ObtainMachine {
-    Optional<MachineEntity> findByUserIdAndServerId(Long userId, Long serverId);
+    Optional<MachineEntity> findByUserIdAndRealmId(Long userId, Long realmId);
 }

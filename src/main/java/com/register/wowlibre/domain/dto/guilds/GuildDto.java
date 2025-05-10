@@ -1,4 +1,4 @@
-package com.register.wowlibre.domain.dto;
+package com.register.wowlibre.domain.dto.guilds;
 
 import com.register.wowlibre.domain.dto.client.*;
 import com.register.wowlibre.domain.model.*;

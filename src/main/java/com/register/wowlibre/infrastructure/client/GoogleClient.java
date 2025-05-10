@@ -52,10 +52,10 @@ public class GoogleClient {
 
         } catch (HttpClientErrorException | HttpServerErrorException e) {
             LOGGER.error("[GoogleClient] [verifyRecaptcha] Client/Server Error: {}. The request failed with a client " +
-                            "or server error. " +
+                            "or realm error. " +
                             "HTTP Status: {}, Response Body: {}",
                     e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString());
-            throw new InternalException("Transaction failed due to client or server error", transactionId);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
         } catch (Exception e) {
             LOGGER.error("[GoogleClient] [verifyRecaptcha] Unexpected Error: {}. An unexpected error occurred during " +
                             "the transaction with ID: {}.",

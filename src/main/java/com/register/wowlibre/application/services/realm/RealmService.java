@@ -64,9 +64,9 @@ public class RealmService implements RealmPort {
     }
 
     @Override
-    //@Cacheable(value = "server-apikey", key = "#apiKey")
+    //@Cacheable(value = "realm-apikey", key = "#apiKey")
     public RealmModel findByApiKey(String apiKey, String transactionId) {
-        return obtainRealmPort.findByApiKey(apiKey, transactionId).map(ServerMapper::toModel)
+        return obtainRealmPort.findByApiKey(apiKey, transactionId).map(RealmMapper::toModel)
                 .orElse(null);
     }
 
@@ -80,7 +80,7 @@ public class RealmService implements RealmPort {
 
         if (obtainRealmPort.findByNameAndExpansion(realmCreateDto.getName(), realmCreateDto.getExpansion(),
                 transactionId).isPresent()) {
-            throw new InternalException("It is not possible to create or configure a server with because one already " +
+            throw new InternalException("It is not possible to create or configure a realm with because one already " +
                     "exists with the same name and with the same version characteristics.", transactionId);
         }
 
@@ -117,11 +117,11 @@ public class RealmService implements RealmPort {
                     .externalUsername(realmCreateDto.getExternalUsername())
                     .build();
 
-            saveRealmPort.save(ServerMapper.toEntity(serverDto), transactionId);
+            saveRealmPort.save(RealmMapper.toEntity(serverDto), transactionId);
 
         } catch (Exception e) {
-            LOGGER.error("An error occurred while encrypting data for a new server {}", transactionId);
-            throw new InternalException("It was not possible to create a server at this time, an unexpected error has" +
+            LOGGER.error("An error occurred while encrypting data for a new realm {}", transactionId);
+            throw new InternalException("It was not possible to create a realm at this time, an unexpected error has" +
                     " occurred, please contact support", transactionId);
         }
 
@@ -220,7 +220,7 @@ public class RealmService implements RealmPort {
     public RealmModel findByNameAndVersionAndStatusIsTrue(String name, Integer expansionId,
                                                           String transactionId) {
         return obtainRealmPort.findByNameAndExpansionAndStatusIsTrue(name, expansionId)
-                .map(ServerMapper::toModel).orElse(null);
+                .map(RealmMapper::toModel).orElse(null);
     }
 
     private RealmDto mapToModel(RealmEntity server) {
