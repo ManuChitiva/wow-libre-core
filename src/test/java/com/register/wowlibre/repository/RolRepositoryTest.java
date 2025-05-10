@@ -27,7 +27,6 @@ class RolRepositoryTest {
     void findByName_shouldReturnRoleWhenFound() {
         // Arrange
         String roleName = "ADMIN";
-        String transactionId = "tx123";
         RolEntity mockRol = new RolEntity();
         mockRol.setId(1L);
         mockRol.setName(roleName);
@@ -48,7 +47,6 @@ class RolRepositoryTest {
     void findByName_shouldReturnEmptyWhenRoleNotFound() {
         // Arrange
         String roleName = "UNKNOWN";
-        String transactionId = "tx456";
 
         when(rolRepository.findByNameAndStatusIsTrue(roleName)).thenReturn(Optional.empty());
 

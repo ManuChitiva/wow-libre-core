@@ -12,7 +12,7 @@ import java.util.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
-public class RolServiceTest {
+class RolServiceTest {
     @Mock
     private ObtainRolPort obtainRolPort;
 

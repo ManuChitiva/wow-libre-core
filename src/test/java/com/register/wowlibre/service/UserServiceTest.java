@@ -241,7 +241,7 @@ class UserServiceTest extends BaseTest {
         when(randomString.nextString()).thenReturn(newPassword);
         when(passwordEncoder.encode(newPassword)).thenReturn(encodedPassword);
         when(i18nService.tr(eq("message-new-password-body"), any(Object[].class), eq(locale))).thenReturn(body);
-        when(i18nService.tr(eq("message-new-password-subject"), eq(locale))).thenReturn(subject);
+        when(i18nService.tr("message-new-password-subject", locale)).thenReturn(subject);
 
         // Ejecutar método
         userService.resetPasswordWithRecoveryCode(email, inputCode, locale, transactionId);
