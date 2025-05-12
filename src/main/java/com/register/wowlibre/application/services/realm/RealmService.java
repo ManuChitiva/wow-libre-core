@@ -31,8 +31,10 @@ public class RealmService implements RealmPort {
 
     private static final String AVATAR_SERVER_DEFAULT = "https://upload.wikimedia" +
             ".org/wikipedia/commons/thumb/e/eb/WoW_icon.svg/2048px-WoW_icon.svg.png";
+
     private final ObtainRealmPort obtainRealmPort;
     private final SaveRealmPort saveRealmPort;
+
     private final RandomString randomString;
     private final PasswordEncoder passwordEncoder;
     private final ObtainServerDetailsPort obtainServerDetailsPort;
@@ -83,7 +85,6 @@ public class RealmService implements RealmPort {
             throw new InternalException("It is not possible to create or configure a realm with because one already " +
                     "exists with the same name and with the same version characteristics.", transactionId);
         }
-
 
         try {
             final String apiKey = randomString.nextString();

@@ -33,7 +33,7 @@ public class RealmController {
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());
     }
 
-    @GetMapping("/")
+    @GetMapping("/all")
     public ResponseEntity<GenericResponse<AssociatedRealm>> realms(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
 
