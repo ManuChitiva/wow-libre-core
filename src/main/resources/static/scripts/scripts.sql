@@ -11,9 +11,12 @@ CREATE TABLE platform.rol
     CONSTRAINT uq_rol_name UNIQUE (name)
 );
 
-INSERT INTO platform.rol (name, status) VALUES ('ADMIN', TRUE);
-INSERT INTO platform.rol (name, status) VALUES ('CLIENT', TRUE);
-INSERT INTO platform.rol (name, status) VALUES ('SUPPORT', TRUE);
+INSERT INTO platform.rol (name, status)
+VALUES ('ADMIN', TRUE);
+INSERT INTO platform.rol (name, status)
+VALUES ('CLIENT', TRUE);
+INSERT INTO platform.rol (name, status)
+VALUES ('SUPPORT', TRUE);
 
 CREATE TABLE platform.user
 (
@@ -96,7 +99,7 @@ CREATE TABLE platform.machine
     id       BIGINT AUTO_INCREMENT PRIMARY KEY,
     user_id  BIGINT NOT NULL,
     realm_id BIGINT NOT NULL,
-    points    INT    NOT NULL,
+    points   INT    NOT NULL,
     last_win TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     CONSTRAINT uq_coins_user_realm UNIQUE (user_id, realm_id)
 );
@@ -105,7 +108,7 @@ CREATE TABLE platform.realm_services
 (
     id       bigint auto_increment NOT NULL,
     name     ENUM('BANK', 'SEND_LEVEL') NOT NULL,
-    amount   double NOT NULL,
+    amount double NOT NULL,
     realm_id bigint NOT NULL,
 
     CONSTRAINT fk_realm_services_realm_id FOREIGN KEY (realm_id) REFERENCES platform.realm (id),
@@ -147,18 +150,18 @@ CREATE TABLE platform.realm_details
 
 CREATE TABLE platform.credit_loans
 (
-    id                 bigint auto_increment NOT NULL,
-    account_game_id    bigint                              NOT NULL,
-    character_id       bigint,
-    realm_id           bigint,
-    reference_serial   varchar(60)                         NOT NULL,
+    id               bigint auto_increment NOT NULL,
+    account_game_id  bigint                              NOT NULL,
+    character_id     bigint,
+    realm_id         bigint,
+    reference_serial varchar(60)                         NOT NULL,
     amount_transferred double NOT NULL,
-    debt_to_pay        double NOT NULL,
-    created_at         TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    payment_date       TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    interests          INTEGER                             NOT NULL,
-    status             boolean                             NOT NULL,
-    send               boolean                             NOT NULL,
+    debt_to_pay double NOT NULL,
+    created_at       TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    payment_date     TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    interests        INTEGER                             NOT NULL,
+    status           boolean                             NOT NULL,
+    send             boolean                             NOT NULL,
 
     CONSTRAINT uq_credit_loans_reference UNIQUE (reference_serial),
     CONSTRAINT fk_credit_loans_account_game_id FOREIGN KEY (account_game_id) REFERENCES platform.account_game (id),
@@ -204,7 +207,7 @@ CREATE TABLE platform.promotion
     min_level       integer     NOT NULL,
     max_level       integer     NOT NULL,
     type            varchar(30) NOT NULL,
-    amount          double NOT NULL,
+    amount double NOT NULL,
     class_character varchar(10) NOT NULL,
     level           integer,
     status          boolean     NOT NULL,
@@ -219,7 +222,7 @@ CREATE TABLE platform.user_promotion
     character_id    bigint                              NOT NULL,
     promotion_id    bigint                              NOT NULL,
     created_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
-    updated_at    TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
     realm_id        bigint                              NOT NULL,
     user_id         bigint                              NOT NULL,
     PRIMARY KEY (id),
@@ -237,12 +240,17 @@ CREATE TABLE platform.promotion_item
     CONSTRAINT fk_promotion_item_promotion_id FOREIGN KEY (promotion_id) references platform.promotion (id)
 );
 
-CREATE TABLE platform.faqs
+CREATE TABLE platform.teleport
 (
-    id          BIGINT AUTO_INCREMENT PRIMARY KEY,
-    question    text        NOT NULL,
-    answer      text        NOT NULL,
-    created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    updated_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    language    varchar(2)  NOT NULL
+    id      BIGINT AUTO_INCREMENT PRIMARY KEY,
+    img_url text NOT NULL,
+    name    VARCHAR(80) NOT NULL,
+    position_x DOUBLE NOT NULL,
+    position_y DOUBLE NOT NULL,
+    position_z DOUBLE NOT NULL ,
+    map     INT NOT NULL,
+    orientation DOUBLE NOT NULL,
+    zone    INT NOT NULL,
+    area DOUBLE,
+    faction ENUM('HORDE', 'ALLIANCE','ALL') NOT NULL,
 );

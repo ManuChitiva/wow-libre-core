@@ -6,4 +6,6 @@ import java.util.*;
 
 public interface ObtainTeleport {
     List<TeleportEntity> findAllTeleport();
+
+    Optional<TeleportEntity> findById(Long id);
 }

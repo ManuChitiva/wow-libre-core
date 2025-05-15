@@ -98,4 +98,6 @@ public interface IntegratorPort {
                     Integer seconds, String bannedBy, String banReason, String transactionId);
 
     Map<String, String> getConfigs(String host, String jwt, String url, boolean authServer, String transactionId);
+
+    void teleport(String host, String jwt, TeleportRequest request, String transactionId);
 }

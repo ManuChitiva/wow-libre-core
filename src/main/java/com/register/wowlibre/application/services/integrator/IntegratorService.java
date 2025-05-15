@@ -369,4 +369,9 @@ public class IntegratorService implements IntegratorPort {
                 transactionId).getData();
     }
 
+    @Override
+    public void teleport(String host, String jwt, TeleportRequest request, String transactionId) {
+        integratorClient.teleport(host, jwt, request, transactionId);
+    }
+
 }

@@ -1302,4 +1302,39 @@ public class IntegratorClient {
 
         throw new InternalException("Unexpected transaction failure", transactionId);
     }
+
+    public GenericResponse<Void> teleport(String host, String jwt, TeleportRequest request,
+                                          String transactionId) {
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.set(HEADER_TRANSACTION_ID, transactionId);
+        headers.set(HttpHeaders.AUTHORIZATION, "Bearer " + jwt);
+
+        HttpEntity<TeleportRequest> entity = new HttpEntity<>(request, headers);
+        String url = UriComponentsBuilder.fromHttpUrl(String.format("%s/api/characters/teleport", host))
+                .toUriString();
+
+        try {
+            ResponseEntity<GenericResponse<Void>> response = restTemplate.exchange(url,
+                    HttpMethod.POST,
+                    entity, new ParameterizedTypeReference<>() {
+                    });
+
+            if (response.getStatusCode().is2xxSuccessful()) {
+                return Objects.requireNonNull(response.getBody());
+            }
+
+        } catch (HttpClientErrorException | HttpServerErrorException e) {
+            LOGGER.error("[IntegratorClient] [Teleport] Message: {}. Status: {} Response:  {} " +
+                            "TransactionId {} ",
+                    e.getMessage(), e.getStatusCode(), e.getResponseBodyAsString(), transactionId);
+            throw new InternalException(Objects.requireNonNull(e.getResponseBodyAs(GenericResponse.class)).getMessage(), transactionId);
+        } catch (Exception e) {
+            LOGGER.error("[IntegratorClient] [Teleport]  Error: {}. TransactionId: {}.", e.getMessage(),
+                    transactionId, e);
+            throw new InternalException("Transaction failed due to client or realm error", transactionId);
+        }
+
+        throw new InternalException("Unexpected transaction failure", transactionId);
+    }
 }

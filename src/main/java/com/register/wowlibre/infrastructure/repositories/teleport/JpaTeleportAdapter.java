@@ -20,6 +20,11 @@ public class JpaTeleportAdapter implements ObtainTeleport, SaveTeleport {
     }
 
     @Override
+    public Optional<TeleportEntity> findById(Long id) {
+        return teleportRepository.findById(id);
+    }
+
+    @Override
     public void saveTeleport(TeleportEntity teleportEntity) {
         teleportRepository.save(teleportEntity);
     }
