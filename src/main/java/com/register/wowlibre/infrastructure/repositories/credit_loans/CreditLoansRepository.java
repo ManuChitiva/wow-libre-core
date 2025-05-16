@@ -11,6 +11,7 @@ import java.util.*;
 
 public interface CreditLoansRepository extends CrudRepository<CreditLoansEntity, Long> {
 
+    List<CreditLoansEntity> findByAccountGameIdAndStatusIsTrue(AccountGameEntity accountGame);
 
     Optional<CreditLoansEntity> findByReferenceSerial(String referenceSerial);
 
@@ -21,10 +22,11 @@ public interface CreditLoansRepository extends CrudRepository<CreditLoansEntity,
 
 
     @Query("SELECT c FROM CreditLoansEntity c WHERE " +
-            "( :filter = 'ALL' OR (:filter = 'DEBTOR' AND c.debtToPay > 0) OR (:filter = 'NON_DEBTOR' AND c.debtToPay = 0) ) " +
-            "AND c.realmId = :serverId")
-    Page<CreditLoansEntity> findByFilterAndSortAndServerId(String filter, Long serverId, Pageable pageable);
-
+            "( :filter = 'ALL' OR (:filter = 'DEBTOR' AND c.debtToPay > 0) OR (:filter = 'NON_DEBTOR' AND c.debtToPay" +
+            " = 0) ) " +
+            "AND c.realmId = :realmId")
+    Page<CreditLoansEntity> findByFilterAndSortAndServerId(String filter, @Param("realmId") Long realmId,
+                                                           Pageable pageable);
 
 
 }

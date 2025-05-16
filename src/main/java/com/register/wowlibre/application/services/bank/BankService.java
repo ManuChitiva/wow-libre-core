@@ -9,7 +9,7 @@ import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.bank.*;
-import com.register.wowlibre.domain.port.in.server_services.*;
+import com.register.wowlibre.domain.port.in.realm_services.*;
 import com.register.wowlibre.domain.port.out.credit_loans.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.util.*;
@@ -27,18 +27,18 @@ public class BankService implements BankPort {
     private final ObtainCreditLoans obtainCreditLoans;
     private final SaveCreditLoans saveCreditLoans;
 
-    private final ServerServicesPort serverServicesPort;
+    private final RealmServicesPort realmServicesPort;
     private final ResourcesPort resourcesPort;
     private final AccountGamePort accountGamePort;
     private final RandomString randomString;
 
     public BankService(ObtainCreditLoans obtainCreditLoans, SaveCreditLoans saveCreditLoans,
-                       ServerServicesPort serverServicesPort,
+                       RealmServicesPort realmServicesPort,
                        ResourcesPort resourcesPort, AccountGamePort accountGamePort,
                        @Qualifier("reference-serial-bank") RandomString randomString) {
         this.obtainCreditLoans = obtainCreditLoans;
         this.saveCreditLoans = saveCreditLoans;
-        this.serverServicesPort = serverServicesPort;
+        this.realmServicesPort = realmServicesPort;
         this.resourcesPort = resourcesPort;
         this.accountGamePort = accountGamePort;
         this.randomString = randomString;
@@ -53,21 +53,22 @@ public class BankService implements BankPort {
                 transactionId);
 
         RealmEntity server = verificationDto.realm();
+        AccountGameEntity accountGame = verificationDto.accountGame();
 
         if (!server.isStatus()) {
             throw new InternalException("Currently the realm is not available to accept loans, contact the " +
                     "administrator.", transactionId);
         }
 
-        ServerServicesModel serverServicesModel =
-                serverServicesPort.findByNameAndServerId(RealmServices.BANK, serverId,
+        RealmServicesModel realmServicesModel =
+                realmServicesPort.findByNameAndServerId(RealmServices.BANK, serverId,
                         transactionId);
 
-        if (serverServicesModel == null) {
+        if (realmServicesModel == null) {
             throw new InternalException("The realm currently does not have loans configured", transactionId);
         }
 
-        if (serverServicesModel.amount() <= 0) {
+        if (realmServicesModel.amount() <= 0) {
             throw new InternalException("There is no money available for loans", transactionId);
         }
 
@@ -82,7 +83,7 @@ public class BankService implements BankPort {
 
         PlanModel plan = planSearch.get();
 
-        if (!obtainCreditLoans.findByUserIdAndStatusIsTrue(userId).isEmpty()) {
+        if (!obtainCreditLoans.findByAccountGameAndStatusIsTrue(accountGame).isEmpty()) {
             throw new InternalException("You already have a loan.", transactionId);
         }
 
@@ -105,13 +106,13 @@ public class BankService implements BankPort {
         creditLoansEntity.setReferenceSerial(randomString.nextString());
         creditLoansEntity.setSend(false);
 
-        serverServicesPort.updateAmount(serverServicesModel.id(), serverServicesModel.amount() - 1, transactionId);
+        realmServicesPort.updateAmount(realmServicesModel.id(), realmServicesModel.amount() - 1, transactionId);
         saveCreditLoans.save(creditLoansEntity, transactionId);
     }
 
     @Override
     public List<ServerAvailableBankDto> serverAvailableLoan(String transactionId) {
-        return serverServicesPort.findByServersAvailableLoa(transactionId)
+        return realmServicesPort.findByServersAvailableLoa(transactionId)
                 .stream().map(server -> new ServerAvailableBankDto(server.serverId(), server.serverName())).toList();
     }
 

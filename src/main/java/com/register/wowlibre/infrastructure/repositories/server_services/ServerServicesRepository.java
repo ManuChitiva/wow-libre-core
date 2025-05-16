@@ -4,6 +4,7 @@ import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import org.springframework.data.jpa.repository.*;
 import org.springframework.data.repository.*;
+import org.springframework.data.repository.query.*;
 
 import java.util.*;
 
@@ -14,6 +15,7 @@ public interface ServerServicesRepository extends CrudRepository<RealmServicesEn
 
     @Query("SELECT ss FROM RealmServicesEntity ss " +
             "INNER JOIN ss.realmId s " +
-            "WHERE ss.amount > 0 AND s.status = true")
-    List<RealmServicesEntity> findActiveServerServicesWithAmountGreaterThanZero();
+            "WHERE ss.amount > 0 AND s.status = true AND ss.name = :serviceName")
+    List<RealmServicesEntity> findActiveRealmServicesWithAmountGreaterThanZero(@Param("serviceName") RealmServices serviceName);
+
 }

@@ -29,8 +29,15 @@ public class CreditLoansEntity {
     private Double debtToPay;
     @Column(name = "created_at")
     private LocalDateTime createdAt;
+    @Column(name = "payment_date")
     private LocalDateTime paymentDate;
     private Integer interests;
     private boolean status;
     private boolean send;
+
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+    }
+
 }

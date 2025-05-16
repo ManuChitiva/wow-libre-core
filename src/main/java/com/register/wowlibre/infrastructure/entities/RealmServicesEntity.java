@@ -11,6 +11,7 @@ public class RealmServicesEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Enumerated(EnumType.STRING)
     private RealmServices name;
     @Column(name = "amount")
     private Double amount;

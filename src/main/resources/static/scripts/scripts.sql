@@ -254,3 +254,13 @@ CREATE TABLE platform.teleport
     area DOUBLE,
     faction ENUM('HORDE', 'ALLIANCE','ALL') NOT NULL,
 );
+
+CREATE TABLE platform.faqs
+(
+    id         BIGINT AUTO_INCREMENT PRIMARY KEY,
+    question   TEXT         NOT NULL,
+    answer     TEXT         NOT NULL,
+    language   VARCHAR(255) NOT NULL,
+    created_at DATETIME     NOT NULL,
+    updated_at DATETIME     NOT NULL
+);

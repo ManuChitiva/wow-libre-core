@@ -17,8 +17,8 @@ public class JpaCreditLoansAdapter implements ObtainCreditLoans, SaveCreditLoans
     }
 
     @Override
-    public List<CreditLoansEntity> findByUserIdAndStatusIsTrue(Long userId) {
-        return null;
+    public List<CreditLoansEntity> findByAccountGameAndStatusIsTrue(AccountGameEntity accountGame) {
+        return creditLoansRepository.findByAccountGameIdAndStatusIsTrue(accountGame);
     }
 
     @Override
@@ -38,11 +38,11 @@ public class JpaCreditLoansAdapter implements ObtainCreditLoans, SaveCreditLoans
     }
 
     @Override
-    public List<CreditLoansEntity> findByServerIdAndPagination(Long serverId, int size, int page, String filter,
-                                                               boolean asc,
-                                                               String transactionId) {
+    public List<CreditLoansEntity> findByRealmIdAndPagination(Long realmId, int size, int page, String filter,
+                                                              boolean asc,
+                                                              String transactionId) {
 
-        Sort sort = Sort.by(Sort.Order.by("transactionDate"));
+        Sort sort = Sort.by(Sort.Order.by("createdAt"));
         if (asc) {
             sort = sort.ascending();
         } else {
@@ -50,7 +50,7 @@ public class JpaCreditLoansAdapter implements ObtainCreditLoans, SaveCreditLoans
         }
 
         Pageable pageable = PageRequest.of(page, size, sort);
-        return creditLoansRepository.findByFilterAndSortAndServerId(filter, serverId, pageable).stream().toList();
+        return creditLoansRepository.findByFilterAndSortAndServerId(filter, realmId, pageable).stream().toList();
     }
 
     @Override

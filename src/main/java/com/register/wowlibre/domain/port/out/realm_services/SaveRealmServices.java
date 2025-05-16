@@ -1,7 +1,7 @@
-package com.register.wowlibre.domain.port.out.server_services;
+package com.register.wowlibre.domain.port.out.realm_services;
 
 import com.register.wowlibre.infrastructure.entities.*;
 
-public interface SaveServiceServices {
+public interface SaveRealmServices {
     void save(RealmServicesEntity realmServicesEntity, String transactionId);
 }

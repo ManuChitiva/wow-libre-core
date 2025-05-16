@@ -9,7 +9,7 @@ import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.account_game.*;
 import com.register.wowlibre.domain.port.in.characters.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
-import com.register.wowlibre.domain.port.in.server_services.*;
+import com.register.wowlibre.domain.port.in.realm_services.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import org.springframework.security.crypto.password.*;
 import org.springframework.stereotype.*;
@@ -21,14 +21,14 @@ public class CharactersService implements CharactersPort {
     private final IntegratorPort integratorService;
     private final AccountGamePort accountGamePort;
     private final PasswordEncoder passwordEncoder;
-    private final ServerServicesPort serverServicesPort;
+    private final RealmServicesPort realmServicesPort;
 
     public CharactersService(IntegratorPort integratorService, AccountGamePort accountGamePort,
-                             PasswordEncoder passwordEncoder, ServerServicesPort serverServicesPort) {
+                             PasswordEncoder passwordEncoder, RealmServicesPort realmServicesPort) {
         this.integratorService = integratorService;
         this.accountGamePort = accountGamePort;
         this.passwordEncoder = passwordEncoder;
-        this.serverServicesPort = serverServicesPort;
+        this.realmServicesPort = realmServicesPort;
     }
 
 
@@ -136,12 +136,12 @@ public class CharactersService implements CharactersPort {
             throw new InternalException("The realm is currently not verified", transactionId);
         }
 
-        ServerServicesModel serverServicesModel =
-                serverServicesPort.findByNameAndServerId(RealmServices.SEND_LEVEL, realmId, transactionId);
+        RealmServicesModel realmServicesModel =
+                realmServicesPort.findByNameAndServerId(RealmServices.SEND_LEVEL, realmId, transactionId);
 
         double cost = 0.0;
-        if (serverServicesModel != null && serverServicesModel.amount() > 0) {
-            cost = serverServicesModel.amount();
+        if (realmServicesModel != null && realmServicesModel.amount() > 0) {
+            cost = realmServicesModel.amount();
         }
 
         integratorService.sendLevel(realm.getHost(), realm.getJwt(), accountGame.getAccountId(),

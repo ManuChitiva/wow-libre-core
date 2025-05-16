@@ -9,7 +9,7 @@ import com.register.wowlibre.domain.port.in.dashboard.*;
 import com.register.wowlibre.domain.port.in.integrator.*;
 import com.register.wowlibre.domain.port.in.promotion.*;
 import com.register.wowlibre.domain.port.in.realm.*;
-import com.register.wowlibre.domain.port.in.server_services.*;
+import com.register.wowlibre.domain.port.in.realm_services.*;
 import com.register.wowlibre.domain.port.in.user_promotion.*;
 import com.register.wowlibre.domain.port.out.credit_loans.*;
 import com.register.wowlibre.infrastructure.entities.*;
@@ -29,7 +29,7 @@ public class DashboardService implements DashboardPort {
      * ServerPort
      **/
     private final RealmPort realmPort;
-    private final ServerServicesPort serverServicesPort;
+    private final RealmServicesPort realmServicesPort;
     /**
      * Integrator Port
      **/
@@ -43,12 +43,12 @@ public class DashboardService implements DashboardPort {
     private final PasswordEncoder passwordEncoder;
 
     public DashboardService(ObtainCreditLoans obtainCreditLoans, RealmPort realmPort,
-                            ServerServicesPort serverServicesPort, IntegratorPort integratorPort,
+                            RealmServicesPort realmServicesPort, IntegratorPort integratorPort,
                             UserPromotionPort userPromotionPort, PromotionPort promotionPort,
                             PasswordEncoder passwordEncoder) {
         this.obtainCreditLoans = obtainCreditLoans;
         this.realmPort = realmPort;
-        this.serverServicesPort = serverServicesPort;
+        this.realmServicesPort = realmServicesPort;
         this.integratorPort = integratorPort;
         this.userPromotionPort = userPromotionPort;
         this.promotionPort = promotionPort;
@@ -56,10 +56,10 @@ public class DashboardService implements DashboardPort {
     }
 
     @Override
-    public LoansDto creditLoans(Long userId, Long serverId, int size, int page, String filter, boolean asc,
+    public LoansDto creditLoans(Long userId, Long realmId, int size, int page, String filter, boolean asc,
                                 String transactionId) {
 
-        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
+        Optional<RealmEntity> server = realmPort.findById(realmId, transactionId);
 
         if (server.isEmpty() || !server.get().isStatus()) {
             throw new InternalException("The realm is not found or is not available please contact support.",
@@ -67,10 +67,9 @@ public class DashboardService implements DashboardPort {
         }
 
         LoansDto loansDto = new LoansDto();
-        loansDto.setLoans(Optional.ofNullable(serverServicesPort.findByNameAndServerId(RealmServices.BANK,
-                serverId,
-                transactionId)).map(ServerServicesModel::amount).orElse(null));
-        loansDto.setUsers(obtainCreditLoans.findByServerIdAndPagination(serverId, size, page, filter, asc,
+        loansDto.setLoans(Optional.ofNullable(realmServicesPort.findByNameAndServerId(RealmServices.BANK, realmId,
+                transactionId)).map(RealmServicesModel::amount).orElse(null));
+        loansDto.setUsers(obtainCreditLoans.findByRealmIdAndPagination(realmId, size, page, filter, asc,
                 transactionId).stream().map(credit -> new LoansDto.UsersCreditLoans(credit.getId(),
                 credit.getAccountGameId().getUserId().getEmail(),
                 credit.getCreatedAt(), credit.getDebtToPay() > 0, credit.getPaymentDate(),
@@ -80,16 +79,16 @@ public class DashboardService implements DashboardPort {
     }
 
     @Override
-    public void enableLoan(Long userId, Long serverId, Double loans, String service, String transactionId) {
-        Optional<RealmEntity> server = realmPort.findById(serverId, transactionId);
+    public void enableLoan(Long userId, Long realmId, Double loans, String service, String transactionId) {
+        Optional<RealmEntity> realm = realmPort.findById(realmId, transactionId);
 
-        if (server.isEmpty() || !server.get().isStatus()) {
+        if (realm.isEmpty() || !realm.get().isStatus()) {
             throw new InternalException("The realm is not found or is not available please contact support.",
                     transactionId);
         }
 
-        serverServicesPort.updateOrCreateAmountByServerId(RealmServices.getName(service, transactionId),
-                server.get(),
+        realmServicesPort.updateOrCreateAmountByServerId(RealmServices.getName(service, transactionId),
+                realm.get(),
                 loans,
                 transactionId);
     }
@@ -106,7 +105,7 @@ public class DashboardService implements DashboardPort {
                     transactionId);
         }
 
-        List<CreditLoansEntity> creditLoansEntities = obtainCreditLoans.findByServerIdAndPagination(serverId, 500, 0,
+        List<CreditLoansEntity> creditLoansEntities = obtainCreditLoans.findByRealmIdAndPagination(serverId, 500, 0,
                 "ALL", true, transactionId);
 
         Map<Integer, Map<String, Map<Integer, Map<String, Integer>>>> data = new TreeMap<>();
@@ -125,12 +124,18 @@ public class DashboardService implements DashboardPort {
             data.get(year).get(month).computeIfAbsent(day, k -> new HashMap<>());
 
             Map<String, Integer> dayData = data.get(year).get(month).get(day);
-            dayData.put("loans",
-                    dayData.getOrDefault("loans", 0) + creditLoans.getAmountTransferred().intValue() / 10000);
-            if (creditLoans.getDebtToPay() != null) {
-                dayData.put("payments",
-                        dayData.getOrDefault("payments", 0) + (creditLoans.getDebtToPay().intValue()) / 10000);
-            }
+            int loan = creditLoans.getAmountTransferred().intValue() / 10000;
+            dayData.put("loans", dayData.getOrDefault("loans", 0) + loan);
+
+            int debt = creditLoans.getDebtToPay() != null ? creditLoans.getDebtToPay().intValue() / 10000 : 0;
+            dayData.put("pending", dayData.getOrDefault("pending", 0) + debt);
+
+            int paid = dayData.get("loans") - dayData.get("pending");
+            dayData.put("paid", paid);
+
+            double interestRate = creditLoans.getInterests();
+            int estimatedGain = (int) Math.round(loan * (interestRate / 100.0));
+            dayData.put("gain", dayData.getOrDefault("gain", 0) + estimatedGain);
         }
 
         return data;

@@ -6,7 +6,7 @@ import java.time.*;
 import java.util.*;
 
 public interface ObtainCreditLoans {
-    List<CreditLoansEntity> findByUserIdAndStatusIsTrue(Long userId);
+    List<CreditLoansEntity> findByAccountGameAndStatusIsTrue(AccountGameEntity accountGame);
 
     Optional<CreditLoansEntity> findByReferenceSerial(String referenceSerial);
 
@@ -14,6 +14,6 @@ public interface ObtainCreditLoans {
 
     List<CreditLoansEntity> creditRequestPending(LocalDateTime localDateTime, String transactionId);
 
-    List<CreditLoansEntity> findByServerIdAndPagination(Long serverId, int size, int page, String filter, boolean asc,
-                                                        String transactionId);
+    List<CreditLoansEntity> findByRealmIdAndPagination(Long realmId, int size, int page, String filter, boolean asc,
+                                                       String transactionId);
 }

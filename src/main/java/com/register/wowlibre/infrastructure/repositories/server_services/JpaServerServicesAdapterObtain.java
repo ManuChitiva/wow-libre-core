@@ -1,17 +1,17 @@
 package com.register.wowlibre.infrastructure.repositories.server_services;
 
 import com.register.wowlibre.domain.enums.*;
-import com.register.wowlibre.domain.port.out.server_services.*;
+import com.register.wowlibre.domain.port.out.realm_services.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import org.springframework.stereotype.*;
 
 import java.util.*;
 
 @Repository
-public class JpaServerServicesAdapter implements ObtainServiceServices, SaveServiceServices {
+public class JpaServerServicesAdapterObtain implements ObtainRealmServices, SaveRealmServices {
     private final ServerServicesRepository serverServicesRepository;
 
-    public JpaServerServicesAdapter(ServerServicesRepository serverServicesRepository) {
+    public JpaServerServicesAdapterObtain(ServerServicesRepository serverServicesRepository) {
         this.serverServicesRepository = serverServicesRepository;
     }
 
@@ -27,7 +27,7 @@ public class JpaServerServicesAdapter implements ObtainServiceServices, SaveServ
 
     @Override
     public List<RealmServicesEntity> findByServersAvailableRequestLoa(String transactionId) {
-        return serverServicesRepository.findActiveServerServicesWithAmountGreaterThanZero();
+        return serverServicesRepository.findActiveRealmServicesWithAmountGreaterThanZero(RealmServices.BANK);
     }
 
     @Override

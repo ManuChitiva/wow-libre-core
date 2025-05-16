@@ -34,7 +34,7 @@ public class TransactionBanks {
         this.i18nService = i18nService;
     }
 
-    @Scheduled(cron = "1 1 * * * *")
+    @Scheduled(cron = "1 0/1 * * * *")
     public void sendCreditLoans() {
         String transactionId = "[TransactionBanks] [SendCreditLoans]";
         List<CreditLoansEntity> credits = obtainCreditLoans.creditPendingSend(transactionId);
@@ -42,15 +42,14 @@ public class TransactionBanks {
         credits.forEach(credit -> {
             LOGGER.info("[TransactionBanks] [SendCreditLoans] Sending credit applications CreditId {}", credit.getId());
 
-            Optional<RealmEntity> server = realmPort.findById(credit.getRealmId(), transactionId);
-            if (server.isPresent()) {
+            Optional<RealmEntity> realm = realmPort.findById(credit.getRealmId(), transactionId);
+            if (realm.isPresent()) {
 
                 try {
                     final Long characterId = credit.getCharacterId();
-                    final byte[] salt = KeyDerivationUtil.generateSalt();
-                    final CharacterDetailDto charactersDto = integratorPort.characters(server.get().getHost(),
-                                    server.get().getJwt(), null,
-                                    null, transactionId).getCharacters()
+                    final CharacterDetailDto charactersDto = integratorPort.characters(realm.get().getHost(),
+                                    realm.get().getJwt(), credit.getAccountGameId().getAccountId(),
+                                    credit.getAccountGameId().getUserId().getId(), transactionId).getCharacters()
                             .stream().filter(character -> character.getId().equals(characterId)).findFirst()
                             .orElse(null);
 
@@ -59,16 +58,19 @@ public class TransactionBanks {
                                 credit.getId());
                         return;
                     }
-                    final String characterName = charactersDto.getName();
-                    final Locale locale = new Locale(null);
 
-                    final String command = CommandsCore.sendMoney(characterName, "", getGoblinMessage(characterName, locale),
+                    final String characterName = charactersDto.getName();
+                    final Locale locale = new Locale("es");
+                    final byte[] salt = KeyDerivationUtil.generateSalt();
+
+                    final String command = CommandsCore.sendMoney(characterName, " ", getGoblinMessage(characterName,
+                                    locale),
                             String.valueOf(credit.getAmountTransferred().intValue()));
 
-                    SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(server.get().getApiSecret(), salt);
+                    SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(realm.get().getApiSecret(), salt);
                     String encryptedMessage = EncryptionUtil.encrypt(command, derivedKey);
 
-                    integratorPort.executeCommand(server.get().getHost(), server.get().getJwt(), encryptedMessage, salt,
+                    integratorPort.executeCommand(realm.get().getHost(), realm.get().getJwt(), encryptedMessage, salt,
                             transactionId);
                     credit.setSend(true);
                     saveCreditLoans.save(credit, transactionId);
@@ -84,7 +86,7 @@ public class TransactionBanks {
         });
     }
 
-    @Scheduled(cron = "1 0 1/6 * * *")
+    @Scheduled(cron = "1 0/1 * * * *")
     public void makeCreditCollections() {
         LOGGER.info("[TransactionBanks] [makeCreditCollections] Realizando Cobros");
         String transactionId = "[TransactionBanks] [makeCreditCollections]";
@@ -97,14 +99,15 @@ public class TransactionBanks {
                 try {
 
                     Double pendingPayment = integratorPort.collectGold(server.get().getHost(), server.get().getJwt(),
-                            credit.getId(), credit.getDebtToPay(), transactionId);
+                            credit.getAccountGameId().getUserId().getId(), credit.getDebtToPay(), transactionId);
 
                     if (pendingPayment <= 0) {
                         credit.setStatus(false);
                     }
+
                     credit.setDebtToPay(pendingPayment);
                     saveCreditLoans.save(credit, transactionId);
-                    LOGGER.info("Successful collection made to the Id {}", credit.getId());
+                    LOGGER.info("Successful collection made to the Id {} $[{}]", credit.getId(), pendingPayment);
                 } catch (Exception e) {
                     LOGGER.error("[TransactionBanks] [makeCreditCollections]  An error has occurred when collecting " +
                             "credit from the customer {}", e.getMessage());
