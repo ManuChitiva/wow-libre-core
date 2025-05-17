@@ -261,6 +261,7 @@ CREATE TABLE platform.faqs
     question   TEXT         NOT NULL,
     answer     TEXT         NOT NULL,
     language   VARCHAR(255) NOT NULL,
+    type ENUM('SUPPORT', 'SUBSCRIPTION') NOT NULL,
     created_at DATETIME     NOT NULL,
     updated_at DATETIME     NOT NULL
 );

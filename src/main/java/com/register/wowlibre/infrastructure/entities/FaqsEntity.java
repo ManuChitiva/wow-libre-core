@@ -1,5 +1,6 @@
 package com.register.wowlibre.infrastructure.entities;
 
+import com.register.wowlibre.domain.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -15,6 +16,9 @@ public class FaqsEntity {
     private String question;
     private String answer;
     private String language;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private FaqType type;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at", updatable = false)

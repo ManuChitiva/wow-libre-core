@@ -44,12 +44,14 @@ public class TransactionBanks {
 
             Optional<RealmEntity> realm = realmPort.findById(credit.getRealmId(), transactionId);
             if (realm.isPresent()) {
+                UserEntity user = credit.getAccountGameId().getUserId();
 
                 try {
+
                     final Long characterId = credit.getCharacterId();
                     final CharacterDetailDto charactersDto = integratorPort.characters(realm.get().getHost(),
                                     realm.get().getJwt(), credit.getAccountGameId().getAccountId(),
-                                    credit.getAccountGameId().getUserId().getId(), transactionId).getCharacters()
+                                    user.getId(), transactionId).getCharacters()
                             .stream().filter(character -> character.getId().equals(characterId)).findFirst()
                             .orElse(null);
 
@@ -60,7 +62,7 @@ public class TransactionBanks {
                     }
 
                     final String characterName = charactersDto.getName();
-                    final Locale locale = new Locale("es");
+                    final Locale locale = new Locale(user.getLanguage());
                     final byte[] salt = KeyDerivationUtil.generateSalt();
 
                     final String command = CommandsCore.sendMoney(characterName, " ", getGoblinMessage(characterName,

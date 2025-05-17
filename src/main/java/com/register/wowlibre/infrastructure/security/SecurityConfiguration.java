@@ -113,7 +113,8 @@ public class SecurityConfiguration {
                                         "/v3/api-docs/**",
                                         "/swagger-ui/**")
                                 .permitAll()
-                                .requestMatchers("/api/realm/key","/api/realm/**").hasAuthority(Rol.ADMIN.getName())
+                                .requestMatchers("/api/realm/key", "/api/realm/**", "/api/resources/create/faq",
+                                        "/api/resources/delete/faq").hasAuthority(Rol.ADMIN.getName())
                                 .requestMatchers("/api/transaction/purchase", "/api/transaction/subscription-benefits"
                                 ).hasAuthority(Rol.ADMIN.getName())
                                 .anyRequest().authenticated())

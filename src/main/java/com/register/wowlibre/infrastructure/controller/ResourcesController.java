@@ -1,8 +1,11 @@
 package com.register.wowlibre.infrastructure.controller;
 
+import com.register.wowlibre.domain.dto.faqs.*;
+import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.domain.model.resources.*;
 import com.register.wowlibre.domain.port.in.*;
 import com.register.wowlibre.domain.shared.*;
+import jakarta.validation.*;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,6 +23,53 @@ public class ResourcesController {
         this.resourcesPort = resourcesPort;
     }
 
+    @GetMapping("/country")
+    public ResponseEntity<GenericResponse<List<CountryModel>>> country(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
+        final List<CountryModel> countryModelList = resourcesPort.getCountry(transactionId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(countryModelList, transactionId).ok().build());
+    }
+
+    @GetMapping("/faqs")
+    public ResponseEntity<GenericResponse<List<FaqsModel>>> faqs(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale,
+            @RequestParam(name = "type") String type) {
+
+        FaqType faqType = FaqType.getByName(type);
+
+        final List<FaqsModel> faqs = resourcesPort.getFaqs(faqType, locale.getLanguage(), transactionId);
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<>(faqs, transactionId).ok().build());
+    }
+
+    @PostMapping("/create/faq")
+    public ResponseEntity<GenericResponse<Void>> createFaq(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestBody @Valid CreateFaqDto createFaqDto) {
+
+        resourcesPort.createFaq(createFaqDto, transactionId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
+    }
+
+    @DeleteMapping("/delete/faq")
+    public ResponseEntity<GenericResponse<Void>> deleteFaq(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestParam Long id) {
+
+        resourcesPort.deleteFaq(id, transactionId);
+
+        return ResponseEntity
+                .status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<Void>(transactionId).ok().build());
+    }
+
 
     @GetMapping("/banners-home")
     public ResponseEntity<GenericResponse<List<BannerHomeModel>>> bannersHome(
@@ -34,36 +84,6 @@ public class ResourcesController {
                 .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
     }
 
-
-    @GetMapping("/country")
-    public ResponseEntity<GenericResponse<List<CountryModel>>> country(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId) {
-        final List<CountryModel> countryModelList = resourcesPort.getCountry(transactionId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(countryModelList, transactionId).ok().build());
-    }
-
-    @GetMapping("/faqs")
-    public ResponseEntity<GenericResponse<List<FaqsModel>>> faqs(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale) {
-        final List<FaqsModel> faqs = resourcesPort.getFaqs(locale.getLanguage(), transactionId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(faqs, transactionId).ok().build());
-    }
-
-
-    @GetMapping("/faqs-subscriptions")
-    public ResponseEntity<GenericResponse<List<FaqsModel>>> faqsSubscriptions(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE, required = false) Locale locale) {
-        final List<FaqsModel> faqsModels = resourcesPort.getFaqsSubscription(locale.getLanguage(), transactionId);
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(faqsModels, transactionId).ok().build());
-    }
 
     @GetMapping("/experiences")
     public ResponseEntity<GenericResponse<List<ExperiencesHomeModel>>> experiences(
