@@ -15,8 +15,8 @@ public class JpaTeleportAdapter implements ObtainTeleport, SaveTeleport {
     }
 
     @Override
-    public List<TeleportEntity> findAllTeleport() {
-        return teleportRepository.findAll();
+    public List<TeleportEntity> findAllTeleport(Long realmId) {
+        return teleportRepository.findByRealmId_id(realmId);
     }
 
     @Override

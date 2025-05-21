@@ -21,4 +21,6 @@ public class TeleportDto {
     private Integer zona;
     @NotNull
     private Double area;
+    @NotNull
+    private Long realmId;
 }

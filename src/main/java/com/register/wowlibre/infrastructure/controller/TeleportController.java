@@ -25,8 +25,9 @@ public class TeleportController {
     @GetMapping
     public ResponseEntity<GenericResponse<List<TeleportModel>>> all(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestParam final Long raceId) {
-        List<TeleportModel> teleports = teleportPort.findByAll(raceId, transactionId);
+            @RequestParam final Long raceId,
+            @RequestParam final Long realmId) {
+        List<TeleportModel> teleports = teleportPort.findByAll(realmId, raceId, transactionId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<List<TeleportModel>>(transactionId).ok(teleports).build());

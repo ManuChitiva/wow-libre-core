@@ -1,5 +1,6 @@
 package com.register.wowlibre.repository;
 
+import com.register.wowlibre.domain.enums.*;
 import com.register.wowlibre.infrastructure.entities.*;
 import com.register.wowlibre.infrastructure.repositories.faqs.*;
 import org.junit.jupiter.api.*;
@@ -27,19 +28,19 @@ class JpaFaqsAdapterTest {
         // Arrange
         String language = "es";
         List<FaqsEntity> expectedFaqs = List.of(
-                createFaqEntity(1L, "¿Qué es?", "Una prueba.", "es"),
+                createFaqEntity(1L, "¿Qué es?", "Una prueba.", "en"),
                 createFaqEntity(2L, "¿Cómo funciona?", "Con magia.", "es")
         );
 
-        when(faqsRepository.findByLanguage(language)).thenReturn(expectedFaqs);
+        when(faqsRepository.findByTypeAndLanguage(FaqType.SUPPORT, language)).thenReturn(expectedFaqs);
 
         // Act
-        List<FaqsEntity> actualFaqs = jpaFaqsAdapter.findByLanguage(language);
+        List<FaqsEntity> actualFaqs = jpaFaqsAdapter.findByTypeAndLanguage(FaqType.SUPPORT, language);
 
         // Assert
         assertEquals(expectedFaqs.size(), actualFaqs.size());
         assertEquals(expectedFaqs, actualFaqs);
-        verify(faqsRepository, times(1)).findByLanguage(language);
+        verify(faqsRepository, times(1)).findByTypeAndLanguage(FaqType.SUPPORT, language);
     }
 
     private FaqsEntity createFaqEntity(Long id, String question, String answer, String language) {

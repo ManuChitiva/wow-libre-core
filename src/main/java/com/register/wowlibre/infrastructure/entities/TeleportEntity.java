@@ -28,4 +28,11 @@ public class TeleportEntity {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Faction faction;
+    @JoinColumn(
+            name = "realm_id",
+            referencedColumnName = "id")
+    @ManyToOne(
+            optional = false,
+            fetch = FetchType.EAGER)
+    private RealmEntity realmId;
 }

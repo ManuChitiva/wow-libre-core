@@ -252,7 +252,10 @@ CREATE TABLE platform.teleport
     orientation DOUBLE NOT NULL,
     zone    INT NOT NULL,
     area DOUBLE,
+    realm_id BIGINT NOT NULL,
     faction ENUM('HORDE', 'ALLIANCE','ALL') NOT NULL,
+    CONSTRAINT fk_teleport_realm_id FOREIGN KEY (realm_id) REFERENCES platform.realm (id),
+    CONSTRAINT uq_teleport_name_realm UNIQUE (name, realm_id)
 );
 
 CREATE TABLE platform.faqs

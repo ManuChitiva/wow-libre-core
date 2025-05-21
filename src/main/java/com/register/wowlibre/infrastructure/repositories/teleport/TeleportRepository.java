@@ -6,6 +6,6 @@ import org.springframework.data.repository.*;
 import java.util.*;
 
 public interface TeleportRepository extends CrudRepository<TeleportEntity, Long> {
-    @Override
-    List<TeleportEntity> findAll();
+
+    List<TeleportEntity> findByRealmId_id(Long realmId);
 }

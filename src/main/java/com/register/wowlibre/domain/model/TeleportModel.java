@@ -16,4 +16,5 @@ public class TeleportModel {
     public final Integer zone;
     public final Double area;
     public final Faction faction;
+    public final Long realmId;
 }
