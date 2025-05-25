@@ -83,6 +83,7 @@ public class SecurityConfiguration {
                                         "/actuator/health",
 
                                         //INTERNAL API
+                                        "/api/realm/advertising/language",
                                         "/api/account/create",
                                         "/api/account/password-recovery/request",
                                         "/api/account/password-recovery/confirm",
@@ -91,7 +92,6 @@ public class SecurityConfiguration {
                                         "/api/resources/country",
                                         "/api/resources/widget-home",
                                         "/api/resources/server-promos",
-                                        "/api/resources/faqs-subscriptions",
                                         "/api/resources/faqs",
                                         "/api/resources/bank/plans",
                                         "/api/resources/benefit",
@@ -102,6 +102,7 @@ public class SecurityConfiguration {
                                         "/api/guilds",
                                         "/api/guilds/{id}",
                                         "/api/realm/vdp",
+
                                         //SWAGGER
                                         "/v2/api-docs",
                                         "/swagger-resources",

@@ -53,4 +53,14 @@ public class TeleportController {
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(new GenericResponseBuilder<Void>(transactionId).created().build());
     }
+
+    @DeleteMapping
+    public ResponseEntity<GenericResponse<Void>> delete(
+            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
+            @RequestParam final Long realmId,
+            @RequestParam final Long teleportId) {
+        teleportPort.delete(teleportId, realmId, transactionId);
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(new GenericResponseBuilder<Void>(transactionId).created().build());
+    }
 }

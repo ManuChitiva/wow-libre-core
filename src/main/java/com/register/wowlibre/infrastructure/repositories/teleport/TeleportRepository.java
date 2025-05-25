@@ -8,4 +8,9 @@ import java.util.*;
 public interface TeleportRepository extends CrudRepository<TeleportEntity, Long> {
 
     List<TeleportEntity> findByRealmId_id(Long realmId);
+
+    Optional<TeleportEntity> findByIdAndRealmId_id(Long id, Long realmId);
+
+    Optional<TeleportEntity> findByNameAndRealmId_id(String name, Long realmId);
+
 }

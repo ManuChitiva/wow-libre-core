@@ -12,4 +12,7 @@ public interface TeleportPort {
 
     void teleport(Long teleportId, Long userId, Long accountId, Long characterId, Long realmId,
                   String transactionId);
+
+    void delete(Long id,Long realmId, String transactionId);
+
 }

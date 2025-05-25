@@ -51,17 +51,26 @@ public class TeleportService implements TeleportPort {
             throw new InternalException("Server Invalid Or Not Found", transactionId);
         }
 
+        obtainTeleport.findByNameAndRealmId(teleportModel.getName(), teleportModel.getRealmId())
+                .ifPresent(teleport -> {
+                    throw new InternalException("Teleport Already Exists", transactionId);
+                });
+
+        Faction faction = Faction.fromString(teleportModel.getFaction());
+
         TeleportEntity teleport = new TeleportEntity();
         teleport.setImgUrl(teleportModel.getImgUrl());
+        teleport.setName(teleportModel.getName());
         teleport.setPositionX(teleportModel.getPositionX());
         teleport.setPositionY(teleportModel.getPositionY());
         teleport.setPositionZ(teleportModel.getPositionZ());
         teleport.setMap(teleportModel.getMap());
         teleport.setOrientation(teleportModel.getOrientation());
-        teleport.setZone(teleportModel.getZona());
+        teleport.setZone(teleportModel.getZone());
+        teleport.setFaction(faction);
         teleport.setArea(teleportModel.getArea());
         teleport.setRealmId(realm.get());
-        saveTeleport.saveTeleport(teleport);
+        saveTeleport.save(teleport);
     }
 
     @Override
@@ -83,6 +92,18 @@ public class TeleportService implements TeleportPort {
                             .zone(teleport.getZone()).build(), transactionId);
         });
     }
+
+    @Override
+    public void delete(Long id, Long realmId, String transactionId) {
+        Optional<TeleportEntity> teleport = obtainTeleport.findByIdAndRealmId(id, realmId);
+
+        if (teleport.isEmpty()) {
+            throw new InternalException("Teleport Not Found", transactionId);
+        }
+
+        saveTeleport.delete(teleport.get());
+    }
+
 
     private TeleportModel mapModel(TeleportEntity teleport) {
         return TeleportModel.builder()
