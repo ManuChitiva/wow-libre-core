@@ -308,3 +308,23 @@ CREATE TABLE IF NOT EXISTS platform.news_sections (
     ON UPDATE CASCADE
 );
 
+CREATE TABLE platform.notification_providers (
+   id BIGINT NOT NULL PRIMARY KEY,
+   provider_name VARCHAR(50) NOT NULL,
+   from_email VARCHAR(100),
+   access_key TEXT,
+   secret_key TEXT,
+   region VARCHAR(100),
+   enabled BOOLEAN DEFAULT true,
+   created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+   updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+
+CREATE TABLE platform.banners (
+  id BIGINT PRIMARY KEY NOT NULL,
+  media_url TEXT NOT NULL,
+  language VARCHAR(5) NOT NULL,
+  type ENUM('IMAGE', 'VIDEO') NOT NULL
+);
+

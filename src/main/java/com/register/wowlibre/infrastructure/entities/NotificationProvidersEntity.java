@@ -1,6 +1,5 @@
 package com.register.wowlibre.infrastructure.entities;
 
-import com.register.wowlibre.domain.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -8,17 +7,20 @@ import java.time.*;
 
 @Data
 @Entity
-@Table(name = "faqs")
-public class FaqsEntity {
+@Table(name = "notification_providers")
+public class NotificationProvidersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String question;
-    private String answer;
-    private String language;
-    @Enumerated(EnumType.STRING)
-    @Column(nullable = false)
-    private FaqType type;
+    private String provider;
+    @Column(name = "from_mail")
+    private String fromMail;
+    @Column(name = "access_key")
+    private String accessKey;
+    @Column(name = "secret_key")
+    private String secretKey;
+    private String region;
+    private boolean enabled;
     @Column(name = "created_at", updatable = false)
     private LocalDateTime createdAt;
     @Column(name = "updated_at")
