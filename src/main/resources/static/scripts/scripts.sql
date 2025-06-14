@@ -309,7 +309,7 @@ CREATE TABLE IF NOT EXISTS platform.news_sections (
 );
 
 CREATE TABLE platform.notification_providers (
-   id BIGINT NOT NULL PRIMARY KEY,
+   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
    provider_name VARCHAR(50) NOT NULL,
    from_email VARCHAR(100),
    access_key TEXT,
@@ -322,9 +322,39 @@ CREATE TABLE platform.notification_providers (
 
 
 CREATE TABLE platform.banners (
-  id BIGINT PRIMARY KEY NOT NULL,
+   id BIGINT NOT NULL PRIMARY KEY AUTO_INCREMENT,
   media_url TEXT NOT NULL,
+  alt TEXT,
   language VARCHAR(5) NOT NULL,
-  type ENUM('IMAGE', 'VIDEO') NOT NULL
+  type ENUM('IMAGE', 'VIDEO') NOT null,
+  label VARCHAR(80)
 );
 
+
+CREATE TABLE IF NOT EXISTS platform.voting_platforms (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  img_url text NOT NULL,
+  name VARCHAR(80) NOT NULL,
+  postback_url VARCHAR(90) NOT NULL,
+  allowed_host VARCHAR(80),
+  is_active boolean  NOT NULL,
+  created_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  updated_at DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  CONSTRAINT uq_voting_platforms_name UNIQUE (name, postback_url)
+);
+
+
+CREATE TABLE platform.vote_wallet (
+    id BIGINT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    user_id BIGINT NOT NULL,
+    platform_id BIGINT NOT NULL,
+    vote_balance INT NOT NULL,
+    total_votes INT NOT NULL,
+    reference_code TEXT NOT NULL,
+    created_at DATETIME,
+    updated_at DATETIME,
+    CONSTRAINT fk_vote_wallet_user_id FOREIGN KEY (user_id) REFERENCES platform.user(id),
+    CONSTRAINT fk_vote_wallet_platform_id FOREIGN KEY (platform_id) REFERENCES platform.voting_platforms(id),
+    CONSTRAINT uq_vote_wallet_user_platform UNIQUE (user_id, platform_id)
+);

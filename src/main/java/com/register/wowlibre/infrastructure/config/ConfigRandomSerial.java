@@ -26,4 +26,9 @@ public class ConfigRandomSerial {
         return new RandomString(5, "abcdefghijklmnopqrstuvwxyz0123456789");
     }
 
+    @Bean("voting-platform-serial")
+    public RandomString votingPlatformSerial() {
+        return new RandomString(20, "abcdefghijklmnopqrstuvwxyz0123456789");
+    }
+
 }

@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.Date;
 
 public class JwtDto {
-
+    public Long id;
     public String jwt;
     @JsonProperty("refresh_token")
     public String refreshToken;
@@ -19,8 +19,9 @@ public class JwtDto {
 
     public boolean pendingValidation;
 
-    public JwtDto(String jwt, String refreshToken, Date expirationDate, String avatarUrl, String language,
+    public JwtDto(Long userId, String jwt, String refreshToken, Date expirationDate, String avatarUrl, String language,
                   boolean pendingValidation) {
+        this.id = userId;
         this.jwt = jwt;
         this.refreshToken = refreshToken;
         this.expirationDate = expirationDate;

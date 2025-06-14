@@ -140,7 +140,8 @@ public class UserService implements UserPort {
         final Date expiration = jwtPort.extractExpiration(token);
         final String refreshToken = jwtPort.generateRefreshToken(customUserDetails);
 
-        return new JwtDto(token, refreshToken, expiration, user.getAvatarUrl(), customUserDetails.getLanguage(),
+        return new JwtDto(user.getId(), token, refreshToken, expiration, user.getAvatarUrl(),
+                customUserDetails.getLanguage(),
                 true);
     }
 

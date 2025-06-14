@@ -1,11 +1,13 @@
 package com.register.wowlibre.infrastructure.entities;
 
+import com.register.wowlibre.domain.enums.*;
 import jakarta.persistence.*;
 import lombok.*;
 
 @Data
 @Entity
 @Table(name = "banners")
+@NoArgsConstructor
 public class BannersEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,5 +16,7 @@ public class BannersEntity {
     private String mediaUrl;
     private String alt;
     private String language;
-    private String type;
+    @Enumerated(EnumType.STRING)
+    private BannerType type;
+    private String label;
 }

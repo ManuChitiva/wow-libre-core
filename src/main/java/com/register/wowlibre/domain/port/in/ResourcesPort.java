@@ -8,8 +8,6 @@ import com.register.wowlibre.domain.model.resources.*;
 import java.util.*;
 
 public interface ResourcesPort {
-    List<BannerHomeModel> getBannersHome(String language, String transactionId);
-
     List<CountryModel> getCountry(String transactionId);
 
     List<FaqsModel> getFaqs(FaqType type, String language, String transactionId);

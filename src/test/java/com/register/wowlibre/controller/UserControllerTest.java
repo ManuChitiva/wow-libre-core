@@ -60,7 +60,7 @@ class UserControllerTest extends BaseTest {
     @Test
     void create_shouldReturnCreatedResponse() {
         UserDto userDto = new UserDto();
-        JwtDto jwtDto = new JwtDto("token", "", new Date(), "", "ES", false);
+        JwtDto jwtDto = new JwtDto(1L, "token", "", new Date(), "", "ES", false);
 
         when(httpServletRequest.getRemoteAddr()).thenReturn("127.0.0.1");
         when(userPort.create(eq(userDto), anyString(), eq(LOCALE), eq(TRANSACTION_ID)))

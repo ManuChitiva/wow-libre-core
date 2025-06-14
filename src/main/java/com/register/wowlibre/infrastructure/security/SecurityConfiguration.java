@@ -81,7 +81,8 @@ public class SecurityConfiguration {
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
                                         "/actuator/health",
-
+                                        "/api/voting/postback",
+                                        "/api/voting",
                                         //INTERNAL API
                                         "/api/realm/advertising/language",
                                         "/api/account/create",
@@ -112,15 +113,17 @@ public class SecurityConfiguration {
                                         "/swagger-ui.html",
                                         "/webjars/**",
                                         "/v3/api-docs/**",
-                                        "/swagger-ui/**")
+                                        "/swagger-ui/**",
+                                        "/api/banners")
                                 .permitAll()
                                 .requestMatchers("/api/realm/key", "/api/realm/**", "/api/resources/create/faq",
                                         "/api/resources/delete/faq", "/api/transaction/purchase", "/api/transaction" +
                                                 "/subscription-benefits").hasAuthority(Rol.ADMIN.getName())
-                                .requestMatchers(HttpMethod.POST, "/api/news", "/api/news/{newsId}/sections").hasAuthority(Rol.ADMIN.getName())
-                                .requestMatchers(HttpMethod.PUT, "/api/news/{id}").hasAuthority(Rol.ADMIN.getName())
+                                .requestMatchers(HttpMethod.POST, "/api/news", "/api/news/{newsId}/sections", "/api" +
+                                        "/banners","/api/voting/create").hasAuthority(Rol.ADMIN.getName())
+                                .requestMatchers(HttpMethod.PUT, "/api/news/{id}","/api/voting/{id}").hasAuthority(Rol.ADMIN.getName())
                                 .requestMatchers(HttpMethod.DELETE, "/api/news/{id}", "/api/news/{newsId}/sections" +
-                                        "/{sectionId}").hasAuthority(Rol.ADMIN.getName())
+                                        "/{sectionId}","/api/banners/*","/api/voting/{id}").hasAuthority(Rol.ADMIN.getName())
                                 .anyRequest().authenticated())
                 .sessionManagement(manager -> manager.sessionCreationPolicy(STATELESS))
                 .authenticationProvider(authenticationProvider()).addFilterBefore(

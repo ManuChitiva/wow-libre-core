@@ -5,10 +5,8 @@ import com.register.wowlibre.domain.model.resources.*;
 import java.util.*;
 
 public interface JsonLoaderPort {
-    List<BannerHomeModel> getBannersHome(String language, String transactionId);
 
     List<CountryModel> getJsonCountry(String transactionId);
-
 
     List<PlanModel> getJsonPlans(String language, String transactionId);
 

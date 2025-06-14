@@ -71,21 +71,6 @@ public class ResourcesController {
     }
 
 
-    @GetMapping("/banners-home")
-    public ResponseEntity<GenericResponse<List<BannerHomeModel>>> bannersHome(
-            @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestHeader(name = HEADER_ACCEPT_LANGUAGE) Locale locale) {
-
-        final List<BannerHomeModel> serversPromotions = resourcesPort.getBannersHome(locale.getLanguage(),
-                transactionId);
-
-        return ResponseEntity
-                .status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(serversPromotions, transactionId).ok().build());
-    }
-
-
-
     @GetMapping("/bank/plans")
     public ResponseEntity<GenericResponse<List<PlanModel>>> plans(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,

@@ -26,11 +26,6 @@ public class ResourcesService implements ResourcesPort {
     }
 
     @Override
-    public List<BannerHomeModel> getBannersHome(String language, String transactionId) {
-        return jsonLoaderPort.getBannersHome(language, transactionId);
-    }
-
-    @Override
     public List<CountryModel> getCountry(String transactionId) {
         return jsonLoaderPort.getJsonCountry(transactionId);
     }
