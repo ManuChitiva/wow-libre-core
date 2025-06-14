@@ -92,7 +92,6 @@ public class SecurityConfiguration {
                                         "/api/resources/banners-home",
                                         "/api/resources/country",
                                         "/api/resources/widget-home",
-                                        "/api/resources/server-promos",
                                         "/api/resources/faqs",
                                         "/api/resources/bank/plans",
                                         "/api/resources/benefit",

@@ -69,11 +69,6 @@ public class ResourcesService implements ResourcesPort {
         return jsonLoaderPort.getJsonBenefitsGuild(language, transactionId);
     }
 
-    @Override
-    public List<ServersPromotions> getJsonServersPromoGuild(String language, String transactionId) {
-        return jsonLoaderPort.getJsonServersPromoGuild(language, transactionId);
-    }
-
 
     @Override
     public WidgetHomeSubscriptionModel getWidgetSubscription(String language, String transactionId) {

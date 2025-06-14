@@ -20,7 +20,6 @@ public interface ResourcesPort {
 
     List<BenefitModel> getBenefitsGuild(String language, String transactionId);
 
-    List<ServersPromotions> getJsonServersPromoGuild(String language, String transactionId);
 
     WidgetHomeSubscriptionModel getWidgetSubscription(String language, String transactionId);
 
