@@ -24,15 +24,15 @@ spring:
     hibernate:
       ddl-auto: none
   datasource:
-    url: jdbc:mysql://localhost:3306/platform
-    username: root
-    password: Wowlibre96@@
+    url: ${DB_CORE_URL:jdbc:mysql://localhost:3306/platform}
+    username: ${DB_CORE_USERNAME:root}
+    password: ${DB_CORE_PASSWORD:Wowlibre96@@}
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
-    host: 'smtp.gmail.com'
-    port: 587
-    username: 'mschitiva68@gmail.com'
-    password: 'mfbv fjfc eond lzhc'
+    host: ${CORE_GOOGLE_HOST:smtp.gmail.com}
+    port: ${CORE_GOOGLE_PORT:587}
+    username: ${CORE_GOOGLE_USERNAME:mschitiva68@gmail.com}
+    password: ${CORE_GOOGLE_PASSWORD:mfbv fjfc eond lzhc}
     properties:
       mail:
         smtp:
@@ -42,26 +42,26 @@ spring:
     default-encoding: 'UTF-8'
 aws:
   ses:
-    access-key: AKIAS6J7QIAW6ZIQPH3X
-    secret-key: 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
-    region: us-east-1
-    from-email: wowlibrecomunidad@gmail.com
+    access-key: ${CORE_AWS_ACCESS_KEY:test}
+    secret-key: ${CORE_AWS_SECRET_KEY:test}
+    region: ${CORE_AWS_REGION:us-east-1}
+    from-email: ${CORE_AWS_FROM_EMAIL:wowlibrecomunidad@gmail.com}
 google:
-  api-key: "6Lcd3iArAAAAAMBZ30BN1hry_nhXsfnoHQWIfejg"
+  api-key: ${GOOGLE_API_SECRET:6Lcd3iArAAAAAMBZ30BN1hry_nhXsfnoHQWIfejg}
 server:
   servlet:
     context-path: /core
   address: 0.0.0.0
-  port: 8091
+  port: ${CORE_SERVER_PORT:8091}
 application:
   host:
-    domain: http://localhost:3000
+    domain: ${HOST_DOMAIN:http://localhost:3000}
   security:
     jwt:
-      secret-key: 6E4D574873506B4A72434B6A614B39786F736B7855666B4D456A6E466F785572
-      expiration: 604800000 # a day
+      secret-key: ${CORE_JWT_SECRET_KEY:6E4D574873506B4A72434B6A614B39786F736B7855666B4D456A6E466F785572}
+      expiration: 604800000
       refresh-token:
-        expiration: 604800000 # 7 days
+        expiration: 604800000
 management:
   endpoints:
     web:
@@ -81,10 +81,10 @@ spring:
     password: ${DB_CORE_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
   mail:
-    host: {CORE_BREVO_HOST}
-    port: {CORE_BREVO_PORT}
-    username: {CORE_BREVO_USERNAME}
-    password: {CORE_BREVO_PASSWORD}
+    host: ${CORE_GOOGLE_HOST}
+    port: ${CORE_GOOGLE_PORT}
+    username: ${CORE_GOOGLE_USERNAME}
+    password: ${CORE_GOOGLE_PASSWORD}
     properties:
       mail:
         smtp:
@@ -94,23 +94,23 @@ spring:
     default-encoding: UTF-8
 aws:
   ses:
-    access-key: {CORE_AWS_ACCESS_KEY}
-    secret-key: {CORE_AWS_SECRET_KEY}
-    region: {CORE_AWS_REGION}
-    from-email: {CORE_AWS_FROM_EMAIL}
+    access-key: ${CORE_AWS_ACCESS_KEY:test}
+    secret-key: ${CORE_AWS_SECRET_KEY:xx}
+    region: ${CORE_AWS_REGION:us-east-1}
+    from-email: ${CORE_AWS_FROM_EMAIL:xx}
 google:
   api-key: ${GOOGLE_API_SECRET}
 server:
   servlet:
     context-path: /core
   address: 0.0.0.0
-  port: {CORE_SERVER_PORT: 8091}
+  port: ${CORE_SERVER_PORT:8091}
 application:
   host:
     domain: ${HOST_DOMAIN}
   security:
     jwt:
-      secret-key: {CORE_JWT_SECRET_KEY}
+      secret-key: ${CORE_JWT_SECRET_KEY}
       expiration: 604800000 # a day
       refresh-token:
         expiration: 604800000 # 7 days
