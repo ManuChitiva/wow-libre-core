@@ -1,5 +1,6 @@
 package com.register.wowlibre.infrastructure.controller;
 
+import com.register.wowlibre.domain.dto.*;
 import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.voting_platforms.*;
 import com.register.wowlibre.domain.shared.*;
@@ -45,11 +46,15 @@ public class VotingController {
     @PostMapping("/create")
     public ResponseEntity<GenericResponse<Void>> createVotingPlatform(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
-            @RequestParam String name,
-            @RequestParam String imgUrl,
-            @RequestParam String postbackUrl,
-            @RequestParam String allowedHost) {
-        votingPlatformsPort.createVotingPlatform(name, imgUrl, postbackUrl, allowedHost, transactionId);
+            @RequestBody VotingPlatformDto request) {
+
+        votingPlatformsPort.createVotingPlatform(
+                request.getName(),
+                request.getImgUrl(),
+                request.getPostbackUrl(),
+                request.getAllowedHost(),
+                transactionId
+        );
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<Void>(null, transactionId).ok().build());
@@ -59,11 +64,11 @@ public class VotingController {
     public ResponseEntity<GenericResponse<Void>> updateVotingPlatform(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @PathVariable Long id,
-            @RequestParam String name,
-            @RequestParam String imgUrl,
-            @RequestParam String postbackUrl,
-            @RequestParam String allowedHost) {
-        votingPlatformsPort.updateVotingPlatform(id, name, imgUrl, postbackUrl, allowedHost, transactionId);
+            @RequestBody VotingPlatformDto request) {
+        votingPlatformsPort.updateVotingPlatform(id, request.getName(),
+                request.getImgUrl(),
+                request.getPostbackUrl(),
+                request.getAllowedHost(), transactionId);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(new GenericResponseBuilder<Void>(null, transactionId).ok().build());

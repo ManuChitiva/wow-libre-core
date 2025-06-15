@@ -32,7 +32,7 @@ public class MailService implements MailPort {
         Map<String, String> templateVariables = new HashMap<>();
         templateVariables.put("url", url);
 
-        awsMailSender.sendTemplatedEmail(email, subject, "register.ftlh", templateVariables);
+        //awsMailSender.sendTemplatedEmail(email, subject, "register.ftlh", templateVariables);
         mailSend.sendHTMLEmail(MailSenderVars.builder()
                 .emailFrom(email).idTemplate(1)
                 .data(RegisterSenderVarsDto.builder().url(url).build())
@@ -41,7 +41,7 @@ public class MailService implements MailPort {
 
     @Override
     public void sendMail(String mail, String subject, String body, String transactionId) {
-        awsMailSender.sendEmail(mail, subject, body, transactionId);
+        //awsMailSender.sendEmail(mail, subject, body, transactionId);
         mailSend.sendMail(mail, subject, body, transactionId);
     }
 

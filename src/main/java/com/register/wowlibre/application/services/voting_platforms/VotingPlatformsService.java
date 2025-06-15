@@ -67,7 +67,15 @@ public class VotingPlatformsService implements VotingPlatformsPort {
 
     @Override
     public void deleteVotingPlatform(Long id, String transactionId) {
-        saveVotingPlatformPort.deleteById(id);
+        Optional<VotingPlatformsEntity> optional = obtainVotingPlatforms.findById(id);
+
+        if (optional.isEmpty()) {
+            throw new InternalException("Voting platform with id " + id + " does not exist.", transactionId);
+        }
+        VotingPlatformsEntity entity = optional.get();
+        entity.setActive(false);
+        entity.setName( randomString.nextString());
+        saveVotingPlatformPort.save(entity);
     }
 
     @Override
