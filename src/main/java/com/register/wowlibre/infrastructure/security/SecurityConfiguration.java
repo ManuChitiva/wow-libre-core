@@ -80,6 +80,7 @@ public class SecurityConfiguration {
                 .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(request ->
                         request.requestMatchers(
+                                        "/api/realm/key",
                                         "/actuator/health",
                                         "/api/voting/postback",
                                         "/api/voting",
@@ -115,7 +116,7 @@ public class SecurityConfiguration {
                                         "/swagger-ui/**",
                                         "/api/banners")
                                 .permitAll()
-                                .requestMatchers("/api/realm/key", "/api/realm/**", "/api/resources/create/faq",
+                                .requestMatchers("/api/realm/**", "/api/resources/create/faq",
                                         "/api/resources/delete/faq", "/api/transaction/purchase", "/api/transaction" +
                                                 "/subscription-benefits").hasAuthority(Rol.ADMIN.getName())
                                 .requestMatchers(HttpMethod.POST, "/api/news", "/api/news/{newsId}/sections", "/api" +

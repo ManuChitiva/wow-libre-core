@@ -20,7 +20,9 @@ public class AuthIntegratorService implements AuthIntegratorPort {
     }
 
     @Override
-    public void create(String host, String username, String password, byte[] salt, String transactionId) {
-        authIntegratorClient.create(host, new AuthClientCreateRequest(username, password, salt), transactionId);
+    public void create(String host, String username, String password, byte[] salt, String apiKey, String emulator,
+                       Integer expansionId, String gmUsername, String gmPassword, String transactionId) {
+        authIntegratorClient.create(host, new AuthClientCreateRequest(username, password, salt, apiKey, emulator,
+                expansionId, gmUsername, gmPassword), transactionId);
     }
 }

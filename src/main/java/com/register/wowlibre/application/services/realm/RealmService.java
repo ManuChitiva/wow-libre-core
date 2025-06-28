@@ -90,12 +90,16 @@ public class RealmService implements RealmPort {
             final String apiKey = randomString.nextString();
             final String apiSecret = randomString.nextString();
 
-            byte[] salt = KeyDerivationUtil.generateSalt();
-            final String externalPass = realmCreateDto.getExternalPassword();
 
-            final String password = passwordEncoder.encode(realmCreateDto.getPassword());
+            final String gmPassword = realmCreateDto.getExternalPassword();
+            final byte[] salt = KeyDerivationUtil.generateSalt();
+
+            final String adminPassword = passwordEncoder.encode(realmCreateDto.getPassword());
+
             SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
-            String encryptedMessage = EncryptionUtil.encrypt(externalPass, derivedKey);
+
+            // Encrypt the passwords using the derived key
+            String encryptedPassUserInternal = EncryptionUtil.encrypt(gmPassword, derivedKey);
 
             RealmModel serverDto = RealmModel.builder()
                     .name(realmCreateDto.getName())
@@ -107,19 +111,18 @@ public class RealmService implements RealmPort {
                     .type(realmCreateDto.getType())
                     .apiSecret(apiSecret)
                     .salt(salt)
-                    .password(password)
+                    .password(adminPassword)
                     .creationDate(LocalDateTime.now())
                     .retry(0)
                     .status(false)
                     .realmlist(realmCreateDto.getRealmlist())
                     .webSite(realmCreateDto.getWebSite())
-                    .externalPassword(encryptedMessage)
-                    .userId(userId)
                     .externalUsername(realmCreateDto.getExternalUsername())
+                    .externalPassword(encryptedPassUserInternal)
+                    .userId(userId)
                     .build();
 
             saveRealmPort.save(RealmMapper.toEntity(serverDto), transactionId);
-
         } catch (Exception e) {
             LOGGER.error("An error occurred while encrypting data for a new realm {}", transactionId);
             throw new InternalException("It was not possible to create a realm at this time, an unexpected error has" +

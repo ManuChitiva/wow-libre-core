@@ -1,7 +1,6 @@
 package com.register.wowlibre.infrastructure.controller;
 
 import com.register.wowlibre.domain.dto.*;
-import com.register.wowlibre.domain.model.*;
 import com.register.wowlibre.domain.port.in.realm.*;
 import com.register.wowlibre.domain.shared.*;
 import jakarta.validation.*;
@@ -49,19 +48,19 @@ public class RealmController {
     }
 
     @GetMapping("/key")
-    public ResponseEntity<GenericResponse<RealmModel>> apiKey(
+    public ResponseEntity<GenericResponse<String>> apiKey(
             @RequestHeader(name = HEADER_TRANSACTION_ID, required = false) final String transactionId,
             @RequestParam(name = "api_key") String apiKey) {
 
-        final RealmModel server = realmPort.findByApiKey(apiKey, transactionId);
+        final String apiSecret = realmPort.findByApiKey(apiKey, transactionId).apiSecret;
 
-        if (server == null) {
+        if (apiSecret == null) {
             return ResponseEntity.status(HttpStatus.NO_CONTENT)
-                    .body(new GenericResponseBuilder<RealmModel>(transactionId).notContent().build());
+                    .body(new GenericResponseBuilder<String>(transactionId).notContent().build());
         }
 
         return ResponseEntity.status(HttpStatus.OK)
-                .body(new GenericResponseBuilder<>(server, transactionId).ok().build());
+                .body(new GenericResponseBuilder<>(apiSecret, transactionId).ok().build());
     }
 
 

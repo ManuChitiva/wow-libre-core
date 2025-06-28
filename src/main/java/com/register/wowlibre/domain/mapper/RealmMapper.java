@@ -61,5 +61,4 @@ public class RealmMapper {
         return realmEntity;
     }
 
-
 }
