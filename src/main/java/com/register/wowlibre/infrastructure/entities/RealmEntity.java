@@ -43,6 +43,10 @@ public class RealmEntity implements Serializable {
     private String externalUsername;
     @Column(name = "external_password")
     private String externalPassword;
+    @Column(name = "gm_username")
+    private String gmUsername;
+    @Column(name = "gm_password")
+    private String gmPassword;
     private byte[] salt;
     private Integer retry;
     private String disclaimer;

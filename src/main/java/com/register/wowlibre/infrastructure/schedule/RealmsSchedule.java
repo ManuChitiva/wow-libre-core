@@ -83,11 +83,12 @@ public class RealmsSchedule {
 
             try {
                 byte[] salt = server.getSalt();
-                final String gmUsername = server.getExternalUsername();
+                final String apiSecret = server.getApiSecret();
+                final String gmUsername = server.getGmUsername();
+                final String gmPassword = server.getGmPassword();
+
                 final String usernameRealm = String.format("%s-%s", server.getName(),
                         server.getExpansionId());
-
-                final String gmPassword = server.getExternalPassword();
                 final String passwordRealm = randomString.nextString();
 
                 // CREATE USER REALM
@@ -100,11 +101,18 @@ public class RealmsSchedule {
                         server.getHost(), usernameRealm, passwordRealm, transactionId
                 );
 
+                SecretKey derivedKey = KeyDerivationUtil.deriveKeyFromPassword(apiSecret, salt);
+                final String encryptedPassUserInternal = EncryptionUtil.encrypt(passwordRealm, derivedKey);
+
                 server.setJwt(authToken.getJwt());
                 server.setExpirationDate(adjustExpirationDate(authToken.getExpirationDate()));
                 server.setRefreshToken(authToken.getRefreshToken());
                 server.setStatus(true);
                 server.setRetry(0);
+                server.setExternalUsername(usernameRealm);
+                server.setExternalPassword(encryptedPassUserInternal);
+                server.setGmPassword(null);
+                server.setGmUsername(null);
                 saveRealmPort.save(server, transactionId);
                 LOGGER.info("The kingdom is linked correctly {} ", server.getName());
             } catch (Exception e) {

@@ -29,4 +29,6 @@ public class RealmModel {
     public String externalUsername;
     public Long userId;
     public Integer retry;
+    public String gmUsername;
+    public String gmPassword;
 }

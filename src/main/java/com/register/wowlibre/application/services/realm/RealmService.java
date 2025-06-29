@@ -117,8 +117,8 @@ public class RealmService implements RealmPort {
                     .status(false)
                     .realmlist(realmCreateDto.getRealmlist())
                     .webSite(realmCreateDto.getWebSite())
-                    .externalUsername(realmCreateDto.getExternalUsername())
-                    .externalPassword(encryptedPassUserInternal)
+                    .gmUsername(realmCreateDto.getExternalUsername())
+                    .gmPassword(encryptedPassUserInternal)
                     .userId(userId)
                     .build();
 

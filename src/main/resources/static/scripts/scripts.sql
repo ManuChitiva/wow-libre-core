@@ -58,12 +58,13 @@ CREATE TABLE platform.realm
     web               text,
     realmlist         varchar(80) NOT NULL,
     status            boolean     NOT NULL,
-    external_username varchar(50) NOT NULL,
-    external_password text        NOT NULL,
+    external_username varchar(50),
+    external_password text        ,
     salt              VARBINARY(16),
     retry             integer,
     disclaimer        varchar(80),
-
+    gm_username varchar(50),
+    gm_password text,
     CONSTRAINT uq_realm_name_expansion UNIQUE (name, expansion_id),
     CONSTRAINT uq_realm_api_key UNIQUE (api_key),
     PRIMARY KEY (id)
