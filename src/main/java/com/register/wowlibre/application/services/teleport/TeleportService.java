@@ -78,19 +78,18 @@ public class TeleportService implements TeleportPort {
                          String transactionId) {
         AccountVerificationDto account = accountGamePort.verifyAccount(userId, accountId, realmId, transactionId);
 
-        obtainTeleport.findById(teleportId).ifPresent(teleport -> {
-            integratorPort.teleport(account.realm().getHost(), account.realm().getJwt(),
-                    TeleportRequest.builder()
-                            .map(teleport.getMap())
-                            .positionX(teleport.getPositionX())
-                            .positionY(teleport.getPositionY())
-                            .positionZ(teleport.getPositionZ())
-                            .userId(userId)
-                            .orientation(teleport.getOrientation())
-                            .characterId(characterId)
-                            .accountId(accountId)
-                            .zone(teleport.getZone()).build(), transactionId);
-        });
+        obtainTeleport.findById(teleportId).ifPresent(teleport ->
+                integratorPort.teleport(account.realm().getHost(), account.realm().getJwt(),
+                TeleportRequest.builder()
+                        .map(teleport.getMap())
+                        .positionX(teleport.getPositionX())
+                        .positionY(teleport.getPositionY())
+                        .positionZ(teleport.getPositionZ())
+                        .userId(userId)
+                        .orientation(teleport.getOrientation())
+                        .characterId(characterId)
+                        .accountId(accountId)
+                        .zone(teleport.getZone()).build(), transactionId));
     }
 
     @Override
@@ -103,7 +102,6 @@ public class TeleportService implements TeleportPort {
 
         saveTeleport.delete(teleport.get());
     }
-
 
     private TeleportModel mapModel(TeleportEntity teleport) {
         return TeleportModel.builder()
